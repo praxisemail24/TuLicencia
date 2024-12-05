@@ -1,0 +1,1479 @@
+{
+	"info": {
+		"_postman_id": "20b96d17-ecd8-4d7c-8b3a-1217214f2f04",
+		"name": "1 SmartLicencia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16915442"
+	},
+	"item": [
+		{
+			"name": "ClienteGET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/api/Cliente",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"api",
+						"Cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente/ ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://172.178.82.60/api/api/Cliente/194",
+					"protocol": "http",
+					"host": [
+						"172",
+						"178",
+						"82",
+						"60"
+					],
+					"path": [
+						"api",
+						"api",
+						"Cliente",
+						"194"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente/ Frm",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.tulicenciadev.com/api/api/Cliente/Frl/60/4",
+					"protocol": "https",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"api",
+						"Cliente",
+						"Frl",
+						"60",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente/ PagoValidación",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7080/api/Cliente/PagoValidacion/60/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"Cliente",
+						"PagoValidacion",
+						"60",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente/ KeyTemp",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7080/api/Cliente/ClienteKey/38d4ebfd8d6e41",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"Cliente",
+						"ClienteKey",
+						"38d4ebfd8d6e41"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente/ CORREO",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.tulicenciadev.com/api/api/Cliente/DatosXCorreo/riverareynaangel@gmail.com",
+					"protocol": "https",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"api",
+						"Cliente",
+						"DatosXCorreo",
+						"riverareynaangel@gmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente Validación Formulario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/Cliente/60/14/1",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"Cliente",
+						"60",
+						"14",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente Validación Archivo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7080/api/Cliente/Archivo/1/60/50",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"Cliente",
+						"Archivo",
+						"1",
+						"60",
+						"50"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente/2",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/Cliente/4",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"Cliente",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "loginCliente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/Cliente/login/andreslopezg/m2k1",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"Cliente",
+						"login",
+						"andreslopezg",
+						"m2k1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente/guardar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_id\": 0,\r\n  \"cl_nombre\": \"Angel\",\r\n  \"cl_primerApellido\": \"Rivera\",\r\n  \"cl_segundoApellido\": \"Romero\",\r\n  \"cl_zip\": \"12345\",\r\n  \"cl_direccion\": \"Calle Pardo 122\",\r\n  \"cl_numeroLicencia\": \"101010154\",\r\n  \"cl_numeroSeguro\": \"4533\",\r\n  \"cl_fechaNacimiento\": \"1990-02-21\",\r\n  \"cl_numeroTelefono\": \"987845651\",\r\n  \"cl_correo\": \"riverareynaangel@gmail.com\",\r\n  \"cl_nombreUsuario\": \"xUsuAnge\",\r\n  \"cl_contrasena\": \"12456512\",\r\n  \"cl_fechaRegistro\": \"2024-02-20\",\r\n  \"cl_estado\": 0,\r\n  \"cl_pueblo\": { \"pl_id\": 10 }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7080/api/Cliente",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"Cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente/ update  Prueba porSwagger",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  cl_contrasena\r\n: \r\n\"\"\r\ncl_correo\r\n: \r\n\"\"\r\ncl_direccion\r\n: \r\n\"\"\r\ncl_estado\r\n: \r\n0\r\ncl_fechaNacimiento\r\n: \r\n\"\"\r\ncl_fechaRegistro\r\n: \r\n\"\"\r\ncl_id\r\n: \r\n10\r\ncl_keyTemporal\r\n: \r\n\"\"\r\ncl_nombre\r\n: \r\n\"\"\r\ncl_nombreUsuario\r\n: \r\n\"\"\r\ncl_numeroLicencia\r\n: \r\n\"\"\r\ncl_numeroSeguro\r\n: \r\n\"\"\r\ncl_numeroTelefono\r\n: \r\n\"\"\r\ncl_primerApellido\r\n: \r\n\"\"\r\ncl_pueblo\r\n: \r\n{pl_id: 4, pl_nombre: \"\"}\r\ncl_segundoApellido\r\n: \r\n\"\"\r\ncl_zip\r\n: \r\n\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://tulicenciadev.com/api/api/Cliente",
+					"protocol": "https",
+					"host": [
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"api",
+						"Cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente/ cliente cambia Pass",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://www.tulicenciadev.com/api/Cliente/CambioPassCliente/1/nuevoPass3",
+					"protocol": "https",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"Cliente",
+						"CambioPassCliente",
+						"1",
+						"nuevoPass3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente/ New Pass x Correo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7080/api/Cliente/Actualizar/164/passNuevo/8f6fd13e31de45",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"Cliente",
+						"Actualizar",
+						"164",
+						"passNuevo",
+						"8f6fd13e31de45"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente/ New usuario x Correo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7080/api/Cliente/ActualizarUsuario/164/usuario1/79ad6d8dc6264d",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"Cliente",
+						"ActualizarUsuario",
+						"164",
+						"usuario1",
+						"79ad6d8dc6264d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Archivos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 164 },\r\n  \"tr_tramite\": { \"tr_id\": 1 },\r\n  \"ar_id\": 0,\r\n  \"frm_id\": 2,\r\n  \"ar_nombre\": \"string\",\r\n  \"ar_fecha\": \"2024-03-04\",\r\n  \"ar_estado\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7080/api/Archivo",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"Archivo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Archivos Upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Angel/Downloads/DICTICO 02.jpg"
+						},
+						{
+							"key": "item",
+							"value": "{\n  \"cl_cliente\": { \"cl_id\": 164 },\n  \"tr_tramite\": { \"tr_id\": 1 },\n  \"ar_id\": 0,\n  \"frm_id\": 2,\n  \"ar_nombre\": \"string\",\n  \"ar_fecha\": \"2024-03-04\",\n  \"ar_estado\": 0\n}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://172.178.82.60/api/api/Archivo/Upload",
+					"protocol": "http",
+					"host": [
+						"172",
+						"178",
+						"82",
+						"60"
+					],
+					"path": [
+						"api",
+						"api",
+						"Archivo",
+						"Upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Archivos   varios Archivos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"cl_cliente\": { \"cl_id\": 164 },\r\n    \"tr_tramite\": { \"tr_id\": 1 },\r\n    \"ar_id\": 0,\r\n    \"frm_id\": 60,\r\n    \"ar_nombre\": \"Archivo 1\",\r\n    \"ar_fecha\": \"2024-03-04\",\r\n    \"ar_estado\": 0,\r\n    \"ar_pos\": 1\r\n  },\r\n  {\r\n    \"cl_cliente\": { \"cl_id\": 164 },\r\n    \"tr_tramite\": { \"tr_id\": 1 },\r\n    \"ar_id\": 0,\r\n    \"frm_id\": 60,\r\n    \"ar_nombre\": \"Archivo 2\",\r\n    \"ar_fecha\": \"2024-03-05\",\r\n    \"ar_estado\": 0,\r\n    \"ar_pos\": 2\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7080/api/Archivo/VariosArchivos",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"Archivo",
+						"VariosArchivos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Correo  Recuperar Contraseña",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"para\": \"riverareynaangel@gmail.com\",\r\n  \"asunto\": \"string\",\r\n  \"contenido\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7080/api/Email/CambioPass",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"Email",
+						"CambioPass"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Correo  Recuperar Usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"para\": \"riverareynaangel@gmail.com\",\r\n  \"asunto\": \"string\",\r\n  \"contenido\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7080/api/Email/CambioUsuario",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"Email",
+						"CambioUsuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PAGO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"ANGEL\",\r\n  \"apellido\": \"SALAS\",\r\n  \"numeroTarjeta\": \"4513810008750386\",\r\n  \"cvv\": \"216\",\r\n  \"fechaVencimiento\": \"05/2031\",\r\n  \"monto\": 0,\r\n  \"description\": \"Renovacion de Licencia\",\r\n  \"zipCode\": \"string\",\r\n  \"email\": \"riverareynaangel@gmail.com\",\r\n  \"phone\": \"string\",\r\n  \"direction\": \"direcTRAMITE 1111\",\r\n  \"city\": \"string\",\r\n  \"state\": \"string\",\r\n  \"pg_id\": 3,\r\n  \"pg_fecha\": \"2024-03-08T14:33:00.210Z\",\r\n  \"pg_codigo\": \"163483TQKWHK222\",\r\n  \"pg_status\": \"string\",\r\n  \"pg_nota\": \"string\",\r\n  \"pg_estado\": 0,\r\n  \"pg_metodo\": 0,\r\n  \"cl_cliente\": { \"cl_id\": 10 },\r\n  \"tr_tramite\": { \"tr_id\": 2  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7080/api/Pago",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"Pago"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PAGO  pruebasinPAgo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"ANGEL\",\r\n  \"apellido\": \"SALAS\",\r\n  \"numeroTarjeta\": \"4513810008750386\",\r\n  \"cvv\": \"216\",\r\n  \"fechaVencimiento\": \"05/2031\",\r\n  \"monto\": 1,\r\n  \"description\": \"Renovacion de Licencia\",\r\n  \"zipCode\": \"string\",\r\n  \"email\": \"riverareynaangel@gmail.com\",\r\n  \"phone\": \"string\",\r\n  \"direction\": \"direcTRAMITE 1111\",\r\n  \"city\": \"string\",\r\n  \"state\": \"string\",\r\n  \"pg_id\": 3,\r\n  \"pg_fecha\": \"2024-03-08T14:33:00.210Z\",\r\n  \"pg_codigo\": \"1517BGK7G0O7\",\r\n  \"pg_status\": \"string\",\r\n  \"pg_nota\": \"string\",\r\n  \"pg_estado\": 0,\r\n  \"pg_metodo\": 0,\r\n  \"cl_cliente\": { \"cl_id\": 10 },\r\n  \"tr_tramite\": { \"tr_id\": 2  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7080/api/Pago/SinPAGO",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"Pago",
+						"SinPAGO"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PAGO Genera PDF",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"JORGE\",\r\n  \"apellido\": \"SALAS\",\r\n  \"numeroTarjeta\": \"4513810008750386\",\r\n  \"cvv\": \"216\",\r\n  \"fechaVencimiento\": \"05/2031\",\r\n  \"monto\": 0,\r\n  \"description\": \"TRAMITE 1111\",\r\n  \"zipCode\": \"string\",\r\n  \"email\": \"riverareynaangel@gmail.com\",\r\n  \"phone\": \"string\",\r\n  \"direction\": \"direcTRAMITE 1111\",\r\n  \"city\": \"string\",\r\n  \"state\": \"string\",\r\n  \"pg_id\": 3,\r\n  \"pg_fecha\": \"2024-03-08T14:33:00.210Z\",\r\n  \"pg_codigo\": \"12345ooooxxx\",\r\n  \"pg_status\": \"string\",\r\n  \"pg_nota\": \"string\",\r\n  \"pg_estado\": 0,\r\n  \"pg_metodo\": 0,\r\n  \"cl_cliente\": { \"cl_id\": 10 },\r\n  \"tr_tramite\": { \"tr_id\": 2  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7080/api/Pago/generarPdf/163483TQKWHK",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"Pago",
+						"generarPdf",
+						"163483TQKWHK"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PAGO Validar Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"8d9Fx2BgF6\",\r\n  \"clave\": \"7r9jU79eQ4s42jLX\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://www.tulicenciadev.com/api/Pago/Validar",
+					"protocol": "https",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"Pago",
+						"Validar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pago/idCliente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/Pago/60",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"Pago",
+						"60"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pago/ CodigoPago",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7080/api/Pago/CodigoPago/1344C40AH571",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"Pago",
+						"CodigoPago",
+						"1344C40AH571"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/Pueblos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://172.178.82.60/api/api/Pueblos",
+					"protocol": "http",
+					"host": [
+						"172",
+						"178",
+						"82",
+						"60"
+					],
+					"path": [
+						"api",
+						"api",
+						"Pueblos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/Pueblos Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://172.178.82.60/api/api/Pueblos",
+					"protocol": "http",
+					"host": [
+						"172",
+						"178",
+						"82",
+						"60"
+					],
+					"path": [
+						"api",
+						"api",
+						"Pueblos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/Pueblos/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/Pueblos/14",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"Pueblos",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tramite",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/Tramite",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"Tramite"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tipo Tramite",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/TipoTramite",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"TipoTramite"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Renovacion Licencia",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 164 },\r\n  \"pg_pago\": { \"pg_id\": 37 },\r\n  \"tr_tramite\": { \"tr_id\": 1 },\r\n  \"frl_Id\": 0,\r\n  \"frl_fecha\": \"2024-02-27T15:13:47.865Z\",\r\n  \"frl_Estado\": 0,\r\n  \"frl_TipoLicencia\": \"Renovación de Licencia \",\r\n  \"frl_NumeroLicencia\": \"123456785\",\r\n  \"frl_Categoria\": \"categoria\",\r\n  \"frl_vehiculoPesado\": \"string\",\r\n  \"frl_Identificacion\": \"identi\",\r\n  \"frl_Numero\": \"1234578\",\r\n  \"frl_StatusLegal\": \"string\",\r\n  \"frl_Genero\": \"string\",\r\n  \"frl_Donante\": \"string\",\r\n  \"frl_TipoSangre\": \"string\",\r\n  \"frl_Talla\": \"string\",\r\n  \"frl_Peso\": \"string\",\r\n  \"frl_Tez\": \"string\",\r\n  \"frl_ColorPelo\": \"string\",\r\n  \"frl_ColorOjo\": \"string\",\r\n  \"frl_Direccion\": \"string\",\r\n  \"frl_NumeroDireccion\": \"string\",\r\n  \"frl_Pueblo\": \"string\",\r\n  \"frl_CodigoPostal\": 1245,\r\n  \"frl_Barrio\": \"string\",\r\n  \"frl_Apartado\": \"string\",\r\n  \"frl_Pueblo2\": \"string\",\r\n  \"frl_CodigoPostal2\": 1245,\r\n  \"frl_LicenciaSuspendida\": \"string\",\r\n  \"frl_motivoSuspension\": \"string\",\r\n  \"frl_Recluido\": \"string\",\r\n  \"frl_ConvictoBebida\": \"string\",\r\n  \"frl_FechaConvictoBebida\": null,\r\n  \"frl_ConvictoNarcotico\": \"string\",\r\n  \"frl_FechaConvictoNarcotico\": null,\r\n  \"frl_ObligacionAlimentaria\": \"string\",\r\n  \"frl_DeudaAcca\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7080/api/RenovLic",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"RenovLic"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Renovacion Licencia / id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 60 },\r\n  \"pg_pago\": { \"pg_id\": 14 },\r\n  \"tr_tramite\": { \"tr_id\": 1 },\r\n  \"frl_Id\": 53,\r\n  \"frl_Fecha\": \"2024-02-27T15:13:47.865Z\",\r\n  \"frl_Estado\": 0,\r\n  \"frl_TipoLicencia\": \"XXXXXXXXX\",\r\n  \"frl_NumeroLicencia\": \"XXXXXXXXX\",\r\n  \"frl_Categoria\": \"string\",\r\n  \"frl_vehiculoPesado\": \"string\",\r\n  \"frl_Identificacion\": \"string\",\r\n  \"frl_Numero\": \"string\",\r\n  \"frl_StatusLegal\": \"string\",\r\n  \"frl_Genero\": \"string\",\r\n  \"frl_Donante\": \"string\",\r\n  \"frl_TipoSangre\": \"string\",\r\n  \"frl_Talla\": \"string\",\r\n  \"frl_Peso\": \"string\",\r\n  \"frl_Tez\": \"string\",\r\n  \"frl_ColorPelo\": \"string\",\r\n  \"frl_ColorOjo\": \"string\",\r\n  \"frl_Direccion\": \"string\",\r\n  \"frl_NumeroDireccion\": \"string\",\r\n  \"frl_Pueblo\": \"string\",\r\n  \"frl_CodigoPostal\": 55555,\r\n  \"frl_Barrio\": \"string\",\r\n  \"frl_Apartado\": \"string\",\r\n  \"frl_Pueblo2\": \"string\",\r\n  \"frl_CodigoPostal2\": 1245,\r\n  \"frl_LicenciaSuspendida\": \"string\",\r\n  \"frl_motivoSuspension\": \"string\",\r\n  \"frl_Recluido\": \"string\",\r\n  \"frl_ConvictoBebida\": \"string\",\r\n  \"frl_FechaConvictoBebida\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ConvictoNarcotico\": \"string\",\r\n  \"frl_FechaConvictoNarcotico\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ObligacionAlimentaria\": \"string\",\r\n  \"frl_DeudaAcca\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7080/api/RenovLic",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"RenovLic"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Renovacion Licencia",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 64 },\r\n  \"pg_pago\": { \"pg_id\": 14 },\r\n  \"tr_tramite\": { \"tr_id\": 1 },\r\n  \"frl_Id\": 0,\r\n  \"frl_Fecha\": \"2024-02-27T15:13:47.865Z\",\r\n  \"frl_Estado\": 0,\r\n  \"frl_TipoLicencia\": \"string\",\r\n  \"frl_NumeroLicencia\": \"string\",\r\n  \"frl_Categoria\": \"string\",\r\n  \"frl_Identificacion\": \"string\",\r\n  \"frl_Numero\": \"string\",\r\n  \"frl_StatusLegal\": \"string\",\r\n  \"frl_Genero\": \"string\",\r\n  \"frl_Donante\": \"string\",\r\n  \"frl_TipoSangre\": \"string\",\r\n  \"frl_Talla\": \"string\",\r\n  \"frl_Peso\": \"string\",\r\n  \"frl_Tez\": \"string\",\r\n  \"frl_ColorPelo\": \"string\",\r\n  \"frl_ColorOjo\": \"string\",\r\n  \"frl_Direccion\": \"string\",\r\n  \"frl_NumeroDireccion\": \"string\",\r\n  \"frl_Pueblo\": \"string\",\r\n  \"frl_CodigoPostal\": \"string\",\r\n  \"frl_Barrio\": \"string\",\r\n  \"frl_Apartado\": \"string\",\r\n  \"frl_Pueblo2\": \"string\",\r\n  \"frl_CodigoPostal2\": \"string\",\r\n  \"frl_LicenciaSuspendida\": \"string\",\r\n  \"frl_Recluido\": \"string\",\r\n  \"frl_ConvictoBebida\": \"string\",\r\n  \"frl_FechaConvictoBebida\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ConvictoNarcotico\": \"string\",\r\n  \"frl_FechaConvictoNarcotico\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ObligacionAlimentaria\": \"string\",\r\n  \"frl_DeudaAcca\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7080/api/RenovLic",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"RenovLic"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Renovacion Licencia/id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 64 },\r\n  \"pg_pago\": { \"pg_id\": 14 },\r\n  \"tr_tramite\": { \"tr_id\": 1 },\r\n  \"frl_Id\": 0,\r\n  \"frl_Fecha\": \"2024-02-27T15:13:47.865Z\",\r\n  \"frl_Estado\": 0,\r\n  \"frl_TipoLicencia\": \"string\",\r\n  \"frl_NumeroLicencia\": \"string\",\r\n  \"frl_Categoria\": \"string\",\r\n  \"frl_Identificacion\": \"string\",\r\n  \"frl_Numero\": \"string\",\r\n  \"frl_StatusLegal\": \"string\",\r\n  \"frl_Genero\": \"string\",\r\n  \"frl_Donante\": \"string\",\r\n  \"frl_TipoSangre\": \"string\",\r\n  \"frl_Talla\": \"string\",\r\n  \"frl_Peso\": \"string\",\r\n  \"frl_Tez\": \"string\",\r\n  \"frl_ColorPelo\": \"string\",\r\n  \"frl_ColorOjo\": \"string\",\r\n  \"frl_Direccion\": \"string\",\r\n  \"frl_NumeroDireccion\": \"string\",\r\n  \"frl_Pueblo\": \"string\",\r\n  \"frl_CodigoPostal\": \"string\",\r\n  \"frl_Barrio\": \"string\",\r\n  \"frl_Apartado\": \"string\",\r\n  \"frl_Pueblo2\": \"string\",\r\n  \"frl_CodigoPostal2\": \"string\",\r\n  \"frl_LicenciaSuspendida\": \"string\",\r\n  \"frl_Recluido\": \"string\",\r\n  \"frl_ConvictoBebida\": \"string\",\r\n  \"frl_FechaConvictoBebida\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ConvictoNarcotico\": \"string\",\r\n  \"frl_FechaConvictoNarcotico\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ObligacionAlimentaria\": \"string\",\r\n  \"frl_DeudaAcca\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/api/RenovLic/53",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"api",
+						"RenovLic",
+						"53"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Renovacion Licencia/id Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 64 },\r\n  \"pg_pago\": { \"pg_id\": 14 },\r\n  \"tr_tramite\": { \"tr_id\": 1 },\r\n  \"frl_Id\": 0,\r\n  \"frl_Fecha\": \"2024-02-27T15:13:47.865Z\",\r\n  \"frl_Estado\": 0,\r\n  \"frl_TipoLicencia\": \"string\",\r\n  \"frl_NumeroLicencia\": \"string\",\r\n  \"frl_Categoria\": \"string\",\r\n  \"frl_Identificacion\": \"string\",\r\n  \"frl_Numero\": \"string\",\r\n  \"frl_StatusLegal\": \"string\",\r\n  \"frl_Genero\": \"string\",\r\n  \"frl_Donante\": \"string\",\r\n  \"frl_TipoSangre\": \"string\",\r\n  \"frl_Talla\": \"string\",\r\n  \"frl_Peso\": \"string\",\r\n  \"frl_Tez\": \"string\",\r\n  \"frl_ColorPelo\": \"string\",\r\n  \"frl_ColorOjo\": \"string\",\r\n  \"frl_Direccion\": \"string\",\r\n  \"frl_NumeroDireccion\": \"string\",\r\n  \"frl_Pueblo\": \"string\",\r\n  \"frl_CodigoPostal\": \"string\",\r\n  \"frl_Barrio\": \"string\",\r\n  \"frl_Apartado\": \"string\",\r\n  \"frl_Pueblo2\": \"string\",\r\n  \"frl_CodigoPostal2\": \"string\",\r\n  \"frl_LicenciaSuspendida\": \"string\",\r\n  \"frl_Recluido\": \"string\",\r\n  \"frl_ConvictoBebida\": \"string\",\r\n  \"frl_FechaConvictoBebida\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ConvictoNarcotico\": \"string\",\r\n  \"frl_FechaConvictoNarcotico\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ObligacionAlimentaria\": \"string\",\r\n  \"frl_DeudaAcca\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/RenovLic/60/14/1",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"RenovLic",
+						"60",
+						"14",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Renovacion Licencia/id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 64 },\r\n  \"pg_pago\": { \"pg_id\": 14 },\r\n  \"tr_tramite\": { \"tr_id\": 1 },\r\n  \"frl_Id\": 0,\r\n  \"frl_Fecha\": \"2024-02-27T15:13:47.865Z\",\r\n  \"frl_Estado\": 0,\r\n  \"frl_TipoLicencia\": \"string\",\r\n  \"frl_NumeroLicencia\": \"string\",\r\n  \"frl_Categoria\": \"string\",\r\n  \"frl_Identificacion\": \"string\",\r\n  \"frl_Numero\": \"string\",\r\n  \"frl_StatusLegal\": \"string\",\r\n  \"frl_Genero\": \"string\",\r\n  \"frl_Donante\": \"string\",\r\n  \"frl_TipoSangre\": \"string\",\r\n  \"frl_Talla\": \"string\",\r\n  \"frl_Peso\": \"string\",\r\n  \"frl_Tez\": \"string\",\r\n  \"frl_ColorPelo\": \"string\",\r\n  \"frl_ColorOjo\": \"string\",\r\n  \"frl_Direccion\": \"string\",\r\n  \"frl_NumeroDireccion\": \"string\",\r\n  \"frl_Pueblo\": \"string\",\r\n  \"frl_CodigoPostal\": \"string\",\r\n  \"frl_Barrio\": \"string\",\r\n  \"frl_Apartado\": \"string\",\r\n  \"frl_Pueblo2\": \"string\",\r\n  \"frl_CodigoPostal2\": \"string\",\r\n  \"frl_LicenciaSuspendida\": \"string\",\r\n  \"frl_Recluido\": \"string\",\r\n  \"frl_ConvictoBebida\": \"string\",\r\n  \"frl_FechaConvictoBebida\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ConvictoNarcotico\": \"string\",\r\n  \"frl_FechaConvictoNarcotico\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ObligacionAlimentaria\": \"string\",\r\n  \"frl_DeudaAcca\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7080/api/RenovLic/16",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"RenovLic",
+						"16"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Licencia Reciprocidad",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 164 },\r\n  \"pg_pago\": { \"pg_id\": 37 },\r\n  \"tr_tramite\": { \"tr_id\": 4 },\r\n  \"flr_id\": 0,\r\n  \"flr_fecha\": \"2024-02-28T14:34:53.740Z\",\r\n  \"flr_estado\": 0,\r\n  \"flr_tipoLicencia\": \"string\",\r\n  \"flr_numeroLicencia\": \"string\",\r\n  \"flr_categoria\": \"string\",\r\n  \"flr_tipoVehiculo\": \"string\",\r\n  \"flr_paisProcede\": \"string\",\r\n  \"flr_estadoProcede\": \"string\",\r\n  \"flr_numeroLicencia2\": \"string\",\r\n  \"flr_fechaExpiracion\": \"2024-04-01T15:03:14.945Z\",\r\n  \"flr_identificacion\": \"string\",\r\n  \"flr_numeroIdentificacion\": \"string\",\r\n  \"flr_statusLegal\": \"string\",\r\n  \"flr_genero\": \"string\",\r\n\"flr_donante\": \"string\",\r\n  \"flr_tipoSangre\": \"string\",\r\n  \"flr_talla\": \"string\",\r\n  \"flr_peso\": \"string\",\r\n  \"flr_tez\": \"string\",\r\n  \"flr_colorPelo\": \"string\",\r\n  \"flr_colorOjo\": \"string\",\r\n  \"flr_nombrePadre\": \"string\",\r\n  \"flr_nombreMadre\": \"string\",\r\n  \"flr_direccion\": \"string\",\r\n  \"flr_numeroDireccion\": \"string\",\r\n  \"flr_pueblo\": \"string\",\r\n  \"flr_codigoPostal\": \"string\",\r\n  \"flr_barrio\": \"string\",\r\n  \"flr_apartado\": \"string\",\r\n  \"flr_pueblo2\": \"string\",\r\n  \"flr_codigoPostal2\": \"string\",\r\n  \"flr_licenciaSuspendida\": \"string\",\r\n  \"flr_motivoSuspencion\": \"string\",\r\n  \"flr_numeroLicenciaPR\": \"string\",\r\n  \"flr_recluido\": \"string\",\r\n  \"flr_convictoBebida\": \"string\",\r\n  \"flr_fechaConvictoBebida\": null,\r\n  \"flr_convictoNarcotico\": \"string\",\r\n  \"flr_fechaConvictoNarcotico\": null,\r\n  \"flr_obligacionAlimentaria\": \"string\",\r\n  \"flr_deudaAcca\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7080/api/LicenciaRec",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"LicenciaRec"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Licencia Reciprocidad Copy",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 60 },\r\n  \"pg_pago\": { \"pg_id\": 51 },\r\n  \"tr_tramite\": { \"tr_id\": 4 },\r\n  \"flr_id\": 2,\r\n  \"flr_fecha\": \"2024-02-28T14:34:53.740Z\",\r\n\"flr_estado\": 0,\r\n  \"flr_tipoLicencia\": \"xxxxxxxxx\",\r\n  \"flr_numeroLicencia\": \"string\",\r\n  \"flr_categoria\": \"string\",\r\n  \"flr_tipoVehiculo\": \"string\",\r\n  \"flr_paisProcede\": \"string\",\r\n  \"flr_estadoProcede\": \"string\",\r\n  \"flr_numeroLicencia2\": \"string\",\r\n  \"flr_fechaExpiracion\": \"2024-04-01T15:03:14.945Z\",\r\n  \"flr_identificacion\": \"string\",\r\n  \"flr_numeroIdentificacion\": \"string\",\r\n  \"flr_statusLegal\": \"string\",\r\n  \"flr_genero\": \"string\",\r\n\"flr_donante\": \"string\",\r\n  \"flr_tipoSangre\": \"string\",\r\n  \"flr_talla\": \"string\",\r\n  \"flr_peso\": \"string\",\r\n  \"flr_tez\": \"string\",\r\n  \"flr_colorPelo\": \"string\",\r\n  \"flr_colorOjo\": \"string\",\r\n  \"flr_nombrePadre\": \"string\",\r\n  \"flr_nombreMadre\": \"string\",\r\n  \"flr_direccion\": \"string\",\r\n  \"flr_numeroDireccion\": \"string\",\r\n  \"flr_pueblo\": \"string\",\r\n  \"flr_codigoPostal\": \"string\",\r\n  \"flr_barrio\": \"string\",\r\n  \"flr_apartado\": \"string\",\r\n  \"flr_pueblo2\": \"string\",\r\n  \"flr_codigoPostal2\": \"string\",\r\n  \"flr_licenciaSuspendida\": \"string\",\r\n  \"flr_motivoSuspencion\": \"string\",\r\n  \"flr_numeroLicenciaPR\": \"string\",\r\n  \"flr_recluido\": \"string\",\r\n  \"flr_convictoBebida\": \"string\",\r\n  \"flr_fechaConvictoBebida\": \"2024-04-01T15:03:14.945Z\",\r\n  \"flr_convictoNarcotico\": \"string\",\r\n  \"flr_fechaConvictoNarcotico\": \"2024-04-01T15:03:14.945Z\",\r\n  \"flr_obligacionAlimentaria\": \"string\",\r\n  \"flr_deudaAcca\": \"string\"\r\n\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://172.178.82.60/api/api/LicenciaRec/2",
+					"protocol": "http",
+					"host": [
+						"172",
+						"178",
+						"82",
+						"60"
+					],
+					"path": [
+						"api",
+						"api",
+						"LicenciaRec",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Licencia Reciprocidad",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 64 },\r\n  \"pg_pago\": { \"pg_id\": 14 },\r\n  \"tr_tramite\": { \"tr_id\": 1 },\r\n  \"frl_Id\": 0,\r\n  \"frl_Fecha\": \"2024-02-27T15:13:47.865Z\",\r\n  \"frl_Estado\": 0,\r\n  \"frl_TipoLicencia\": \"string\",\r\n  \"frl_NumeroLicencia\": \"string\",\r\n  \"frl_Categoria\": \"string\",\r\n  \"frl_Identificacion\": \"string\",\r\n  \"frl_Numero\": \"string\",\r\n  \"frl_StatusLegal\": \"string\",\r\n  \"frl_Genero\": \"string\",\r\n  \"frl_Donante\": \"string\",\r\n  \"frl_TipoSangre\": \"string\",\r\n  \"frl_Talla\": \"string\",\r\n  \"frl_Peso\": \"string\",\r\n  \"frl_Tez\": \"string\",\r\n  \"frl_ColorPelo\": \"string\",\r\n  \"frl_ColorOjo\": \"string\",\r\n  \"frl_Direccion\": \"string\",\r\n  \"frl_NumeroDireccion\": \"string\",\r\n  \"frl_Pueblo\": \"string\",\r\n  \"frl_CodigoPostal\": \"string\",\r\n  \"frl_Barrio\": \"string\",\r\n  \"frl_Apartado\": \"string\",\r\n  \"frl_Pueblo2\": \"string\",\r\n  \"frl_CodigoPostal2\": \"string\",\r\n  \"frl_LicenciaSuspendida\": \"string\",\r\n  \"frl_Recluido\": \"string\",\r\n  \"frl_ConvictoBebida\": \"string\",\r\n  \"frl_FechaConvictoBebida\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ConvictoNarcotico\": \"string\",\r\n  \"frl_FechaConvictoNarcotico\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ObligacionAlimentaria\": \"string\",\r\n  \"frl_DeudaAcca\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7080/api/LicenciaRec",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"LicenciaRec"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Licencia Reciprocidad/id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 64 },\r\n  \"pg_pago\": { \"pg_id\": 14 },\r\n  \"tr_tramite\": { \"tr_id\": 1 },\r\n  \"frl_Id\": 0,\r\n  \"frl_Fecha\": \"2024-02-27T15:13:47.865Z\",\r\n  \"frl_Estado\": 0,\r\n  \"frl_TipoLicencia\": \"string\",\r\n  \"frl_NumeroLicencia\": \"string\",\r\n  \"frl_Categoria\": \"string\",\r\n  \"frl_Identificacion\": \"string\",\r\n  \"frl_Numero\": \"string\",\r\n  \"frl_StatusLegal\": \"string\",\r\n  \"frl_Genero\": \"string\",\r\n  \"frl_Donante\": \"string\",\r\n  \"frl_TipoSangre\": \"string\",\r\n  \"frl_Talla\": \"string\",\r\n  \"frl_Peso\": \"string\",\r\n  \"frl_Tez\": \"string\",\r\n  \"frl_ColorPelo\": \"string\",\r\n  \"frl_ColorOjo\": \"string\",\r\n  \"frl_Direccion\": \"string\",\r\n  \"frl_NumeroDireccion\": \"string\",\r\n  \"frl_Pueblo\": \"string\",\r\n  \"frl_CodigoPostal\": \"string\",\r\n  \"frl_Barrio\": \"string\",\r\n  \"frl_Apartado\": \"string\",\r\n  \"frl_Pueblo2\": \"string\",\r\n  \"frl_CodigoPostal2\": \"string\",\r\n  \"frl_LicenciaSuspendida\": \"string\",\r\n  \"frl_Recluido\": \"string\",\r\n  \"frl_ConvictoBebida\": \"string\",\r\n  \"frl_FechaConvictoBebida\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ConvictoNarcotico\": \"string\",\r\n  \"frl_FechaConvictoNarcotico\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ObligacionAlimentaria\": \"string\",\r\n  \"frl_DeudaAcca\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7080/api/LicenciaRec/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"LicenciaRec",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Licencia Aprendizaje",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 164 },\r\n  \"pg_pago\": { \"pg_id\": 38 },\r\n  \"tr_tramite\": { \"tr_id\": 2 },\r\n  \"fla_id\": 0,\r\n  \"fla_fecha\": \"2024-02-29T15:29:58.218Z\",\r\n  \"fla_estado\": 0,\r\n  \"fla_tipoLicencia\": \"Licen A\",\r\n  \"fla_identificacion\": \"1345214\",\r\n  \"fla_numero\": \"2125451\",\r\n  \"fla_statusLegal\": \"Legal\",\r\n  \"fla_genero\": \"string\",\r\n  \"fla_donante\": \"string\",\r\n  \"fla_tipoSangre\": \"string\",\r\n  \"fla_talla\": \"string\",\r\n  \"fla_peso\": \"string\",\r\n  \"fla_tez\": \"string\",\r\n  \"fla_colorPelo\": \"string\",\r\n  \"fla_colorOjo\": \"string\",\r\n  \"fla_nombrePadre\": \"string\",\r\n  \"fla_nombreMadre\": \"string\",\r\n  \"fla_direccion\": \"string\",\r\n  \"fla_numeroDireccion\": \"string\",\r\n  \"fla_pueblo\": \"string\",\r\n  \"fla_codigoPostal\": \"string\",\r\n  \"fla_barrio\": \"string\",\r\n  \"fla_apartado\": \"string\",\r\n  \"fla_pueblo2\": \"string\",\r\n  \"fla_codigoPostal2\": \"string\",\r\n  \"fla_licencia\": \"string\",\r\n  \"fla_procedeLicencia\": \"string\",\r\n  \"fla_licenciaSuspendida\": \"string\",\r\n  \"fla_motivoSuspendido\": \"string\",\r\n  \"fla_recluido\": \"string\",\r\n  \"fla_convictoBebida\": \"string\",\r\n  \"fla_fechaConvictoBebida\": null,\r\n  \"fla_convictoNarcotico\": \"string\",\r\n  \"fla_fechaConvictoNarcotico\": null,\r\n  \"fla_obligacionAlimentaria\": \"string\",\r\n  \"fla_deudaAcca\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://172.178.82.60/api/api/LicenciaApre",
+					"protocol": "http",
+					"host": [
+						"172",
+						"178",
+						"82",
+						"60"
+					],
+					"path": [
+						"api",
+						"api",
+						"LicenciaApre"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Licencia Aprendizaje",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 64 },\r\n  \"pg_pago\": { \"pg_id\": 14 },\r\n  \"tr_tramite\": { \"tr_id\": 1 },\r\n  \"frl_Id\": 0,\r\n  \"frl_Fecha\": \"2024-02-27T15:13:47.865Z\",\r\n  \"frl_Estado\": 0,\r\n  \"frl_TipoLicencia\": \"string\",\r\n  \"frl_NumeroLicencia\": \"string\",\r\n  \"frl_Categoria\": \"string\",\r\n  \"frl_Identificacion\": \"string\",\r\n  \"frl_Numero\": \"string\",\r\n  \"frl_StatusLegal\": \"string\",\r\n  \"frl_Genero\": \"string\",\r\n  \"frl_Donante\": \"string\",\r\n  \"frl_TipoSangre\": \"string\",\r\n  \"frl_Talla\": \"string\",\r\n  \"frl_Peso\": \"string\",\r\n  \"frl_Tez\": \"string\",\r\n  \"frl_ColorPelo\": \"string\",\r\n  \"frl_ColorOjo\": \"string\",\r\n  \"frl_Direccion\": \"string\",\r\n  \"frl_NumeroDireccion\": \"string\",\r\n  \"frl_Pueblo\": \"string\",\r\n  \"frl_CodigoPostal\": \"string\",\r\n  \"frl_Barrio\": \"string\",\r\n  \"frl_Apartado\": \"string\",\r\n  \"frl_Pueblo2\": \"string\",\r\n  \"frl_CodigoPostal2\": \"string\",\r\n  \"frl_LicenciaSuspendida\": \"string\",\r\n  \"frl_Recluido\": \"string\",\r\n  \"frl_ConvictoBebida\": \"string\",\r\n  \"frl_FechaConvictoBebida\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ConvictoNarcotico\": \"string\",\r\n  \"frl_FechaConvictoNarcotico\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ObligacionAlimentaria\": \"string\",\r\n  \"frl_DeudaAcca\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/LicenciaApre",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"LicenciaApre"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Licencia Reciprocidad/id Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 64 },\r\n  \"pg_pago\": { \"pg_id\": 14 },\r\n  \"tr_tramite\": { \"tr_id\": 1 },\r\n  \"frl_Id\": 0,\r\n  \"frl_Fecha\": \"2024-02-27T15:13:47.865Z\",\r\n  \"frl_Estado\": 0,\r\n  \"frl_TipoLicencia\": \"string\",\r\n  \"frl_NumeroLicencia\": \"string\",\r\n  \"frl_Categoria\": \"string\",\r\n  \"frl_Identificacion\": \"string\",\r\n  \"frl_Numero\": \"string\",\r\n  \"frl_StatusLegal\": \"string\",\r\n  \"frl_Genero\": \"string\",\r\n  \"frl_Donante\": \"string\",\r\n  \"frl_TipoSangre\": \"string\",\r\n  \"frl_Talla\": \"string\",\r\n  \"frl_Peso\": \"string\",\r\n  \"frl_Tez\": \"string\",\r\n  \"frl_ColorPelo\": \"string\",\r\n  \"frl_ColorOjo\": \"string\",\r\n  \"frl_Direccion\": \"string\",\r\n  \"frl_NumeroDireccion\": \"string\",\r\n  \"frl_Pueblo\": \"string\",\r\n  \"frl_CodigoPostal\": \"string\",\r\n  \"frl_Barrio\": \"string\",\r\n  \"frl_Apartado\": \"string\",\r\n  \"frl_Pueblo2\": \"string\",\r\n  \"frl_CodigoPostal2\": \"string\",\r\n  \"frl_LicenciaSuspendida\": \"string\",\r\n  \"frl_Recluido\": \"string\",\r\n  \"frl_ConvictoBebida\": \"string\",\r\n  \"frl_FechaConvictoBebida\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ConvictoNarcotico\": \"string\",\r\n  \"frl_FechaConvictoNarcotico\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ObligacionAlimentaria\": \"string\",\r\n  \"frl_DeudaAcca\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/LicenciaApre/4",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"LicenciaApre",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Duplicado Licencia",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 60 },\r\n  \"pg_pago\": { \"pg_id\": 16 },\r\n  \"tr_tramite\": { \"tr_id\": 3 },\r\n  \"fdl_id\": 0,\r\n  \"fdl_fecha\": \"2024-03-01T19:58:41.302Z\",\r\n  \"fdl_estado\": 0,\r\n  \"fdl_tipoLicencia\": \"LICPRUEBA\",\r\n  \"fdl_numeroLicencia\": \"LICPRUEBA\",\r\n  \"fdl_categoria\": \"LICPRUEBA\",\r\n  \"fdl_vehiculoPesado\": \"TIPO 1\",\r\n  \"fdl_identificacion\": \"LICPRUEBA\",\r\n  \"fdl_numero\": \"string\",\r\n  \"fdl_StatusLegal\": \"string\",\r\n  \"fdl_genero\": \"string\",\r\n  \"fdl_donante\": \"string\",\r\n  \"fdl_tipoSangre\": \"string\",\r\n  \"fdl_talla\": \"string\",\r\n  \"fdl_peso\": \"string\",\r\n  \"fdl_tez\": \"string\",\r\n  \"fdl_colorPelo\": \"string\",\r\n  \"fdl_colorOjo\": \"string\",\r\n  \"fdl_direccion\": \"string\",\r\n  \"fdl_numeroDireccion\": \"string\",\r\n  \"fdl_pueblo\": \"string\",\r\n  \"fdl_codigoPostal\": \"string\",\r\n  \"fdl_barrio\": \"string\",\r\n  \"fdl_apartado\": \"string\",\r\n  \"fdl_pueblo2\": \"string\",\r\n  \"fdl_codigoPostal2\": \"string\",\r\n  \"fdl_licenciaSuspendida\": \"string\",\r\n  \"fdl_motivoSuspension\": \"string\",\r\n  \"fdl_recluido\": \"string\",\r\n  \"fdl_convictoBebida\": \"string\",\r\n  \"fdl_fechaConvictoBebida\": \"2024-03-01T19:58:41.302Z\",\r\n  \"fdl_convictoNarcotico\": \"string\",\r\n  \"fdl_fechaConvictoNarcotico\": \"2024-03-01T19:58:41.302Z\",\r\n  \"fdl_obligacionAlimentaria\": \"string\",\r\n  \"fdl_deudaAcca\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/DuplicadoLic",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"DuplicadoLic"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Duplicado Licencia",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 64 },\r\n  \"pg_pago\": { \"pg_id\": 14 },\r\n  \"tr_tramite\": { \"tr_id\": 1 },\r\n  \"frl_Id\": 0,\r\n  \"frl_Fecha\": \"2024-02-27T15:13:47.865Z\",\r\n  \"frl_Estado\": 0,\r\n  \"frl_TipoLicencia\": \"string\",\r\n  \"frl_NumeroLicencia\": \"string\",\r\n  \"frl_Categoria\": \"string\",\r\n  \"frl_Identificacion\": \"string\",\r\n  \"frl_Numero\": \"string\",\r\n  \"frl_StatusLegal\": \"string\",\r\n  \"frl_Genero\": \"string\",\r\n  \"frl_Donante\": \"string\",\r\n  \"frl_TipoSangre\": \"string\",\r\n  \"frl_Talla\": \"string\",\r\n  \"frl_Peso\": \"string\",\r\n  \"frl_Tez\": \"string\",\r\n  \"frl_ColorPelo\": \"string\",\r\n  \"frl_ColorOjo\": \"string\",\r\n  \"frl_Direccion\": \"string\",\r\n  \"frl_NumeroDireccion\": \"string\",\r\n  \"frl_Pueblo\": \"string\",\r\n  \"frl_CodigoPostal\": \"string\",\r\n  \"frl_Barrio\": \"string\",\r\n  \"frl_Apartado\": \"string\",\r\n  \"frl_Pueblo2\": \"string\",\r\n  \"frl_CodigoPostal2\": \"string\",\r\n  \"frl_LicenciaSuspendida\": \"string\",\r\n  \"frl_Recluido\": \"string\",\r\n  \"frl_ConvictoBebida\": \"string\",\r\n  \"frl_FechaConvictoBebida\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ConvictoNarcotico\": \"string\",\r\n  \"frl_FechaConvictoNarcotico\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ObligacionAlimentaria\": \"string\",\r\n  \"frl_DeudaAcca\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/DuplicadoLic",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"DuplicadoLic"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Duplicado Licencia / id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 64 },\r\n  \"pg_pago\": { \"pg_id\": 14 },\r\n  \"tr_tramite\": { \"tr_id\": 1 },\r\n  \"frl_Id\": 0,\r\n  \"frl_Fecha\": \"2024-02-27T15:13:47.865Z\",\r\n  \"frl_Estado\": 0,\r\n  \"frl_TipoLicencia\": \"string\",\r\n  \"frl_NumeroLicencia\": \"string\",\r\n  \"frl_Categoria\": \"string\",\r\n  \"frl_Identificacion\": \"string\",\r\n  \"frl_Numero\": \"string\",\r\n  \"frl_StatusLegal\": \"string\",\r\n  \"frl_Genero\": \"string\",\r\n  \"frl_Donante\": \"string\",\r\n  \"frl_TipoSangre\": \"string\",\r\n  \"frl_Talla\": \"string\",\r\n  \"frl_Peso\": \"string\",\r\n  \"frl_Tez\": \"string\",\r\n  \"frl_ColorPelo\": \"string\",\r\n  \"frl_ColorOjo\": \"string\",\r\n  \"frl_Direccion\": \"string\",\r\n  \"frl_NumeroDireccion\": \"string\",\r\n  \"frl_Pueblo\": \"string\",\r\n  \"frl_CodigoPostal\": \"string\",\r\n  \"frl_Barrio\": \"string\",\r\n  \"frl_Apartado\": \"string\",\r\n  \"frl_Pueblo2\": \"string\",\r\n  \"frl_CodigoPostal2\": \"string\",\r\n  \"frl_LicenciaSuspendida\": \"string\",\r\n  \"frl_Recluido\": \"string\",\r\n  \"frl_ConvictoBebida\": \"string\",\r\n  \"frl_FechaConvictoBebida\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ConvictoNarcotico\": \"string\",\r\n  \"frl_FechaConvictoNarcotico\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ObligacionAlimentaria\": \"string\",\r\n  \"frl_DeudaAcca\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/DuplicadoLic/4",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"DuplicadoLic",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Certificado Medico",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 197 },\r\n  \"pg_pago\": { \"pg_id\": 46 },\r\n  \"tr_tramite\": { \"tr_id\": 1 },\r\n  \"fcm_id\": 0,\r\n  \"frm_id\": 141,\r\n  \"fcm_numeroSeguro\": \"string\",\r\n  \"fcm_numeroLicencia\": \"string\",\r\n  \"fcm_ojoDerechoSinLentes\": \"string\",\r\n  \"fcm_ojoDerechoConLentes\": \"string\",\r\n  \"fcm_ojoIzquierdoSinLentes\": \"string\",\r\n  \"fcm_ojoIzquierdoConLentes\": \"string\",\r\n  \"fcm_ambosOjos\": \"string\",\r\n  \"fcm_condicion\": \"string\",\r\n  \"fcm_espejuelos\": \"string\",\r\n  \"fcm_usaLentes\": \"string\",\r\n  \"fcm_condicionOido\": \"string\",\r\n  \"fcm_condicionBrazo\": \"string\",\r\n  \"fcm_condicionPierna\": \"string\",\r\n  \"fcm_condicionFisica\": \"string\",\r\n  \"fcm_observacion\": \"string\",\r\n  \"fcm_estadoInconciencia\": \"string\",\r\n  \"fcm_padeceCorazon\": \"string\",\r\n  \"fcm_marcapaso\": \"string\",\r\n  \"fcm_protesis\": \"string\",\r\n  \"fcm_estaturaPies\": \"string\",\r\n  \"fcm_estaturaPulgada\": \"string\",\r\n  \"fcm_peso\": \"string\",\r\n  \"fcm_colorPelo\": \"string\",\r\n  \"fcm_colorOjo\": \"string\",\r\n  \"fcm_nombreMedico\": \"string\",\r\n  \"fcm_licenciaMedico\": \"string\",\r\n  \"fcm_fecha\": \"2024-03-27T20:19:11.822Z\",\r\n  \"fcm_estado\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://www.tulicenciadev.com/api/api/CertifMed",
+					"protocol": "https",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"api",
+						"CertifMed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Certificado Medico / id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 197 },\r\n  \"pg_pago\": { \"pg_id\": 46 },\r\n  \"tr_tramite\": { \"tr_id\": 1 },\r\n  \"fcm_id\": 8,\r\n  \"frm_id\": 141,\r\n  \"fcm_numeroSeguro\": \"aaaaaaaa\",\r\n  \"fcm_numeroLicencia\": \"BBBBBBB\",\r\n  \"fcm_ojoDerechoSinLentes\": \"string\",\r\n  \"fcm_ojoDerechoConLentes\": \"string\",\r\n  \"fcm_ojoIzquierdoSinLentes\": \"string\",\r\n  \"fcm_ojoIzquierdoConLentes\": \"string\",\r\n  \"fcm_ambosOjos\": \"string\",\r\n  \"fcm_condicion\": \"string\",\r\n  \"fcm_espejuelos\": \"string\",\r\n  \"fcm_usaLentes\": \"string\",\r\n  \"fcm_condicionOido\": \"string\",\r\n  \"fcm_condicionBrazo\": \"string\",\r\n  \"fcm_condicionPierna\": \"string\",\r\n  \"fcm_condicionFisica\": \"string\",\r\n  \"fcm_observacion\": \"string\",\r\n  \"fcm_estadoInconciencia\": \"string\",\r\n  \"fcm_padeceCorazon\": \"string\",\r\n  \"fcm_marcapaso\": \"string\",\r\n  \"fcm_protesis\": \"string\",\r\n  \"fcm_estaturaPies\": \"string\",\r\n  \"fcm_estaturaPulgada\": \"string\",\r\n  \"fcm_peso\": \"string\",\r\n  \"fcm_colorPelo\": \"string\",\r\n  \"fcm_colorOjo\": \"string\",\r\n  \"fcm_examinado\": \"string\",\r\n  \"fcm_capacitado\": \"string\",\r\n  \"fcm_nombreMedico\": \"string\",\r\n  \"fcm_licenciaMedico\": \"string\",\r\n  \"fcm_fecha\": \"2024-03-27T20:19:11.822Z\",\r\n  \"fcm_estado\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://www.tulicenciadev.com/api/api/CertifMed/8",
+					"protocol": "https",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"api",
+						"CertifMed",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Certificado Medico",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 64 },\r\n  \"pg_pago\": { \"pg_id\": 14 },\r\n  \"tr_tramite\": { \"tr_id\": 1 },\r\n  \"frl_Id\": 0,\r\n  \"frl_Fecha\": \"2024-02-27T15:13:47.865Z\",\r\n  \"frl_Estado\": 0,\r\n  \"frl_TipoLicencia\": \"string\",\r\n  \"frl_NumeroLicencia\": \"string\",\r\n  \"frl_Categoria\": \"string\",\r\n  \"frl_Identificacion\": \"string\",\r\n  \"frl_Numero\": \"string\",\r\n  \"frl_StatusLegal\": \"string\",\r\n  \"frl_Genero\": \"string\",\r\n  \"frl_Donante\": \"string\",\r\n  \"frl_TipoSangre\": \"string\",\r\n  \"frl_Talla\": \"string\",\r\n  \"frl_Peso\": \"string\",\r\n  \"frl_Tez\": \"string\",\r\n  \"frl_ColorPelo\": \"string\",\r\n  \"frl_ColorOjo\": \"string\",\r\n  \"frl_Direccion\": \"string\",\r\n  \"frl_NumeroDireccion\": \"string\",\r\n  \"frl_Pueblo\": \"string\",\r\n  \"frl_CodigoPostal\": \"string\",\r\n  \"frl_Barrio\": \"string\",\r\n  \"frl_Apartado\": \"string\",\r\n  \"frl_Pueblo2\": \"string\",\r\n  \"frl_CodigoPostal2\": \"string\",\r\n  \"frl_LicenciaSuspendida\": \"string\",\r\n  \"frl_Recluido\": \"string\",\r\n  \"frl_ConvictoBebida\": \"string\",\r\n  \"frl_FechaConvictoBebida\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ConvictoNarcotico\": \"string\",\r\n  \"frl_FechaConvictoNarcotico\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ObligacionAlimentaria\": \"string\",\r\n  \"frl_DeudaAcca\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/CertifMed",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"CertifMed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Form_ Certificado Medico / id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_cliente\": { \"cl_id\": 64 },\r\n  \"pg_pago\": { \"pg_id\": 14 },\r\n  \"tr_tramite\": { \"tr_id\": 1 },\r\n  \"frl_Id\": 0,\r\n  \"frl_Fecha\": \"2024-02-27T15:13:47.865Z\",\r\n  \"frl_Estado\": 0,\r\n  \"frl_TipoLicencia\": \"string\",\r\n  \"frl_NumeroLicencia\": \"string\",\r\n  \"frl_Categoria\": \"string\",\r\n  \"frl_Identificacion\": \"string\",\r\n  \"frl_Numero\": \"string\",\r\n  \"frl_StatusLegal\": \"string\",\r\n  \"frl_Genero\": \"string\",\r\n  \"frl_Donante\": \"string\",\r\n  \"frl_TipoSangre\": \"string\",\r\n  \"frl_Talla\": \"string\",\r\n  \"frl_Peso\": \"string\",\r\n  \"frl_Tez\": \"string\",\r\n  \"frl_ColorPelo\": \"string\",\r\n  \"frl_ColorOjo\": \"string\",\r\n  \"frl_Direccion\": \"string\",\r\n  \"frl_NumeroDireccion\": \"string\",\r\n  \"frl_Pueblo\": \"string\",\r\n  \"frl_CodigoPostal\": \"string\",\r\n  \"frl_Barrio\": \"string\",\r\n  \"frl_Apartado\": \"string\",\r\n  \"frl_Pueblo2\": \"string\",\r\n  \"frl_CodigoPostal2\": \"string\",\r\n  \"frl_LicenciaSuspendida\": \"string\",\r\n  \"frl_Recluido\": \"string\",\r\n  \"frl_ConvictoBebida\": \"string\",\r\n  \"frl_FechaConvictoBebida\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ConvictoNarcotico\": \"string\",\r\n  \"frl_FechaConvictoNarcotico\": \"2024-02-27T15:13:47.868Z\",\r\n  \"frl_ObligacionAlimentaria\": \"string\",\r\n  \"frl_DeudaAcca\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/CertifMed/3",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"CertifMed",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

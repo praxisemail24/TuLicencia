@@ -1,0 +1,102 @@
+﻿<#@ template language="C#" debug="true" hostspecific="true" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ parameter name="Titulo" type="System.String" #>
+<#@ parameter name="Caso" type="System.String" #>
+<#@ parameter name="Tramite" type="System.String" #>
+<#@ parameter name="Fecha" type="System.String" #>
+<#@ parameter name="Formulario" type="System.String" #>
+<#@ parameter name="Archivos" type="System.Collections.Generic.List<System.String>" #>
+<#@ output extension=".txt" #>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><#= Titulo #></title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<style>
+			@page {
+				font-size: 16px;
+				margin: 2px;
+				font-family: "Arial";
+			}
+			body {
+				font-size: 16px;
+				font-family: "Arial";
+				margin: 2px;
+			}
+			.text-lg {
+				font-size: 20px;
+			}
+			table {
+				width: 100%;
+			}
+			.text-left {
+				text-align: left;
+			}
+			.text-right {
+				text-align: right;
+			}
+			.text-center {
+				text-align: center;
+			}
+			.title {
+				font-weight: 800;
+				text-align: center;
+				font-size: 24px;
+				margin-bottom: 30px;
+			}
+			.d-block {
+				display: block;
+			}
+			.d-inline-block {
+				display: inline-block;
+			}
+			.fw-bold {
+				font-weight: 600;
+			}
+			.text-uppercase {
+				text-transform: uppercase;
+			}
+		</style>
+	</head>
+	<tbody>
+		<table class="text-lg">
+			<tbody>
+				<tr>
+					<td colspan="3">
+						<h3 class="title">EXPEDIENTE DEL CASO</h3>
+					</td>
+				</tr>
+				<tr>
+					<td class="fw-bold">1. CASO</td>
+					<td colspan="2"><#= Caso #></td>
+				</tr>
+				<tr>
+					<td class="fw-bold">2. TRÁMITE</td>
+					<td colspan="2"><#= Tramite #></td>
+				</tr>
+				<tr>
+					<td class="fw-bold">3. FECHA</td>
+					<td colspan="2"><#= Fecha #></td>
+				</tr>
+				<tr>
+					<td class="fw-bold" colspan="3">4. LISTA DE DOCUMENTOS</td>
+				</tr
+				<tr>
+					<td colspan="3">
+						<div style="margin-left: 20px;">
+							<div class="d-block">Formulario: <#= Formulario #></div>
+							<# foreach(var t in Archivos) {#>
+							<div class="d-block">✔ <#= t #></div>
+							<# } #>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</tbody>
+</html>

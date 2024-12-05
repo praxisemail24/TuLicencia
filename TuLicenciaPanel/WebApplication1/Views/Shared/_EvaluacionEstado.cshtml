@@ -1,0 +1,27 @@
+﻿<!-- EVALUACIÓN -->
+<div id="sectionEvaluation" class="card h-100 shadow-sm mb-4">
+    <div class="card-header p-3 fs-6 fw-bold">Estado de evaluación:</div>
+    <div class="card-body">
+        <div class="alert" role="alert"></div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#evaluationStatusModal">
+            Ver Evaluación
+        </button>
+    </div>
+</div>
+
+<div class="modal fade" id="evaluationStatusModal" tabindex="-1" aria-labelledby="evaluationStatusModal" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="evaluationStatusModal">Previsualización del PDF</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <iframe style="width: 100%; height: 450px"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

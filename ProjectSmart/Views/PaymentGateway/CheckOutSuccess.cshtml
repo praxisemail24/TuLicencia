@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pago Recibido - Tu Licencia</title>
+        <script src="~/api/paymentgateway/script" defer></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="bg-gray-50">
+        <div class="flex flex-col items-center justify-center p-5 w-full min-h-screen">
+            <div class="w-full flex flex-col items-center justify-center md:max-w-4xl lg:max-w-3xl bg-white border rounded-xl p-10 lg:py-12 m-auto shadow-lg">
+                <div id="loader">
+                    <div class="flex flex-row items-center m-auto">
+                        <img src="https://tulicenciapr.com/admin/images/ajax-loader.gif" alt="Loader" />
+                        <span class="ml-2">Verificando...</span>
+                    </div>
+                </div>
+                <div id="status-complete" class="flex flex-col items-center justify-center hidden">
+                    <img src="https://i.imgur.com/OZHKpDG.png" class="w-24 h-24" alt="Success" />
+                    <p class="text-xl text-center mt-5 mb-3"><span id="customerName" class="font-semibold text-blue-500"></span>, el pago ha sido procesado correctamente.</p>
+                    <p class="text-lg text-center mb-5 text-gray-600">Se le ha enviado un mensaje al correo electrónico <span id="customerEmail" class="font-semibold text-blue-500"></span> con los detalles de la facturación.</p>
+                </div>
+                <div id="paymentId" class="text-base text-gray-400 text-center"></div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                var loader = document.getElementById('loader');
+                StripePay('@ViewBag.Token').result().then((r) => {
+                    var container = document.querySelector(`#status-${r.status}`);
+                    if(container) {
+                        container.classList.remove('hidden');
+
+                        if(r.status === 'complete') {
+                            document.querySelector('#customerName').innerHTML = r.customerName;
+                            document.querySelector('#customerEmail').innerHTML = r.customerEmail;
+                            document.querySelector('#paymentId').innerHTML = `Transacción ID: ${r.paymentId}`;
+                        }
+                    }
+                }).finally(() => {
+                    loader.classList.add('hidden');  
+                });
+            });
+        </script>
+    </body>
+</html>

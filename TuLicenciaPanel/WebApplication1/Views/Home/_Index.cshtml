@@ -1,0 +1,530 @@
+﻿@using System.Security.Claims;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="">
+    <h4 class="pt-3"> Bienvenido, @User.FindFirst("FullName")?.Value</h4>
+    <p>Usted a iniciado sesión como <a href=""> @User.FindFirst(ClaimTypes.Role)?.Value </a>.</p>
+    <br />
+
+
+    <div class="card h-100 shadow-sm mb-4" >
+        <div class="card-header p-3 fs-5 fw-bold"> CASE MANAGEMENT JOURNEY </div>
+
+        @* CARD SELECTOR *@
+        <div class="card-body">
+            <div class="row gy-xl-0 gy-3">
+                @if ((new string[] { "Administrador", "Operador" }).Contains(User.FindFirst(ClaimTypes.Role)?.Value)) 
+                {
+                    <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div id="showNewCasesBtn">
+                            <a href="javascript:void(0);" class="category-link primary text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="category-svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M5 5h4v6H5zm10 8h4v6h-4zM5 17h4v2H5zM15 5h4v2h-4z" opacity=".3"></path><path d="M3 13h8V3H3v10zm2-8h4v6H5V5zm8 16h8V11h-8v10zm2-8h4v6h-4v-6zM13 3v6h8V3h-8zm6 4h-4V5h4v2zM3 21h8v-6H3v6zm2-4h4v2H5v-2z"></path></svg>
+                                <p class="fs-14 mb-1 text-default fw-bold">NEW CASES</p>
+                                <span id="conteoFormulariosNew" class="fs-11 text-muted"></span>
+                            </a>
+                        </div>
+                    </div>
+                }
+                
+                @if ((new string[] { "Administrador", "Radicador" }).Contains(User.FindFirst(ClaimTypes.Role)?.Value))
+                {
+                    <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div id="showReviewedCasesBtn">
+                            <a href="javascript:void(0);" class="category-link secondary text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="category-svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><g><rect fill="none" height="24" width="24"></rect></g><g><g opacity=".3"><path d="M6.71,18.71c-0.28,0.28-2.17,0.76-2.17,0.76s0.47-1.88,0.76-2.17C5.47,17.11,5.72,17,6,17c0.55,0,1,0.45,1,1 C7,18.28,6.89,18.53,6.71,18.71z M7.41,10.83L5.5,10.01l1.97-1.97l1.44,0.29C8.34,9.16,7.83,10.03,7.41,10.83z M13.99,18.5 l-0.82-1.91c0.8-0.42,1.67-0.93,2.49-1.5l0.29,1.44L13.99,18.5z M19.99,4.01c0,0-3.55-0.69-8.23,3.99 c-1.32,1.32-2.4,3.38-2.73,4.04l2.93,2.93c0.65-0.32,2.71-1.4,4.04-2.73C20.68,7.56,19.99,4.01,19.99,4.01z M15,11 c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C17,10.1,16.1,11,15,11z"></path></g><g><path d="M6,15c-0.83,0-1.58,0.34-2.12,0.88C2.7,17.06,2,22,2,22s4.94-0.7,6.12-1.88C8.66,19.58,9,18.83,9,18C9,16.34,7.66,15,6,15 z M6.71,18.71c-0.28,0.28-2.17,0.76-2.17,0.76s0.47-1.88,0.76-2.17C5.47,17.11,5.72,17,6,17c0.55,0,1,0.45,1,1 C7,18.28,6.89,18.53,6.71,18.71z M17.42,13.65L17.42,13.65c6.36-6.36,4.24-11.31,4.24-11.31s-4.95-2.12-11.31,4.24l-2.49-0.5 C7.21,5.95,6.53,6.16,6.05,6.63L2,10.69l5,2.14L11.17,17l2.14,5l4.05-4.05c0.47-0.47,0.68-1.15,0.55-1.81L17.42,13.65z M7.41,10.83L5.5,10.01l1.97-1.97l1.44,0.29C8.34,9.16,7.83,10.03,7.41,10.83z M13.99,18.5l-0.82-1.91 c0.8-0.42,1.67-0.93,2.49-1.5l0.29,1.44L13.99,18.5z M16,12.24c-1.32,1.32-3.38,2.4-4.04,2.73l-2.93-2.93 c0.32-0.65,1.4-2.71,2.73-4.04c4.68-4.68,8.23-3.99,8.23-3.99S20.68,7.56,16,12.24z M15,11c1.1,0,2-0.9,2-2s-0.9-2-2-2s-2,0.9-2,2 S13.9,11,15,11z"></path></g></g></svg>
+                                <p class="fs-14 mb-1 text-default fw-bold">REVIEWED CASES</p>
+                                <span id="conteoFormulariosReview" class="fs-11 text-muted"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div id="showProssedCasesBtn">
+                            <a href="javascript:void(0);" class="category-link warning text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="category-svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" id="swatchbook"><path opacity="0.2" d="M9 22H5a3.003 3.003 0 0 1-3-3V5a3.003 3.003 0 0 1 3-3h4a3.003 3.003 0 0 1 3 3v14a3.003 3.003 0 0 1-3 3z"></path><path opacity="0.4" d="m20.293 6.535-2.828-2.828a3.004 3.004 0 0 0-4.243 0l-1.229 1.228c0 .022.007.043.007.065v14c0 .027-.007.052-.008.08l8.301-8.302a3.004 3.004 0 0 0 0-4.243z"></path><circle cx="7" cy="17" r="1" opacity="1"></circle><path opacity="1" d="m19.065 12.007-7.073 7.072c0-.027.008-.052.008-.079a3.003 3.003 0 0 1-3 3h10a3.003 3.003 0 0 0 3-3v-4a3 3 0 0 0-2.935-2.993z"></path></svg>
+                                <p class="fs-14 mb-1 text-default fw-bold">PROCESSED CASES</p>
+                                <span id="conteoFormulariosProcess" class="fs-11 text-muted"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div id="showClosedCasesBtn">
+                            <a href="javascript:void(0);" class="category-link success">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="category-svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><rect fill="none" height="24" width="24"></rect><g opacity=".3"><path d="M10,5h4v14h-4V5z M4,11h4v8H4V11z M20,19h-4v-6h4V19z"></path></g><g><path d="M16,11V3H8v6H2v12h20V11H16z M10,5h4v14h-4V5z M4,11h4v8H4V11z M20,19h-4v-6h4V19z"></path></g></svg>
+                                <p class="fs-14 mb-1 text-default fw-bold">CLOSED CASES</p>
+                                <span id="conteoFormulariosClosed" class="fs-11 text-muted"></span>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>    
+    </div>
+    
+    
+    @* CARD NEW CASES  *@
+    @if ((new string[] { "Administrador", "Operador" }).Contains(User.FindFirst(ClaimTypes.Role)?.Value)) 
+    {
+        <div class="card" id="CardNEWCASES">
+            <div class="card-header p-3 fs-4 fw-bold bg-purple-transparent"> NEW CASES </div>
+            <div class="card-body">
+                <table id="tablaNewCases" data-toggle="table" data-pagination="true" data-search="false" data-show-columns="false" data-show-export="true" data-export-types="['excel']">
+                    <thead>
+                        <tr>
+                            <th data-field="frmID" data-sortable="true" scope="col">#</th>
+                            <th data-field="fechaFormateada" scope="col">Fecha</th>
+                            <th data-field="cl_pago.pg_codigo" scope="col">Código</th>
+                            <th data-field="cl_cliente.cl_nombre" scope="col">Cliente</th>
+                            <th data-field="tipoTramite" scope="col">Tipo Tramite</th>
+                            <th data-field="nombreTramite" scope="col">Nombre Tramite</th>
+                            <th data-field="acciones" data-formatter="formatoFormulario"> Formulario </th>
+                            <th data-field="accion" data-formatter="formCertifMed" scope="col">Evaluación</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbdResultadoNewCases">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+    @if ((new string[] { "Administrador", "Radicador" }).Contains(User.FindFirst(ClaimTypes.Role)?.Value))
+    {
+        @* CARD REVIEWED CASES *@
+        <div class="card" id="CardREVIEWEDCASES">
+            <div class="card-header p-3 fs-4 fw-bold bg-info-transparent"> REVIEWED CASES </div>
+            <div class="card-body">
+                <table id="tablaReview" data-toggle="table" data-pagination="true" data-search="false" data-show-columns="false" data-show-export="true" data-export-types="['excel']">
+                    <thead>
+                        <tr>
+                            <th data-field="frmID" data-sortable="true" scope="col">#</th>
+                            <th data-field="fechaFormateada" scope="col">Fecha</th>
+                            <th data-field="cl_pago.pg_codigo" scope="col">Código</th>
+                            <th data-field="cl_cliente.cl_nombre" scope="col">Cliente</th>
+                            <th data-field="tipoTramite" scope="col">Tipo Tramite</th>
+                            <th data-field="nombreTramite" scope="col">Nombre Tramite</th>
+                            <th data-field="acciones" data-formatter="verFormReview"> Formulario </th>
+                            @* <th data-field="accion" data-formatter="generarCasoPDF" scope="col">Imprimir</th> *@
+                        </tr>
+                    </thead>
+                    <tbody id="tbdResultadoRevCases">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        @* CARD PROCESSED CASES *@
+        <div class="card" id="CardPROCESSEDCASES">
+            <div class="card-header p-3 fs-4 fw-bold bg-warning-transparent"> PROCESS CASES </div>
+            <div class="card-body">
+                <table id="tablaProced" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-export="true" data-export-types="['csv', 'excel', 'pdf']">
+                    <thead>
+                        <tr>
+                            <th data-field="frmID" data-sortable="true" scope="col">#</th>
+                            <th data-field="fechaFormateada" scope="col">Fecha</th>
+                            <th data-field="cl_pago.pg_codigo" scope="col">Código</th>
+                            <th data-field="cl_cliente.cl_nombre" scope="col">Cliente</th>
+                            <th data-field="nombreTramite" scope="col">Nombre Tramite</th>
+                            <th data-field="acciones" scope="col" data-formatter="verFormProcess"> Ver Formulario </th>
+                            @* <th data-field="frmID" scope="col" data-formatter="selectProcess"> Status </th>
+                        <th data-field="frmID" scope="col" data-formatter="addObservacion"> Observación </th>
+                        <th data-field="frmID" scope="col" data-formatter="btnConfirmar">Confirmar</th> *@
+                        </tr>
+                    </thead>
+                    <tbody id="tbdResultadoProceCases">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        @* CARD CLOSED CASES *@
+        <div class="card" id="CardCLOSEDCASES">
+            <div class="card-header p-3 fs-4 fw-bold bg-success-transparent"> CLOSED CASES </div>
+            <div class="card-body">
+                <table id="tablaClosed" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-export="true" data-export-types="['csv', 'excel', 'pdf']">
+                    <thead>
+                        <tr>
+                            <th data-field="frmID" data-sortable="true" scope="col">#</th>
+                            <th data-field="fechaFormateada" scope="col">Fecha</th>
+                            <th data-field="cl_pago.pg_codigo" scope="col">Código</th>
+                            <th data-field="cl_cliente.cl_nombre" scope="col">Cliente</th>
+                            <th data-field="tipoTramite" scope="col">Tipo Tramite</th>
+                            <th data-field="nombreTramite" scope="col">Nombre Tramite</th>
+                            <th data-field="acciones" data-formatter="formatoClosed"> Formulario </th>
+                            @* <th data-field="frmID" scope="col">Evaluación</th> *@
+                        </tr>
+                    </thead>
+                    <tbody id="tbdResultadoClosedCases">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+
+    @* BOTON MODAL DE PROCESS CASES *@
+    <div class="mt-sm-0 mt-2">
+@*         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-new-address"><i class="ri-add-line me-1 align-middle fs-14 fw-semibold d-inline-block"></i>Add New Address</button>
+ *@        <div class="modal fade" id="modal-new-address" tabindex="-1" aria-labelledby="modal-new-address" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="staticBackdropLabel" style="margin-bottom:0px"> Motivo de Rechazo   </h6>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row gy-3">                            
+                            <div class="col-xl-6">
+                                <label for="user-name" class="form-label">Seleccione Motivo</label>
+                                <select class="form-select mb-2" aria-label="Default select example">
+                                    <option selected value="">Seleccione el motivo</option>
+                                    <option value="0"> Motivo 1</option>
+                                    <option value="1"> Motivo 2</option>
+                                    <option value="2"> Motivo 3</option>
+                                </select>                                
+                            </div>
+                            <div class="col-xl-12">
+                                <div>
+                                    <label for="text-area" class="form-label">Comentario</label>
+                                    <textarea class="form-control" id="text-area" rows="4"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal"> CERRAR </button>
+                        <button type="button" class="btn btn-success"> GUARDAR </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+
+    <!-- Modal para la previsualización del PDF -->
+    <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="previewModalLabel">
+                        Previsualización del PDF
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe id="pdfPreview" style="width: 100%; height: 600px"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cerrar   </button>
+                    <button type="button" class="btn btn-primary" onclick="downloadPDF()"> Descargar PDF </button>
+                    <button type="button" class="btn btn-primary" id="grabadoPDF" onclick="grabarCasoPDF()"> Grabar caso BD </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+@section scripts {
+    <script>
+                var clienteId = 0;
+        var tr_Id = 0;
+        var frm_id = 0;
+
+        var jsonData = {
+            "1": {
+                "1": "Foto de licencia vencida",
+                "2": "Foto ID",
+                "3": "Copia planilla o W2",
+                "4": "Recibo de agua o luz",
+                "5": "Certificiado de nacimiento o prueba de residencia"
+            },
+            "3": {
+                "1": "Tarjeta de seguro social",
+                "2": "Foto ID",
+                "3": "Recibo de agua o luz",
+                "4": "Declaración Jurada reciente ante Notario Público"
+            },
+            "4": {
+                "1": "Tarjeta de seguro social",
+                "2": "Fecha de nacimiento y Presencia Legal",
+                "3": "Foto ID",
+                "4": "Recibo de agua o luz"
+            }
+        };
+
+        $(document).ready(function () {
+
+            $('#CardREVIEWEDCASES').hide();
+            $('#CardPROCESSEDCASES').hide();
+            $('#CardCLOSEDCASES').hide();
+            $('#CardNEWCASES').show();          // Mostrar 'CardNEWCASES' al inicio de la página
+
+            $('#showReviewedCasesBtn').click(function () { // Muestra card 'CardREVIEWEDCASES'
+                $('#CardREVIEWEDCASES').show();
+                $('#CardNEWCASES').hide();
+                $('#CardPROCESSEDCASES').hide();
+                $('#CardCLOSEDCASES').hide();
+            });
+
+            $('#showNewCasesBtn').click(function () {  // Muestra card 'CardNEWCASES'
+                $('#CardREVIEWEDCASES').hide();
+                $('#CardPROCESSEDCASES').hide();
+                $('#CardCLOSEDCASES').hide();
+                $('#CardNEWCASES').show();
+            });
+
+            $('#showProssedCasesBtn').click(function () {
+                $('#CardNEWCASES').hide();
+                $('#CardREVIEWEDCASES').hide();
+                $('#CardCLOSEDCASES').hide();
+                $('#CardPROCESSEDCASES').show();
+            });
+
+            $('#showClosedCasesBtn').click(function () {
+                $('#CardNEWCASES').hide();
+                $('#CardREVIEWEDCASES').hide();
+                $('#CardPROCESSEDCASES').hide();
+                $('#CardCLOSEDCASES').show();
+            });
+
+            // obtener tablas
+            $('#tbdResultadoNewCases').empty();
+            jQuery.ajax({
+                url: 'https://api.tulicenciapr.com/api/RenovLic/FormEstado0',
+                type: "GET",
+                data: null,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    console.log(data.items);
+                    data.items.forEach((t, i) => {
+                        t.index = i + 1;
+
+                        var fecha = new Date(t.fecha);
+                        var mes = ('0' + (fecha.getMonth() + 1)).slice(-2);
+                        var dia = ('0' + fecha.getDate()).slice(-2);
+                        var año = fecha.getFullYear();
+                        var hora = ('0' + fecha.getHours()).slice(-2);
+                        var minutos = ('0' + fecha.getMinutes()).slice(-2);
+                        var ampm = fecha.getHours() >= 12 ? 'PM' : 'AM';
+                        t.fechaFormateada = mes + '/' + dia + '/' + año + ' ' + hora + ':' + minutos + ' ' + ampm;
+
+                        var conteoFormulariosNew = data.items.length;
+                        $('#conteoFormulariosNew').text(conteoFormulariosNew + ' Formularios');
+                    });
+                    $('#tablaNewCases').bootstrapTable('load', data.items);
+                },
+                error: function (error) {
+                    console.log(error)
+                },
+            });
+
+            $('#tbdResultadoRevCases').empty();
+            jQuery.ajax({
+                url: 'https://api.tulicenciapr.com/api/RenovLic/FormEstado1',
+                type: "GET",
+                data: null,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + jwtToken);
+                },
+                success: function (data) {
+                    console.log(data.items);
+                    data.items.forEach((t, i) => {
+                        t.index = i + 1;
+                        var fecha = new Date(t.fecha);
+                        var mes = ('0' + (fecha.getMonth() + 1)).slice(-2);
+                        var dia = ('0' + fecha.getDate()).slice(-2);
+                        var año = fecha.getFullYear();
+                        var hora = ('0' + fecha.getHours()).slice(-2);
+                        var minutos = ('0' + fecha.getMinutes()).slice(-2);
+                        var ampm = fecha.getHours() >= 12 ? 'PM' : 'AM';
+                        t.fechaFormateada = mes + '/' + dia + '/' + año + ' ' + hora + ':' + minutos + ' ' + ampm;
+
+                        var conteoFormulariosReview = data.items.length;
+                        $('#conteoFormulariosReview').text(conteoFormulariosReview + ' Formularios');
+                    });
+                    $('#tablaReview').bootstrapTable('load', data.items);
+                },
+                error: function (error) {
+                    console.log(error)
+                },
+            });
+
+            $('#tbdResultadoProceCases').empty();
+            jQuery.ajax({
+                url: 'https://api.tulicenciapr.com/api/RenovLic/FormEstado2',
+                type: "GET",
+                data: null,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + jwtToken);
+                },
+                success: function (data) {
+                    console.log("Data process", data.items);
+                    data.items.forEach((t, i) => {
+                        t.index = i + 1;
+                        var fecha = new Date(t.fecha);
+                        var mes = ('0' + (fecha.getMonth() + 1)).slice(-2);
+                        var dia = ('0' + fecha.getDate()).slice(-2);
+                        var año = fecha.getFullYear();
+                        var hora = ('0' + fecha.getHours()).slice(-2);
+                        var minutos = ('0' + fecha.getMinutes()).slice(-2);
+                        var ampm = fecha.getHours() >= 12 ? 'PM' : 'AM';
+                        t.fechaFormateada = mes + '/' + dia + '/' + año + ' ' + hora + ':' + minutos + ' ' + ampm;
+
+                        var conteoFormulariosProcess = data.items.length;
+                        $('#conteoFormulariosProcess').text(conteoFormulariosProcess + ' Formularios');
+                    });
+                    $('#tablaProced').bootstrapTable('load', data.items);
+                },
+                error: function (error) {
+                    console.log(error)
+                },
+            });
+
+            $('#tbdResultadoClosedCases').empty();
+            jQuery.ajax({
+                url: 'https://api.tulicenciapr.com/api/RenovLic/FormEstado3',
+                type: "GET",
+                data: null,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + jwtToken);
+                },
+                success: function (data) {
+                    console.log(data.items);
+                    data.items.forEach((t, i) => {
+                        t.index = i + 1;
+                        var fecha = new Date(t.fecha);
+                        var mes = ('0' + (fecha.getMonth() + 1)).slice(-2);
+                        var dia = ('0' + fecha.getDate()).slice(-2);
+                        var año = fecha.getFullYear();
+                        var hora = ('0' + fecha.getHours()).slice(-2);
+                        var minutos = ('0' + fecha.getMinutes()).slice(-2);
+                        var ampm = fecha.getHours() >= 12 ? 'PM' : 'AM';
+                        t.fechaFormateada = mes + '/' + dia + '/' + año + ' ' + hora + ':' + minutos + ' ' + ampm;
+
+                        var conteoFormulariosClosed = data.items.length;
+                        $('#conteoFormulariosClosed').text(conteoFormulariosClosed + ' Formularios');
+                    });
+                    $('#tablaClosed').bootstrapTable('load', data.items);
+                },
+                error: function (error) {
+                    console.log(error)
+                },
+            });
+
+        })
+
+
+        // VER NEW CASES
+        function formatoFormulario(value, row, index) {
+            var clienteId = row.cl_cliente.cl_id;
+            var tr_Id = row.cl_tramite.tr_id;
+            var url = '';
+
+            switch (tr_Id) {
+                case 3:
+                    url = 'Home/VerFormDupliLicNew/' + clienteId + '/' + tr_Id;
+                    break;
+                case 4:
+                    url = 'Home/VerFormLicReciprocidadNew/' + clienteId + '/' + tr_Id;
+                    break;
+                default:
+                    url = 'Home/VerFormulario/' + clienteId + '/' + tr_Id;
+            }
+            var btnVerForm = '<a class="btn btn-icon btn-sm btn-info-light btn-wave waves-effect waves-light me-2 " href="' + url + '"> <i class="ri-edit-box-line"></i></a>';
+            return btnVerForm;
+        }
+
+
+        function formCertifMed(value, row, index) {
+            var clienteId = row.cl_cliente.cl_id;
+            var tr_Id = row.cl_tramite.tr_id;
+            var url = ';
+            var btnVerForm = '<a class="btn btn-icon btn-sm btn-success-light btn-wave waves-effect waves-light me-2 " href="Home/FormCertificadoMed/' + clienteId + '/' + tr_Id'"> <i class="ri - edit - 2 - line"></i></a>';
+            return btnVerForm;
+        }
+
+
+        // REVIEW
+        function verFormReview(value, row, index) {
+            var clienteId = row.cl_cliente.cl_id;
+            var tr_Id = row.cl_tramite.tr_id;
+            console.log("traa", tr_Id)
+            var frm_id = row.frmID;
+            var url = '';
+
+            switch (tr_Id) {
+                case 3:
+                    url = 'Home/VerFormDupliLicReview/' + clienteId + '/' + tr_Id + '/' + frm_id;
+                    break;
+                case 4:
+                    url = 'Home/VerFormLicReciprocidadReview/' + clienteId + '/' + tr_Id + '/' + frm_id;
+                    break;
+                default:
+                    url = 'Home/FormRenovLicReview/' + clienteId + '/' + tr_Id + '/' + frm_id;
+            }
+            var btnVerForm = '<a class="btn btn-icon btn-sm btn-info-light btn-wave waves-effect waves-light me-2 " href="' + url + '"> <i class="ri-edit-2-line"></i> </a>';
+            return btnVerForm;
+        }
+
+
+        //PROCESS CASE
+        function verFormProcess(value, row, index) {
+            var clienteId = row.cl_cliente.cl_id;
+            var tr_Id = row.cl_tramite.tr_id;
+            var frm_id = row.frmID;
+            var url = 'Home/ProcessForm/' + clienteId + '/' + tr_Id + '/' + frm_id;
+            var btnVerProcessForm = '<a class="btn-preview btn btn-wave btn-primary-light btn-icon btn-sm" href="' + url + '"><i class="ri-eye-line"></i> </a>';
+            return btnVerProcessForm;
+        }
+
+        function selectProcess(value, row, index) {
+            var clienteId = row.cl_cliente.cl_id;
+            var tr_Id = row.cl_tramite.tr_id;
+            var btnSelectProcessForm = '<select class="form-select" aria-label=""><option value = "0" class="btn btn-wave btn-primary-light">Pendiente</option><option value ="1" class="btn btn-wave btn-success-light">Aprobado</option><option value ="2" class="btn btn-wave btn-danger-light">Denegado</option></select>';
+            return btnSelectProcessForm;
+        }
+
+        function addObservacion(value, row, index) {
+            var clienteId = row.cl_cliente.cl_id;
+            var tr_Id = row.cl_tramite.tr_id;
+            var btnAddObserv = '<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-new-address"><i class="ri-add-line me-1 align-middle fs-14 fw-semibold d-inline-block"></i>Observación</button>';
+            return btnAddObserv;
+        }
+
+        function btnConfirmar(value, row, index) {
+            var clienteId = row.cl_cliente.cl_id;
+            var tr_Id = row.cl_tramite.tr_id;
+            var btnConfirProcess = '<button class="btn btn-sm btn-success btn-wave"><i class="ri-edit-2-line"></i>Registrar</button>';
+            return btnConfirProcess;
+        }
+
+
+        // VER CLOSED CASES
+        function formatoClosed(value, row, index) {
+            var clienteId = row.cl_cliente.cl_id;
+            var tr_Id = row.cl_tramite.tr_id;
+            var frm_id = row.frmID;
+            var url = 'Home/ClosedForm/' + clienteId + '/' + tr_Id + '/' + frm_id;
+            var btnVerClosedForm = '<a class="btn btn-icon btn-sm btn-info-light btn-wave waves-effect waves-light me-2 " href="' + url + '"> <i class="ri-edit-box-line"></i> </a>';
+            return btnVerClosedForm;
+        }
+    </script>
+}

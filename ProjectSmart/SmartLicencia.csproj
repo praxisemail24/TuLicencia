@@ -1,0 +1,117 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Documentos\**" />
+    <Compile Remove="Logs\**" />
+    <Content Remove="Documentos\**" />
+    <Content Remove="Logs\**" />
+    <EmbeddedResource Remove="Documentos\**" />
+    <EmbeddedResource Remove="Logs\**" />
+    <None Remove="Documentos\**" />
+    <None Remove="Logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Startup.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="1 SmartLicencia.postman_collection.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Templates\BillOfSale.tt" />
+    <None Remove="Templates\Certificado.tt" />
+    <None Remove="Templates\CertificadoMedico.tt" />
+    <None Remove="Templates\CertificadoReciprocidad.tt" />
+    <None Remove="Templates\Imagenes.tt" />
+    <None Remove="Templates\Indice.tt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\BillOfSale.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BillOfSale.txt</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templates\Certificado.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templates\CertificadoMedico.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templates\CertificadoReciprocidad.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templates\Imagenes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Imagenes.txt</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templates\Indice.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Indice.txt</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Pagos\0313ZD2UKXR8.pdf" />
+    <None Include="wwwroot\Pagos\0348TM4O9H3Z.pdf" />
+    <None Include="wwwroot\Pagos\03557JR9FNR7.pdf" />
+    <None Include="wwwroot\Pagos\05213LNZPC8E.pdf" />
+    <None Include="wwwroot\Pagos\0559NED66VDX.pdf" />
+    <None Include="wwwroot\Pagos\06199BRRYUMV.pdf" />
+    <None Include="wwwroot\Pagos\0624P1LJ5RLH.pdf" />
+    <None Include="wwwroot\Pagos\0633FBJXQT6A.pdf" />
+    <None Include="wwwroot\Pagos\08055CR6XNNB.pdf" />
+    <None Include="wwwroot\Pagos\0817LAVI29JW.pdf" />
+    <None Include="wwwroot\Pagos\08319MDZEVIB.pdf" />
+    <None Include="wwwroot\Pagos\1319JAII2IOO.pdf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AuthorizeNet" Version="2.0.3" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="BouncyCastle.Cryptography" Version="2.4.0" />
+    <PackageReference Include="ClosedXML" Version="0.102.2" />
+    <PackageReference Include="itext7" Version="8.0.4" />
+    <PackageReference Include="itext7.bouncy-castle-adapter" Version="8.0.4" />
+    <PackageReference Include="itext7.pdfhtml" Version="5.0.4" />
+    <PackageReference Include="itextsharp" Version="5.5.13.4" />
+    <PackageReference Include="MailKit" Version="4.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.31" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.35" />
+    <PackageReference Include="MimeKit" Version="4.6.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Stripe.net" Version="47.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="System.CodeDom" Version="8.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SmartLicense.Pdf\SmartLicense.Pdf.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Templates\BillOfSale.txt">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BillOfSale.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+
+</Project>

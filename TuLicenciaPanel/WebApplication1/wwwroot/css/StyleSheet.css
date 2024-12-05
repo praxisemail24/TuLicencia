@@ -1,0 +1,64 @@
+﻿/* Añade estilos según tus necesidades */
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+}
+
+.nav-title {
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #120844;
+}
+
+.nav-details {
+    font-size: 16px;
+    color: #120844;
+}
+
+.summary {
+    background-color: #f4f4f4;
+    padding: 16px;
+    border-radius: 25px;
+}
+
+.summary-mobile {
+    display: none; /* Ocultar en desktop */
+}
+
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.summary-details {
+    margin-top: 8px;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 20px;
+}
+
+input, select, button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #9F9F9F;
+}
+
+    input:focus, select:focus {
+        border-color: #43348E;
+    }
+
+button {
+    background-color: #43348E;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}

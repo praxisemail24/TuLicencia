@@ -1,0 +1,129 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="">
+    <h4 class="pt-3 fw-bold"> Formulario Certificado Médico </h4>
+    <br/>
+    <input type="hidden" id="cl_id" name="cl_id" value="@ViewBag.cl_id" />
+    <input type="hidden" id="tr_id" name="tr_id" value="@ViewBag.tr_id" />
+    <input type="hidden" id="frm_id" name="frm_id" />
+
+   <div class="card h-100 shadow-sm mb-4" >
+        <div class="card-header p-3 fs-6 fw-bold"> Datos del Cliente: </div>
+        <div class="card-body">
+            <p class="card-text"> ##  Nombre:    <span id="frmNombre"></span></p>
+            <p class="card-text"> ##  Apellido Paterno :    <span id="frmCorreo"></span></p>
+            <p class="card-text"> ##  Apellido Materno:    <span id="frmCorreo"></span></p>
+            <p class="card-text"> ##  Núm. de Seguro Social:    <span id="frmCorreo"></span></p>
+            <p class="card-text"> ##  Num. de Licencia de conducir de Puerto Rico:  <span id="frmCorreo"></span></p>
+        </div>
+
+        <div class="card-footer">
+@*             <p class="card-text">  Código de Pago:    <span class="fw-bold" id="frmCodigoPago"></span> </p>
+ *@
+        </div>
+    </div>
+
+    @*  Formulario *@
+    <div class="card" id="">
+        <div class="card-header p-3 fs-6 fw-bold"> Datos Del Formulario: </div>
+
+        <div class="card-body">
+            <div class="row gy-3">
+
+                <p class="card-text">
+                    INSTRUCCIONES AL MÉDICO - Utilizar letra legible (letra de molde)  <br />
+
+                    De acuerdo con las disposiciones de la Ley Núm. 22, de 7 de enero de 2000, según enmendada, conocida como "Ley de Vehículos y Tránsito de Puerto Rico", todo aspirante a obtener Certificado de Licencia de Conducir Vehículos de Motor debe estar físicamente capacitado y sin aparente incapacidad mental para conducir. El médico examinará al solicitante personalmente y hará constar en este formulario las condiciones físicas en que se encuentre dicho solicitante.   <span class="fw-bold" id=""></span>
+                </p>
+                
+                <input type="hidden" id="txtId" value="0">
+                <div class="col-xl-3">
+                    <label for=" " class="form-label">Ojo derecho sin lentes Correctivos 20/</label>
+                    <input type="text" class="form-control form-control-light" id=" " placeholder=" ">
+                </div>
+                <div class="col-xl-3">
+                    <label for=" " class="form-label">Ojo derecho sin lentes Correctivos 20/</label>
+                    <input type="text" class="form-control form-control-light" id=" " placeholder=" ">
+                </div>
+                <div class="col-xl-3">
+                    <label for=" " class="form-label">Ojo derecho sin lentes Correctivos 20/</label>
+                    <input type="text" class="form-control form-control-light" id=" " placeholder=" ">
+                </div>
+                <div class="col-xl-3">
+                    <label for=" " class="form-label">Ojo derecho sin lentes Correctivos 20/</label>
+                    <input type="text" class="form-control form-control-light" id=" " placeholder=" ">
+                </div>
+                <div class="col-xl-3">
+                    <label for=" " class="form-label">Ojo derecho sin lentes Correctivos 20/</label>
+                    <input type="text" class="form-control form-control-light" id=" " placeholder=" ">
+                </div>
+                <div class="col-xl-3">
+                    <label for=" " class="form-label">Ojo derecho sin lentes Correctivos 20/</label>
+                    <input type="text" class="form-control form-control-light" id=" " placeholder=" ">
+                </div>
+                <div class="col-xl-3">
+                    <label for=" " class="form-label">Ojo derecho sin lentes Correctivos 20/</label>
+                    <input type="text" class="form-control form-control-light" id=" " placeholder=" ">
+                </div>
+                <div class="col-xl-3">
+                    <label for=" " class="form-label">Ojo derecho sin lentes Correctivos 20/</label>
+                    <input type="text" class="form-control form-control-light" id=" " placeholder=" ">
+                </div>
+
+
+                <div class="card-header p-3 fs-6 fw-bold"> Evaluacion: </div>
+                <div class="col-xl-3">
+                    <label for="frmBarrio" class="form-label">Barrio: </label>
+                    <input type="text" class="form-control form-control-light" id="frmBarrio" placeholder=" ">
+                </div>
+                <div class="col-xl-3">
+                    <label for="frmApartado" class="form-label">Apartado: </label>
+                    <input type="text" class="form-control form-control-light" id="frmApartado" placeholder=" ">
+                </div>
+                
+                <div class="col-xl-3">
+                    <label for="frmPueblo2" class="form-label">Pueblo 2: </label>
+                    <input type="hidden" id="frmPueblo">
+                    <input type="text" class="form-control form-control-light" id="frmPueblo2" placeholder=" ">
+                </div>
+                <div class="col-xl-3">
+                    <label for="frmCodigoPostal2" class="form-label">CódigoPostal 2: </label>
+                    <input type="text" class="form-control form-control-light" id="frmCodigoPostal2" placeholder=" ">
+                </div>
+
+                <div class="card-header p-3 fs-6 fw-bold">  </div>
+                <div class="col-xl-3">
+                    <label for="frmLicenciaSuspendida" class="form-label">¿Ha sido suspendida su licencia en Puerto Rico? </label>
+                    <input type="text" class="form-control form-control-light" id="frmLicenciaSuspendida" placeholder=" ">
+                </div>
+                <div class="col-xl-3">
+                    <label for="frmMotivoSuspension" class="form-label">Motivo de Suspension: </label>
+                    <input type="text" class="form-control form-control-light" id="frmMotivoSuspension" placeholder=" ">
+                </div>
+                <div class="col-xl-3">
+                    <label for="frmRecluido" class="form-label">Recluido: </label>
+                    <input type="text" class="form-control form-control-light" id="frmRecluido" placeholder=" ">
+                </div>
+                
+
+            </div>
+
+            <div class="col-sm-12 mt-3 text-end">
+                <button type="button" id="btnActualizar" class="btn btn-warning-light btn-wave waves-effect waves-light"> GUARDAR </button>
+            </div>
+
+        </div>
+    </div>
+           
+
+    <br />
+    <br /> 
+    
+</div>
+
+
+@section scripts {
+    <script src="~/js/form-cert-medico.js"></script>
+}

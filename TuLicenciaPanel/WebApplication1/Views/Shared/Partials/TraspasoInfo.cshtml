@@ -1,0 +1,509 @@
+﻿<h4 class="pt-3 mb-3 fw-bold"> Detalle del caso / Formulario <span class="fw-bold">Traspaso de vehículo</span></h4>
+
+<input type="hidden" id="tr_id" v-model="model.trId" />
+<input type="hidden" id="frm_id" v-model="model.id" />
+<input type="hidden" id="cl_id" v-model="model.buyer.cl_id" />
+
+<div class="card">
+    <div class="card-header p-3 fs-6 fw-bold">Datos del Vendedor</div>
+    <div class="card-body">
+        <div class="overlay-loader" v-bind:class="{ 'show': loading || loadingSeller }"></div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-2 row">
+                    <label for="sellerFirstName" class="col-sm-4 col-form-label">Primer Nombre</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="sellerFirstName" v-model="model.seller.cl_nombre">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-2 row">
+                    <label for="sellerSecondName" class="col-sm-4 col-form-label">Segundo Nombre</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="sellerSecondName" v-model="model.seller.cl_segundoNombre">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-2 row">
+                    <label for="sellerFirstSurName" class="col-sm-4 col-form-label">Primer Apellido</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="sellerFirstSurName" v-model="model.seller.cl_primerApellido">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-2 row">
+                    <label for="sellerSecondSurName" class="col-sm-4 col-form-label">Segundo Apellido</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="sellerSecondSurName" v-model="model.seller.cl_segundoApellido">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-2 row">
+                    <label for="sellerName" class="col-sm-4 col-form-label">Correo</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="sellerName" v-model="model.seller.cl_correo">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 row">
+                    <label for="sellerNumberLicense" class="col-sm-4 col-form-label">Número de Licencia</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="sellerNumberLicense" v-model="model.seller.cl_numeroLicencia">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 row">
+                    <label for="sellerNumberSafe" class="col-sm-4 col-form-label">Número de Seguro</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="sellerNumberSafe" v-model="model.seller.cl_numeroSeguro">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 row">
+                    <label for="sellerPhone" class="col-sm-4 col-form-label">Número de Teléfono</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="sellerPhone" v-model="model.seller.cl_numeroTelefono">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 row">
+                    <label for="sellerVillage" class="col-sm-4 col-form-label">Pueblo</label>
+                    <div class="col-sm-8">
+                        <select v-bind:readonly="!hasEdit" v-bind:disabled="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="sellerVillage" v-model="model.seller.cl_pueblo.pl_id">
+                            <option v-bind:value="null">-- SELECCIONE --</option>
+                            <option v-for="(item) in villages" v-bind:value="item.pl_id">{{ item.pl_nombre }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 row">
+                    <label for="sellerAddress" class="col-sm-4 col-form-label">Dirección</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="sellerAddress" v-model="model.seller.cl_direccion">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 row">
+                    <label for="sellerZip" class="col-sm-4 col-form-label">Código ZIP</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="sellerZip" v-model="model.seller.cl_zip">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer d-flex justify-content-end" v-if="hasEdit">
+        <button v-on:click="updateSeller" v-bind:disabled="loadingSeller" class="btn btn-info" type="button">
+            <i class="si-disk"></i>
+            <span class="ms-2">Actualizar</span>
+        </button>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header p-3 fs-6 fw-bold">Datos del Comprador</div>
+    <div class="card-body">
+        <div class="overlay-loader" v-bind:class="{ 'show': loading || loadingBuyer }"></div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-2 row">
+                    <label for="buyerFirstName" class="col-sm-4 col-form-label">Primer Nombre</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="buyerFirstName" v-model="model.buyer.cl_nombre">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-2 row">
+                    <label for="buyerSecondName" class="col-sm-4 col-form-label">Segundo Nombre</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="buyerSecondName" v-model="model.buyer.cl_segundoNombre">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-2 row">
+                    <label for="buyerFirstSurName" class="col-sm-4 col-form-label">Primer Apellido</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="buyerFirstSurName" v-model="model.buyer.cl_primerApellido">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-2 row">
+                    <label for="buyerSecondSurName" class="col-sm-4 col-form-label">Segundo Apellido</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="buyerSecondSurName" v-model="model.buyer.cl_segundoApellido">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-2 row">
+                    <label for="buyerEmail" class="col-sm-4 col-form-label">Correo</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="buyerEmail" v-model="model.buyer.cl_correo">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-2 row">
+                    <label for="buyerNumberLicense" class="col-sm-4 col-form-label">Número de Licencia</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" v-model="model.buyer.cl_numeroLicencia">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 row">
+                    <label for="buyerNumberSafe" class="col-sm-4 col-form-label">Número de Seguro</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="buyerNumberSafe" v-model="model.buyer.cl_numeroSeguro">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 row">
+                    <label for="buyerPhone" class="col-sm-4 col-form-label">Número de Teléfono</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="buyerPhone" v-model="model.buyer.cl_numeroTelefono">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 row">
+                    <label for="buyerVillage" class="col-sm-4 col-form-label">Pueblo</label>
+                    <div class="col-sm-8">
+                        <select v-bind:readonly="!hasEdit" v-bind:disabled="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="buyerAddress" v-model="model.buyer.cl_pueblo.pl_id">
+                            <option v-bind:value="null">-- SELECCIONE --</option>
+                            <option v-for="(item) in villages" v-bind:value="item.pl_id">{{ item.pl_nombre }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 row">
+                    <label for="buyerAddress" class="col-sm-4 col-form-label">Dirección</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="buyerAddress" v-model="model.buyer.cl_direccion">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 row">
+                    <label for="buyerZip" class="col-sm-4 col-form-label">Código ZIP</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="buyerZip" v-model="model.buyer.cl_zip">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer d-flex justify-content-end" v-if="hasEdit">
+        <button v-on:click="updateBuyer" v-bind:disabled="loadingBuyer" class="btn btn-info" type="button">
+            <i class="si-disk"></i>
+            <span class="ms-2">Actualizar</span>
+        </button>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header p-3 fs-6 fw-bold">Datos del Vehículo</div>
+    <div class="card-body">
+        <div class="overlay-loader" v-bind:class="{ 'show': loading || loadingTransfer }"></div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="mb-2 row">
+                    <label for="brandVehicle" class="col-sm-4 col-form-label">Marca</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="brandVehicle" v-model="model.brandVehicle">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-2 row">
+                    <label for="modelVehicle" class="col-sm-4 col-form-label">Modelo</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="modelVehicle" v-model="model.modelVehicle">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-2 row">
+                    <label for="yearVehicle" class="col-sm-4 col-form-label">Año</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="yearVehicle" v-model="model.yearVehicle">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-2 row">
+                    <label for="serialNumber" class="col-sm-4 col-form-label">Número de Serie</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="serialNumber" v-model="model.serialNumber">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-2 row">
+                    <label for="colorVehicle" class="col-sm-4 col-form-label">Color</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="colorVehicle" v-model="model.colorVehicle">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-2 row">
+                    <label for="licensePlate" class="col-sm-4 col-form-label">Placa Vehículo</label>
+                    <div class="col-sm-8">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="colorVehicle" v-model="model.licensePlate">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="mb-2 row">
+                    <label for="colorVehicle" class="col-sm-4 col-md-2 col-form-label">Otros</label>
+                    <div class="col-sm-8 col-md-10">
+                        <input type="text" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="colorVehicle" v-model="model.otherInfo">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-4 col-lg-3 mb-2">
+                <label for="hasContract" class="col-form-label">¿Tiene contrato compra/venta?</label>
+                <div class="switch-container">
+                    <input class="form-check-input" v-bind:disabled="!hasEdit" v-bind:readonly="!hasEdit" type="checkbox" role="switch" id="hasContract" v-model="model.hasContract">
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3 mb-2">
+                <label for="transferBoss" class="col-form-label">¿Traspaso por dueño?</label>
+                <div class="switch-container">
+                    <input class="form-check-input" v-bind:disabled="!hasEdit" v-bind:readonly="!hasEdit" type="checkbox" role="switch" id="transferBoss" v-model="transferBoss">
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3 mb-2" v-show="!model.hasContract">
+                <label for="paymentAmount" class="col-form-label">Monto a pagar</label>
+                <input type="text" v-bind:disabled="!hasEdit" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="paymentAmount" v-model="model.paymentAmount">
+            </div>
+            <div class="col-md-4 col-lg-3 mb-2" v-show="!model.hasContract">
+                <label for="paymentDate" class="col-form-label">Fecha de pago</label>
+                <input type="date" v-bind:disabled="!hasEdit" v-bind:readonly="!hasEdit" v-bind:class="{ 'form-control-plaintext': !hasEdit, 'form-control': hasEdit }" id="paymentDate" v-model="model.paymentDate">
+            </div>
+        </div>
+    </div>
+    <div class="card-footer d-flex justify-content-end" v-if="hasEdit">
+        <button v-on:click="submitTransfer" v-bind:disabled="loadingTransfer" class="btn btn-info" type="button">
+            <i class="si-disk"></i>
+            <span class="ms-2">Actualizar</span>
+        </button>
+    </div>
+</div>
+
+<div v-if="model.state === 0">
+    <partial name="~/Views/Shared/_SectionMultas.cshtml" view-data="ViewData">
+</div>
+
+<div class="card" v-if="hasEdit">
+    <div class="card-header p-3 fs-6 fw-bold">Documentos</div>
+    <div class="card-body">
+        <div class="overlay-loader" v-bind:class="{ 'show': loadingUpload }"></div>
+        <div ref="divImagen"></div>
+    </div>
+</div>
+
+<div class="row" v-if="model.state === 0">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header p-3 fs-6 fw-bold">Estado de Caso</div>
+            <div class="card-body d-flex flex-column">
+                <div class="overlay-loader" v-bind:class="{ 'show': loadingStatus }"></div>
+                <label class="form-label fw-bold">Formulario y Documentos Revisados:</label>
+                <div class="d-flex flex-row mb-3">
+                    <div class="form-check form-check-inline">
+                        <input v-model="model.revisedStatus" class="form-check-input" type="radio" name="radioRevision" id="inlineRadio1" v-bind:value="false">
+                        <label class="form-check-label" for="inlineRadio1">No</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input v-model="model.revisedStatus" class="form-check-input" type="radio" name="radioRevision" id="inlineRadio2" v-bind:value="true">
+                        <label class="form-check-label" for="inlineRadio2">Sí</label>
+                    </div>
+                </div>
+                <label class="form-label fw-bold">Multas Revisadas:</label>
+                <span class="mb-3">Marcar Si, si el cliente no tiene multas, pagó las multas o hizo un plan de pago</span>
+                <div class="d-flex flex-row mb-3">
+                    <div class="form-check form-check-inline">
+                        <input v-model="model.evaluationStatus" class="form-check-input" type="radio" name="radioRevisionmulta" id="inlineRadio3" v-bind:value="false">
+                        <label class="form-check-label" for="inlineRadio3">No</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input v-model="model.evaluationStatus" class="form-check-input" type="radio" name="radioRevisionmulta" id="inlineRadio4" v-bind:value="true">
+                        <label class="form-check-label" for="inlineRadio4">Sí</label>
+                    </div>
+                </div>
+                <button v-on:click="submitChangeStatus" v-bind:disabled="loadingStatus" type="button" class="btn btn-warning-light btn-wave waves-effect waves-light">GUARDAR</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header p-3 fs-6 fw-bold">Asignación</div>
+            <div class="card-body d-flex flex-column">
+                <div class="overlay-loader" v-bind:class="{ 'show': loadingAsigned }"></div>
+                <label class="form-label fw-bold">Estado Evaluación: <span>{{ revisedStatusFiles ? 'Evaluado' : 'Pendiente' }}</span></label>
+                <div class="mb-3">
+                    <label for="selecRadicador" class="form-label">Selecciona Radicador:</label>
+                    <select v-model="model.radicatorId" id="selecRadicador" class="form-select form-select-light mt-0">
+                        <option v-bind:value="null">-- SELECCIONE --</option>
+                        <option v-for="(item) in radicators" v-bind:value="item.adm_id">{{ item.adm_nombres }}</option>
+                    </select>
+                </div>
+                <button v-on:click="submitAssign" v-bind:disabled="loadingAsigned" type="button" class="btn btn-warning-light btn-wave waves-effect waves-light">ASIGNAR CASO A RADICADO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" v-if="model.state === 0 || model.state === 1">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body d-flex flex-items-center justify-content-between">
+                <button v-on:click="builderCaseFile" v-bind:disabled="loadingBuilderCaseFile" type="button" class="btn btn-primary">
+                    <span class="ms-2">{{ loadingBuilderCaseFile ? 'GENERANDO EXPEDIENTE ACTUALIZADO...' : 'GENERAR EXPEDIENTE' }}</span>
+                </button>
+                <button v-on:click="seeFile('pdf', caseFileUrl)" type="button" class="btn btn-default">
+                    <i class="si-eye"></i>
+                    <span class="ms-2">VISUALIZAR EXPEDIENTE</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" v-if="model.state === 1">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header p-3 fs-6 fw-bold">Estado de radicación</div>
+            <div class="card-body d-flex flex-row align-items-center">
+                <div class="overlay-loader" v-bind:class="{ 'show': loadingRadicated }"></div>
+                <label class="form-label fs-6 fw-bold">Documento Radicado:</label>
+                <div class="d-flex flex-row">
+                    <div class="form-check form-check-inline" style="margin-left:10px">
+                        <input v-model="model.radicatedStatus" class="form-check-input" type="radio" name="radioRadicar" id="radicacion1" v-bind:value="false">
+                        <label class="form-check-label" for="radicacion1">No</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input v-model="model.radicatedStatus" class="form-check-input" type="radio" name="radioRadicar" id="radicacion2" v-bind:value="true">
+                        <label class="form-check-label" for="radicacion2">Sí</label>
+                    </div>
+                </div>
+                <button v-on:click="submitDocRadicated" type="button" class="btn btn-primary" v-bind:disabled="loadingRadicated | !model.radicatedStatus">
+                    <i class="si-check"></i>
+                    <span class="ms-2">CONFIRMAR RADICACION</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" v-if="model.state === 2">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header p-3 fs-6 fw-bold">Asignación del caso</div>
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <span>Evaluado Por</span>
+                    <span class="fw-bold ms-2">{{ model.adminName }}</span>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                    <span>Caso asignado por</span>
+                    <span class="fw-bold ms-2">{{ model.adminName }}</span>
+                    <span class="ms-2">a</span>
+                    <span class="ms-2 fw-bold">{{ model.radicatorName }}</span>
+                    <span class="ms-2">en</span>
+                    <span class="ms-2 fw-bold">{{ model.radicatorAsignatedAt }}</span>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                    <span>Caso radicado por</span>
+                    <span class="fw-bold ms-2">{{ model.radicatorName }}</span>
+                    <span class="ms-2">en</span>
+                    <span class="ms-2 fw-bold">{{ model.radicatedStatusAt }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header p-3 fs-6 fw-bold">Status del caso radicado</div>
+            <div class="card-body d-flex flex-column">
+                <div class="overlay-loader" v-bind:class="{ 'show': loadingRadication }"></div>
+                <label class="form-label fs-6">Status Actual: <span class="fw-bold" v-bind:class="{ 'text-primary': model.radicationState === 0, 'text-success': model.radicationState === 1, 'text-warning': model.radicationState === 2, 'text-danger': model.radicationState === 3 }">{{radicationStateText}}</span></label>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-lg-2">
+                        <select v-model="model.radicationState" class="form-control">
+                            <option class="text-primary" v-bind:value="0">Pendiente</option>
+                            <option class="text-success" v-bind:value="1">Aprobado</option>
+                            <option class="text-warning" v-bind:value="2">Denegado/Subsanable</option>
+                            <option class="text-danger" v-bind:value="3">Denegado/Final</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-sm-4 col-lg-8" v-if="model.radicationState > 1">
+                        <input v-model="model.radicationObservation" v-bind:class="{ 'form-control': model.radicationState >= 2, 'form-control-plaintext': model.radicationState < 2 }" />
+                    </div>
+                    <div class="col-12 col-sm-3 col-md-2">
+                        <button v-on:click="submitRadication" type="button" class="btn btn-primary" v-bind:disabled="loadingRadication">
+                            <i class="si-disk"></i>
+                            <span class="ms-2">GUARDAR</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" v-if="model.state === 2 || model.state === 3">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body d-flex flex-items-center justify-content-between">
+                <button v-if="model.state === 2" v-on:click="submitChangeCase" v-bind:disabled="model.radicationState === 0" type="button" class="btn btn-success">
+                    <i class="si-check"></i>
+                    <span class="ms-2">FINALIZAR CASO</span>
+                </button>
+                <button v-if="model.state === 3" onclick="onPrint(event)" v-bind:data-print="caseFileUrl" v-bind:disabled="model.radicationState === 0" type="button" class="btn btn-primary">
+                    <i class="si-printer"></i>
+                    <span class="ms-2">IMPRIMIR EXPEDIENTE</span>
+                </button>
+                <button v-on:click="seeFile('pdf', caseFileUrl)" type="button" class="btn btn-default">
+                    <i class="si-eye"></i>
+                    <span class="ms-2">VER NUEVAMENTE EL EXPEDIENTE</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ref="modalPreview" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Vista de documento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img v-if="previewFile.type === 'img'" v-bind:src="previewFile.src" class="img img-thumbnail" style="max-height: 450px;" />
+                <iframe v-else v-bind:src="previewFile.src" style="height: 450px; width: 100%;" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>

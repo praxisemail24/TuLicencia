@@ -1,0 +1,54 @@
+﻿<div id="loadingSpinner1" class="loading-spinner" style="display: none;">
+    <!-- Spinner puede ser cualquier animación de carga -->
+    <div class="spinner1"></div>
+</div>
+
+<div id="tarjeta1" class="form-container">
+    <h1>Datos de pago</h1>
+    <form id="paymentForm1" class="payment-form">
+        <div class="row">
+            <label for="num_tarjeta">
+                Monto
+                <input type="text" id="montotarjeta1" name="montotarjeta1" readonly="true" style="background-color:black;color:white" required>
+            </label>
+
+        </div>
+
+
+        <div class="row">
+            <label for="num_tarjeta">
+                Nombre
+                <input type="text" id="num_nombre1" name="num_nombre1" placeholder="Ingrese el nombre del titular de la tarjeta" required>
+            </label>
+            <label for="nombre_tarjeta">
+                Apellido
+                <input type="text" id="num_apellido1" name="num_apellido1" placeholder="Ingrese el apellido del titular de la tarjeta" required>
+            </label>
+            <label for="num_tarjeta">
+                Número de Tarjeta
+                <input type="text" id="num_tarjeta1" name="num_tarjeta1" placeholder="Ingrese el número de la tarjeta" required>
+            </label>
+
+        </div>
+
+        <div class="row">
+            <label for="fecha_tarjeta_mes">
+                Fecha de expiración
+                <select id="fecha_tarjeta_mes1" name="fecha_tarjeta_mes1" required>
+                    <option value="">MM</option>
+                    <!-- Generar opciones de 1 a 12 -->
+                </select>
+                <select id="fecha_tarjeta_anio1" name="fecha_tarjeta_anio1" required>
+                    <option value="">YYYY</option>
+                    <!-- Generar opciones de año actual a 10 años después -->
+                </select>
+            </label>
+            <label for="cvv_tarjeta">
+                CVV
+                <input type="number" id="cvv_tarjeta1" name="cvv_tarjeta1" placeholder="Ingrese el CVV de su tarjeta" required>
+            </label>
+        </div>
+        <button class="btn btn-primary" type="button" onclick="PagaTarjetaApi1()">Pagar</button>
+
+    </form>
+</div>

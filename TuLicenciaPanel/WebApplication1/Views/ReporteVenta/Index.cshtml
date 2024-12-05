@@ -1,0 +1,171 @@
+﻿
+@{
+    ViewData["Title"] = "Reporte de ventas";
+}
+
+@section Styles {
+    <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css" rel="stylesheet" />
+}
+
+<div class="py-3">
+    <div class="card">
+        <div class="card-header p-3 fs-4 fw-bold">REPORTE DE VENTAS</div>
+        <div class="card-body">
+            <div class="row gy-4">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                    <label class="form-label">Tipo de reporte</label>
+                    <select id="tipo_reporte" class="form-select">
+                        <option value="0">Día</option>
+                        <option value="1">Mes</option>
+                        <option value="2">Ultimos 15 días</option>
+                        <option value="3">Ultima semana</option>
+                        <option value="4">Fechas</option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                    <label class="form-label">Mes</label>
+                    <select id="mes" class="form-select" disabled="disabled">
+                        <option value="1">Enero</option>
+                        <option value="2">Febrero</option>
+                        <option value="3">Marzo</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Mayo</option>
+                        <option value="6">Junio</option>
+                        <option value="7">Julio</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Septiembre</option>
+                        <option value="10">Octubre</option>
+                        <option value="11">Noviembre</option>
+                        <option value="12">Diciembre</option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+                    <label class="form-label">Año</label>
+                    <input value="@DateTime.Now.Year" type="number" class="form-control" id="anio" disabled="disabled" />
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+                    <label class="form-label">Fecha inicio</label>
+                    <input type="date" class="form-control" id="fecha_inicio" />
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+                    <label class="form-label">Fecha termino</label>
+                    <input type="date" class="form-control" id="fecha_termino" disabled="disabled" />
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                    <label class="form-label">Tipo de trámite</label>
+                    <select id="tipo" class="form-select">
+                        <option value="0">-- TODOS --</option>
+                        <option value="1">Renovación de licencia</option>
+                        <option value="2">Licencia de aprendizaje</option>
+                        <option value="3">Duplicado de licencia</option>
+                        <option value="4">Reciprocidad de Licencia</option>                        
+                        <option value="5">Traspaso de Vehículos</option>                        
+                    </select>
+                </div>
+                @* <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                    <label class="form-label">Estado</label>
+                    <select id="estado" class="form-select">
+                        <option value="">-- TODOS --</option>
+                        <option value="0">NEW CASES</option>
+                        <option value="1">REVIEWED CASES</option>
+                        <option value="2">PROCESSED CASES</option>
+                        <option value="3">CLOSED CASES</option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+                    <label class="form-label">Estado proceso</label>
+                    <select id="estado_proceso" class="form-select">
+                        <option value="">-- TODOS --</option>
+                        <option value="0">PENDIENTE</option>
+                        <option value="1">ACEPTADO</option>
+                    </select>
+                </div> *@
+            </div>
+            <div class="row gy-4 pt-3">
+                <div class="col-xl-6">
+                    <button type="button" id="btnbuscar" class="btn btn-secondary me-2">
+                        <i class="la la-search"></i>
+                        <span>BUSCAR</span>
+                    </button>
+                    <button type="button" id="btnexportar" class="btn btn-success me-2">
+                        <i class="la la-file-excel"></i>
+                        <span>EXPORTAR</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-body">
+            <ul class="nav nav-pills nav-style-3 mb-3" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#summary" type="button" role="tab" aria-controls="summary" aria-selected="true">RESUMEN DE PERIODO</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#results" type="button" role="tab" aria-controls="results" aria-selected="false">RESULTADOS DE BÚSQUEDA</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
+                    <div class="row gy-4">
+                        <div class="col-sm-12 col-lg-6">
+                            <h6 class="text-uppercase text-center">Monto ($)</h6>
+                            <canvas id="summary-bar-amount"></canvas>
+                            <div class="d-flex flex-column text-center mt-3">
+                                <div class="lead">Monto de ventas</div>
+                                <div class="lead fw-bold" id="total-monto">0</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-6">
+                            <h6 class="text-uppercase text-center">Cantidad</h6>
+                            <canvas id="summary-bar-quantity"></canvas>
+                            <div class="d-flex flex-column text-center mt-3">
+                                <div class="lead">Cantidad de ventas</div>
+                                <div class="lead fw-bold" id="total-cantidad">0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="results" role="tabpanel" aria-labelledby="results-tab">
+                    <div id="titulo-reporte" class="mb-3 lead fw-bold text-center"></div>
+                    <div class="table-responsive">
+                        <table id="reporte" class="table table-striped table-hovered" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase">Tipo Trámite</th>
+                                    <th class="text-uppercase">Cliente</th>
+                                    <th class="text-uppercase">Código Pago</th>
+                                    <th class="text-uppercase">Fecha Pago</th>
+                                    <th class="text-uppercase">Estado</th>
+                                    <th class="text-uppercase">Método</th>
+                                    <th class="text-uppercase">Monto</th>
+                                    <th class="text-uppercase">Nota</th>
+                                    <th class="text-uppercase">Iniciado</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="~/js/reportes.js"></script>
+    <script>
+        $(document).ready(() => {
+            reporte.rptVentas();
+        });
+    </script>
+}
+

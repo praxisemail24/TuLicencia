@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="dist\**" />
+    <Content Remove="dist\**" />
+    <EmbeddedResource Remove="dist\**" />
+    <None Remove="dist\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\css\StyleSheet.css" />
+    <Content Remove="wwwroot\js\ajax-loader.gif" />
+    <Content Remove="wwwroot\js\doctor.js" />
+    <Content Remove="wwwroot\js\modal-multas-bk.js" />
+    <Content Remove="wwwroot\js\modal-multas.js" />
+    <Content Remove="wwwroot\js\ver-frm-lic-reciprocidad-review.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\css\payment-card.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\doctor.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\modal-multas.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\ver-frm-lic-reciprocidad-review.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controllers\AdministradorController.cs" />
+    <Content Include="Controllers\ClienteController.cs" />
+    <Content Include="Controllers\HomeController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\image\img01.jpg" />
+    <None Include="wwwroot\js\doctor.js" />
+    <None Include="wwwroot\js\modal-multas-bk.js" />
+    <None Include="wwwroot\js\modal-multas.js" />
+    <None Include="wwwroot\js\ver-frm-lic-reciprocidad-review.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.18" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+</Project>

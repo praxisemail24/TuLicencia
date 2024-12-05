@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Traspaso";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/forms.css?hash=@Utility.RandomString()" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/siimple-icons/siimple-icons.css" />
+}
+
+<div id="viewTraspaso">
+    <partial name="~/Views/Shared/Partials/TraspasoInfo.cshtml" view-data="ViewData" />
+</div>
+
+@section Scripts {
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        var params = {
+            id: @ViewBag.id,
+        };
+    </script>
+    <script src="~/js/traspaso.js?hash=@Utility.RandomString()"></script>
+}

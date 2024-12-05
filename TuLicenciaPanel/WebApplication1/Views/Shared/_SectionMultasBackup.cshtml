@@ -1,0 +1,508 @@
+﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Verificación de multas</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="btn-list d-flex justify-content-start">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-cesco">
+                    <i class="bi bi-car-front-fill me-2"></i>CESCO
+                </button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-autoexpress">
+                    <i class="bi bi-car-front-fill me-2"></i>AUTOEXPRESS
+                </button>
+                <button type="button" class="btn btn-info">
+                    <i class="bi bi-car-front-fill me-2"></i>AUTOREC
+                </button>
+                <button type="button" class="btn btn-warning">
+                    <i class="bi bi-car-front-fill me-2"></i>COLECTURIA VIRTUAL
+                </button>
+            </div>
+
+            <div class="col-sm-12 mt-3">
+                @* <a data-bs-toggle="collapse" href="#multas-container" aria-expanded="false" class="btn btn-link collapsed">Mostrar multas</a> *@
+                <div id="multas-container" class="mt-3" >
+                    <div class="table-responsive" style=" height: 250px; overflow-y: auto;width: 100%;border-collapse: collapse; ">
+                        <table id="tb-multas" class="table table-striped table-hover"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-cesco" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-lg-down modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">CONSULTA DE MULTAS EN CESCO</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="estadocesco" class="text-success text-center h5"></div>
+                <div class="row">
+                    <!-- Datos personales, multas y adjuntos en la columna derecha -->
+                    <div class="col-md-12">
+                        <hr style="border-top: 2px solid darkred; margin: 10px 0;">
+                        <h5 style="color: #2C3E50; font-size: 18px; margin-bottom: 15px;">DATOS DEL SOLICITANTE</h5>
+                        <div class="">
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <div class="nombre">
+                                        <strong style="color: #34495E;"><span>Nombre Completo</span></strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="nro-licencia">
+                                        <strong style="color: #34495E;">NRO. DE LICENCIA:</strong>
+                                        <span style="color: #2980B9;">123456</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="nro-ssn">
+                                        <strong style="color: #34495E;">SSN:</strong>
+                                        <span style="color: #2980B9;">7890</span>
+                                        <small style="color: #A7A7A7; font-size: 12px;">4 últimos dígitos</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <div class="fecha-nac">
+                                        <strong style="color: #34495E;">Fecha de Nacimiento:</strong>
+                                        <span style="color: #2980B9;">01/01/1990</span>
+                                        <small style="color: #A7A7A7; font-size: 12px;">(MM/DD/YYYY)</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="correo">
+                                        <strong style="color: #34495E;">Email:</strong>
+                                        <span id="correo-span" style="color: #2980B9;">example@example.com</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <!-- Puedes añadir un tercer elemento aquí si es necesario -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr style="border-top: 2px solid darkred; margin: 10px 0;">
+
+                        <div class="mb-3">
+                            <h5 style="color: #2C3E50; font-size: 18px;">MULTAS</h5>
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="form-check me-3">
+                                    <input checked="checked" type="radio" class="form-check-input" name="rbtnmultas" value="1" id="rbtnmulta-si1" />
+                                    <label class="form-check-label" for="rbtnmulta-si1">Sí</label>
+                                </div>
+                                <div class="form-check me-3">
+                                    <input type="radio" class="form-check-input" name="rbtnmultas" value="0" id="rbtnmulta-no1" />
+                                    <label class="form-check-label" for="rbtnmulta-no1">No</label>
+                                </div>
+                                <div class="ms-auto d-flex">
+                                    <button onclick="window.open('https://web.cescodigital.pr.gov/', '_blank');" class="text-nowrap btn btn-success text-white me-2">CONSULTAR EN CESCO</button>
+                                    <button type="button" class="btn btn-purple text-nowrap" data-action="correo" data-mail-type="0">
+                                        <i class="la la-envelope"></i>
+                                        <span>Enviar Correo</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="text" class="form-control" id="multaDescripcion" data-input="descripcion" placeholder="Descripción">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control" id="multaMonto" data-input="monto" placeholder="Monto ($)">
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary" data-action="agregar">Añadir Multa</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="mb-3 form-multas-lista">
+                            <div id="multas-list-cesco" class="mt-1">
+                                <table class="table table-bordered">
+                                    <thead class="table-secondary">
+                                        <tr>
+                                            <th>Descripción</th>
+                                            <th>Monto ($)</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Aquí se agregarán las multas -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                      @*   <div class="d-flex justify-content-end mb-3">
+                            <button type="button" class="btn btn-purple me-2" data-action="correo" data-mail-type="0">
+                                <i class="la la-envelope"></i>
+                                <span>Enviar Correo</span>
+                            </button>
+                        </div> *@
+
+                        <hr style="border-top: 2px solid darkred; margin: 10px 0;">
+
+                        <div class="mb-3 form-certificado">
+                            <h5>ADJUNTAR CERTIFICACIÓN DE MULTAS</h5>
+                            <div class="mb-3">
+                                <label for="certificacionMultas" class="form-label">Archivo de Certificación</label>
+                                <div class="d-flex">
+                                    <input type="file" class="form-control me-2" data-input="certificado">
+                                    <button type="button" class="btn btn-primary" data-action="subir">Subir</button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="mb-3 form-multas-certificados">
+                            <h6>Lista de archivos</h6>
+                            @*<a data-bs-toggle="collapse" href="#multas-archivos-cesco" aria-expanded="false" class="btn btn-link collapsed">Mostrar</a>*@
+                            <div id="multas-archivos-cesco" class="mt-1">
+                                <ul class="list-group"></ul>
+                            </div>
+                        </div>
+                        <hr style="border-top: 2px solid darkred; margin: 10px 0;">
+
+                        <div class="mb-12 form-pagos" id="pago1">
+                            <div class="d-flex flex-row">
+                                <h5>VA A PAGAR?</h5>
+                                <br />
+                                <div class="form-check">
+                                    <input checked="checked" type="radio" class="form-check-input" name="rbtnpagos" value="1" id="rbtnpago-si1" />
+                                    <label class="form-check-label" for="rbtnpago-si1">Sí</label>
+                                </div>
+                                <div class="form-check ms-4">
+                                    <input type="radio" class="form-check-input" name="rbtnpagos" value="0" id="rbtnpago-no1" />
+                                    <label class="form-check-label" for="rbtnpago-no1">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 form-pagos-no d-none" id="pago1no">
+                            <button type="button" class="btn btn-purple btn-block mb-2" data-action="correo" data-mail-type="3">
+                                <i class="la la-envelope"></i>
+                                <span>Enviar Correo</span>
+                            </button>
+                            <button type="button" class="btn btn-success btn-block" data-action="finish">Finalizar</button>
+                        </div>
+                        <div class="mb-3 form-pagos-yes" id="pago1si">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="d-flex flex-row mb-3">
+                                        <div class="form-check">
+                                            <input checked="checked" type="radio" class="form-check-input" name="rbtnpagotipo" value="1" id="rbtnpagototal" />
+                                            <label class="form-check-label" for="rbtnpagototal">Pago Total</label>
+                                        </div>
+                                        <div class="form-check ms-4">
+                                            <input type="radio" class="form-check-input" name="rbtnpagotipo" value="2" id="rbtnpagoparcial" />
+                                            <label class="form-check-label" for="rbtnpagoparcial">Pago parcial</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row"><h5>DETALLE DE PAGO A REALIZAR</h5></div>
+                            <div class="row">
+                                <div class="col-sm-12 mb-3 pago-total">
+                                    <label class="form-label">TIPO DE PAGO: Pago Total</label>
+                                    <div id="total1" class="total"></div>
+                                    <button class="btn btn-primary" type="button" onclick="pagototal()">Pagar Total</button>                                    
+                                </div>
+                                <div class="col-sm-12 mb-3 pago-parcial d-none">
+                                    <div class="d-flex flex-row mb-3 align-items-center">
+                                        <label for="select-cuotas" class="form-label me-3">Número de Cuotas</label>
+                                        <select id="select-cuotas" class="form-select" name="selectcuotas" style="width: auto;">
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="cuotas mb-3">
+                                        <table class="table  table-bordered">
+                                            <thead class="table-secondary">
+                                                <tr>
+                                                    <th>Cuota</th>
+                                                    <th>Monto ($)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- Las filas de cuotas se agregarán aquí dinámicamente -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <label class="form-label">TIPO DE PAGO: Pago Parcial</label>
+                                    <div id="totalparcial1"class="total-parcial"></div>
+                                    <button class="btn btn-primary" type="button" onclick="pagoparcial()">Pagar y Crear plan de pago</button>
+                                </div>
+                                <div class="row payment-card-container" id="pagoTarjeta" style="display:none">
+                                    <partial name="~/Views/Shared/Tarjeta.cshtml" view-data="ViewData">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="color:darkred">
+
+                    <!-- iframe en la columna izquierda -->
+                  @*  <div class="col-md-8">
+                        <iframe src="https://web.cescodigital.pr.gov/" style="width:100%; height:84vh" frameborder="0"></iframe>
+                    </div>*@
+                </div>
+                
+               
+            </div>
+            <div class="modal-footer" style="display: flex; justify-content: end;">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-autoexpress" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-lg-down modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">CONSULTA DE MUTAS AUTOEXPRESS</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="estadoautoexpress" class="text-success text-center h5"></div>
+                <div class="row">
+                    <hr style="border-top: 2px solid darkred; margin: 10px 0;">
+
+                    <!-- Datos personales, multas y adjuntos en la columna derecha -->
+                    <div class="col-md-12">
+                        <h5>Datos del solicitante</h5>
+                        <div class="">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <div class="nombre">
+                                        <strong>Nombre Completo:</strong> <span></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="nro-licencia">
+                                        <strong>Licencia:</strong> <span></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="nro-ssn">
+                                        <strong>SSN:</strong> <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <div class="fecha-nac">
+                                        <strong>Fecha de Nacimiento:</strong> <span></span>
+                                        <small style="color: #A7A7A7;">(MM/DD/YYYY)</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="correo">
+                                        <strong>Email:</strong> <span id="correo-span1"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <!-- Puedes añadir otro campo aquí si es necesario -->
+                                </div>
+                            </div>
+                        </div>
+                        <hr style="border-top: 2px solid darkred; margin: 10px 0;">
+                        <h5>MULTAS</h5>
+                        <div class="d-flex flex-row mb-3">
+                            <div class="d-flex flex-row align-items-center">
+                                <div class="form-check ms-2">
+                                    <input checked="checked" type="radio" class="form-check-input" name="rbtnmultas" value="1" id="rbtnmulta-si1" />
+                                    <label class="form-check-label" for="rbtnmulta-si1">Sí</label>
+                                </div>
+                                <div class="form-check ms-2">
+                                    <input type="radio" class="form-check-input" name="rbtnmultas" value="0" id="rbtnmulta-no1" />
+                                    <label class="form-check-label" for="rbtnmulta-no1">No</label>
+                                </div>
+                            </div>
+                            <div class="ms-auto">
+                                <button onclick="window.open('https://www.autoexpreso.com/home', '_blank');" class="btn btn-success text-white me-2">CONSULTAR EN AUTOEXPRESS</button>
+                            </div>
+                            <div class="ms-auto">
+                                <button type="button" class="btn btn-purple ms-2" data-action="correo" data-mail-type="0">
+                                    <i class="la la-envelope"></i>
+                                    <span>Enviar Correo</span>
+                                </button>
+                            </div>
+                        </div>
+                                                
+                        <div class="mb-3">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="text" class="form-control" data-input="descripcion" placeholder="Descripción">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control" data-input="monto" placeholder="Monto ($)">
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary" data-action="agregar">Añadir Multa</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="mb-3 form-multas-lista">
+                            @*<a data-bs-toggle="collapse" href="#multas-list-cesco" aria-expanded="true" class="btn btn-link collapsed">Mostrar</a>
+                            *@
+                            <div id="multas-list-autoexpress" class="mt-1">
+                                @*<ul class="list-group"></ul>*@
+                                <table class="table table-bordered">
+                                    <thead class="table-secondary">
+                                        <tr>
+                                            <th>Descripción</th>
+                                            <th>Monto ($)</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        @*<div class="mb-3 form-multas-lista d-none">
+                            <a data-bs-toggle="collapse" href="#multas-list-autoexpress" aria-expanded="false" class="btn btn-link collapsed">Mostrar</a>
+                            <div id="multas-list-autoexpress" class="mt-3 collapse">
+                                <ul class="list-group"></ul>
+                            </div>
+                        </div>*@
+                        <hr style="color:darkred">
+                        <div class="mb-3 form-certificado">
+                            <h5 style="color: #2C3E50; font-size: 18px; margin-bottom: 15px;">ADJUNTAR CERTIFICACIÓN DE MULTAS</h5>
+                            <div class="d-flex mb-3 align-items-center">
+                                <label for="certificacionMultas" class="form-label me-3" style="font-weight: bold;">Archivo de Certificación</label>
+                                <input type="file" class="form-control me-3" id="certificacionMultas" data-input="certificado" style="border-radius: 5px;">
+                                <button type="button" class="btn btn-primary" data-action="subir" style="border-radius: 5px;">Subir</button>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 form-multas-certificados d-none">
+                            <a data-bs-toggle="collapse" href="#multas-archivos-autoexpress" aria-expanded="false" class="btn btn-link collapsed" style="font-weight: bold; color: #3498DB;">Mostrar Archivos Adjuntos</a>
+                            <div id="multas-archivos-autoexpress" class="mt-3 collapse">
+                                <ul class="list-group">
+                                    <!-- Aquí se agregarán los archivos adjuntos -->
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                        @*<div class="mb-3 form-certificado">
+                            <h5>ADJUNTAR CERTIFICACIÓN DE MULTAS</h5>
+                            <div class="mb-3">
+                                <label for="certificacionMultas" class="form-label">Archivo de Certificación</label>
+                                <input type="file" class="form-control" data-input="certificado">
+                            </div>
+                            <button type="button" class="btn btn-primary" data-action="subir">Subir</button>
+                        </div>
+                        <div class="mb-3 form-multas-certificados">
+                            @*<a data-bs-toggle="collapse" href="#multas-archivos-cesco" aria-expanded="false" class="btn btn-link collapsed">Mostrar</a>
+                            <div id="multas-archivos-cesco" class="mt-1">
+                                <ul class="list-group"></ul>
+                            </div>
+                        </div>*@
+                        <hr style="color:darkred">
+                        <div class="mb-3 form-pagos" id="pago2">
+                            <h5>VA A PAGAR?</h5>
+                            <div class="d-flex flex-row">
+                                <div class="form-check">
+                                    <input checked="checked" type="radio" class="form-check-input" name="rbtnpagos" value="1" id="rbtnpago-si2" />
+                                    <label class="form-check-label" for="rbtnpago-si2">Sí</label>
+                                </div>
+                                <div class="form-check ms-4">
+                                    <input type="radio" class="form-check-input" name="rbtnpagos" value="0" id="rbtnpago-no2" />
+                                    <label class="form-check-label" for="rbtnpago-no2">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 form-pagos-no d-none" id="pago2no">
+                            <button type="button" class="btn btn-purple btn-block mb-2" data-action="correo" data-mail-type="3">
+                                <i class="la la-envelope"></i>
+                                <span>Enviar Correo</span>
+                            </button>
+                            <button type="button" class="btn btn-success btn-block" data-action="finish">Finalizar</button>
+                        </div>
+
+                        @*<hr style="color:darkred">*@
+                        @*<div class="mb-12 form-pagos">
+                            <div class="d-flex flex-row">
+                                <h5>VA A PAGAR?</h5>
+                                <div class="form-check">
+                                    <input checked="checked" type="radio" class="form-check-input" name="rbtnpagos" value="1" id="rbtnpago-si1" />
+                                    <label class="form-check-label" for="rbtnpago-si1">Sí</label>
+                                </div>
+                                <div class="form-check ms-4">
+                                    <input type="radio" class="form-check-input" name="rbtnpagos" value="0" id="rbtnpago-no1" />
+                                    <label class="form-check-label" for="rbtnpago-no1">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 form-pagos-no d-none">
+                            <button type="button" class="btn btn-purple btn-block mb-2" data-action="correo" data-mail-type="3">
+                                <i class="la la-envelope"></i>
+                                <span>Enviar Correo</span>
+                            </button>
+                            <button type="button" class="btn btn-success btn-block" data-action="finish">Finalizar</button>
+                        </div>*@
+
+                        <div class="mb-3 form-pagos-yes" id="pago2si">
+                            <div id="total2" class="total"></div>
+                            <button class="btn btn-primary" type="button" onclick="pagototalam()">Pagar</button>
+                        </div>
+                        <div class="row payment-card-container" id="pagoTarjeta1" style="display:none">
+                            <partial name="~/Views/Shared/Tarjeta1.cshtml" view-data="ViewData">
+                        </div>
+
+                    </div>
+                    <!-- iframe en la columna izquierda -->
+                    @*<div class="col-md-8">
+                        <div class="row">
+                            <div class="col-sm-12" style="height: 80vh;">
+                                <iframe src="https://web.cescodigital.pr.gov/" style="width:100%; height:100%;" frameborder="0"></iframe>
+                            </div>
+                            <div class="col-sm-12 d-flex justify-content-center py-3">
+                                <a href="https://www.autoexpreso.com/home" target="_blank" class="btn btn-primary">Abrir AUTOEXPRESS</a>
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-end">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+

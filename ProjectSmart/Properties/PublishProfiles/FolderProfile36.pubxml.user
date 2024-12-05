@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>E:\hiringperu\NET\tulicencia_api_panel\ProjectSmart\bin\Release\net6.0\publish\</_PublishTargetUrl>
+    <History>True|2024-10-21T06:38:35.3875330Z||;True|2024-10-20T20:52:00.9260734-05:00||;True|2024-10-20T19:59:57.3537055-05:00||;True|2024-10-18T16:29:21.0341054-05:00||;True|2024-10-18T15:52:21.7990492-05:00||;True|2024-10-18T15:48:11.1425489-05:00||;True|2024-10-18T09:25:49.8498005-05:00||;True|2024-10-18T09:23:24.2886146-05:00||;True|2024-10-18T08:55:41.7730432-05:00||;True|2024-10-18T08:34:38.3519725-05:00||;True|2024-10-17T23:46:14.1127877-05:00||;True|2024-10-17T00:11:44.4132441-05:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,9 @@
+﻿
+.tarjeta1:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.tarjeta1 {
+    transition: background-color 0.3s ease;
+}

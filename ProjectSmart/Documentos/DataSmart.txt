@@ -1,0 +1,139 @@
+
+para status: https://responsecrmv3.zendesk.com/hc/en-us/articles/360047227074-Authorize-net-Error-Code-Responses
+
+"Data Source=tcp:s26.winhost.com;Initial Catalog=DB_163557_tulicencia;User ID=DB_163557_tulicencia_user;Password=******;Integrated Security=False;TrustServerCertificate=true;”
+
+FTP
+clave es : pr@2024
+
+Acceso al servidor Win/Host:
+Control panel https://cp.winhost.com
+User: 0048692
+Pass: @Clave@2024@
+
+
+
+ftp://tulicenc_develop@tulicenciadev.com/tulicenc_develop
+
+
+
+direccion servidor FTP x Visual studio
+tulicenciadev.com
+/
+tulicenciadev.com
+tulicenc_develop
+pr@2024@
+
+name = "8d9Fx2BgF6",
+ItemElementName = ItemChoiceType.transactionKey,
+Item = "7r9jU79eQ4s42jLX"
+
+{
+  "id": "8d9Fx2BgF6",
+  "clave": "7r9jU79eQ4s42jLX"
+}
+https://www.youtube.com/watch?v=HAwvhEs9TKc&ab_channel=PabloLupu   BD import Export
+
+
+Estado:
+cliente 1 activo  0 inactivo
+Frm 0 para que se pueda volver activo 
+
+Escritorio Remoto   AZURE
+IP: 172.178.82.60
+Usuario: devpraxi
+Clave: D3vPr4xi#D3s24$
+
+SQL
+IP: 172.178.82.60
+Usuario: praxi
+Clave: @Sq1Pr4xi@24#
+
+FTP
+IP: 172.178.82.60
+Usuario: praxiftp
+Clave: @FtppR4x1@24#
+
+
+
+iie
+api.tulicenciapr.com/swagger/index.html
+
+usuario nivel estado correo
+
+Usuario: praxiftp
+Clave: @FtppR4x1@24#
+
+
+
+
+
+Renovacion de licencia 
+1: Foto de licencia vencida
+2: Foto ID
+3: Copia planilla o W2
+4: Recibo de agua o luz
+5: Certificiado de nacimiento o prueba de residencia
+
+Duplucado de licencia:
+1: Tarjeta de seguro social, en original
+2: Foto ID
+3: Recibo de agua o luz
+4: Declaración Jurada reciente ante Notario Público, solicitando duplicado e indicando el número de la Licencia de Conducir
+
+Licencia de Reciprocidad
+1: Tarjeta de Seguro Social, en original
+2: Fecha de nacimiento y Presencia Legal
+3: Foto con ID
+4: Recibo de luz y agua
+
+
+
+
+
+ACCESO
+https://ultramsg.com/es/
+
+Email:
+andrelguera@gmail.com
+
+Password:
+cR4NSJGAhFeoWS7YowCpfucSv@
+
+
+https://islandmedpr.com/app/panel/rpt_eval_doc_primera_consulta.php
+andreslg20@gmail.com	
+m2k1
+
+http://js-grid.com/demos/
+https://islandmedpr.com/app/panel/rpt_eval_doc_primera_consulta.php
+
+
+
+
+accept={[
+                  "image/jpeg", 		check
+                  "image/png",   		check
+                  "application/pdf",	 
+                  "image/heic",
+                  "image/jpg",
+                ]}.
+				
+
+
+REPORTE
+
+todos casos nuevos   por caso 0-1-2-3
+buscar por tipoTramite 
+por   asignado proceso finalizado
+busqueda por nombre, email, telefono
+
+
+reporte 
+
+1 general   todos los casos
+	nombre  apellido tipotramite fecha pago / codigo de pago / email y telefono    status-puedeser newcases  / substatus en process case    ver expediente por caso/ verby descargar
+
+
+
+

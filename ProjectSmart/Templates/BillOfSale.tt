@@ -1,0 +1,174 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ parameter name="Titulo" type="System.String" #>
+<#@ parameter name="SellerName" type="System.String" #>
+<#@ parameter name="SellerAddress" type="System.String" #>
+<#@ parameter name="SellerCity" type="System.String" #>
+<#@ parameter name="Description" type="System.String" #>
+<#@ parameter name="Make" type="System.String" #>
+<#@ parameter name="Model" type="System.String" #>
+<#@ parameter name="SerialNumber" type="System.String" #>
+<#@ parameter name="OtherInfo" type="System.String" #>
+<#@ parameter name="BuyerName" type="System.String" #>
+<#@ parameter name="BuyerAddress" type="System.String" #>
+<#@ parameter name="BuyerCity" type="System.String" #>
+<#@ parameter name="PaymentAmount" type="System.String" #>
+<#@ parameter name="PaymentDate" type="System.String" #>
+<#@ parameter name="SellerSignature" type="System.String" #>
+<#@ parameter name="SellerSignatureAt" type="System.String" #>
+<#@ parameter name="BuyerSignature" type="System.String" #>
+<#@ parameter name="BuyerSignatureAt" type="System.String" #>
+<#@ parameter name="NroItem" type="System.String" #>
+
+<#@ output extension=".txt" #>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><#= Titulo #></title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<style>
+			@page {
+				font-size: 18px;
+				margin: 0px;
+				font-family: "Verdana";
+			}
+			body {
+				font-size: 18px;
+				font-family: "Verdana";
+				margin: 0px;
+				line-height: 18px;
+			}
+			table {
+				width: 100%;
+			}
+			table td {
+				padding-top: 20px;
+				padding-bottom: 10px;
+				border-bottom: 1px solid #000000;
+			}
+			.text-center {
+				text-align: center;
+			}
+			.uppercase {
+				text-transform: uppercase;
+			}
+			.fw-bold {
+				font-weight: bold;
+			}
+			.title {
+				font-weight: bold;
+				text-align: center;
+				padding-top: 5px;
+				padding-bottom: 5px;
+			}
+			p {
+				font-size: 20px;
+				line-height: 30px;
+				text-align: justify;
+			}
+			.box-title {
+				border-style: dotted;
+				border-width: 1px;
+				border-color: #A7A7A7;
+				margin-top: 15px;
+				margin-bottom: 15px;
+				text-align: center;
+				padding: 10px;
+				color: #A7A7A7;
+				text-transform: uppercase;
+			}
+			.box-title span {
+				font-weight: 500;
+			}
+			.text-result {
+				border-bottom: 1px solid #000000;
+				line-height: 23px;
+				padding-top: 1px;
+				padding-bottom: 1px;
+				padding-left: 8px;
+				padding-right: 8px;
+				min-width: 100px !important;
+				display: inline-block;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<h3 class="title" style="font-size: 26px;">GENERAL</h3>
+		<h2 class="title" style="font-size: 28px;">BILL OF SALE</h2>
+		<div class="box-title">
+			<span>STEP 1: Seller and item information<span/>
+		</div>
+		<p>I, <span class="text-result"><#= SellerName #></span>, (seller) of <span class="text-result"><#= SellerAddress #></span> (address), <span class="text-result"><#= SellerCity #></span> (city, state, zip code) hereby certify I am the lawful owner of the following item(s): <span class="text-result"><#= NroItem #></span></p>
+		<table>
+			<tbody>
+				<tr>
+					<td colspan="2">
+						<span class="fw-bold uppercase">Item Information: </span>
+						<span class=""><#= Description #></span>
+					</td>
+				</tr
+				<tr>
+					<td>
+						<span class="fw-bold uppercase">Make: </span>
+						<span class=""><#= Make #></span>
+					</td>
+					<td>
+						<span class="fw-bold uppercase">Model: </span>
+						<span class=""><#= Model #></span>
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 50%;">
+						<span class="fw-bold uppercase">Serial Number: </span>
+						<span class=""><#= SerialNumber #></span>
+					</td>
+					<td style="width: 50%;">
+						<span class="fw-bold uppercase">Other Info: </span>
+						<span class=""><#= OtherInfo #></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		<div class="box-title">
+			<span>STEP 2: buyer and sale information<span/>
+		</div>
+		<p>I, hereby and with full authority, transfer ownership of the above item(s) to <span class="text-result"><#= BuyerName #></span>, (buyer) of <span class="text-result"><#= BuyerAddress #></span> (address), <span class="text-result"><#= BuyerCity #></span> (city, state, zip code) in exchange for payment of $/£/€ <span class="text-result"><#= PaymentAmount == "0.00" ? "      " : PaymentAmount #></span> (written amount) on <span class="text-result"><#= PaymentDate #></span> (date).</p>
+		<div class="box-title">
+			<span>STEP 3: Conditions of sale and purchase<span/>
+		</div>
+		<p>The Seller certifies that they are the legal owner of the above-mentioned item(s) and have the right to sell it/them. The Buyer acknowledges that they have inspected the item(s) and accept it/them in its/their current condition. The item(s) is/are sold "as-is," without any warranties or guarantees, express or implied.</p>
+		<div class="box-title">
+			<span>STEP 4: Signatures<span/>
+		</div>
+		<p>By signing below, the Seller and Buyer acknowledge that they have read and agree to the terms of this Bill of Sale.</p>
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						<span class="fw-bold uppercase">Seller Signature: </span>
+					</td>
+					<td>
+						<span class="fw-bold uppercase">Date: </span>
+						<span class=""><#= SellerSignatureAt #></span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="fw-bold uppercase">Buyer Signature: </span>
+					</td>
+					<td>
+						<span class="fw-bold uppercase">Date: </span>
+						<span class=""><#= BuyerSignatureAt #></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

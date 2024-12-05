@@ -1,0 +1,1449 @@
+﻿@{
+    Layout = null;
+    var c1Opacity = ViewBag.isConductor ? "opaque" : "transparent";
+    var c2Opacity = ViewBag.isChofer ? "opaque" : "transparent";
+}
+
+<!DOCTYPE html>
+<!-- Created by pdf2htmlEX (https://github.com/pdf2htmlEX/pdf2htmlEX) -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+<meta name="generator" content="pdf2htmlEX"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<link href="~/assets/css/pdfDuplicadoLic.css" rel="stylesheet" />
+
+<script>
+/*
+ Copyright 2012 Mozilla Foundation 
+ Copyright 2013 Lu Wang <coolwanglu@gmail.com>
+ Apachine License Version 2.0 
+*/
+(function(){function b(a,b,e,f){var c=(a.className||"").split(/\s+/g);""===c[0]&&c.shift();var d=c.indexOf(b);0>d&&e&&c.push(b);0<=d&&f&&c.splice(d,1);a.className=c.join(" ");return 0<=d}if(!("classList"in document.createElement("div"))){var e={add:function(a){b(this.element,a,!0,!1)},contains:function(a){return b(this.element,a,!1,!1)},remove:function(a){b(this.element,a,!1,!0)},toggle:function(a){b(this.element,a,!0,!0)}};Object.defineProperty(HTMLElement.prototype,"classList",{get:function(){if(this._classList)return this._classList;
+var a=Object.create(e,{element:{value:this,writable:!1,enumerable:!0}});Object.defineProperty(this,"_classList",{value:a,writable:!1,enumerable:!1});return a},enumerable:!0})}})();
+</script>
+
+<script>
+try{
+pdf2htmlEX.defaultViewer = new pdf2htmlEX.Viewer({});
+}catch(e){}
+</script>
+<style>
+        .opaque {
+            opacity: 1;
+        }
+
+        .transparent {
+            opacity: 0;
+        }
+    </style>
+<title></title>
+</head>
+<body>
+
+    <input type="hidden" id="cl_id" name="cl_id" value="@ViewBag.cl_id" />
+    <input type="hidden" id="tr_id" name="tr_id" value="@ViewBag.tr_id" />
+
+    <div id="sidebar">
+<div id="outline">
+</div>
+</div>
+    <div id="page-container">
+        <div id="pf1" class="pf w0 h0" data-page-no="1">
+            <div class="pc pc1 w0 h0">
+
+                    <img class="bi x0 y0 w1 h1" alt="" src="data:image/png;base64,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7na7AwMD73//+83si1/8YrfbnTVr1llnnbVgwYJ169Y9+OCDH/zgB/v7+5scXbVq1fbt2y+77LKbb775LW95y6JFi3LOTzzxxOrVq7ds2ZJzfte73rVixYpVq1YtXrx48eLFZVkODQ2tXLly3bp13W53cHBw2bJlF1100ezZs5tevffee++4446xsbELLrjg8ssvL4rSwotizyXJ3eUKWQvCtGVpVmwNTK86wUNv6Fxz7AX73tj9v/7uya5V8qxUnTX/tF87/z2nzlgcKxUK/V4uLGf31AdMxdwwELJbMM95apshAAAAAKAtD9Pk5OSNN97Y19f38Y9/fOvWre5e13XOed++fddcc83g4KCkTqfTDCG++93v3rZt2ze/+c2LLrpo+fLlq1evfvTRR8877zwzGx4efvTRR88999wZM2Y888wzKaXJycmHH3549erVp5xyysUXX9zb29vf319V1f79+4899lgze+yxx2644YZTTjnlox/9aIxxeHh43bp111133WWXXbZ48eLnnnvu4Ycfvuqqq2bPnr1p06bnn39+7tyjsx88gdPd5Y0gHduZ+Z/f928tjY97q78YsFSmlFqTnZnlNHVzkbvBrKvYtk5P1QpuCuoL7StOuejM5SfLglU2Pfb0hJaSLIbaU/NDGLUEAAAAQFselpzz0NDQ0UcfPTAwcNZZZ7l7Sqmu66IoFi9ePDg4aGbNJ0MIs2fPHhwcfPDBB0dGRvr7+y+88MINGzaceuqpnU7nySefHBwcPPHEE5upsJJGR0dvueWWN77xjZdcckkIIcaYUjpw4IC755xTSvfcc8/ChQsvvfTSVqslafbs2YsXL/7c5z63atWq+fPnT05OppQGBgaOPfbYY445RpK/eAmkK7snuZoDPLMvKAcstVLR7uagykMZJpVGTV2ldhHccw7ab2m8XbiZXDFpeiwHwoyYzHIrR1Veyd1zljUb0RoLLgEAAAC8yl6r+8SWZXnaaadt3LjxO9/5ztq1a5tVl0VRTE5Orlmz5s4773ziiSeaFKyq6vHHH7/77rs7nc68efM6nc5JJ500PDy8YcOGoaGhVatWLV26dPr06SklSe6+b9++sbGx4447LsbYfMbMmo8ldbvd4eHhCy64oFlj2aztDCEsW7Zs9+7dVVXNmTMnhHDTTTetXLlyz549KSVlD26TnnPKQeYte27s+aHxA65UF1mSynYRraeU9ylKZZTV3SKEFGxCScELU7tKRVOWsTZ5odJiobbn4NFKBaXoz4+MJ7XdClnFnQ0AAACAtvzh3P3SSy9973vfOzQ0dN11191yyy0hhG6322q1iqIYHBwMIZhZURTdbvfmm28eGRl53/ved8opp7h7f3//ggUL7rvvvtWrV+/YseOMM86o67p52Zxz83Gn02mqsvl884GZNcOhrVarGeRswjLGWJZlzjmEMDAw8OEPf/jSSy/dvHnzZz7zmR07dpiZS2bWG9pFNskf27nlnh2PT0QFi+aFUlQdrDZLFpK5UnTFFEKyaC2lEHKWVKuoFSuLlRVTjxBNISb3UA9p5L6n1u2vD8i8jD3c2QAAAABoyx/OzMbHx+fMmfPOd77zQx/60LPPPvv0008XRRFCOPnkk5cvX37ccceZWUqpv7//2muvPXDgwKpVq0ZHR3POrVZrxYoV3W73zjvvvPrqq8uyLMvS3SWVZTl37txp06bde++9IyMjOjhu2bxUjDHGOHfu3CZWm+1nJY2Pjz/00EPz58+PMeacJS1ZsuTqq6+WtHHjRpnJVCjO6589t2eG3J8a3v75+2+8e8ej4+5j7inIg3kwN/No3VIphJDNu2Z1UA7RQlWoyFZklcle/Ahudcx7NHzDk3d946Gbuj2Vsp0weyl3NgAAAIBX02t1vWVK6a677mq1WieccMLjjz/e6XQGBwf37ds3MTGxefPmadOm5ZxnzZrV399f1/W0adOWLVu2cuXK6dOnn3/++XVdz58/f8GCBXVdL1u2rCzLJlZTSjnnnp6eK6+88hvf+Mbw8PBpp502c+bMwcHBoigkNceNnH322V/5ylduvPHGk08+edq0aXv37t24cWNd1xdddFGMcf/+/TfccMN5553XHH8ye/bsKqcQYiGdfcJpZ204+bkn70x97du33K/r/V+dd8Xx8xfOHZzRshin9o/VePTh2FVZRut15RCKycJ3hNHn8vMhf/82PWNePzOy87b1q6579NZH9j+pWMRu+/ITLuTOBgAAAH4CfOITn3jJj2nLV0wIobe39/HHH9+1a9fw8PBll102ffr08fHx448/fsuWLc2E2PPPP1/S/Pnzy7JcsWLFgQMHdu3a1Zw70mq1li9fvnTp0mZ2azMCedxxx/X29rbb7SVLlrz5zW9+9NFH77///hjjeeedt2jRovnz5w8MDLj78ccf/973vveBBx649957y7KsqirG+M53vnP+/PlNoxZFcffdd5dleeaZZy5dutTMg8mTLeqfd8nSs1ZtuG9flVPIK596YPO+rQvmHH3srDllVpjaf8dqL9eP7awK5RDl8pw37dr2p7f/TX/s/OD7UCU9u3/Pw8+sHSvHVIYyt2eNt998zAr+EgIAAAA/GW3ZOPIv1fy1eSZiszCyruuJiYl2u93b21vXdVmWBw4cKIqi2dO1WXs5OTnZbrebfX3quu50OjHG5glNgjYngkgaHR3t7e1t5rW6e1VVVVXlnDudTqvVGh8fL8uyGcBMKTWnlTTf2NPT07xU05bNVUma+lnBg8WQrA56qt77u1/55K2b7t+nOvcEj5O5SkVSoamVnS6L6u22VIUkJclVlpqoy6SQX+I3VcWYi6hQKVgYz3Mneq8+6ZL/+LP/dl57gL+HAAAAwE9MXh7513kkjlseTu42e7fGGA9tq9M0YW9vr6QQQrM8sinD5mMza6a/5pybJZRNJR7aoae/v//QVyW1Wq2yLA99taen59CFNVv4HNq/59CazJxzzrkoiv7+/he+JDfPnkPMOraY8fvv+80rn91w/7Ob/n79yk2jT0mqg6cQJLlJJsvjli3kkD0rKExOuKWqpTK1fvDgSg+TMu8pBpfPXnL5cee+fem5y6fPn9Xq428gAAAAgNd7Wx7anfWfduhckJf8rmaAsXnOiz/+vucf+uQPbgn7g0/+vuc0kflyl/SiL0VJKiWpLTu+nHP84jnvW3zJpy78MPcfAAAAgJ8MgbcAAAAAAEBbAgAAAABoSwAAAAAAbQkAAAAAoC0BAAAAAKAtAQAAAAC0JQAAAACAtgQAAAAA0JYAAAAAANCWAAAAAADaEgAAAABAWwIAAAAAaEsAAAAAAGhLAAAAAABtCQAAAACgLQEAAAAAtCUAAAAAALQlAAAAAIC2BAAAAADQlgAAAAAA2hIAAAAAANoSAAAAAEBbAgAAAABek8zdeRcAAAAA4Aj0iU984iU/pi0BAAAAAD+BmBMLAAAAAKAtAQAAAAC0JQAAAACAtgQAAAAA0JYAAAAAANCWAAAAAADaEgAAAABAWwIAAAAAaEsAAAAAAGhLAAAAAABtCQAAAACgLQEAAAAAtCUAAAAAALQlAAAAAIC2BAAAAADQlgAAAAAA2hIAAAAAANoSAAAAAEBbAgAAAABoSwAAAAAAbQkAAAAAAG0JAAAAAKAtAQAAAAC0JQAAAACAtgQAAAAAgLYEAAAAANCWAAAAAADaEgAAAABAWwIAAAAAQFsCAAAAAGhLAAAAAABtCQAAAACgLQEAAAAAoC0BAAAAALQlAAAAAIC2BAAAAADQlgAAAAAA0JYAAAAAANoSAAAAAEBbAgAAAABoSwAAAAAAaEsAAAAAAG0JAAAAAKAtAQAAAAC0JQAAAAAAtCUAAAAAgLYEAAAAANCWAAAAAADaEgAAAAAA2hIAAAAAQFsCAAAAAGhLAAAAAABtCQAAAADA4Sl4C/BDmdmP8+3uznvI7xdH4K+P3x34Xw9w93L3Aq8gxi0BAAAAAD8uxi1xuP4Z/4rux/yXgjjCf7/8ivndAdx+4P/bADiEcUsAAAAAAG0JAAAAAKAtAQAAAAC0JQAAAACAtgQAAAAAgLYEAAAAANCWAAAAAADaEgAAAABAWwIAAAAAQFsCAAAAAGhLAAAAAABtCQAAAACgLQEAAAAAoC0BAAAAALQlAAAAAIC2BAAAAAC8fhW8BThMZsabwO8X/O4Abj9wAwN4SYxbAgAAAAB+XObuvAsAAAAAgB8H45YAAAAAANoSAAAAAEBbAgAAAABoSwAAAAAAbQkAAAAAAG0JAAAAAKAtAQAAAAC0JQAAAACAtgQAAAAA/P/s20Fy4zYURdF+Vdj/ll+mqcQti4RNkcA5YyUWPyGxrwGjLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABgV+P+bzGJ+wQAAHBI2yt/nH1LAAAAtCUAAADaEgAAgKfLxWdwAQAAWI99SwAAALQlAAAA2hIAAABtCQAAgLYEAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAADgjGEEAPeU5PR/29YAd14A1gAWmGmYhmlcz74lAAAAs+xbAtzXud93Tv6SlaevAQsAC8xXrrVhbXyEfUsAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAAPsaRgBwW0kMwRowBCww0zAN03gE+5YAAABMR3hbUwAAAGCGfUsAAABm3frvLZ1sBlblzAgAsBhnYgEAAJjlTCwAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAPNm4/1tM4j4BAAAc0vbKH2ffEgAAAG0JAACAtgQAAEBbAgAAsLtc/PedAAAArMe+JQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAOAa4/5vMYn7BHfQ1gcfbvVJ8TmC6z+bPll4JP3103GfRyAAAAAP5UwsAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAgKuNNS4jyfz/pK0F4W4CAAAn2LcEAABg1ljmSib3qX5kr4w73E23EgAArmffEgAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAADgqcYyV5LE7XQ3AQCAz/wbvq0pAAAAMMOZWAAAAGYNI4A9OXgM73C6BwDe/eelpyYAAACTnIkFAABgljOxAMB/nT427zzUwvfXzcViQ1sCAL8eiv6K2/0Fi21zzsQCAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAA4HOGEQAAX0piCO4vWGy8yb4lAAAAs9LWFAAAAJhh3xIAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAADaEgAAALQlAAAA2hIAAABtCQAAgLYEAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAACA5xlGsKckh17f1tBMHvA1tdjXlO9kgB9k3xIAAIBZ9i239ubvX4/+WheTB3xHuV6A3di3BAAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAADaEgAAALQlAAAA2hIAAABtCQAAwM6GEewsiSGYPMDm31G+kwF+5uu0rSkAAAAww5lYAAAAZjkTCwAATkezoIvPqDoTCwAAwCxnYgEAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAADaEgAAALQlAAAA2hIAAABtCQAAgLYEAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAsJNhBAAALC+JIbCbtpd+yi7+eQAAAKzHmVgAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAADaEgAAAI4a93+LSW773touf42/ffkPvfZfXQ/rzW3zT8ojVpRb444DwOy/BzzJAAAAmORMLAAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA2NMwgmUkOfT6toZm1GYIAMCPsG8JAADALPuWq3lze+forhHmbIYAALxg3xIAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAAA7G0awmCSGYM5mCADA1f+6a2sKAAAAzHAmFgAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAACfM4xgGUkOvb6toRm1GRqRuZnSPlOyPAB+lX1LAAAAZtm3XM2bv2Q9+rtbzNkMjcjojMi1A/CCfUsAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAADsbBjBYpIYgjmboREZnSEYkWsHuPoLtq0pAAAAMMOZWAAAALQlAAAA2hIAAABtCQAAgLYEAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAAJ5rGMEykhx6fVtDM2ozNCJzM6V9pmR5AGhLfv5BePT5ijmboREZnRG5dgBecCYWAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAAOxtGsJgkhmDOZmhERmcIRuTaAa7+gm1rCgAAAMxwJhYAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAADaEgAAALQlAAAA2hIAAABtCQAAgLYEAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAADaEgAAALQlAAAA2hIAAABtCQAAgLYEAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAACA+xr3f4tJ3CcAAIBD2l4abhf/PAAAANbjTCwAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAgLicqQAAEMpJREFUAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAgKuM+7/FJO4TAADAIW0vDbeLfx4AAADrcSYWAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAADaEgAAALQlAAAA2hIAAABtCQAAgLYEAACAd437v8Uk7hMAK2lrCB7xAIs9buLxBgAAwCRnYgEAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAADaEgAAALQlAAAA2hIAAABtCQAAgLYEAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAADaEgAAALQlAAAA2hIAAABtCQAAgLYEAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA+Jtx/7eYxH0CAAA4pO2l4XbxzwMAAGA9zsQCAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAALjKuP9bTOI+AbCStobgEQ+w2OMmHm8AAABMciYWAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAABAWwIAALCbYQQAnJPk/Re3Xf4an3uZADDPviUAAACz7FsCcN6b23RHd/9cJgA8jn1LAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAA7GwYAQCnJXGZAMCfP3/S1hQAAACY4UwsAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAAD5nGMHmkpz4r9oaHTdZk1Yj1hI86+Pms4YnwqrsWwIAADDLviXHfjFzbp8TfmNNWo1YTuCzBpbofdi3BAAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAADaEgAAALQlAAAA2hIAAABtCQAAwM6GEQB3k8QQsJzAZw0sUW0JcF5bQ8BaAh83sES1Jc/jtzgAAMAkf28JAADArNggBgAAYJJ9SwAAALQlAAAA2hIAAABtCQAAgLYEAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAAB8zjACANhZkkOvb+tiAfg/+5YAAADMsm8JALy7QXd038/FAuzDviUAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAB2NowAAEjiYgGY+nZtawoAAADMcCYWAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAACA5xpGAMCXkhx6fVsjMiIAtCUAnM+ho5VlPgCwGGdiAQAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAsLNhBAC8kMQQzAcAvn8mtjUFAAAAZjgTCwAAgLYEAADg0/y9JQCwIH8KC/ybvwS84ovXlAEAAJjkTCwAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAPNkwAgC+lOTQ69sakREBsC37lgAAAMyybwnAK29utR3dwTMfAFiMfUsAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAADsbBgBAC8kMQTzAYDvn4ltTQEAAIAZzsQCAAAwy5lYAGBBjisD/+a05hVfvKYMAADAJGdiAQAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAsLNhBAB8Kcmh17c1IiMCQFsCwPkcOlpZ5gMAi3EmFgAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAADsbRgDAC0kMwXwA4Fv2LQEAAJiVtqYAAADADPuWAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAPNcwAgD+Jsmh17c1JVMCQFsCwPkWOppYRgQAK3EmFgAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAADsbRgDAa0kMwYgA4JunYVtTAAAAYIYzsQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQD8064dmAAMAkEQ5MD+W770EHkxZKYCeUF+QQDQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAYNq6/4hJ3BPAO20NASw2gDXgxPtm7QAAAGCTP7EAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAIC/WEYAAADflZjBOa0ZaEsAAFA7MMafWAAAALQlAAAA2hIAAABtCQAAgLYEAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAADaEgAAALQlAAAA2hIAAABtCQAAgLYEAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAADEliCAAAAOx6AOlXs6NnJia5AAAAAElFTkSuQmCC" />
+                    <div class="t m0 x1 h2 y1 ff1 fs0 fc0 sc0 lsa ws9">ESTADO <span class="_ _0"></span>LIBRE AS<span class="_ _0"></span>OCIA<span class="_ _0"></span>DO <span class="_ _0"></span>DE PUER<span class="_ _0"></span>TO RICO<span class="_ _0"></span> </div>
+                <div class="t m0 x2 h2 y2 ff1 fs0 fc0 sc0 lsa ws9">DEPARTAMEN<span class="_ _0"></span>TO<span class="_ _0"></span> DE T<span class="_ _0"></span>RANSPOR<span class="_ _0"></span>TACI<span class="_ _0"></span>ÓN Y <span class="_ _0"></span>OBRAS PÚ<span class="_ _0"></span>BLICAS<span class="_ _0"></span> </div>
+                <div class="t m0 x2 h2 y3 ff1 fs0 fc0 sc0 lsa ws9"> <span class="_ _1"> </span> <span class="_ _2"> </span>DIRECTO<span class="_ _0"></span>RÍA <span class="_ _0"></span>DE SERVICI<span class="_ _0"></span>O<span class="_ _0"></span>S AL CONDUC<span class="_ _0"></span>TO<span class="_ _0"></span>R </div>
+                <div class="t m0 x3 h3 y4 ff1 fs1 fc0 sc0 lsa ws9"> </div>
+                <div class="t m0 x3 h4 y5 ff1 fs2 fc0 sc0 lsa ws9"> </div>
+                <div class="t m0 x4 h5 y6 ff1 fs3 fc0 sc0 ls0 ws9"> <span class="ff2 fs2 lsa v1">SOL<span class="_ _0"></span>ICITUD PARA CERTIFICADO DE <span class="_ _0"></span>LICENCIA PARA CONDUCIR VEHÍCULO<span class="_ _0"></span>S DE MOTOR </span></div>
+                <div class="c x5 y7 w2 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x6 h2 y9 ff1 fs0 fc0 sc0 lsa ws0">RENOVAC<span class="_ _0"></span>IÓN</div>
+                <div class="c x7 y7 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x8 y7 w2 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x9 h2 y9 ff1 fs0 fc0 sc0 lsa ws0">DUPLICAD<span class="_ _0"></span>O</div>
+                <div class="c xa y7 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c xb y7 w2 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 xc h2 y9 ff1 fs0 fc0 sc0 lsa ws9">CAMBIO<span class="_ _0"></span> DE NO<span class="_ _0"></span>MBRE</div>
+                <div class="c xd y7 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c xe y7 w2 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 xf h2 y9 ff1 fs0 fc0 sc0 lsa ws9">CAMBIO<span class="_ _0"></span> DE D<span class="_ _0"></span>IRECCIÓN</div>
+                <div class="c x10 y7 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x11 y7 w2 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x12 h2 y9 ff1 fs0 fc0 sc0 lsa ws0">DETERIO<span class="_ _0"></span>RO</div>
+                <div class="c x13 y7 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x14 h2 ya ff2 fs0 fc0 sc0 lsa ws9"> </div>
+                <div class="c x15 yb w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x16 yb w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x17 yb w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x14 yb w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x18 yb w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x19 h2 yc ff1 fs0 fc0 sc0 lsa ws9">Vehícul<span class="_ _0"></span>os Pesados<span class="_ _0"></span> Tipo</div>
+                <div class="c x1a yd w3 h8">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x15 ye w4 h9">
+                    <div class="t m0 x0 h3 yf ff2 fs1 fc0 sc0 lsa ws1">CATEG<span class="_ _3"></span>ORÍA</div>
+                </div>
+                <div class="c x1b ye w5 h9">
+                    <div class="t m0 x0 h3 yf ff2 fs1 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x1c y10 w6 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc1 sc0 lsa">N</div>
+                </div>
+                <div class="c x1d y10 w7 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc1 sc0 lsa ws9">úmero de </div>
+                </div>
+                <div class="c x1e y10 w8 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc1 sc0 lsa">L</div>
+                </div>
+                <div class="c x1f y10 w9 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc1 sc0 lsa ws2">icencia</div>
+                </div>
+                <div class="c x20 y10 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc1 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x21 y10 w2 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x22 h2 y11 ff1 fs0 fc0 sc0 lsa ws0">Conductor</div>
+                <div class="c x23 y10 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x24 y10 w2 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x25 h2 y11 ff1 fs0 fc0 sc0 lsa ws0">Chofer</div>
+                <div class="c xe y10 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x26 y10 w2 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x27 h2 y11 ff1 fs0 fc0 sc0 lsa">1</div>
+                <div class="c x28 y10 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x12 y10 w2 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x29 h2 y11 ff1 fs0 fc0 sc0 lsa">2</div>
+                <div class="c x2a y10 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x2b y10 w2 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x2c h2 y11 ff1 fs0 fc0 sc0 lsa">3</div>
+                <div class="c x2d y10 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x2e y10 w2 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x2f h2 y11 ff1 fs0 fc0 sc0 lsa">4</div>
+                <div class="c x30 y10 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x4 h5 y12 ff2 fs3 fc0 sc0 lsa ws9"> </div>
+                <div class="t m0 x15 h2 y13 ff2 fs0 fc0 sc0 lsa ws9">INFOR<span class="_ _0"></span>MACI<span class="_ _0"></span>ÓN PERSO<span class="_ _0"></span>NAL<span class="_ _0"></span> </div>
+                <div class="c x15 y14 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x8 y14 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x31 y14 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x32 y14 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x33 y14 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x34 y14 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x12 y14 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x15 h2 y15 ff1 fs0 fc0 sc0 lsa ws9">Nombre<span class="_ _0"></span> <span class="_ _4"> </span> <span class="_ _1"> </span>Segundo<span class="_ _0"></span> Nombr<span class="_ _0"></span>e <span class="_ _5"> </span> <span class="_ _6"> </span>Apelli<span class="_ _0"></span>do Paterno<span class="_ _0"></span> <span class="_ _7"> </span> <span class="_ _8"> </span>Apelli<span class="_ _0"></span>do Materno<span class="_ _0"></span> </div>
+                <div class="t m0 x15 ha y16 ff1 fs5 fc0 sc0 lsa ws9"> </div>
+                <div class="c x35 y17 wa hb">
+                    <div class="t m0 x0 hc y18 ff1 fs6 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x36 h2 y19 ff1 fs0 fc0 sc0 lsa ws9">Seguro <span class="_ _0"></span>Social <span class="_ _0"></span>    <span class="_ _9"> </span> Pasaport<span class="_ _0"></span>e</div>
+                <div class="c x37 y17 wb hb">
+                    <div class="t m0 x0 hc y18 ff1 fs6 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x38 y19 w8 h9">
+                    <div class="t m0 x0 h3 yf ff1 fs1 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x32 y19 w8 h9">
+                    <div class="t m0 x0 h3 yf ff1 fs1 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x39 hd y1a ff2 fs7 fc0 sc0 lsa ws9">ESTABLE<span class="_ _0"></span>CER PRESENCIA <span class="_ _0"></span>LEG<span class="_ _0"></span>AL</div>
+                <div class="c x3a y1b wc he">
+                    <div class="t m0 x0 h7 y8 ff2 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x15 y1c wb hb">
+                    <div class="t m0 x0 hc y18 ff1 fs6 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x3b hd y1d ff1 fs7 fc0 sc0 lsa ws9">Número <span class="_ _a"> </span> </div>
+                <div class="c x3c y1e wd h9">
+                    <div class="t m0 x0 h3 yf ff1 fs1 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x3d h2 y1f ff1 fs0 fc0 sc0 lsa ws9">Ciudadano<span class="_ _0"></span> U.S.A.  </div>
+                <div class="c x3e y1e wd h9">
+                    <div class="t m0 x0 h3 yf ff1 fs1 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x3f h2 y1f ff1 fs0 fc0 sc0 lsa ws9">Resident<span class="_ _0"></span>e Perm<span class="_ _0"></span>anente<span class="_ _0"></span>   </div>
+                <div class="c x13 y1e wd h9">
+                    <div class="t m0 x0 h3 yf ff1 fs1 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x40 y1e wd h9">
+                    <div class="t m0 x0 h3 yf ff1 fs1 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x41 h2 y1f ff1 fs0 fc0 sc0 lsa ws0">Extranjero<span class="_ _0"></span><span class="fs7 ws9"> </span></div>
+                <div class="t m0 x15 h2 y20 ff1 fs0 fc0 sc0 lsa ws9">GÉNERO<span class="_ _0"></span> <span class="_ _b"> </span> Masculino<span class="_ _0"></span> <span class="_ _c"> </span> Femeni<span class="_ _0"></span>no <span class="_ _d"> </span>Deseo se<span class="_ _0"></span>r Don<span class="_ _0"></span>ante de<span class="_ _0"></span> Órganos<span class="_ _0"></span> <span class="_ _d"> </span>Si  <span class="_ _e"> </span> <span class="_ _f"> </span>No  <span class="_ _8"> </span> <span class="_ _f"> </span>Tipo d<span class="_ _0"></span>e Sangr<span class="_ _0"></span>e <span class="_ _10"> </span> </div>
+                <div class="t m0 x42 hf y21 ff1 fs0 fc0 sc0 lsa ws9">Fecha d<span class="_ _0"></span>e Nacimi<span class="_ _0"></span>ento<span class="_ _0"></span> <span class="_ _11"> </span> <span class="_ _12"> </span>Estatura<span class="_ _0"></span> <span class="_ _13"> </span> <span class="_ _14"> </span>Peso <span class="_ _15"> </span> <span class="_ _16"> </span> <span class="_ _17"> </span>Número d<span class="_ _0"></span>e Teléfo<span class="_ _0"></span>no<span class="_ _0"></span> <span class="_ _18"> </span><span class="fs1 v2">(      )<span class="_ _3"></span> </span></div>
+                <div class="t m0 x4 h3 y22 ff1 fs5 fc1 sc0 lsa ws3" style="color:white">Día<span class="fs1 ls1 ws9"> <span class="ff2 fc0 lsa v3">/</span></span></div>
+                <div class="c x43 y23 we h10">
+                    <div class="t m0 x0 h3 yf ff2 fs1 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x44 h11 y22 ff1 fs5 fc1 sc0 lsa ws9">Mes <span class="_ _16"> </span><span class="ff2 fs1 fc0 v3">/</span></div>
+                <div class="c x6 y23 wf h10">
+                    <div class="t m0 x0 h3 yf ff2 fs1 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x45 h3 y22 ff1 fs5 fc1 sc0 lsa ws3">Año<span class="fs1 ls2 ws9"> <span class="fc0 ls3 v3"> </span></span><span class="fs1 ls4 ws9"> <span class="ff2 fc0 lsa v3">/</span></span></div>
+                <div class="c x46 y23 w10 h10">
+                    <div class="t m0 x0 h3 yf ff2 fs1 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x47 h3 y22 ff1 fs5 fc1 sc0 lsa ws3" style="color:white">Pulgadas<span class="fs1 ws9"> </span></div>
+                <div class="c x48 y24 w8 h9">
+                    <div class="t m0 x0 h3 yf ff1 fs1 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x49 ha y25 ff1 fs5 fc1 sc0 lsa ws9"> </div>
+                <div class="t m0 x4a h12 y26 ff1 fs5 fc1 sc0 lsa ws3">Libras<span class="fs0 fc0 ls5 ws9"> <span class="lsa v4"> </span></span></div>
+                <div class="t m0 x15 h13 y27 ff1 fs7 fc0 sc0 lsa ws9">TEZ <span class="_ _14"> </span><span class="fs0 v2"> </span><span class="ws4 v2">Amarilla<span class="_ _0"></span></span><span class="fs0 v2"> <span class="_ _19"> </span> </span><span class="ws4 v2">Blanca<span class="_ _0"></span></span><span class="fs0 v2"> <span class="_ _13"> </span> <span class="_ _3"></span><span class="fs7 ws4">Negro<span class="_ _0"></span><span class="fs0 ws9"> <span class="_ _1"> </span> <span class="_ _1a"> </span> <span class="_ _1b"> </span> <span class="_ _1c"> </span> </span></span></span></div>
+                <div class="t m0 x15 h13 y28 ff1 fs7 fc0 sc0 lsa ws9">PELO <span class="_ _17"> </span><span class="fs0 v2"> </span><span class="ws4 v2">Amarillo<span class="_ _0"></span></span><span class="fs0 v2"> <span class="_ _19"> </span> </span><span class="ws4 v2">Blanco</span><span class="fs0 v2"> <span class="_ _13"> </span> </span><span class="ws4 v2">G<span class="_ _3"></span>ris<span class="_ _0"></span><span class="fs0 ws9"> <span class="_ _1d"> </span> </span>Marrón<span class="fs0 ws9"> <span class="_ _1e"> </span> </span>Negro<span class="fs0 ws9"> <span class="_ _1f"> </span> </span>Rojo<span class="fs0 ws9"> <span class="_ _11"> </span> <span class="_ _3"></span><span class="fs7 ws4">Calvo<span class="fs0 ws9"> </span></span></span></span></div>
+                <div class="t m0 x15 h13 y29 ff1 fs7 fc0 sc0 lsa ws9">OJOS <span class="_ _20"> </span><span class="fs0 v2"> </span><span class="ws4 v2">Amarillo</span><span class="fs0 v2"> <span class="_ _19"> </span> </span><span class="ws4 v2">Azul<span class="_ _0"></span></span><span class="fs0 v2"> <span class="_ _21"> </span> </span><span class="ws4 v2">Gr<span class="_ _3"></span>is<span class="_ _0"></span><span class="fs0 ws9"> <span class="_ _1d"> </span> </span>Marrón<span class="fs0 ls6 ws9"> </span><span class="ws9"> Neg<span class="_ _0"></span>ro<span class="fs0"> <span class="_ _1f"> </span> </span></span>Ve<span class="_ _0"></span>rde<span class="fs0 ws9"> <span class="_ _22"> </span> </span>Hazel<span class="fs0 ws9"> </span></span></div>
+                <div class="c x15 y2a w5 h9">
+                    <div class="t m0 x0 h3 yf ff2 fs1 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x15 h2 y2b ff2 fs0 fc0 sc0 lsa ws9">DIRECCIÓ<span class="_ _0"></span>N RE<span class="_ _0"></span>SIDE<span class="_ _0"></span>NCIAL<span class="_ _0"></span><span class="ff1"> (requ<span class="_ _0"></span>erida)<span class="_ _0"></span></span> </div>
+                <div class="t m0 x15 h14 y2c ff1 fs8 fc0 sc0 lsa ws9"> </div>
+                <div class="t m0 x15 hd y2d ff1 fs7 fc0 sc0 lsa ws9">Urbanización, Bar<span class="_ _0"></span>rio, Condominio<span class="_ _0"></span> </div>
+                <div class="t m0 x15 h14 y2e ff1 fs8 fc0 sc0 lsa ws9"> </div>
+                <div class="t m0 x15 hd y2f ff1 fs7 fc0 sc0 lsa ws9">Número, Call<span class="_ _0"></span>e, Número de A<span class="_ _0"></span>partamento<span class="_ _0"></span> </div>
+                <div class="t m0 x15 h14 y30 ff1 fs8 fc0 sc0 lsa ws9"> </div>
+                <div class="c x4b y31 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x4c y31 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x15 hd y32 ff1 fs7 fc0 sc0 lsa ws9">Pueblo, País <span class="_ _23"> </span> <span class="_ _24"> </span>Código Post<span class="_ _0"></span>al </div>
+                <div class="t m0 x15 h2 y33 ff2 fs0 fc0 sc0 lsa ws9">DIRECCIÓ<span class="_ _0"></span>N POS<span class="_ _0"></span>TAL<span class="ff1"> (s<span class="_ _0"></span>ólo si<span class="_ _0"></span> es dif<span class="_ _0"></span>erente <span class="_ _0"></span>a la resi<span class="_ _0"></span>denci<span class="_ _0"></span>al) </span></div>
+                <div class="t m0 x15 h14 y34 ff1 fs8 fc0 sc0 lsa ws9"> </div>
+                <div class="t m0 x15 hd y35 ff1 fs7 fc0 sc0 lsa ws9">Apartado, Barrio<span class="_ _0"></span> </div>
+                <div class="t m0 x15 h14 y36 ff1 fs8 fc0 sc0 lsa ws9"> </div>
+                <div class="c x4b y37 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x4c y37 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x15 hd y38 ff1 fs7 fc0 sc0 lsa ws9">Pueblo, País <span class="_ _23"> </span> <span class="_ _24"> </span>Código Post<span class="_ _0"></span>al </div>
+                <div class="t m0 x15 h2 y39 ff1 fs0 fc0 sc0 lsa ws9">¿Ha sido<span class="_ _0"></span> suspe<span class="_ _0"></span>ndida o <span class="_ _0"></span>cancelad<span class="_ _0"></span>a su li<span class="_ _0"></span>cencia<span class="_ _0"></span> en Pu<span class="_ _0"></span>erto Rico?<span class="_ _0"></span> <span class="_ _8"> </span>Sí <span class="_ _e"> </span>  <span class="_ _25"> </span>No <span class="_ _e"> </span>  </div>
+                <div class="t m0 x15 h3 y3a ff1 fs1 fc0 sc0 ls7 ws9"> <span class="fs0 lsa">Judicial <span class="_ _26"> </span></span><span class="ls8"> <span class="fs0 lsa v5">Sistema<span class="_ _0"></span> de Pu<span class="_ _0"></span>ntos <span class="_ _e"> </span> <span class="_ _27"> </span>Incapacid<span class="_ _0"></span>ad <span class="_ _e"> </span> <span class="_ _27"> </span>Revoc<span class="_ _0"></span>ación d<span class="_ _0"></span>el Secr<span class="_ _0"></span>etario <span class="_ _e"> </span> <span class="_ _28"> </span>Ley de ASU<span class="_ _0"></span>ME <span class="_ _e"> </span> </span></span></div>
+                <div class="t m0 x15 h2 y3b ff1 fs0 fc0 sc0 lsa ws9">¿Ha sido<span class="_ _0"></span> recluido <span class="_ _0"></span>en alg<span class="_ _0"></span>una i<span class="_ _0"></span>nstitució<span class="_ _0"></span>n por <span class="_ _0"></span>haber suf<span class="_ _0"></span>rido <span class="_ _0"></span>algún desor<span class="_ _0"></span>de<span class="_ _0"></span>n mental<span class="_ _0"></span>? <span class="_ _d"> </span>Sí <span class="_ _8"> </span> <span class="_ _1"> </span>No <span class="_ _8"> </span> </div>
+                <div class="t m0 x15 h2 y3c ff1 fs0 fc0 sc0 lsa ws9">¿Ha sido<span class="_ _0"></span> convict<span class="_ _0"></span>o por uso<span class="_ _0"></span> de <span class="_ _0"></span>bebidas <span class="_ _0"></span>embri<span class="_ _0"></span>agantes?<span class="_ _0"></span> <span class="_ _29"> </span>Sí <span class="_ _e"> </span> <span class="_ _c"> </span>No <span class="_ _e"> </span> <span class="_ _6"> </span>Fecha <span class="_ _22"> </span> </div>
+                <div class="t m0 x15 h2 y3d ff1 fs0 fc0 sc0 lsa ws9">¿Ha sido<span class="_ _0"></span> convict<span class="_ _0"></span>o por la <span class="_ _0"></span>Ley d<span class="_ _0"></span>e Narcóticos<span class="_ _0"></span>?  <span class="_ _2a"> </span>Sí <span class="_ _e"> </span> <span class="_ _c"> </span>No <span class="_ _e"> </span> <span class="_ _6"> </span>Fecha <span class="_ _22"> </span> </div>
+                <div class="t m0 x15 h2 y3e ff1 fs0 fc0 sc0 lsa ws9">Indiqu<span class="_ _0"></span>e si tiene<span class="_ _0"></span> obligaci<span class="_ _0"></span>ón ali<span class="_ _0"></span>mentaría<span class="_ _0"></span> <span class="ff3 ws0">“<span class="ff1">ASU<span class="_ _0"></span>ME</span><span class="ls9">”</span></span> <span class="_ _2b"> </span>Sí <span class="_ _e"> </span> <span class="_ _c"> </span>No <span class="_ _e"> </span> <span class="_ _6"> </span>Favor prese<span class="_ _0"></span>ntar C<span class="_ _0"></span>ertifi<span class="_ _0"></span>cación d<span class="_ _0"></span>e ASUME<span class="_ _0"></span> </div>
+                <div class="t m0 x15 h2 y3f ff1 fs0 fc0 sc0 lsa ws9">Indiqu<span class="_ _0"></span>e si tiene<span class="_ _0"></span> deuda<span class="_ _0"></span> por ser<span class="_ _0"></span>vicios<span class="_ _0"></span> médicos<span class="_ _0"></span> con <span class="ff3 ws0">“<span class="ff1">AC<span class="_ _0"></span>AA</span><span class="ls9">”</span></span> <span class="_ _2c"> </span>Sí <span class="_ _e"> </span> <span class="_ _2d"> </span>No <span class="_ _e"> </span> <span class="_ _6"> </span>De contestar sí<span class="_ _0"></span>, pres<span class="_ _0"></span>ente C<span class="_ _0"></span>ertifi<span class="_ _0"></span>cación d<span class="_ _0"></span>e ACAA<span class="_ _0"></span> </div>
+                <div class="t m0 x15 h2 y40 ff1 fs0 fc0 sc0 lsa ws9">Certifi<span class="_ _0"></span>co que h<span class="_ _0"></span>e leído o <span class="_ _0"></span>he si<span class="_ _0"></span>do instrui<span class="_ _0"></span>do, sobr<span class="_ _0"></span>e <span class="_ _0"></span>el cont<span class="_ _0"></span>enido d<span class="_ _0"></span>e la Le<span class="_ _0"></span>y Núm. <span class="_ _0"></span>22 del <span class="_ _0"></span>7 de <span class="_ _0"></span>enero<span class="_ _0"></span> de 2000, s<span class="_ _0"></span>egún<span class="_ _0"></span> enme<span class="_ _0"></span>ndada, <span class="_ _0"></span>conocid<span class="_ _0"></span>a com<span class="_ _0"></span>o <span class="ff3 ls9">“</span>Ley de Ve<span class="_ _0"></span>hículos<span class="_ _0"></span> </div>
+                <div class="t m0 x15 h2 y41 ff1 fs0 fc0 sc0 lsa ws9">y <span class="_ _2e"></span>Tránsito <span class="_ _2f"> </span>de <span class="_ _2e"></span>Puerto <span class="_ _2f"> </span>Rico<span class="ff3 ws0">”</span>, <span class="_ _2e"></span>y <span class="_ _2e"></span>c<span class="_ _0"></span>onozco <span class="_ _2f"> </span>sus <span class="_ _2e"></span>dis<span class="_ _0"></span>posiciones, <span class="_ _2e"> </span>pri<span class="_ _0"></span>nci<span class="_ _0"></span>palm<span class="_ _0"></span>ente <span class="_ _2e"></span>las <span class="_ _2f"> </span>relacionad<span class="_ _0"></span>as <span class="_ _2e"></span>con <span class="_ _2e"></span>el <span class="_ _2e"> </span>tr<span class="_ _0"></span>ánsito, <span class="_ _2f"> </span>señales <span class="_ _2f"> </span>y <span class="_ _2e"></span>segurid<span class="_ _0"></span>ad <span class="_ _2e"></span>y <span class="_ _2e"></span>que <span class="_ _2e"> </span>p<span class="_ _0"></span>uedo <span class="_ _2e"> </span>s<span class="_ _0"></span>omet<span class="_ _0"></span>erme <span class="_ _2f"> </span>al </div>
+                <div class="t m0 x15 h2 y42 ff1 fs0 fc0 sc0 lsa ws9">exame<span class="_ _0"></span>n teórico, <span class="_ _0"></span>práctico <span class="_ _0"></span>o am<span class="_ _0"></span>bos s<span class="_ _0"></span>egún e<span class="_ _0"></span>xige la <span class="_ _0"></span>Ley. </div>
+                <div class="t m0 x15 h2 y43 ff1 fs0 fc0 sc0 lsa ws9">Certifi<span class="_ _0"></span>co bajo las<span class="_ _0"></span> penal<span class="_ _0"></span>idades <span class="_ _0"></span>de perjurio<span class="_ _0"></span> q<span class="_ _0"></span>ue la inform<span class="_ _0"></span>ación<span class="_ _0"></span> co<span class="_ _0"></span>ntenida e<span class="_ _0"></span>n est<span class="_ _0"></span>a solici<span class="_ _0"></span>tud es corr<span class="_ _0"></span>ect<span class="_ _0"></span>a, cierta<span class="_ _0"></span> a mi me<span class="_ _0"></span>jor ent<span class="_ _0"></span>ender y<span class="_ _0"></span> así m<span class="_ _0"></span>e c<span class="_ _0"></span>onsta d<span class="_ _0"></span>e propio </div>
+                <div class="t m0 x15 h2 y44 ff1 fs0 fc0 sc0 lsa ws9">conocim<span class="_ _0"></span>iento </div>
+                <div class="c x4d y45 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x4d h7 y46 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                <div class="t m0 x4d h7 y47 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                <div class="c xb y45 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x4e h2 y48 ff2 fs0 fc2 sc0 lsa ws9"> </div>
+                <div class="t m0 x4f h2 y49 ff2 fs0 fc2 sc0 lsa ws9">SELLOS <span class="_ _0"></span>DE </div>
+                <div class="t m0 x50 h2 y4a ff2 fs0 fc2 sc0 lsa ws9">RENTAS<span class="_ _0"></span> </div>
+                <div class="t m0 x4f h2 y4b ff2 fs0 fc2 sc0 lsa ws5">INTER<span class="_ _0"></span>NAS<span class="_ _0"></span><span class="ff1 fc0 ws9"> </span></div>
+                <div class="c x51 y45 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x39 y45 w3 h6">
+                    <div class="t m0 x0 h7 y8 ff1 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="t m0 x52 h2 y4c ff1 fs0 fc0 sc0 lsa ws9">Fecha <span class="_ _30"> </span>Firma del<span class="_ _0"></span> solici<span class="_ _0"></span>tante<span class="_ _0"></span> </div>
+                <div class="t m0 x4 h2 y4d ff1 fs0 fc0 sc0 lsa ws9">Rev. 3e<span class="_ _0"></span>ne2013<span class="_ _0"></span> <span class="_ _31"> </span> <span class="_ _2"> </span> <span class="_ _2"> </span> <span class="_ _2"> </span> <span class="_ _2"> </span> <span class="_ _2"> </span> <span class="_ _2"> </span> <span class="_ _2"> </span> <span class="_ _2"> </span> <span class="_ _2"> </span> <span class="_ _2"> </span> <span class="_ _2"> </span><span class="fc3 ws0">ww<span class="_ _0"></span>w.dtop.go<span class="_ _0"></span>v.pr</span> </div>
+                <div class="c x53 y4e w11 h9">
+                    <div class="t m0 x0 h7 y4f ff2 fs4 fc0 sc0 lsa ws6">DTOP</div>
+                </div>
+                <div class="c x54 y4e w12 h9">
+                    <div class="t m0 x0 h7 y4f ff2 fs4 fc0 sc0 lsa">-</div>
+                </div>
+                <div class="c x55 y4e w13 h9">
+                    <div class="t m0 x0 h7 y4f ff2 fs4 fc0 sc0 lsa ws6">DIS</div>
+                </div>
+                <div class="c x44 y4e w14 h9">
+                    <div class="t m0 x0 h7 y4f ff2 fs4 fc0 sc0 lsa">-</div>
+                </div>
+                <div class="c x56 y4e w13 h9">
+                    <div class="t m0 x0 h7 y4f ff2 fs4 fc0 sc0 lsa ws6">256</div>
+                </div>
+                <div class="c x57 y4e wc h9">
+                    <div class="t m0 x0 h7 y4f ff2 fs4 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x56 y50 w15 h9">
+                    <div class="t m0 x0 hc y51 ff2 fs6 fc0 sc0 lsa ws9"> </div>
+                </div>
+                <div class="c x58 y52 w16 h15">
+                    <div class="t m1 x0 h16 y53 ff4 fs9 fc0 sc0 lsa" id="form_renovacion" style="opacity: @ViewBag.OpacidadRenovacion">X</div>
+                </div>
+                <div class="c x59 y54 w17 h10">
+                    <div class="t m1 x0 h16 y55 ff4 fs9 fc0 sc0 lsa ws9" id="form_duplicado" style="opacity: @ViewBag.OpacidadDuplicado"> X</div>
+                </div>
+                <div class="c x48 y54 w17 h10">
+                    <div class="t m1 x0 h16 y55 ff4 fs9 fc0 sc0 lsa ws9" id="form_cambio_nombre" style="opacity: @ViewBag.OpacidadCambioNombre"> X</div>
+                </div>
+                <div class="c x5a y54 w17 h10">
+                    <div class="t m1 x0 h16 y56 ff4 fs9 fc0 sc0 lsa ws9" id="form_cambio_direccion" style="opacity: @ViewBag.OpacidadCambioDireccion"> X</div>
+                </div>
+                <div class="c x5b y57 w18 h17">
+                    <div class="t m1 x0 h16 y58 ff4 fs9 fc0 sc0 lsa" id="form_deterioro" style="opacity: @ViewBag.OpacidadDeterioro">X</div>
+                </div>
+
+                <div class="c x5c ye w19 h10" style="background-color:white">
+                    <div class="t m1 x0 h16 y55 ff4 fs9 fc0 sc0 lsa" id="numeroLicencia">@ViewBag.numeroLicencia</div>
+                </div>
+                <div class="c x5d y59 w18 h17">
+                    <div class="t m1 x0 h16 y58 ff4 fs9 fc0 sc0 lsa @c1Opacity" id="c1">X</div>
+                </div>
+                <div class="c x5e y59 w18 h17">
+                    <div class="t m1 x0 h16 y58 ff4 fs9 fc0 sc0 lsa @c2Opacity" id="c2">X</div>
+                </div>
+                <div class="c x5f y5a w18 h17">
+                    <div class="t m1 x0 h16 y58 ff4 fs9 fc0 sc0 lsa @(ViewBag.isCatVehiculo_1 ? "opaque" : "transparent")" id="vehiculo_1">X</div>
+                </div>
+                <div class="c x60 y5a w18 h17">
+                    <div class="t m1 x0 h16 y58 ff4 fs9 fc0 sc0 lsa @(ViewBag.isCatVehiculo_2 ? "opaque" : "transparent")" id="vehiculo_2">X</div>
+                </div>
+                <div class="c x61 y5b w1a h18">
+                    <div class="t m2 x0 h19 y5c ff4 fsa fc0 sc0 lsa @(ViewBag.isCatVehiculo_3 ? "opaque" : "transparent")" id="vehiculo_3">X</div>
+                </div>
+                <div class="c x62 y59 w18 h17">
+                    <div class="t m1 x0 h16 y58 ff4 fs9 fc0 sc0 lsa @(ViewBag.isCatVehiculo_4 ? "opaque" : "transparent")" id="vehiculo_4">X</div>
+                </div>
+
+                <div class="c x63 y5d w1b h1a">
+                    <div class="t m1 x0 h16 y5e ff4 fs9 fc0 sc0 lsa ws7" id="nombre">@ViewBag.primerNombre</div>
+                </div>
+                <div class="c x31 y5f w1c h18">
+                    <div class="t m3 x0 h19 y5c ff4 fsa fc0 sc0 lsa ws8" id="nombre2">@ViewBag.segundoNombre</div>
+                </div>
+                <div class="c x33 y5f w1d h18">
+                    <div class="t m3 x0 h19 y5c ff4 fsa fc0 sc0 lsa" id="primerApellido">@ViewBag.primerApellido</div>
+                </div>
+                <div class="c x29 y60 w1e h17">
+                    <div class="t m1 x0 h16 y58 ff4 fs9 fc0 sc0 lsa" id="segundoApellido">@ViewBag.segundoApellido</div>
+                </div>
+                <div class="c x4 y61 w18 h17">
+                    <div class="t m1 x0 h16 y58 ff4 fs9 fc0 sc0 lsa" id="seguroSocial" style="opacity: @ViewBag.OpacidadSeguroSocial">X</div>
+                </div>
+                <div class="c x64 y61 w18 h17">
+                    <div class="t m1 x0 h16 y58 ff4 fs9 fc0 sc0 lsa" id="pasaporte" style="opacity: @ViewBag.OpacidadPasaporte">X</div>
+                </div>
+
+                <div class="c x65 y62 w1f h17">
+                    <div class="t m1 x0 h16 y58 ff4 fs9 fc0 sc0 lsa" id="numeroIdentificacion">@ViewBag.numeroIdentificacion</div>
+                </div>
+                <div class="c x66 y1e w18 h17">
+                    <div class="t m1 x0 h16 y58 ff4 fs9 fc0 sc0 lsa" id="ciudadanoUsa" style="opacity: @ViewBag.OpacidadCiudadanoUsa">X</div>
+                </div>
+                <div class="c x5f y1e w18 h17">
+                    <div class="t m1 x0 h16 y58 ff4 fs9 fc0 sc0 lsa" id="residentePermanente" style="opacity: @ViewBag.OpacidadResidentePermanente">X</div>
+                </div>
+                <div class="c x2c y1e w18 h17">
+                    <div class="t m1 x0 h16 y58 ff4 fs9 fc0 sc0 lsa" id="otroPresencialLegal" style="opacity: @ViewBag.OpacidadOtroPresencialLegal">X</div>
+                </div>
+                <div class="c x67 y63 w18 h17">
+                    <div class="t m1 x0 h16 y58 ff4 fs9 fc0 sc0 lsa" id="generoMasculino" style="opacity: @ViewBag.OpacidadGeneroMasculino">X</div>
+                </div>
+                <div class="c x68 y63 w18 h17">
+                    <div class="t m1 x0 h16 y58 ff4 fs9 fc0 sc0 lsa" id="generoFemenino" style="opacity: @ViewBag.OpacidadGeneroFemenino">X</div>
+                </div>
+                <div class="c x69 y63 w18 h17">
+                    <div class="t m1 x0 h16 y58 ff4 fs9 fc0 sc0 lsa" id="donanteSi" style="opacity: @ViewBag.OpacidadDonanteSi">X</div>
+                </div>
+                <div class="c x6a y63 w18 h17">
+                    <div class="t m1 x0 h16 y58 ff4 fs9 fc0 sc0 lsa" id="donanteNo" style="opacity: @ViewBag.OpacidadDonanteNo">X</div>
+                </div>
+
+                <div class="c x6b y64 w20 h1a">
+                    <div class="t m1 x0 h16 y5e ff4 fs9 fc0 sc0 lsa" id="tipoSangre">@ViewBag.tipoSangre</div>
+                </div>
+                <div class="c x6c y65 w21 h10" style="background-color:white">
+                    <div class="t m1 x0 h1b y55 ff5 fs9 fc0 sc0 lsa" id="fechaNacimientoMes">@ViewBag.fechaNacimientoMes</div>
+                </div>
+                <div class="c x44 y65 w21 h10" style="background-color:white">
+                    <div class="t m1 x0 h1b y55 ff5 fs9 fc0 sc0 lsa" id="fechaNacimientoDia">@ViewBag.fechaNacimientoDia</div>
+                </div>
+                <div class="c x6d y65 w22 h10" style="background-color:white">
+                    <div class="t m1 x0 h1b y55 ff5 fs9 fc0 sc0 lsa" id="fechaNacimientoAnio">@ViewBag.fechaNacimientoAnio</div>
+                </div>
+                <div class="c x59 y23 w21 h10" style="background-color:white">
+                    <div class="t m1 x0 h1b y55 ff5 fs9 fc0 sc0 lsa" id="estaturaPies">@ViewBag.estaturaPies</div>
+                </div>
+                <div class="c x6e y65 w23 h10" style="background-color:white">
+                    <div class="t m1 x0 h1b y55 ff5 fs9 fc0 sc0 lsa" id="estaturaPulgadas">@ViewBag.estaturaPulgadas</div>
+                </div>
+                <div class="c x4a y23 w24 h10" style="background-color:white">
+                    <div class="t m1 x0 h1b y55 ff5 fs9 fc0 sc0 lsa" id="pesoUsuario">@ViewBag.peso</div>
+                </div>
+                <div class="c x6f y66 w25 h18">
+                    <div class="t m4 x0 h1c y5c ff5 fsa fc0 sc0 lsa">787</div>
+                </div>
+                <div class="c x6b y67 w26 h17">
+                    <div class="t m5 x0 h1b y58 ff5 fs9 fc0 sc0 lsa" id="telefonoUsuario">@ViewBag.numeroTelefonoUsuario</div>
+                </div>
+                <!-- Pelo Amarillo -->
+                <div class="c x56 y68 w18 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa" id="peloAmarillo" style="opacity: @ViewBag.OpacidadPeloAmarillo">X</div>
+                </div>
+                <!-- Tez Amarilla -->
+                <div class="c x56 y69 w18 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa" id="tezAmarilla" style="opacity: @ViewBag.OpacidadTezAmarilla">X</div>
+                </div>
+                <!-- Ojos Amarillos -->
+                <div class="c x56 y6a w18 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa" id="ojosAmarillo" style="opacity: @ViewBag.OpacidadOjosAmarillo">X</div>
+                </div>
+                <!-- Ojos Azul -->
+                <div class="c x4d y6a w18 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa" id="ojosAzul" style="opacity: @ViewBag.OpacidadOjosAzul">X</div>
+                </div>
+                <!-- Pelo Blanco -->
+                <div class="c x70 y68 w18 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa" id="peloBlanco" style="opacity: @ViewBag.OpacidadPeloBlanco">X</div>
+                </div>
+                <!-- Tez Blanca -->
+                <div class="c x70 y6b w18 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa" id="tezBlanca" style="opacity: @ViewBag.OpacidadTezBlanca">X</div>
+                </div>
+                <!-- Tez Negra -->
+                <div class="c x71 y69 w18 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa"  style="opacity: @ViewBag.OpacidadTezNegro">X</div>
+                </div>
+                <!-- Pelo Gris -->
+                <div class="c x71 y68 w18 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa" id="peloGris" style="opacity: @ViewBag.OpacidadPeloGris">X</div>
+                </div>
+                <!-- Ojos Gris -->
+                <div class="c x71 y6a w18 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa" id="ojosGris" style="opacity: @ViewBag.OpacidadOjosGris">X</div>
+                </div>
+                <!-- Ojos Marrón -->
+                <div class="c x72 y6a w18 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa" id="ojosMarron" style="opacity: @ViewBag.OpacidadOjosMarron">X</div>
+                </div>
+                <!-- Pelo Marrón -->
+                <div class="c x72 y68 w18 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa" id="peloMarron" style="opacity: @ViewBag.OpacidadPeloMarron">X</div>
+                </div>
+                <!-- Pelo Negro -->
+                <div class="c x73 y68 w18 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa" id="peloNegro" style="opacity: @ViewBag.OpacidadPeloNegro">X</div>
+                </div>
+                <!-- Ojos Negro -->
+                <div class="c x73 y6a w18 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa" id="ojosNegro" style="opacity: @ViewBag.OpacidadOjosNegro">X</div>
+                </div>
+                <!-- Ojos Verde -->
+                <div class="c x74 y6a w18 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa" id="ojosVerde" style="opacity: @ViewBag.OpacidadOjosVerde">X</div>
+                </div>
+                <!-- Pelo Rojo -->
+                <div class="c x25 y6c w18 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa" id="peloRojo" style="opacity: @ViewBag.OpacidadPeloRojo">X</div>
+                </div>
+                <!-- Pelo Calvo -->
+                <div class="c x18 y6c w18 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa" id="peloCalvo" style="opacity: @ViewBag.OpacidadPeloCalvo">X</div>
+                </div>
+                <!-- Ojos Hazel -->
+                <div class="c x18 y6d w18 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa" id="ojosHazel" style="opacity: @ViewBag.OpacidadOjosHazel">X</div>
+                </div>
+
+                <div class="c x15 y6e w27 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa ws9" id="direccionResidencial">@ViewBag.direccionPrimero</div>
+                </div>
+                <div class="c x4 y6f w27 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa ws9" id="numeroDireccionPrimero">@ViewBag.numeroDireccionPrimero</div>
+                </div>
+                <div class="c x4 y70 w28 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa ws9" id="puebloPrimero">@ViewBag.puebloPrimero</div>
+                </div>
+                <div class="c x2 y71 w29 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa" id="codigoPostal1">@ViewBag.postalprimero</div>
+                </div>
+                <div class="c x4 y72 w2a h10">
+                    <div class="t m5 x0 h1d y73 ff6 fs9 fc0 sc0 lsa ws9" id="direccionPostal">@ViewBag.direccionSegundo</div>
+                </div>
+                <div class="c x63 y74 w2b h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa ws9" id="puebloSegundo">@ViewBag.puebloSegundo<span class="_ _32"> </span> </div>
+                </div>
+                <div class="c x2 y74 w29 h17">
+                    <div class="t m5 x0 h1d y58 ff6 fs9 fc0 sc0 lsa" id="codigoPostal2">@ViewBag.postalSegundo</div>
+                </div>
+                <div class="c x1b y75 w18 h17">
+                    <div class="t m5 x0 h1b y58 ff7 fs9 fc0 sc0 lsa" id="suspendidoOpcJudicial" style="opacity: @ViewBag.OpacidadOpcJudicial">X</div>
+                </div>
+                <div class="c x75 y76 w18 h17">
+                    <div class="t m5 x0 h1b y58 ff7 fs9 fc0 sc0 lsa" id="suspendidoOpcSistemaPuntos" style="opacity: @ViewBag.OpacidadOpcSistemaPuntos">X</div>
+                </div>
+                <div class="c x76 y77 w18 h17">
+                    <div class="t m5 x0 h1b y58 ff7 fs9 fc0 sc0 lsa" id="suspendidaSi" style="opacity: @ViewBag.OpacidadSuspendidaSi">X</div>
+                </div>
+                <div class="c x77 y77 w18 h17">
+                    <div class="t m5 x0 h1b y58 ff7 fs9 fc0 sc0 lsa" id="suspendidaNo" style="opacity: @ViewBag.OpacidadSuspendidaNo">X</div>
+                </div>
+                <div class="c x78 y78 w18 h17">
+                    <div class="t m5 x0 h1b y58 ff7 fs9 fc0 sc0 lsa" id="suspendidoOpcIncapacidad" style="opacity: @ViewBag.OpacidadOpcIncapacidad">X</div>
+                </div>
+                <div class="c x3f y78 w18 h17">
+                    <div class="t m5 x0 h1b y58 ff7 fs9 fc0 sc0 lsa" id="suspendidoOpcRenovacionSecretario" style="opacity: @ViewBag.OpacidadOpcRenovacionSecretario">X</div>
+                </div>
+                <div class="c x79 y78 w18 h17">
+                    <div class="t m5 x0 h1b y58 ff7 fs9 fc0 sc0 lsa" id="suspendidoOpcLeyAsume" style="opacity: @ViewBag.OpacidadOpcLeyAsume">X</div>
+                </div>
+               <div class="c x7a y79 w18 h17">
+                    <div class="t m5 x0 h1b y58 ff7 fs9 fc0 sc0 lsa" id="recluidoMentalSi" style="opacity: @ViewBag.OpacidadRecluidoMentalSi">X</div>
+                </div>
+                <div class="c x18 y7a w18 h17">
+                    <div class="t m5 x0 h1b y58 ff7 fs9 fc0 sc0 lsa" id="recluidoMentalNo" style="opacity: @ViewBag.OpacidadRecluidoMentalNo">X</div>
+                </div>
+                <div class="c x7b y7b w18 h17">
+                    <div class="t m5 x0 h1b y58 ff7 fs9 fc0 sc0 lsa" id="bebidasSi" style="opacity: @ViewBag.OpacidadBebidasSi">X</div>
+                </div>
+                <div class="c x7b y7c w18 h17">
+                    <div class="t m5 x0 h1b y58 ff7 fs9 fc0 sc0 lsa" id="narcoticosSi" style="opacity: @ViewBag.OpacidadNarcoticosSi">X</div>
+                </div>
+                <div class="c x7b y7d w18 h17">
+                    <div class="t m5 x0 h1b y58 ff7 fs9 fc0 sc0 lsa" id="asumeSi" style="opacity: @ViewBag.OpacidadAsumeSi">X</div>
+                </div>
+                <div class="c x7b y7e w18 h17">
+                    <div class="t m5 x0 h1b y58 ff7 fs9 fc0 sc0 lsa" id="deudaAccaSi" style="opacity: @ViewBag.OpacidadDeudaAccaSi">X</div>
+                </div>
+                <div class="c x14 y7f w6 h10">
+                    <div class="t m5 x0 h1b y55 ff7 fs9 fc0 sc0 lsa" id="deudaAccaNo" style="opacity: @ViewBag.OpacidadDeudaAccaNo">X</div>
+                </div>
+                <div class="c x14 y7d w18 h17">
+                    <div class="t m5 x0 h1b y58 ff7 fs9 fc0 sc0 lsa" id="asumeNo" style="opacity: @ViewBag.OpacidadAsumeNo">X</div>
+                </div>
+                <div class="c x14 y7c w18 h17">
+                    <div class="t m5 x0 h1b y58 ff7 fs9 fc0 sc0 lsa" id="narcoticosNo" style="opacity: @ViewBag.OpacidadNarcoticosNo">X</div>
+                </div>
+                <div class="c x14 y7b w18 h17">
+                    <div class="t m5 x0 h1b y58 ff7 fs9 fc0 sc0 lsa" id="bebidasNo" style="opacity: @ViewBag.OpacidadBebidasNo">X</div>
+                </div>
+                <div class="c x7c y80 w2c h10">
+                    <div class="t m5 x0 h1b y55 ff7 fs9 fc0 sc0 lsa" id="fechaConvictoBebida">@ViewBag.FechaConvictoBebida</div>
+                </div>
+                <div class="c x7c y81 w2d h10">
+                    <div class="t m5 x0 h1b y55 ff7 fs9 fc0 sc0 lsa" id="fechaConvictoNarcotico">@ViewBag.FechaConvictoNarcotico</div>
+                </div>
+                <div class="c x7d y82 w2e h17">
+                    <div class="t m5 x0 h1b y58 ff7 fs9 fc0 sc0 lsa" id="fechaDocumento">@ViewBag.fechaHoy</div>
+                </div>
+            </div>
+            <div class="pi" data-data='{"ctm":[1.000000,0.000000,0.000000,1.000000,0.000000,0.000000]}'></div>
+        </div>
+        <div id="pf2" class="pf w0 h0" data-page-no="2">
+            <div class="pc pc2 w0 h0">
+                <img class="bi x0 y0 w1 h1" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABMkAAAYxCAIAAAAsbFyeAAAACXBIWXMAABYlAAAWJQFJUiTwAAAfSElEQVR42uzZQQpCQQxEQVvm/ldud3/3QRwwjlSdICSrR9L2AQAAABueVgAAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAvmj95lhJ3AYAAOBNbWcH8LcEAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAADaEgAAALQlAAAAE9LWFgAAANjhbwkAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAADaEgAAALQlAAAA2hIAAABtCQAAgLYEAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAADaEgAAALQlAAAA2hIAAABtCQAAgLYEAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAADaEgAAALQlAAAA2hIAAABtCQAAgLYEAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAAP7FOnHoJC4HAABwaTs7gL8lAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAcKa0tQUAAAB2+FsCAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAADaEgAAALQlAAAA2hIAAABtCQAAgLYEAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAAaEsAAAC4s04cOonLAQAAXNrODuBvCQAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAJwpbW0BAACAHf6WAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAgLYEAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAADaEgAAALQlAAAA2hIAAABtCQAAgLYEAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAgLYEAABAWwIAAKAtAQAAQFsCAACgLQEAANCWAAAAaEsAAADQlgAAAGhLAAAAtCUAAADaEgAAALQlAAAA2hIAAABtCQAAgLYEAAAAbQkAAIC2BAAAQFsCAACgLQEAAEBbAgAAoC0BAADQlgAAAGhLAAAA0JYAAABoSwAAALQlAAAA2hIAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAA8Il14tBJXA4AAODSdnYAf0sAAAC0JQAAANoSAAAAbQkAAIC2BAAAAG0JAACAtgQAAEBbAgAAoC0BAABAWwIAAKAtAQAA0JYAAABoSwAAANCWAAAAaEsAAAC0JQAAANoSAAAAtCUAAADaEgAAAG0JAACAtgQAAABtCQAAwIy0tQUAAAB2+FsCAACgLQEAANCWAAAAaEsAAAC0JQAAAGhLAAAAtCUAAADaEgAAAG0JAAAA2hIAAABtCQAAgLYEAABAWwIAAIC2BAAAQFsCAACgLQEAANCWAAAAoC0BAADQlgAAAGhLAAAAtCUAAABoSwAAALQlAAAA2hIAAABtCQAAANoSAAAAbQkAAIC2BAAAQFsCAACAtgQAAEBbAgAAoC0BAADQlgAAAKAtAQAA0JYAAABoSwAAALQlAAAAaEsAAAC0JQAAANoSAAAAbQkAAADaEgAAAG0JAACAtgQAAEBbAgAAgLYEAABAWwIAAKAtAQAA0JYAAACgLQEAANCWAAAAaEsA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" />
+                <div class="t m0 x43 h2 y83 ff2 fs0 fc4 sc0 lsa ws9">DOCU<span class="_ _0"></span>MENTOS <span class="_ _0"></span>GE<span class="_ _0"></span>NERALES <span class="_ _0"></span>PARA<span class="_ _0"></span> RE<span class="_ _0"></span>NOVACI<span class="_ _0"></span>ÓN, DUPLI<span class="_ _0"></span>CA<span class="_ _0"></span>DO, CA<span class="_ _0"></span>MBIO DE <span class="_ _0"></span>NO<span class="_ _0"></span>MBRE, CA<span class="_ _0"></span>MBIO <span class="_ _0"></span>DE DIR<span class="_ _0"></span>ECCI<span class="_ _0"></span>O<span class="_ _0"></span>N O DETE<span class="_ _0"></span>RIOR<span class="_ _0"></span>O<span class="_ _0"></span> </div>
+                <div class="t m0 x4 h1e y84 ff1 fsb fc0 sc0 lsa ws9">1. <span class="_ _0"></span>Si aú<span class="_ _0"></span>n no pose<span class="_ _0"></span>e su Cert<span class="_ _0"></span>ificado de L<span class="_ _0"></span>icencia <span class="_ _0"></span>de Conduci<span class="_ _0"></span>r Digi<span class="_ _0"></span>talizado:<span class="_ _0"></span> </div>
+                <div class="t m0 x35 h1e y85 ff1 fsb fc0 sc0 lsa ws9">a. <span class="_ _0"></span>Número d<span class="_ _0"></span>e Seguro So<span class="_ _0"></span>cial<span class="_ _0"></span>, presenta<span class="_ _0"></span>ndo el ori<span class="_ _0"></span>ginal de u<span class="_ _0"></span>no o más <span class="_ _0"></span>de los sig<span class="_ _0"></span>uientes do<span class="_ _0"></span>cumen<span class="_ _0"></span>tos:<span class="_ _0"></span> </div>
+                <div class="t m0 x7e h1e y86 ff1 fsb fc0 sc0 lsa ws9">1. <span class="_ _0"></span>Tarje<span class="_ _0"></span>ta d<span class="_ _0"></span>e <span class="_ _0"></span>Seguro <span class="_ _33"></span>Social, <span class="_ _0"></span>Fo<span class="_ _0"></span>rma <span class="_ _0"></span>W-2, <span class="_ _33"></span><span class="ff3 wsa">“</span>Wage <span class="_ _0"></span>and <span class="_ _0"></span>T<span class="_ _0"></span>ax <span class="_ _0"></span>State<span class="_ _0"></span>ment<span class="ff3 wsa">”</span>, <span class="_ _0"></span>For<span class="_ _0"></span>ma <span class="_ _0"></span>SSA-1099<span class="_ _0"></span>, <span class="_ _0"></span><span class="ff3 wsa">“</span>So<span class="_ _0"></span>cial <span class="_ _0"></span>Secur<span class="_ _0"></span>ity <span class="_ _0"></span>Benefi<span class="_ _0"></span>t <span class="_ _0"></span>Statem<span class="_ _0"></span>ent<span class="ff3 wsa">”</span>, <span class="_ _0"></span>Talo<span class="_ _0"></span>nario <span class="_ _0"></span>de <span class="_ _0"></span>P<span class="_ _0"></span>ago <span class="_ _0"></span>don<span class="_ _0"></span>de <span class="_ _0"></span>aparezc<span class="_ _0"></span>a </div>
+                <div class="t m0 x43 h1e y87 ff1 fsb fc0 sc0 lsa ws9">el nombr<span class="_ _0"></span>e <span class="_ _0"></span>del <span class="_ _0"></span>solicita<span class="_ _0"></span>nte <span class="_ _0"></span>y <span class="_ _0"></span>el nú<span class="_ _0"></span>mero<span class="_ _0"></span> <span class="_ _34"></span>de <span class="_ _34"></span>S<span class="_ _0"></span>eguro <span class="_ _34"></span>S<span class="_ _34"></span>o<span class="_ _0"></span>cial <span class="_ _34"></span>v<span class="_ _0"></span>erificabl<span class="_ _0"></span>e <span class="_ _34"></span>conform<span class="_ _0"></span>e<span class="_ _0"></span> <span class="_ _34"></span>a <span class="_ _34"></span>los<span class="_ _0"></span> <span class="_ _34"></span>procedi<span class="_ _0"></span>mientos <span class="_ _0"></span>est<span class="_ _0"></span>ablecidos<span class="_ _0"></span> <span class="_ _34"></span>para<span class="_ _0"></span> <span class="_ _34"></span>ello<span class="_ _0"></span> <span class="_ _34"></span>en <span class="_ _34"></span>la<span class="_ _0"></span> <span class="_ _34"></span>Ley <span class="_ _35"></span>Fede<span class="_ _0"></span>ral <span class="_ _34"></span>de<span class="_ _0"></span> <span class="_ _34"></span>Identifi<span class="_ _0"></span>cación <span class="_ _34"></span>R<span class="_ _0"></span>eal <span class="_ _34"></span>d<span class="_ _0"></span>e<span class="_ _0"></span> </div>
+                <div class="t m0 x43 h1e y88 ff1 fsb fc0 sc0 lsa ws9">2005, <span class="ff3 wsa">“</span>US Mili<span class="_ _0"></span>tary I<span class="_ _0"></span>dentificatio<span class="_ _0"></span>n Card<span class="ff3 wsa">”</span>, co<span class="_ _0"></span>pia po<span class="_ _0"></span>nchada de la P<span class="_ _0"></span>lanilla Es<span class="_ _0"></span>tat<span class="_ _0"></span>al o Fede<span class="_ _0"></span>ral.<span class="_ _0"></span> <span class="_ _36"> </span> </div>
+                <div class="t m0 x35 h1e y89 ff1 fsb fc0 sc0 lsa ws9">b. Prese<span class="_ _0"></span>ncia leg<span class="_ _0"></span>al y fech<span class="_ _0"></span>a de nacim<span class="_ _0"></span>iento, prese<span class="_ _0"></span>ntando <span class="_ _0"></span>el origi<span class="_ _0"></span>nal de uno o <span class="_ _0"></span>más <span class="_ _0"></span>de los sigui<span class="_ _0"></span>entes doc<span class="_ _0"></span>umentos:<span class="_ _0"></span> </div>
+                <div class="t m0 x7e h1e y8a ff1 fsb fc0 sc0 lsa ws9">1. <span class="_ _0"></span>Pasapor<span class="_ _0"></span>te <span class="_ _2e"> </span>de <span class="_ _2e"></span>los <span class="_ _2e"> </span>Es<span class="_ _0"></span>tados <span class="_ _2e"> </span>Uni<span class="_ _0"></span>dos <span class="_ _2e"> </span>vigen<span class="_ _0"></span>te, <span class="_ _2e"></span>Cer<span class="_ _0"></span>tificado <span class="_ _2e"></span>de <span class="_ _2e"></span>N<span class="_ _0"></span>acimiento, <span class="_ _2e"> </span>p<span class="_ _0"></span>ara <span class="_ _2e"> </span>doc<span class="_ _0"></span>umentos <span class="_ _2e"> </span>a<span class="_ _0"></span>lternos <span class="_ _2e"></span>r<span class="_ _0"></span>efiérase <span class="_ _2f"> </span>al <span class="_ _33"></span>Form<span class="_ _0"></span>ulario <span class="_ _2e"> </span>DTOP<span class="_ _0"></span>-DIS-2<span class="_ _0"></span>59 <span class="_ _2e"> </span><span class="ff3 wsa">“</span>Do<span class="_ _0"></span>cume<span class="_ _0"></span>ntos <span class="_ _2e"></span>para<span class="_ _0"></span> </div>
+                <div class="t m0 x43 h1e y8b ff1 fsb fc0 sc0 lsa ws9">Certificar Pr<span class="_ _0"></span>esencia Le<span class="_ _0"></span>gal y Fe<span class="_ _0"></span>cha de N<span class="_ _0"></span>acimiento<span class="_ _0"></span><span class="ff3 wsa">”</span>. </div>
+                <div class="t m0 x7e h1e y8c ff1 fsb fc0 sc0 lsa ws9">2. Si es n<span class="_ _0"></span>acido en Pu<span class="_ _0"></span>erto Rico<span class="_ _0"></span>, no tendr<span class="_ _0"></span>á que pres<span class="_ _0"></span>entar <span class="_ _0"></span>el Certifica<span class="_ _0"></span>do de <span class="_ _0"></span>Nacimien<span class="_ _0"></span>to. </div>
+                <div class="t m0 x4 h1e y8d ff1 fsb fc0 sc0 lsa ws9">2. <span class="_ _0"></span>Un <span class="_ _2e"></span>do<span class="_ _0"></span>cumen<span class="_ _0"></span>to <span class="_ _2e"></span>que <span class="_ _2e"></span>no <span class="_ _2e"></span>d<span class="_ _0"></span>eberá <span class="_ _2e"> </span>tener <span class="_ _2e"> </span>m<span class="_ _0"></span>ás <span class="_ _2e"> </span>de <span class="_ _2e"> </span>do<span class="_ _0"></span>s <span class="_ _2e"></span>(2) <span class="_ _2e"> </span>mes<span class="_ _0"></span>es <span class="_ _2e"></span>de <span class="_ _2e"> </span>emit<span class="_ _0"></span>ido<span class="_ _0"></span> <span class="_ _2e"></span>que <span class="_ _2e"></span>nos <span class="_ _2e"> </span>evide<span class="_ _0"></span>ncie <span class="_ _2e"></span>su <span class="_ _2e"></span>di<span class="_ _0"></span>rección <span class="_ _2e"> </span>resi<span class="_ _0"></span>dencia<span class="_ _0"></span>l <span class="_ _2e"></span>perma<span class="_ _0"></span>nente <span class="_ _33"></span>(<span class="_ _0"></span>Ejem<span class="_ _0"></span>plo: <span class="_ _2e"></span>recib<span class="_ _0"></span>o <span class="_ _2e"> </span>de <span class="_ _2e"></span>agua<span class="_ _0"></span>, <span class="_ _2e"></span>luz,<span class="_ _0"></span> </div>
+                <div class="t m0 x35 h1e y8e ff1 fsb fc0 sc0 lsa ws9">teléfono, celu<span class="_ _0"></span>lar, ba<span class="_ _0"></span>nco, etc.) de s<span class="_ _0"></span>er ne<span class="_ _0"></span>cesario fa<span class="_ _0"></span>vor de r<span class="_ _0"></span>eferirse a<span class="_ _0"></span>l Form<span class="_ _0"></span>ulario DTOP<span class="_ _0"></span>-DIS-2<span class="_ _0"></span>62 <span class="ff3 wsa">“</span>Doc<span class="_ _0"></span>umentos p<span class="_ _0"></span>ara proba<span class="_ _0"></span>r la Dir<span class="_ _0"></span>ección R<span class="_ _0"></span>esidencial Pe<span class="_ _0"></span>rmanen<span class="_ _0"></span>te<span class="ff3 wsa">”</span>.  <span class="_ _0"></span> </div>
+                <div class="t m0 x35 h1e y8f ff1 fsb fc0 sc0 lsa ws9">a. <span class="_ _0"></span>Si <span class="_ _2e"></span>el <span class="_ _2e"></span>docume<span class="_ _0"></span>nto <span class="_ _2e"></span>no <span class="_ _33"></span>est<span class="_ _0"></span>á <span class="_ _2e"></span>a <span class="_ _2e"></span>su <span class="_ _2e"></span>nombre <span class="_ _2e"> </span>la <span class="_ _2e"></span>p<span class="_ _0"></span>ersona <span class="_ _2e"></span>a <span class="_ _2e"></span>cuyo <span class="_ _2e"> </span>nombr<span class="_ _0"></span>e <span class="_ _2e"></span>este <span class="_ _2e"></span>el <span class="_ _2e"></span>documento, <span class="_ _2e"></span>d<span class="_ _0"></span>eberá <span class="_ _2e"></span>autoriz<span class="_ _0"></span>arlo <span class="_ _2e"></span>mediante <span class="_ _2e"> </span>For<span class="_ _0"></span>mulario <span class="_ _2e"> </span>DTOP<span class="_ _0"></span>-DIS-15<span class="_ _0"></span>6 <span class="_ _2e"> </span><span class="ff3 lsb">“</span>Certifi<span class="_ _0"></span>cación <span class="_ _2e"></span>de </div>
+                <div class="t m0 x7e h1e y90 ff1 fsb fc0 sc0 lsa ws9">Residencia Pri<span class="_ _0"></span>ncipal<span class="_ _0"></span><span class="ff3 wsa">”</span> e incluir <span class="_ _0"></span>copia de u<span class="_ _0"></span>na iden<span class="_ _0"></span>tificació<span class="_ _0"></span>n fehacient<span class="_ _0"></span>e de la person<span class="_ _0"></span>a. </div>
+                <div class="t m0 x35 h1e y91 ff1 fsb fc0 sc0 lsa ws9">b. De <span class="_ _2f"> </span>no <span class="_ _2f"> </span>conseguir <span class="_ _2f"> </span>a <span class="_ _2e"> </span>la <span class="_ _2f"> </span>person<span class="_ _0"></span>a <span class="_ _2f"> </span>a <span class="_ _2e"> </span>c<span class="_ _0"></span>uyo <span class="_ _2e"> </span>nom<span class="_ _0"></span>bre <span class="_ _2f"> </span>está <span class="_ _2f"> </span>el <span class="_ _2e"> </span>doc<span class="_ _0"></span>umento<span class="_ _0"></span>, <span class="_ _2e"> </span>el <span class="_ _2f"> </span>s<span class="_ _0"></span>olicitan<span class="_ _0"></span>te <span class="_ _2e"></span>deber<span class="_ _0"></span>á <span class="_ _2e"> </span>ha<span class="_ _0"></span>cer <span class="_ _2f"> </span>una <span class="_ _2f"> </span>Declaración <span class="_ _2f"> </span>Jura<span class="_ _0"></span>da <span class="_ _2e"> </span>a<span class="_ _0"></span>nte <span class="_ _2f"> </span>un <span class="_ _2e"></span>Not<span class="_ _0"></span>ario <span class="_ _2e"> </span>Pú<span class="_ _0"></span>blico<span class="_ _0"></span> <span class="_ _2e"> </span>o<span class="_ _0"></span> <span class="_ _2e"> </span>Funcio<span class="_ _0"></span>nario </div>
+                <div class="t m0 x7e h1e y92 ff1 fsb fc0 sc0 lsa ws9">Autorizado <span class="_"> </span>Formul<span class="_ _0"></span>ario <span class="_"> </span>DTOP-DIS<span class="_ _0"></span>-263 <span class="_"> </span><span class="ff3 wsa">“</span>Afirmació<span class="_ _0"></span>n <span class="_"> </span>So <span class="_"> </span>Pe<span class="_ _3"></span>na <span class="_"> </span>de <span class="_"> </span>Perjurio <span class="_"> </span>Certificando <span class="_"> </span>la <span class="_"> </span>Resid<span class="_ _0"></span>encia <span class="_"> </span>Principal<span class="_ _0"></span><span class="ff3 wsa">”</span>, <span class="_ _37"> </span>en <span class="_"> </span>la <span class="_"> </span>cual <span class="_"> </span>c<span class="_ _3"></span>ertifiq<span class="_ _0"></span>ue <span class="_"> </span>su <span class="_ _37"> </span>direc<span class="_ _0"></span>ción <span class="_"> </span>re<span class="_ _3"></span>si<span class="_ _0"></span>dencial<span class="_ _0"></span> </div>
+                <div class="t m0 x7e h1e y93 ff1 fsb fc0 sc0 lsa ws9">permanent<span class="_ _0"></span>e. </div>
+                <div class="t m0 x4 h1e y94 ff1 fsb fc0 sc0 lsa ws9">3. <span class="_ _0"></span>En c<span class="_ _0"></span>aso de pers<span class="_ _0"></span>ona ex<span class="_ _0"></span>tranjera deb<span class="_ _0"></span>erá mos<span class="_ _0"></span>trar evide<span class="_ _0"></span>ncia de su p<span class="_ _0"></span>rese<span class="_ _0"></span>ncia l<span class="_ _0"></span>egal en los <span class="_ _0"></span>Estados U<span class="_ _0"></span>nidos a la f<span class="_ _0"></span>echa de so<span class="_ _0"></span>met<span class="_ _0"></span>er la soli<span class="_ _0"></span>citud. </div>
+                <div class="t m0 x4 h1e y95 ff1 fsb fc0 sc0 lsa ws9">4. <span class="_ _0"></span>Paga<span class="_ _0"></span>r toda M<span class="_ _0"></span>ulta Adminis<span class="_ _0"></span>trati<span class="_ _0"></span>va (si aplica)<span class="_ _0"></span> </div>
+                <div class="t m0 x4 h1e y96 ff1 fsb fc0 sc0 lsa ws9">5. <span class="_ _0"></span>C<span class="_ _0"></span>ertificación de A<span class="_ _0"></span>SUME<span class="_ _0"></span> </div>
+                <div class="t m0 x4 h1e y17 ff1 fsb fc0 sc0 lsa ws9">6. <span class="_ _0"></span>C<span class="_ _0"></span>ertificación de A<span class="_ _0"></span>CAA<span class="_ _0"></span>, de tener de<span class="_ _0"></span>uda por <span class="_ _0"></span>servicios m<span class="_ _0"></span>édicos<span class="_ _0"></span>. </div>
+                <div class="t m0 x6e h1e y1c ff2 fsb fc4 sc0 lsa ws9">DOCUMENTOS<span class="_ _0"></span> ADICION<span class="_ _0"></span>AL<span class="_ _0"></span>ES PAR<span class="_ _0"></span>A RENOVACIÓN<span class="_ _0"></span> </div>
+                <div class="t m0 x4 h1e y97 ff1 fsb fc0 sc0 lsa ws9">1. <span class="_ _0"></span>Formul<span class="_ _0"></span>ario D<span class="_ _0"></span>TOP-DI<span class="_ _0"></span>S-260 <span class="_ _0"></span><span class="ff3 wsa">“</span>Certific<span class="_ _0"></span>ación M<span class="_ _0"></span>édica p<span class="_ _0"></span>ara C<span class="_ _0"></span>ertifica<span class="_ _0"></span>do d<span class="_ _0"></span>e Licen<span class="_ _0"></span>cia d<span class="_ _0"></span>e Cond<span class="_ _0"></span>ucir<span class="ff3 lsb">”</span>, la <span class="_ _0"></span>cual d<span class="_ _0"></span>ebe se<span class="_ _0"></span>r c<span class="_ _0"></span>umplimen<span class="_ _0"></span>tada po<span class="_ _0"></span>r u<span class="_ _0"></span>n do<span class="_ _0"></span>ctor en <span class="_ _0"></span>medic<span class="_ _0"></span>ina <span class="_ _0"></span>autorizado<span class="_ _0"></span> a </div>
+                <div class="t m0 x35 h1e y98 ff1 fsb fc0 sc0 lsa ws9">ejercer l<span class="_ _0"></span>a práctica <span class="_ _0"></span>en <span class="_ _0"></span>Puerto R<span class="_ _0"></span>ico o d<span class="_ _0"></span>e la j<span class="_ _0"></span>urisdicció<span class="_ _0"></span>n don<span class="_ _0"></span>de resid<span class="_ _0"></span>e el soli<span class="_ _0"></span>c<span class="_ _0"></span>itante.  Todo <span class="_ _0"></span>cer<span class="_ _0"></span>tificado d<span class="_ _0"></span>eberá <span class="_ _0"></span>tener <span class="_ _0"></span>no más <span class="_ _0"></span>de se<span class="_ _0"></span>is (6) <span class="_ _0"></span>meses <span class="_ _0"></span>de exp<span class="_ _0"></span>edido al mo<span class="_ _0"></span>m<span class="_ _0"></span>ento<span class="_ _0"></span> </div>
+                <div class="t m0 x35 h1e y99 ff1 fsb fc0 sc0 lsa ws9">de la solicitu<span class="_ _0"></span>d. </div>
+                <div class="t m0 x4 h1e y9a ff1 fsb fc0 sc0 lsa ws9">2. <span class="_ _0"></span>De <span class="_ _33"></span>no <span class="_ _33"></span>h<span class="_ _0"></span>acer <span class="_ _33"></span>entre<span class="_ _0"></span>ga <span class="_ _33"></span>del <span class="_ _33"></span>Certifi<span class="_ _0"></span>cado <span class="_ _33"></span>pa<span class="_ _0"></span>ra <span class="_ _33"></span>Licencia <span class="_ _33"></span>d<span class="_ _0"></span>e <span class="_ _0"></span>C<span class="_ _0"></span>on<span class="_ _0"></span>ducir <span class="_ _33"></span>a <span class="_ _33"></span>ser <span class="_ _33"></span>ren<span class="_ _0"></span>ovado, <span class="_ _33"></span>deb<span class="_ _0"></span>erá <span class="_ _33"></span>presenta<span class="_ _0"></span>r <span class="_ _33"></span>un <span class="_ _33"></span>docume<span class="_ _0"></span>nto <span class="_ _33"></span>acredi<span class="_ _0"></span>tativo <span class="_ _33"></span>d<span class="_ _0"></span>e <span class="_ _0"></span>i<span class="_ _0"></span>dentid<span class="_ _0"></span>ad <span class="_ _33"></span>con <span class="_ _33"></span>fo<span class="_ _0"></span>tografía,<span class="_ _0"></span> <span class="_ _33"></span>de <span class="_ _33"></span>ser<span class="_ _0"></span> </div>
+                <div class="t m0 x35 h1e y9b ff1 fsb fc0 sc0 lsa ws9">necesario f<span class="_ _0"></span>avor de ref<span class="_ _0"></span>erirse al For<span class="_ _0"></span>mul<span class="_ _0"></span>ario DTOP<span class="_ _0"></span>-DIS-261 <span class="_ _0"></span><span class="ff3 wsa">“</span>Docum<span class="_ _0"></span>entos Ac<span class="_ _0"></span>reditativos pa<span class="_ _0"></span>ra Es<span class="_ _0"></span>tablecer la Id<span class="_ _0"></span>en<span class="_ _0"></span>tidad con Fo<span class="_ _0"></span>tografía<span class="_ _0"></span><span class="ff3 wsa">”</span>. </div>
+                <div class="t m0 x4 h1e y9c ff1 fsb fc0 sc0 lsa ws9">3. <span class="_ _0"></span>Sello <span class="_ _0"></span>d<span class="_ _0"></span>e <span class="_ _0"></span>Rentas <span class="_ _0"></span>I<span class="_ _0"></span>nternas <span class="_ _0"></span>po<span class="_ _0"></span>r <span class="_ _0"></span>el <span class="_ _0"></span>valo<span class="_ _0"></span>r <span class="_ _0"></span>de d<span class="_ _0"></span>iez <span class="_ _0"></span>(10) <span class="_ _33"></span>dólares, <span class="_ _0"></span>si <span class="_ _0"></span>ti<span class="_ _0"></span>ene <span class="_ _0"></span>más <span class="_ _0"></span>d<span class="_ _0"></span>e <span class="_ _0"></span>trein<span class="_ _0"></span>ta (30)<span class="_ _0"></span> <span class="_ _0"></span>días <span class="_ _0"></span>de <span class="_ _0"></span>e<span class="_ _0"></span>xpirad<span class="_ _0"></span>a de<span class="_ _0"></span>berá <span class="_ _0"></span>in<span class="_ _0"></span>cluir <span class="_ _0"></span>un <span class="_ _33"></span>Se<span class="_ _3"></span>llo <span class="_ _0"></span>d<span class="_ _0"></span>e R<span class="_ _0"></span>entas <span class="_ _0"></span>I<span class="_ _0"></span>nternas<span class="_ _0"></span> <span class="_ _0"></span>por <span class="_ _0"></span>el <span class="_ _0"></span>valor <span class="_ _0"></span>d<span class="_ _0"></span>e<span class="_ _0"></span> </div>
+                <div class="t m0 x35 h1e y9d ff1 fsb fc0 sc0 lsa ws9">veinte (20) dól<span class="_ _0"></span>ares, adi<span class="_ _0"></span>cionales<span class="_ _0"></span>. </div>
+                <div class="t m0 x4 h1e y9e ff1 fsb fc0 sc0 lsa ws9">4. <span class="_ _0"></span>Sello <span class="_ _33"></span>de <span class="_ _33"></span>Rentas <span class="_ _0"></span>I<span class="_ _0"></span>nter<span class="_ _0"></span>nas <span class="_ _0"></span>por <span class="_ _33"></span>el <span class="_ _33"></span>valor <span class="_ _0"></span>d<span class="_ _0"></span>e <span class="_ _33"></span>un<span class="_ _3"></span> <span class="_ _33"></span>(1) <span class="_ _33"></span>dólar <span class="_ _33"></span>para <span class="_ _0"></span>cu<span class="_ _0"></span>mplir <span class="_ _33"></span>con <span class="_ _0"></span>la<span class="_ _0"></span> <span class="_ _33"></span>Ley<span class="_ _3"></span> <span class="_ _0"></span>N<span class="_ _0"></span>úm. <span class="_ _33"></span>296 <span class="_ _33"></span>de <span class="_ _0"></span>25 <span class="_ _33"></span>de <span class="_ _0"></span>d<span class="_ _0"></span>ici<span class="_ _0"></span>embre <span class="_ _33"></span>de <span class="_ _0"></span>2002<span class="_ _0"></span>, <span class="_ _33"></span><span class="ff3 wsa">“</span>Ley<span class="_ _3"></span> <span class="_ _33"></span>de <span class="_ _33"></span>Donaciones <span class="_ _33"></span>Anatómicas <span class="_ _33"></span>de <span class="_ _33"></span>Puert<span class="_ _0"></span>o<span class="_ _0"></span> </div>
+                <div class="t m0 x35 h1e y9f ff1 fsb fc0 sc0 lsa wsa">Rico<span class="ff3 lsb">”</span><span class="ws9">. <span class="ff2"> </span></span></div>
+                <div class="t m0 x4 h1e ya0 ff1 fsb fc0 sc0 lsa ws9">5. <span class="_ _0"></span>Si <span class="_ _0"></span>su<span class="_ _0"></span> <span class="_ _0"></span>cate<span class="_ _0"></span>goría <span class="_ _0"></span>es <span class="_ _33"></span>de <span class="_ _0"></span>Ve<span class="_ _0"></span>hículo <span class="_ _0"></span>P<span class="_ _0"></span>esado <span class="_ _0"></span>[<span class="_ _0"></span>Tipo <span class="_ _0"></span>1,<span class="_ _0"></span> <span class="_ _0"></span>Tipo <span class="_ _0"></span>2<span class="_ _0"></span>, <span class="_ _33"></span>Tipo 3<span class="_ _0"></span>, <span class="_ _0"></span>Ti<span class="_ _0"></span>po <span class="_ _0"></span>4],<span class="_ _0"></span> <span class="_ _0"></span>deber<span class="_ _0"></span>á <span class="_ _0"></span>cump<span class="_ _0"></span>limentar <span class="_ _33"></span>el Fo<span class="_ _0"></span>rmu<span class="_ _0"></span>lario <span class="_ _33"></span>DTOP-789 <span class="_ _33"></span><span class="ff3 wsa">“</span>Certificado <span class="_ _33"></span>del <span class="_ _0"></span>Of<span class="_ _0"></span>talmólog<span class="_ _0"></span>o <span class="_ _0"></span>u <span class="_ _0"></span>Op<span class="_ _0"></span>tómetr<span class="_ _0"></span>a<span class="ff3 lsb">”</span>.  </div>
+                <div class="t m0 x35 h1e ya1 ff1 fsb fc0 sc0 lsa ws9">Todo certific<span class="_ _0"></span>ado d<span class="_ _0"></span>eberá tener <span class="_ _0"></span>no más d<span class="_ _0"></span>e seis (6) <span class="_ _0"></span>meses <span class="_ _0"></span>de expedido <span class="_ _0"></span>al m<span class="_ _0"></span>omento de so<span class="_ _0"></span>meter l<span class="_ _0"></span>a solicitud<span class="_ _0"></span>.  </div>
+                <div class="t m0 x7f h1e ya2 ff2 fsb fc4 sc0 lsa ws9">DOCUMENTOS<span class="_ _0"></span> ADICION<span class="_ _0"></span>AL<span class="_ _0"></span>ES PAR<span class="_ _0"></span>A DUPLICA<span class="_ _0"></span>DO<span class="_ _0"></span> </div>
+                <div class="t m0 x4 h1e ya3 ff1 fsb fc0 sc0 lsa ws9">1. <span class="_ _0"></span>Decl<span class="_ _0"></span>aración <span class="_ _0"></span>J<span class="_ _0"></span>urada <span class="_ _0"></span>reci<span class="_ _0"></span>ente <span class="_ _33"></span>ante No<span class="_ _0"></span>tario <span class="_ _0"></span>P<span class="_ _0"></span>úblico, <span class="_ _0"></span>sol<span class="_ _0"></span>ici<span class="_ _0"></span>tando <span class="_ _0"></span>duplic<span class="_ _0"></span>ado <span class="_ _0"></span>e <span class="_ _33"></span>indicando <span class="_ _33"></span>el <span class="_ _0"></span>número <span class="_ _0"></span>d<span class="_ _0"></span>e <span class="_ _0"></span>Cer<span class="_ _0"></span>tificado <span class="_ _0"></span>d<span class="_ _0"></span>e <span class="_ _0"></span>Licenc<span class="_ _0"></span>ia d<span class="_ _0"></span>e <span class="_ _0"></span>Co<span class="_ _0"></span>nducir <span class="_ _0"></span>y <span class="_ _0"></span>l<span class="_ _0"></span>a <span class="_ _0"></span>cat<span class="_ _0"></span>egoría. <span class="_ _0"></span> <span class="_ _33"></span>En<span class="_ _3"></span> <span class="_ _0"></span>l<span class="_ _0"></span>a mis<span class="_ _0"></span>ma<span class="_ _0"></span> </div>
+                <div class="t m0 x35 h1e ya4 ff1 fsb fc0 sc0 lsa ws9">deberá <span class="_ _0"></span>hacer <span class="_ _0"></span>cons<span class="_ _0"></span>tar <span class="_ _0"></span>las <span class="_ _0"></span>circ<span class="_ _0"></span>unstancias <span class="_ _0"></span>d<span class="_ _0"></span>e <span class="_ _0"></span>la pér<span class="_ _0"></span>dida, <span class="_ _0"></span>des<span class="_ _0"></span>trucción <span class="_ _0"></span>o <span class="_ _0"></span>hur<span class="_ _0"></span>to <span class="_ _33"></span>e indicar <span class="_ _0"></span>que <span class="_ _0"></span>el <span class="_ _0"></span>mismo <span class="_ _33"></span>no h<span class="_ _0"></span>a <span class="_ _0"></span>sido <span class="_ _0"></span>suspe<span class="_ _0"></span>ndido o<span class="_ _0"></span> <span class="_ _0"></span>revoc<span class="_ _0"></span>ado <span class="_ _0"></span>por <span class="_ _0"></span>los <span class="_ _0"></span>Tribu<span class="_ _0"></span>nales <span class="_ _0"></span>u o<span class="_ _0"></span>cup<span class="_ _0"></span>ada </div>
+                <div class="t m0 x35 h1e ya5 ff1 fsb fc0 sc0 lsa ws9">por <span class="_ _33"></span>la <span class="_ _33"></span>Policí<span class="_ _0"></span>a <span class="_ _33"></span>de <span class="_ _33"></span>Puerto <span class="_ _33"></span>Ri<span class="_ _0"></span>co <span class="_ _33"></span>o <span class="_ _2e"></span>por <span class="_ _33"></span>cualquier <span class="_ _33"></span>Esta<span class="_ _0"></span>do <span class="_ _33"></span>con <span class="_ _33"></span>un <span class="_ _33"></span>a<span class="_ _0"></span>cuerdo <span class="_ _33"></span>de <span class="_ _2e"></span>reciproci<span class="_ _0"></span>dad <span class="_ _33"></span>y <span class="_ _33"></span>es <span class="_ _33"></span>impo<span class="_ _0"></span>rtante <span class="_ _33"></span>qu<span class="_ _0"></span>e <span class="_ _33"></span>en <span class="_ _33"></span>la <span class="_ _33"></span>misma <span class="_ _2e"></span>se <span class="_ _33"></span>indiq<span class="_ _0"></span>ue: <span class="_ _33"></span><span class="ff3 lsb">“</span>Relevamos<span class="_ _0"></span> <span class="_ _33"></span>a<span class="_ _0"></span> <span class="_ _33"></span>DTOP <span class="_ _33"></span>de <span class="_ _33"></span>toda<span class="_ _0"></span> </div>
+                <div class="t m0 x35 h1e ya6 ff1 fsb fc0 sc0 lsa ws9">responsabili<span class="_ _0"></span>dad <span class="_ _2e"></span>en <span class="_ _2e"></span>esta <span class="_ _2e"> </span>transa<span class="_ _0"></span>cción<span class="ff3 lsb">”</span>. <span class="_ _2e"></span> <span class="_ _2e"></span>Si <span class="_ _2e"></span>las <span class="_ _2e"></span>circunstancias <span class="_ _2e"> </span>son <span class="_ _2e"> </span>p<span class="_ _0"></span>érdida<span class="_ _0"></span> <span class="_ _2e"></span>o <span class="_ _2e"> </span>hurto <span class="_ _2e"></span>deberá <span class="_ _2e"></span>incluir <span class="_ _2e"> </span>el <span class="_ _2e"></span>núme<span class="_ _0"></span>ro <span class="_ _2e"> </span>de <span class="_ _2e"></span>querella <span class="_ _2e"> </span>de <span class="_ _2e"></span>l<span class="_ _0"></span>a <span class="_ _2e"></span>Policía. <span class="_ _2e"></span> <span class="_ _2e"></span>Si <span class="_ _2e"></span>es <span class="_ _2e"></span>de <span class="_ _33"></span>u<span class="_ _0"></span>n <span class="_ _2e"></span>estado <span class="_ _2e"> </span>de <span class="_ _2e"></span>los<span class="_ _0"></span> </div>
+                <div class="t m0 x35 h1e ya7 ff1 fsb fc0 sc0 lsa ws9">Estados <span class="_ _2f"> </span>Unidos<span class="_ _0"></span> <span class="_ _2f"> </span>de <span class="_ _2f"> </span>Amé<span class="_ _0"></span>rica, <span class="_ _2f"> </span>de<span class="_ _0"></span>berá <span class="_ _2f"> </span>ser <span class="_ _2f"> </span>ac<span class="_ _0"></span>eptada <span class="_ _2f"> </span>sie<span class="_ _0"></span>mpre <span class="_ _2f"> </span>que<span class="_ _0"></span> <span class="_ _2f"> </span>la <span class="_ _2f"> </span>auto<span class="_ _0"></span>rización <span class="_ _2f"> </span>del <span class="_ _2f"> </span>No<span class="_ _0"></span>tario <span class="_ _2f"> </span>fir<span class="_ _0"></span>mante, <span class="_ _38"> </span>no <span class="_ _2f"> </span>haya <span class="_ _2f"> </span>ex<span class="_ _0"></span>pirado <span class="_ _2f"> </span>a <span class="_ _2f"> </span>l<span class="_ _0"></span>a <span class="_ _2e"> </span>fe<span class="_ _0"></span>cha <span class="_ _2f"> </span>d<span class="_ _0"></span>e <span class="_ _2e"> </span>so<span class="_ _0"></span>met<span class="_ _0"></span>er <span class="_ _2f"> </span>la <span class="_ _2f"> </span>solici<span class="_ _0"></span>tud <span class="_ _2f"> </span>de<span class="_ _0"></span> </div>
+                <div class="t m0 x35 h1e ya8 ff1 fsb fc0 sc0 lsa wsa">duplicado.<span class="_ _0"></span><span class="ff2 ws9"> </span></div>
+                <div class="t m0 x4 h1e ya9 ff1 fsb fc0 sc0 lsa ws9">2. <span class="_ _0"></span>Prese<span class="_ _0"></span>ntar <span class="_ _0"></span>un do<span class="_ _0"></span>cum<span class="_ _0"></span>ento a<span class="_ _0"></span>credit<span class="_ _0"></span>ativo <span class="_ _0"></span>de <span class="_ _0"></span>identidad <span class="_ _0"></span>co<span class="_ _0"></span>n <span class="_ _0"></span>fotografía, <span class="_ _0"></span>d<span class="_ _0"></span>e s<span class="_ _0"></span>er necesario <span class="_ _0"></span>fa<span class="_ _0"></span>vor <span class="_ _0"></span>de <span class="_ _0"></span>referi<span class="_ _0"></span>rse <span class="_ _0"></span>al Form<span class="_ _0"></span>ula<span class="_ _0"></span>rio <span class="_ _0"></span>DTOP-DI<span class="_ _0"></span>S-261 <span class="_ _0"></span><span class="ff3 wsa">“</span>Docum<span class="_ _0"></span>entos <span class="_ _0"></span>A<span class="_ _0"></span>creditativos <span class="_ _0"></span>par<span class="_ _0"></span>a<span class="_ _0"></span> </div>
+                <div class="t m0 x35 h1e yaa ff1 fsb fc0 sc0 lsa ws9">Establecer l<span class="_ _0"></span>a Iden<span class="_ _0"></span>tidad con Fo<span class="_ _0"></span>tografía<span class="_ _0"></span><span class="ff3 wsa">”</span>. </div>
+                <div class="t m0 x4 h1e yab ff1 fsb fc0 sc0 lsa ws9">3. <span class="_ _0"></span>Si <span class="_ _33"></span>han <span class="_ _33"></span>transcur<span class="_ _0"></span>rido <span class="_ _0"></span>m<span class="_ _0"></span>ás <span class="_ _33"></span>de <span class="_ _33"></span>dos <span class="_ _33"></span>(2) <span class="_ _33"></span>años <span class="_ _33"></span>de <span class="_ _0"></span>l<span class="_ _0"></span>a <span class="_ _33"></span>fecha <span class="_ _33"></span>de <span class="_ _0"></span>l<span class="_ _0"></span>a <span class="_ _33"></span>Certific<span class="_ _0"></span>ación <span class="_ _33"></span>Médic<span class="_ _0"></span>a <span class="_ _0"></span>a<span class="_ _0"></span>nterior<span class="_ _0"></span>, <span class="_ _0"></span>de<span class="_ _0"></span>berá <span class="_ _33"></span>some<span class="_ _0"></span>ter <span class="_ _33"></span>el <span class="_ _0"></span>Fo<span class="_ _0"></span>rmulario <span class="_ _33"></span>D<span class="_ _0"></span>TOP-DI<span class="_ _0"></span>S-260 <span class="_ _33"></span><span class="ff3 wsa">“</span>Certific<span class="_ _0"></span>ación <span class="_ _33"></span>Médica <span class="_ _0"></span>p<span class="_ _0"></span>ar<span class="_ _0"></span>a </div>
+                <div class="t m0 x35 h1e yac ff1 fsb fc0 sc0 lsa ws9">Certificado <span class="_ _0"></span>d<span class="_ _0"></span>e <span class="_ _0"></span>Licenci<span class="_ _0"></span>a <span class="_ _0"></span>de C<span class="_ _0"></span>onduc<span class="_ _0"></span>ir<span class="ff3 lsb">”</span>, la <span class="_ _33"></span>cual <span class="_ _0"></span>debe <span class="_ _0"></span>se<span class="_ _0"></span>r <span class="_ _0"></span>cumplim<span class="_ _0"></span>entad<span class="_ _0"></span>a por<span class="_ _0"></span> <span class="_ _0"></span>un <span class="_ _0"></span>doc<span class="_ _0"></span>tor e<span class="_ _0"></span>n <span class="_ _0"></span>me<span class="_ _0"></span>dicina <span class="_ _0"></span>auto<span class="_ _0"></span>rizado <span class="_ _33"></span>a ejerce<span class="_ _0"></span>r <span class="_ _0"></span>la <span class="_ _0"></span>prác<span class="_ _0"></span>tica <span class="_ _0"></span>en <span class="_ _0"></span>Pue<span class="_ _0"></span>rto R<span class="_ _0"></span>ico. <span class="_ _0"></span> <span class="_ _33"></span>Todo <span class="_ _0"></span>certificad<span class="_ _0"></span>o<span class="_ _0"></span> </div>
+                <div class="t m0 x35 h1e yad ff1 fsb fc0 sc0 lsa ws9">deberá ten<span class="_ _0"></span>er no más d<span class="_ _0"></span>e seis (6) <span class="_ _0"></span>mes<span class="_ _0"></span>es de exp<span class="_ _0"></span>edido al mo<span class="_ _0"></span>mento de so<span class="_ _0"></span>me<span class="_ _0"></span>ter la soli<span class="_ _0"></span>citud<span class="_ _0"></span>. <span class="_ _39"> </span> </div>
+                <div class="t m0 x4 h1e yae ff1 fsb fc0 sc0 lsa ws9">4. <span class="_ _0"></span>Si <span class="_ _2f"> </span>su <span class="_ _2f"> </span>categoría <span class="_ _2f"> </span>es <span class="_ _2e"> </span>de <span class="_ _2f"> </span>Vehíc<span class="_ _0"></span>ulo <span class="_ _2e"> </span>Pesa<span class="_ _0"></span>do <span class="_ _2f"> </span>[Tipo <span class="_ _2f"> </span>1, <span class="_ _2e"></span>Tipo <span class="_ _2f"> </span>2, <span class="_ _2e"> </span>T<span class="_ _0"></span>ipo <span class="_ _2f"> </span>3, <span class="_ _2e"> </span>Tipo <span class="_ _2f"> </span>4<span class="_ _0"></span>] <span class="_ _2f"> </span>y <span class="_ _2e"></span>han <span class="_ _2e"> </span>trans<span class="_ _0"></span>currido <span class="_ _2f"> </span>más <span class="_ _2f"> </span>de <span class="_ _2f"> </span>seis <span class="_ _2e"> </span>(6)<span class="_ _0"></span> <span class="_ _2f"> </span>meses <span class="_ _2e"> </span>des<span class="_ _0"></span>de <span class="_ _2e"> </span>la <span class="_ _2f"> </span>exp<span class="_ _0"></span>edición <span class="_ _2f"> </span>de <span class="_ _2e"></span>su<span class="_ _0"></span> <span class="_ _2f"> </span>Certificado <span class="_ _2e"> </span>de<span class="_ _0"></span>l<span class="_ _0"></span> </div>
+                <div class="t m0 x35 h1e yaf ff1 fsb fc0 sc0 lsa ws9">Oftalmólogo<span class="_ _0"></span> <span class="_ _33"></span>u <span class="_ _33"></span>Optóm<span class="_ _0"></span>etra <span class="_ _33"></span>an<span class="_ _0"></span>terior, <span class="_ _33"></span>deber<span class="_ _0"></span>á <span class="_ _33"></span>cumplim<span class="_ _0"></span>entar <span class="_ _33"></span>el <span class="_ _33"></span>For<span class="_ _0"></span>mulario <span class="_ _2e"></span>DTOP-789 <span class="_ _33"></span><span class="ff3 wsa">“</span>C<span class="_ _0"></span>ertificado<span class="_ _0"></span> <span class="_ _33"></span>del <span class="_ _33"></span>Oftalmó<span class="_ _0"></span>logo <span class="_ _33"></span>u <span class="_ _33"></span>Optó<span class="_ _0"></span>me<span class="_ _0"></span>tra<span class="ff3 wsa">”</span>. <span class="_ _33"></span> <span class="_ _33"></span>Todo <span class="_ _33"></span>cer<span class="_ _0"></span>tificado <span class="_ _2e"> </span>deberá <span class="_ _33"></span>t<span class="_ _0"></span>ener <span class="_ _33"></span>no<span class="_ _0"></span> </div>
+                <div class="t m0 x35 h1e yb0 ff1 fsb fc0 sc0 lsa ws9">más de seis (6) <span class="_ _0"></span>m<span class="_ _0"></span>eses de <span class="_ _0"></span>expedido <span class="_ _0"></span>al momento d<span class="_ _0"></span>e somet<span class="_ _0"></span>er la soli<span class="_ _0"></span>citud<span class="_ _0"></span>.  </div>
+                <div class="t m0 x4 h1e yb1 ff1 fsb fc0 sc0 lsa ws9">5. <span class="_ _0"></span>Sello d<span class="_ _0"></span>e Rentas I<span class="_ _0"></span>nternas por <span class="_ _0"></span>el v<span class="_ _0"></span>alor de <span class="_ _0"></span>cinco (5)<span class="_ _0"></span> dólares.<span class="_ _0"></span> </div>
+                <div class="t m0 x80 h1e yb2 ff2 fsb fc4 sc0 lsa ws9">DOCUMENTOS<span class="_ _0"></span> ADICION<span class="_ _0"></span>AL<span class="_ _0"></span>ES PAR<span class="_ _0"></span>A CAMBIO D<span class="_ _0"></span>E NOM<span class="_ _0"></span>BRE<span class="_ _0"></span><span class="ff1"> </span></div>
+                <div class="t m0 x4 h1e yb3 ff1 fsb fc0 sc0 lsa ws9">1. <span class="_ _0"></span>Decl<span class="_ _0"></span>aración <span class="_ _0"></span>Jurad<span class="_ _0"></span>a <span class="_ _0"></span>firmada <span class="_ _0"></span>an<span class="_ _0"></span>te No<span class="_ _0"></span>tario <span class="_ _0"></span>Público <span class="_ _0"></span>ha<span class="_ _0"></span>ciendo <span class="_ _0"></span>cons<span class="_ _0"></span>tar l<span class="_ _0"></span>as <span class="_ _0"></span>raz<span class="_ _0"></span>ones <span class="_ _0"></span>que <span class="_ _0"></span>motivan <span class="_ _0"></span>su <span class="_ _0"></span>p<span class="_ _0"></span>etición <span class="_ _0"></span>y <span class="_ _0"></span>es <span class="_ _0"></span>impo<span class="_ _0"></span>rtante <span class="_ _0"></span>qu<span class="_ _0"></span>e en <span class="_ _0"></span>la <span class="_ _0"></span>mism<span class="_ _0"></span>a <span class="_ _0"></span>se <span class="_ _0"></span>indiqu<span class="_ _0"></span>e: <span class="_ _0"></span><span class="ff3 wsa">“</span>Relevamos <span class="_ _0"></span>a<span class="_ _0"></span> </div>
+                <div class="t m0 x35 h1e yb4 ff1 fsb fc0 sc0 lsa ws9">DTOP de to<span class="_ _0"></span>da respons<span class="_ _0"></span>abilidad e<span class="_ _0"></span>n esta tr<span class="_ _0"></span>ansacció<span class="_ _0"></span>n<span class="ff3 lsb">”</span>. </div>
+                <div class="t m0 x4 h1e yb5 ff1 fsb fc0 sc0 lsa ws9">2. <span class="_ _0"></span>Uno de los<span class="_ _0"></span> sig<span class="_ _0"></span>uientes <span class="_ _0"></span>docume<span class="_ _0"></span>ntos: Escrit<span class="_ _0"></span>ura de R<span class="_ _0"></span>econocimi<span class="_ _0"></span>ento, S<span class="_ _0"></span>entenci<span class="_ _0"></span>a o Resolu<span class="_ _0"></span>ción de un T<span class="_ _0"></span>ribunal<span class="_ _0"></span>, Certificación d<span class="_ _0"></span>e Naci<span class="_ _0"></span>miento<span class="_ _0"></span>. </div>
+                <div class="t m0 x4 h1e yb6 ff1 fsb fc0 sc0 lsa ws9">3. <span class="_ _0"></span>Sello d<span class="_ _0"></span>e Rentas I<span class="_ _0"></span>nternas por <span class="_ _0"></span>el v<span class="_ _0"></span>alor de <span class="_ _0"></span>cinco (5)<span class="_ _0"></span> dólares.<span class="_ _0"></span> </div>
+                <div class="t m0 x4 h1e yb7 ff1 fsb fc0 sc0 lsa ws9">4. <span class="_ _0"></span>Entreg<span class="_ _0"></span>ar el Ce<span class="_ _0"></span>rtificado d<span class="_ _0"></span>e Lice<span class="_ _0"></span>ncia de Cond<span class="_ _0"></span>ucir que pos<span class="_ _0"></span>ee e<span class="_ _0"></span>l solicitan<span class="_ _0"></span>te.<span class="_ _0"></span> </div>
+                <div class="t m0 x4 h1e yb8 ff1 fsb fc0 sc0 lsa ws9">5. <span class="_ _0"></span>Si <span class="_ _33"></span>s<span class="_ _0"></span>u <span class="_ _2e"></span>categoría<span class="_ _0"></span> <span class="_ _33"></span>es<span class="_ _0"></span> <span class="_ _33"></span>de<span class="_ _0"></span> <span class="_ _33"></span>Vehí<span class="_ _0"></span>culo <span class="_ _2e"></span>Pesado <span class="_ _2e"> </span>y <span class="_ _2e"></span>han <span class="_ _33"></span>t<span class="_ _0"></span>ranscu<span class="_ _0"></span>rrido <span class="_ _2e"></span>más <span class="_ _2e"></span>de <span class="_ _33"></span>s<span class="_ _0"></span>eis <span class="_ _2e"></span>(6) <span class="_ _33"></span>meses<span class="_ _0"></span> <span class="_ _33"></span>d<span class="_ _0"></span>esde <span class="_ _2e"></span>la <span class="_ _2e"></span>expedició<span class="_ _0"></span>n <span class="_ _33"></span>d<span class="_ _0"></span>e <span class="_ _33"></span>su<span class="_ _0"></span> <span class="_ _33"></span>Cer<span class="_ _0"></span>tificado <span class="_ _2e"> </span>del <span class="_ _2e"></span>Oftalmólo<span class="_ _0"></span>go <span class="_ _2e"></span>u <span class="_ _2e"></span>Optómetra <span class="_ _2e"> </span>anterio<span class="_ _0"></span>r<span class="_ _0"></span>, </div>
+                <div class="t m0 x35 h1e yb9 ff1 fsb fc0 sc0 lsa ws9">deberá <span class="_ _0"></span>cumplim<span class="_ _0"></span>entar <span class="_ _0"></span>el Form<span class="_ _0"></span>ulario<span class="_ _0"></span> DTO<span class="_ _0"></span>P-789 <span class="_ _0"></span><span class="ff3 wsa">“</span>Certific<span class="_ _0"></span>ado <span class="_ _0"></span>del Ofta<span class="_ _0"></span>lmólog<span class="_ _0"></span>o u Op<span class="_ _0"></span>tóme<span class="_ _0"></span>tra<span class="ff3 lsb">”</span>.  To<span class="_ _0"></span>do c<span class="_ _0"></span>ertifica<span class="_ _0"></span>do d<span class="_ _0"></span>eberá <span class="_ _0"></span>tener no <span class="_ _33"></span>más de s<span class="_ _0"></span>eis (6)<span class="_ _0"></span> m<span class="_ _0"></span>eses <span class="_ _0"></span>de exp<span class="_ _0"></span>edido <span class="_ _0"></span>al<span class="_ _0"></span> </div>
+                <div class="t m0 x35 h1e yba ff1 fsb fc0 sc0 lsa ws9">momento de l<span class="_ _0"></span>a so<span class="_ _0"></span>licitud.  </div>
+                <div class="t m0 x81 h1e ybb ff2 fsb fc4 sc0 lsa ws9">DOCUMENTOS<span class="_ _0"></span> ADICION<span class="_ _0"></span>AL<span class="_ _0"></span>ES PAR<span class="_ _0"></span>A CAMBIO D<span class="_ _0"></span>E DIR<span class="_ _0"></span>ECCIÓN O D<span class="_ _0"></span>ETER<span class="_ _0"></span>IORO<span class="ff1"> </span></div>
+                <div class="t m0 x4 h1e ybc ff1 fsb fc0 sc0 lsa ws9">1. <span class="_ _0"></span>Formul<span class="_ _0"></span>ario DTO<span class="_ _0"></span>P-665 <span class="ff3 wsa">“</span>No<span class="_ _0"></span>tificació<span class="_ _0"></span>n de Cam<span class="_ _0"></span>bio de Di<span class="_ _0"></span>rección<span class="_ _0"></span><span class="ff3 wsa">”</span>.  </div>
+                <div class="t m0 x4 h1e ybd ff1 fsb fc0 sc0 lsa ws9">2. <span class="_ _0"></span>Entreg<span class="_ _0"></span>ar el Ce<span class="_ _0"></span>rtificado d<span class="_ _0"></span>e Lice<span class="_ _0"></span>ncia de Cond<span class="_ _0"></span>ucir que pos<span class="_ _0"></span>ee e<span class="_ _0"></span>l solicitan<span class="_ _0"></span>te.<span class="_ _0"></span> </div>
+                <div class="t m0 x4 h1e ybe ff1 fsb fc0 sc0 lsa ws9"> </div>
+                <div class="t m0 x82 h1e ybf ff1 fsb fc4 sc0 lsc ws9"> <span class="ff2 lsa">PARA USO OFICI<span class="_ _0"></span>AL S<span class="_ _0"></span>OLAMENTE<span class="ff1"> <span class="_ _0"></span> </span></span></div>
+                <div class="t m0 x4 h1f yc0 ff1 fsc fc0 sc0 lsa ws9">Inform<span class="_ _0"></span>ación <span class="_ _0"></span>del Cert<span class="_ _0"></span>ifica<span class="_ _0"></span>do de <span class="_ _0"></span>Licenci<span class="_ _0"></span>a <span class="_ _0"></span>de Conducir<span class="_ _0"></span>, <span class="_ _0"></span> </div>
+                <div class="t m0 x43 h1f yc1 ff1 fsc fc0 sc0 lsa ws9">Número d<span class="_ _0"></span>e C<span class="_ _0"></span>ertific<span class="_ _0"></span>ado d<span class="_ _0"></span>e Lic<span class="_ _0"></span>encia<span class="_ _0"></span> <span class="_ _3a"> </span> <span class="_ _3b"> </span> <span class="_ _2"> </span>Restricciones <span class="_ _0"></span>Físic<span class="_ _0"></span>as<span class="_ _0"></span> <span class="_ _1a"> </span> </div>
+                <div class="t m0 x43 h1f yc2 ff1 fsc fc0 sc0 lsa ws9">Fecha d<span class="_ _0"></span>e exp<span class="_ _0"></span>edición<span class="_ _0"></span> <span class="_ _3c"> </span> <span class="_ _3b"> </span> <span class="_ _2"> </span>Fe<span class="_ _3"></span>ch<span class="_ _0"></span>a de <span class="_ _0"></span>expira<span class="_ _0"></span>ción<span class="_ _0"></span> <span class="_ _3d"> </span> </div>
+                <div class="t m0 x4 h1f yc3 ff1 fsc fc0 sc0 lsa ws9"> </div>
+                <div class="t m0 x4 h1f yc4 ff1 fsc fc0 sc0 lsa ws9"> </div>
+                <div class="t m0 x4 h1f yc5 ff1 fsc fc0 sc0 lsa ws9">Nombr<span class="_ _0"></span>e del fun<span class="_ _0"></span>cion<span class="_ _0"></span>ario _<span class="_ _0"></span>______<span class="_ _0"></span>___<span class="_ _0"></span>______<span class="_ _0"></span>___<span class="_ _0"></span>______<span class="_ _0"></span>___<span class="_ _0"></span>_____<span class="_ _0"></span>_ <span class="_ _2f"> </span> <span class="_ _3e"> </span>Firma d<span class="_ _0"></span>el funci<span class="_ _0"></span>onar<span class="_ _0"></span>io ____<span class="_ _0"></span>___<span class="_ _0"></span>______<span class="_ _0"></span>___<span class="_ _0"></span>______<span class="_ _0"></span>___<span class="_ _0"></span>______<span class="_ _0"></span>_<span class="_ _0"></span> </div>
+                <div class="t m0 x4 h4 yc6 ff1 fs2 fc0 sc0 lsa ws9"> </div>
+                <div class="t m0 x4 h1f yc7 ff1 fsc fc0 sc0 lsa ws9">CESCO<span class="_ _0"></span> de __<span class="_ _0"></span>______<span class="_ _0"></span>____<span class="_ _0"></span>______<span class="_ _0"></span>___<span class="_ _0"></span>______<span class="_ _0"></span>______<span class="_ _0"></span>___<span class="_ _0"></span>______<span class="_ _0"></span>_<span class="_ _0"></span> <span class="_ _3f"> </span>Fecha _<span class="_ _0"></span>_______<span class="_ _0"></span>___<span class="_ _0"></span>______<span class="_ _0"></span>___<span class="_ _0"></span>______<span class="_ _0"></span>___<span class="_ _0"></span>______<span class="_ _0"></span>______<span class="_ _0"></span>___<span class="_ _0"></span>__<span class="fs0"> </span></div>
+                <div class="t m0 x83 h2 yc8 ff1 fs0 fc0 sc0 lsa ws9"> </div>
+                <div class="t m0 x4 h1e yc9 ff2 fsb fc0 sc0 lsa ws9"> </div>
+            </div>
+            <div class="pi" data-data='{"ctm":[1.000000,0.000000,0.000000,1.000000,0.000000,0.000000]}'></div>
+        </div>
+    </div>
+<div class="loading-indicator">
+        <img alt="" src="https://tulicenciapr.com/admin/imagen/formRenov.png" />
+</div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        
+</body>
+</html>
+
+<script>
+
+    (function () {
+
+        var pdf2htmlEX = window.pdf2htmlEX = window.pdf2htmlEX || {}, CSS_CLASS_NAMES = { page_frame: "pf", page_content_box: "pc", page_data: "pi", background_image: "bi", link: "l", input_radio: "ir", __dummy__: "no comma" }, DEFAULT_CONFIG = { container_id: "page-container", sidebar_id: "sidebar", outline_id: "outline", loading_indicator_cls: "loading-indicator", preload_pages: 3, render_timeout: 100, scale_step: 0.9, key_handler: !0, hashchange_handler: !0, view_history_handler: !0, __dummy__: "no comma" }, EPS = 1E-6;
+        function invert(a) { var b = a[0] * a[3] - a[1] * a[2]; return [a[3] / b, -a[1] / b, -a[2] / b, a[0] / b, (a[2] * a[5] - a[3] * a[4]) / b, (a[1] * a[4] - a[0] * a[5]) / b] } function transform(a, b) { return [a[0] * b[0] + a[2] * b[1] + a[4], a[1] * b[0] + a[3] * b[1] + a[5]] } function get_page_number(a) { return parseInt(a.getAttribute("data-page-no"), 16) } function disable_dragstart(a) { for (var b = 0, c = a.length; b < c; ++b)a[b].addEventListener("dragstart", function () { return !1 }, !1) }
+        function clone_and_extend_objs(a) { for (var b = {}, c = 0, e = arguments.length; c < e; ++c) { var h = arguments[c], d; for (d in h) h.hasOwnProperty(d) && (b[d] = h[d]) } return b }
+        function Page(a) { if (a) { this.shown = this.loaded = !1; this.page = a; this.num = get_page_number(a); this.original_height = a.clientHeight; this.original_width = a.clientWidth; var b = a.getElementsByClassName(CSS_CLASS_NAMES.page_content_box)[0]; b && (this.content_box = b, this.original_scale = this.cur_scale = this.original_height / b.clientHeight, this.page_data = JSON.parse(a.getElementsByClassName(CSS_CLASS_NAMES.page_data)[0].getAttribute("data-data")), this.ctm = this.page_data.ctm, this.ictm = invert(this.ctm), this.loaded = !0) } }
+        Page.prototype = {
+            hide: function () { this.loaded && this.shown && (this.content_box.classList.remove("opened"), this.shown = !1) }, show: function () { this.loaded && !this.shown && (this.content_box.classList.add("opened"), this.shown = !0) }, rescale: function (a) {
+                this.cur_scale = 0 === a ? this.original_scale : a; this.loaded && (a = this.content_box.style, a.msTransform = a.webkitTransform = a.transform = "scale(" + this.cur_scale.toFixed(3) + ")"); a = this.page.style; a.height = this.original_height * this.cur_scale + "px"; a.width = this.original_width * this.cur_scale +
+                    "px"
+            }, view_position: function () { var a = this.page, b = a.parentNode; return [b.scrollLeft - a.offsetLeft - a.clientLeft, b.scrollTop - a.offsetTop - a.clientTop] }, height: function () { return this.page.clientHeight }, width: function () { return this.page.clientWidth }
+        }; function Viewer(a) { this.config = clone_and_extend_objs(DEFAULT_CONFIG, 0 < arguments.length ? a : {}); this.pages_loading = []; this.init_before_loading_content(); var b = this; document.addEventListener("DOMContentLoaded", function () { b.init_after_loading_content() }, !1) }
+        Viewer.prototype = {
+            scale: 1, cur_page_idx: 0, first_page_idx: 0, init_before_loading_content: function () { this.pre_hide_pages() }, initialize_radio_button: function () { for (var a = document.getElementsByClassName(CSS_CLASS_NAMES.input_radio), b = 0; b < a.length; b++)a[b].addEventListener("click", function () { this.classList.toggle("checked") }) }, init_after_loading_content: function () {
+                this.sidebar = document.getElementById(this.config.sidebar_id); this.outline = document.getElementById(this.config.outline_id); this.container = document.getElementById(this.config.container_id);
+                this.loading_indicator = document.getElementsByClassName(this.config.loading_indicator_cls)[0]; for (var a = !0, b = this.outline.childNodes, c = 0, e = b.length; c < e; ++c)if ("ul" === b[c].nodeName.toLowerCase()) { a = !1; break } a || this.sidebar.classList.add("opened"); this.find_pages(); if (0 != this.pages.length) {
+                    disable_dragstart(document.getElementsByClassName(CSS_CLASS_NAMES.background_image)); this.config.key_handler && this.register_key_handler(); var h = this; this.config.hashchange_handler && window.addEventListener("hashchange",
+                        function (a) { h.navigate_to_dest(document.location.hash.substring(1)) }, !1); this.config.view_history_handler && window.addEventListener("popstate", function (a) { a.state && h.navigate_to_dest(a.state) }, !1); this.container.addEventListener("scroll", function () { h.update_page_idx(); h.schedule_render(!0) }, !1);[this.container, this.outline].forEach(function (a) { a.addEventListener("click", h.link_handler.bind(h), !1) }); this.initialize_radio_button(); this.render()
+                }
+            }, find_pages: function () {
+                for (var a = [], b = {}, c = this.container.childNodes,
+                    e = 0, h = c.length; e < h; ++e) { var d = c[e]; d.nodeType === Node.ELEMENT_NODE && d.classList.contains(CSS_CLASS_NAMES.page_frame) && (d = new Page(d), a.push(d), b[d.num] = a.length - 1) } this.pages = a; this.page_map = b
+            }, load_page: function (a, b, c) {
+                var e = this.pages; if (!(a >= e.length || (e = e[a], e.loaded || this.pages_loading[a]))) {
+                    var e = e.page, h = e.getAttribute("data-page-url"); if (h) {
+                        this.pages_loading[a] = !0; var d = e.getElementsByClassName(this.config.loading_indicator_cls)[0]; "undefined" === typeof d && (d = this.loading_indicator.cloneNode(!0),
+                            d.classList.add("active"), e.appendChild(d)); var f = this, g = new XMLHttpRequest; g.open("GET", h, !0); g.onload = function () {
+                                if (200 === g.status || 0 === g.status) {
+                                    var b = document.createElement("div"); b.innerHTML = g.responseText; for (var d = null, b = b.childNodes, e = 0, h = b.length; e < h; ++e) { var p = b[e]; if (p.nodeType === Node.ELEMENT_NODE && p.classList.contains(CSS_CLASS_NAMES.page_frame)) { d = p; break } } b = f.pages[a]; f.container.replaceChild(d, b.page); b = new Page(d); f.pages[a] = b; b.hide(); b.rescale(f.scale); disable_dragstart(d.getElementsByClassName(CSS_CLASS_NAMES.background_image));
+                                    f.schedule_render(!1); c && c(b)
+                                } delete f.pages_loading[a]
+                            }; g.send(null)
+                    } void 0 === b && (b = this.config.preload_pages); 0 < --b && (f = this, setTimeout(function () { f.load_page(a + 1, b) }, 0))
+                }
+            }, pre_hide_pages: function () { var a = "media screen{." + CSS_CLASS_NAMES.page_content_box + "{display:none;}}", b = document.createElement("style"); b.styleSheet ? b.styleSheet.cssText = a : b.appendChild(document.createTextNode(a)); document.head.appendChild(b) }, render: function () {
+                for (var a = this.container, b = a.scrollTop, c = a.clientHeight, a = b - c, b =
+                    b + c + c, c = this.pages, e = 0, h = c.length; e < h; ++e) { var d = c[e], f = d.page, g = f.offsetTop + f.clientTop, f = g + f.clientHeight; g <= b && f >= a ? d.loaded ? d.show() : this.load_page(e) : d.hide() }
+            }, update_page_idx: function () {
+                var a = this.pages, b = a.length; if (!(2 > b)) {
+                    for (var c = this.container, e = c.scrollTop, c = e + c.clientHeight, h = -1, d = b, f = d - h; 1 < f;) { var g = h + Math.floor(f / 2), f = a[g].page; f.offsetTop + f.clientTop + f.clientHeight >= e ? d = g : h = g; f = d - h } this.first_page_idx = d; for (var g = h = this.cur_page_idx, k = 0; d < b; ++d) {
+                        var f = a[d].page, l = f.offsetTop + f.clientTop,
+                        f = f.clientHeight; if (l > c) break; f = (Math.min(c, l + f) - Math.max(e, l)) / f; if (d === h && Math.abs(f - 1) <= EPS) { g = h; break } f > k && (k = f, g = d)
+                    } this.cur_page_idx = g
+                }
+            }, schedule_render: function (a) { if (void 0 !== this.render_timer) { if (!a) return; clearTimeout(this.render_timer) } var b = this; this.render_timer = setTimeout(function () { delete b.render_timer; b.render() }, this.config.render_timeout) }, register_key_handler: function () {
+                var a = this; window.addEventListener("DOMMouseScroll", function (b) {
+                    if (b.ctrlKey) {
+                        b.preventDefault(); var c = a.container,
+                            e = c.getBoundingClientRect(), c = [b.clientX - e.left - c.clientLeft, b.clientY - e.top - c.clientTop]; a.rescale(Math.pow(a.config.scale_step, b.detail), !0, c)
+                    }
+                }, !1); window.addEventListener("keydown", function (b) {
+                    var c = !1, e = b.ctrlKey || b.metaKey, h = b.altKey; switch (b.keyCode) {
+                        case 61: case 107: case 187: e && (a.rescale(1 / a.config.scale_step, !0), c = !0); break; case 173: case 109: case 189: e && (a.rescale(a.config.scale_step, !0), c = !0); break; case 48: e && (a.rescale(0, !1), c = !0); break; case 33: h ? a.scroll_to(a.cur_page_idx - 1) : a.container.scrollTop -=
+                            a.container.clientHeight; c = !0; break; case 34: h ? a.scroll_to(a.cur_page_idx + 1) : a.container.scrollTop += a.container.clientHeight; c = !0; break; case 35: a.container.scrollTop = a.container.scrollHeight; c = !0; break; case 36: a.container.scrollTop = 0, c = !0
+                    }c && b.preventDefault()
+                }, !1)
+            }, rescale: function (a, b, c) {
+                var e = this.scale; this.scale = a = 0 === a ? 1 : b ? e * a : a; c || (c = [0, 0]); b = this.container; c[0] += b.scrollLeft; c[1] += b.scrollTop; for (var h = this.pages, d = h.length, f = this.first_page_idx; f < d; ++f) {
+                    var g = h[f].page; if (g.offsetTop + g.clientTop >=
+                        c[1]) break
+                } g = f - 1; 0 > g && (g = 0); var g = h[g].page, k = g.clientWidth, f = g.clientHeight, l = g.offsetLeft + g.clientLeft, m = c[0] - l; 0 > m ? m = 0 : m > k && (m = k); k = g.offsetTop + g.clientTop; c = c[1] - k; 0 > c ? c = 0 : c > f && (c = f); for (f = 0; f < d; ++f)h[f].rescale(a); b.scrollLeft += m / e * a + g.offsetLeft + g.clientLeft - m - l; b.scrollTop += c / e * a + g.offsetTop + g.clientTop - c - k; this.schedule_render(!0)
+            }, fit_width: function () { var a = this.cur_page_idx; this.rescale(this.container.clientWidth / this.pages[a].width(), !0); this.scroll_to(a) }, fit_height: function () {
+                var a = this.cur_page_idx;
+                this.rescale(this.container.clientHeight / this.pages[a].height(), !0); this.scroll_to(a)
+            }, get_containing_page: function (a) { for (; a;) { if (a.nodeType === Node.ELEMENT_NODE && a.classList.contains(CSS_CLASS_NAMES.page_frame)) { a = get_page_number(a); var b = this.page_map; return a in b ? this.pages[b[a]] : null } a = a.parentNode } return null }, link_handler: function (a) {
+                var b = a.target, c = b.getAttribute("data-dest-detail"); if (c) {
+                    if (this.config.view_history_handler) try {
+                        var e = this.get_current_view_hash(); window.history.replaceState(e,
+                            "", "#" + e); window.history.pushState(c, "", "#" + c)
+                    } catch (h) { } this.navigate_to_dest(c, this.get_containing_page(b)); a.preventDefault()
+                }
+            }, navigate_to_dest: function (a, b) {
+                try { var c = JSON.parse(a) } catch (e) { return } if (c instanceof Array) {
+                    var h = c[0], d = this.page_map; if (h in d) {
+                        for (var f = d[h], h = this.pages[f], d = 2, g = c.length; d < g; ++d) { var k = c[d]; if (null !== k && "number" !== typeof k) return } for (; 6 > c.length;)c.push(null); var g = b || this.pages[this.cur_page_idx], d = g.view_position(), d = transform(g.ictm, [d[0], g.height() - d[1]]),
+                            g = this.scale, l = [0, 0], m = !0, k = !1, n = this.scale; switch (c[1]) { case "XYZ": l = [null === c[2] ? d[0] : c[2] * n, null === c[3] ? d[1] : c[3] * n]; g = c[4]; if (null === g || 0 === g) g = this.scale; k = !0; break; case "Fit": case "FitB": l = [0, 0]; k = !0; break; case "FitH": case "FitBH": l = [0, null === c[2] ? d[1] : c[2] * n]; k = !0; break; case "FitV": case "FitBV": l = [null === c[2] ? d[0] : c[2] * n, 0]; k = !0; break; case "FitR": l = [c[2] * n, c[5] * n], m = !1, k = !0 }if (k) {
+                                this.rescale(g, !1); var p = this, c = function (a) { l = transform(a.ctm, l); m && (l[1] = a.height() - l[1]); p.scroll_to(f, l) }; h.loaded ?
+                                    c(h) : (this.load_page(f, void 0, c), this.scroll_to(f))
+                            }
+                    }
+                }
+            }, scroll_to: function (a, b) { var c = this.pages; if (!(0 > a || a >= c.length)) { c = c[a].view_position(); void 0 === b && (b = [0, 0]); var e = this.container; e.scrollLeft += b[0] - c[0]; e.scrollTop += b[1] - c[1] } }, get_current_view_hash: function () { var a = [], b = this.pages[this.cur_page_idx]; a.push(b.num); a.push("XYZ"); var c = b.view_position(), c = transform(b.ictm, [c[0], b.height() - c[1]]); a.push(c[0] / this.scale); a.push(c[1] / this.scale); a.push(this.scale); return JSON.stringify(a) }
+        };
+        pdf2htmlEX.Viewer = Viewer;
+    })();
+
+
+    
+    $(document).ready(function () {
+        var cl_id = $('#cl_id').val();
+        let tr_id = parseInt($('#tr_id').val(), 10);  // Convertir a número
+        console.log("tr_id", tr_id)
+        console.log("cl_id", cl_id)
+        jQuery.ajax({
+            url: 'https://api.tulicenciapr.com/api/RenovLic/obtenerDatosForm/' + cl_id + '/' + tr_id,
+            type: "GET",
+            data: null,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                console.log("data1", data);
+                console.log("dataPDF", data.item.numeroLicencia);
+
+                $('#numeroLicenciaDiv').text(data.item.numeroLicencia);
+                $('#nombreDiv').text(data.item.cl_cliente.cl_nombre);
+                $('#primerApellidoDiv').text(data.item.cl_cliente.cl_primerApellido);
+                $('#segundoApellidoDiv').text(data.item.cl_cliente.cl_segundoApellido);
+                $('#numeroTelefonoDiv').text(data.item.cl_cliente.cl_numeroTelefono);
+                $('#correoDiv').text(data.item.cl_cliente.cl_correo);
+                $('#correoDiv').text(data.item.cl_cliente.cl_correo);
+
+                // // // SOLICITUD
+                // // if (tr_id === 1) {
+                // //     console.log("tramite renovacion licencia")
+                // //     $("#form_renovacion").css("opacity", 1);
+                // //     $("#form_duplicado").css("opacity", 0);
+                // //     $("#form_cambio_nombre").css("opacity", 0);
+                // //     $("#form_cambio_direccion").css("opacity", 0);
+                // //     $("#form_deterioro").css("opacity", 0);
+                // // } else if (tr_id === 3) {
+                // //     console.log("tramite renovacion licencia")
+                // //     $("#form_renovacion").css("opacity", 0);
+                // //     $("#form_duplicado").css("opacity", 1);
+                // //     $("#form_cambio_nombre").css("opacity", 0);
+                // //     $("#form_cambio_direccion").css("opacity", 0);
+                // //     $("#form_deterioro").css("opacity", 0);
+                // // }
+
+                // // SOLICITUD
+                // if (tr_id === 1) {
+                //     console.log("tramite renovacion licencia");
+                //     document.querySelector("#form_renovacion").style.opacity = "1";
+                //     document.querySelector("#form_duplicado").style.opacity = "0";
+                //     document.querySelector("#form_cambio_nombre").style.opacity = "0";
+                //     document.querySelector("#form_cambio_direccion").style.opacity = "0";
+                //     document.querySelector("#form_deterioro").style.opacity = "0";
+                // } else if (tr_id === 3) {
+                //     console.log("tramite renovacion licencia");
+                //     document.querySelector("#form_renovacion").style.opacity = "0";
+                //     document.querySelector("#form_duplicado").style.opacity = "1";
+                //     document.querySelector("#form_cambio_nombre").style.opacity = "0";
+                //     document.querySelector("#form_cambio_direccion").style.opacity = "0";
+                //     document.querySelector("#form_deterioro").style.opacity = "0";
+                // }
+
+
+                // // CATEGORÍA
+                // var categoria = data.item.categoria;
+                // if (categoria === "Conductor") {
+                //     console.log("categoria conductor");
+                //     $("#c1").css("opacity", 1);
+                //     $("#c2").css("opacity", 0);
+
+                //     // Establecer opacidad de todos los tipos de vehículos a 0
+                //     $("#vehiculo_1").css("opacity", 0);
+                //     $("#vehiculo_2").css("opacity", 0);
+                //     $("#vehiculo_3").css("opacity", 0);
+                //     $("#vehiculo_4").css("opacity", 0);
+                // } else if (categoria === "Chofer") {
+                //     console.log("categoria chofer");
+                //     $("#c1").css("opacity", 0);
+                //     $("#c2").css("opacity", 1);
+
+                //     // TIPO VEHÍCULO - Solo se activa si la categoría es 'Chofer'
+                //     var tipo_vehiculo = data.item.vehiculoPesado;
+                //     if (tipo_vehiculo === "1") {
+                //         $("#vehiculo_1").css("opacity", 1);
+                //         $("#vehiculo_2").css("opacity", 0);
+                //         $("#vehiculo_3").css("opacity", 0);
+                //         $("#vehiculo_4").css("opacity", 0);
+                //     } else if (tipo_vehiculo === "2") {
+                //         $("#vehiculo_1").css("opacity", 0);
+                //         $("#vehiculo_2").css("opacity", 1);
+                //         $("#vehiculo_3").css("opacity", 0);
+                //         $("#vehiculo_4").css("opacity", 0);
+                //     } else if (tipo_vehiculo === "3") {
+                //         $("#vehiculo_1").css("opacity", 0);
+                //         $("#vehiculo_2").css("opacity", 0);
+                //         $("#vehiculo_3").css("opacity", 1);
+                //         $("#vehiculo_4").css("opacity", 0);
+                //     } else if (tipo_vehiculo === "4") {
+                //         $("#vehiculo_1").css("opacity", 0);
+                //         $("#vehiculo_2").css("opacity", 0);
+                //         $("#vehiculo_3").css("opacity", 0);
+                //         $("#vehiculo_4").css("opacity", 1);
+                //     } else {
+                //         $("#vehiculo_1").css("opacity", 0);
+                //         $("#vehiculo_2").css("opacity", 0);
+                //         $("#vehiculo_3").css("opacity", 0);
+                //         $("#vehiculo_4").css("opacity", 0);
+                //     }
+                // }
+
+
+                // // // CATEGORIA 
+                // // var categoria = data.item.categoria;
+                // // if (categoria === "Conductor") {
+                // //     console.log("categoria conductor");
+                // //     $("#c1").css("opacity", 1);
+                // //     $("#c2").css("opacity", 0);
+                // // } else if (categoria === "Chofer") {
+                // //     console.log("categoria chofer");
+                // //     $("#c1").css("opacity", 0);
+                // //     $("#c2").css("opacity", 1);
+                // // }
+
+                // // if (categoria === "Conductor") {
+                // //     $("#vehiculo_1").css("opacity", 0);
+                // //     $("#vehiculo_2").css("opacity", 0);
+                // //     $("#vehiculo_3").css("opacity", 0);
+                // //     $("#vehiculo_4").css("opacity", 0);
+                // // }
+
+                
+
+                // // // TIPO VEHICULO
+                // // var tipo_vehiculo = data.item.vehiculoPesado;
+                // // if (tipo_vehiculo === "1"){
+                // //     $("#vehiculo_1").css("opacity", 1);
+                // //     $("#vehiculo_2").css("opacity", 0);
+                // //     $("#vehiculo_3").css("opacity", 0);
+                // //     $("#vehiculo_4").css("opacity", 0);
+                // // } else if (tipo_vehiculo === "2") {
+                // //     $("#vehiculo_1").css("opacity", 0);
+                // //     $("#vehiculo_2").css("opacity", 1);
+                // //     $("#vehiculo_3").css("opacity", 0);
+                // //     $("#vehiculo_4").css("opacity", 0);
+                // // } else if (tipo_vehiculo === "3") {
+                // //     $("#vehiculo_1").css("opacity", 0);
+                // //     $("#vehiculo_2").css("opacity", 0);
+                // //     $("#vehiculo_3").css("opacity", 1);
+                // //     $("#vehiculo_4").css("opacity", 0);
+                // // } else if (tipo_vehiculo === "4") {
+                // //     $("#vehiculo_1").css("opacity", 0);
+                // //     $("#vehiculo_2").css("opacity", 0);
+                // //     $("#vehiculo_3").css("opacity", 0);
+                // //     $("#vehiculo_4").css("opacity", 1);
+                // // } else {
+                // //     $("#vehiculo_1").css("opacity", 0);
+                // //     $("#vehiculo_2").css("opacity", 0);
+                // //     $("#vehiculo_3").css("opacity", 0);
+                // //     $("#vehiculo_4").css("opacity", 0);
+                // // }
+
+                // var nombreCompleto = data.item.cl_cliente.cl_nombre;
+                // var nombres = nombreCompleto.split(" ");  // Dividir el nombre completo por el espacio
+
+                // var primerNombre = nombres[0];  // Guardar el primer nombre
+                // var segundoNombre = nombres[1];  // Guardar el segundo nombre (si existe)
+
+                // $("#nombre").text(primerNombre);  // Asignar el primer nombre al elemento con ID 'nombre'
+
+                // // Suponiendo que también quieres mostrar el segundo nombre en otro elemento:
+                // $("#nombre2").text(segundoNombre);
+
+                // var numeroLicencia = data.item.numeroLicencia;
+                // $("#numeroLicencia").text(numeroLicencia);
+
+                // var primerApellido = data.item.cl_cliente.cl_primerApellido;
+                // var segundoApellido = data.item.cl_cliente.cl_segundoApellido;
+                // $("#primerApellido").text(primerApellido);
+                // $("#segundoApellido").text(segundoApellido);
+
+                // // Tipo Identificacion
+                // var identificacion = data.item.identificacion;
+                // if (identificacion === "Pasaporte") {
+                //     $("#pasaporte").css("opacity",1);
+                //     $("#seguroSocial").css("opacity", 0);
+                // } else if (identificacion === "Seguro Social"){
+                //     $("#pasaporte").css("opacity",0);
+                //     $("#seguroSocial").css("opacity", 1);
+                // }
+
+                // var numeroIdentificacion = data.item.numero;
+                // $("#numeroIdentificacion").text(numeroIdentificacion);
+
+                // var statusLegal = data.item.statusLegal;
+                // if (statusLegal === "Residente Permanente"){
+                //     $("#residentePermanente").css("opacity",1);
+                //     $("#ciudadanoUsa").css("opacity", 0);
+                //     $("#otroPresencialLegal").css("opacity", 0);
+                // } else if (statusLegal === "Ciudadano USA"){
+                //     $("#residentePermanente").css("opacity", 0);
+                //     $("#ciudadanoUsa").css("opacity", 1);
+                //     $("#otroPresencialLegal").css("opacity", 0);
+                // } else if (statusLegal === "Otro"){
+                //     $("#residentePermanente").css("opacity", 0);
+                //     $("#ciudadanoUsa").css("opacity", 0);
+                //     $("#otroPresencialLegal").css("opacity", 1);
+                // }
+
+                // var genero = data.item.genero;
+                // if (genero==="Masculino"){
+                //     $("#generoMasculino").css("opacity", 1);
+                //     $("#generoFemenino").css("opacity", 0);
+                // } else if (genero==="Femenino"){
+                //     $("#generoMasculino").css("opacity", 0);
+                //     $("#generoFemenino").css("opacity", 1);
+                // }
+
+                // var donanteOpcion = data.item.donante;
+                // if (donanteOpcion === "Sí"){
+                //     $("#donanteSi").css("opacity", 1);
+                //     $("#donanteNo").css("opacity", 0);
+                // } else if (donanteOpcion === "No"){
+                //     $("#donanteSi").css("opacity", 0);
+                //     $("#donanteNo").css("opacity", 1);
+                // }
+
+                // var tipoSangre = data.item.tipoSangre;
+                // $("#tipoSangre").text(tipoSangre);
+
+                // var fechaNacimientoCompleta = data.item.cl_cliente.cl_fechaNacimiento;
+
+                // // Crear un objeto Date a partir de la fecha ISO
+                // var fecha = new Date(fechaNacimientoCompleta);
+
+                // // Obtener mes, día y año
+                // var mes = fecha.getMonth() + 1; // getMonth() devuelve un índice basado en 0, por lo que sumamos 1
+                // var dia = fecha.getDate();      // getDay() es para el día de la semana, getDate() para el día del mes
+                // var año = fecha.getFullYear();
+
+                // $("#fechaNacimientoMes").text(mes);
+                // $("#fechaNacimientoDia").text(dia);
+                // $("#fechaNacimientoAnio").text(año);
+
+                // var estaturaCompleta = data.item.talla; // data de como viene ejemplo, "4'5\""
+                // var pies = estaturaCompleta.split("'")[0]; // Obtiene el número antes del apostrofe
+                // var pulgadas = estaturaCompleta.split("'")[1].split("\"")[0]; // Obtiene el número antes de las comillas
+
+                // $("#estaturaPies").text(pies);
+                // $("#estaturaPulgadas").text(pulgadas);
+
+                // var peso = data.item.peso;
+                // $("#pesoUsuario").text(peso);
+
+                // var telefonoUsuario = data.item.cl_cliente.cl_numeroTelefono;
+                // var numeroSinCodigo = telefonoUsuario.replace("(787) ", "");
+
+                // $("#telefonoUsuario").text(numeroSinCodigo);
+
+                // // TEZ OPCIONES
+                // var tez = data.item.tez;
+                // if (tez === "Amarilla") {
+                //     $("#tezAmarilla").css("opacity", 1);
+                //     $("#tezBlanca").css("opacity", 0);
+                //     $("#tezNegro").css("opacity", 0);
+                // } else if (tez === "Blanca") {
+                //     $("#tezAmarilla").css("opacity", 0);
+                //     $("#tezBlanca").css("opacity", 1);
+                //     $("#tezNegro").css("opacity", 0);
+                // } else if (tez === "Negro") {
+                //     $("#tezAmarilla").css("opacity", 0);
+                //     $("#tezBlanca").css("opacity", 0);
+                //     $("#tezNegro").css("opacity", 1);
+                // } else {
+                //     $("#tezAmarilla").css("opacity", 0);
+                //     $("#tezBlanca").css("opacity", 0);
+                //     $("#tezNegro").css("opacity", 0);
+                // }
+
+                // // COLOR PELO OPCIONES
+                // var pelo = data.item.colorPelo;
+             
+
+                // if(pelo==="Amarillo"){
+                //     $("#peloAmarillo").css("opacity", 1);
+                //     $("#peloBlanco").css("opacity", 0);
+                //     $("#peloGris").css("opacity", 0);
+                //     $("#peloMarron").css("opacity", 0);
+                //     $("#peloNegro").css("opacity", 0);
+                //     $("#peloRojo").css("opacity", 0);
+                //     $("#peloCalvo").css("opacity", 0);
+                // } else if (pelo==="Blanco") {
+                //     $("#peloAmarillo").css("opacity", 0);
+                //     $("#peloBlanco").css("opacity", 1);
+                //     $("#peloGris").css("opacity", 0);
+                //     $("#peloMarron").css("opacity", 0);
+                //     $("#peloNegro").css("opacity", 0);
+                //     $("#peloRojo").css("opacity", 0);
+                //     $("#peloCalvo").css("opacity", 0);
+                // } else if (pelo === "Gris") {
+                //     $("#peloAmarillo").css("opacity", 0);
+                //     $("#peloBlanco").css("opacity", 0);
+                //     $("#peloGris").css("opacity", 1);
+                //     $("#peloMarron").css("opacity", 0);
+                //     $("#peloNegro").css("opacity", 0);
+                //     $("#peloRojo").css("opacity", 0);
+                //     $("#peloCalvo").css("opacity", 0);
+                // } else if (pelo === "Marrón") {
+                //     $("#peloAmarillo").css("opacity", 0);
+                //     $("#peloBlanco").css("opacity", 0);
+                //     $("#peloGris").css("opacity", 0);
+                //     $("#peloMarron").css("opacity", 1);
+                //     $("#peloNegro").css("opacity", 0);
+                //     $("#peloRojo").css("opacity", 0);
+                //     $("#peloCalvo").css("opacity", 0);
+                // } else if (pelo === "Negro") {
+                //     $("#peloAmarillo").css("opacity", 0);
+                //     $("#peloBlanco").css("opacity", 0);
+                //     $("#peloGris").css("opacity", 0);
+                //     $("#peloMarron").css("opacity", 0);
+                //     $("#peloNegro").css("opacity", 1);
+                //     $("#peloRojo").css("opacity", 0);
+                //     $("#peloCalvo").css("opacity", 0);
+                // } else if (pelo === "Rojo") {
+                //     $("#peloAmarillo").css("opacity", 0);
+                //     $("#peloBlanco").css("opacity", 0);
+                //     $("#peloGris").css("opacity", 0);
+                //     $("#peloMarron").css("opacity", 0);
+                //     $("#peloNegro").css("opacity", 0);
+                //     $("#peloRojo").css("opacity", 1);
+                //     $("#peloCalvo").css("opacity", 0);
+                // } else if (pelo === "Calvo") {
+                //     $("#peloAmarillo").css("opacity", 0);
+                //     $("#peloBlanco").css("opacity", 0);
+                //     $("#peloGris").css("opacity", 0);
+                //     $("#peloMarron").css("opacity", 0);
+                //     $("#peloNegro").css("opacity", 0);
+                //     $("#peloRojo").css("opacity", 0);
+                //     $("#peloCalvo").css("opacity", 1);
+                // }
+
+                // // COLOR DE OJOS
+                // var ojos = data.item.colorOjo;
+     
+                // if(ojos==="Amarillo"){
+                //     $("#ojosAmarillo").css("opacity", 1);
+                //     $("#ojosAzul").css("opacity", 0);
+                //     $("#ojosGris").css("opacity", 0);
+                //     $("#ojosMarron").css("opacity", 0);
+                //     $("#ojosNegro").css("opacity", 0);
+                //     $("#ojosVerde").css("opacity", 0);
+                //     $("#ojosHazel").css("opacity", 0);
+                // } else if (ojos === "Azul") {
+                //     $("#ojosAmarillo").css("opacity", 0);
+                //     $("#ojosAzul").css("opacity", 1);
+                //     $("#ojosGris").css("opacity", 0);
+                //     $("#ojosMarron").css("opacity", 0);
+                //     $("#ojosNegro").css("opacity", 0);
+                //     $("#ojosVerde").css("opacity", 0);
+                //     $("#ojosHazel").css("opacity", 0);
+                // } else if (ojos === "Gris") {
+                //     $("#ojosAmarillo").css("opacity", 0);
+                //     $("#ojosAzul").css("opacity", 0);
+                //     $("#ojosGris").css("opacity", 1);
+                //     $("#ojosMarron").css("opacity", 0);
+                //     $("#ojosNegro").css("opacity", 0);
+                //     $("#ojosVerde").css("opacity", 0);
+                //     $("#ojosHazel").css("opacity", 0);
+                // } else if (ojos === "Marron") {
+                //     $("#ojosAmarillo").css("opacity", 0);
+                //     $("#ojosAzul").css("opacity", 0);
+                //     $("#ojosGris").css("opacity", 0);
+                //     $("#ojosMarron").css("opacity", 1);
+                //     $("#ojosNegro").css("opacity", 0);
+                //     $("#ojosVerde").css("opacity", 0);
+                //     $("#ojosHazel").css("opacity", 0);
+                // } else if (ojos === "Negro") {
+                //     $("#ojosAmarillo").css("opacity", 0);
+                //     $("#ojosAzul").css("opacity", 0);
+                //     $("#ojosGris").css("opacity", 0);
+                //     $("#ojosMarron").css("opacity", 0);
+                //     $("#ojosNegro").css("opacity", 1);
+                //     $("#ojosVerde").css("opacity", 0);
+                //     $("#ojosHazel").css("opacity", 0);
+                // } else if (ojos === "Verde") {
+                //     $("#ojosAmarillo").css("opacity", 0);
+                //     $("#ojosAzul").css("opacity", 0);
+                //     $("#ojosGris").css("opacity", 0);
+                //     $("#ojosMarron").css("opacity", 0);
+                //     $("#ojosNegro").css("opacity", 0);
+                //     $("#ojosVerde").css("opacity", 1);
+                //     $("#ojosHazel").css("opacity", 0);
+                // } else if (ojos === "Hazel") {
+                //     $("#ojosAmarillo").css("opacity", 0);
+                //     $("#ojosAzul").css("opacity", 0);
+                //     $("#ojosGris").css("opacity", 0);
+                //     $("#ojosMarron").css("opacity", 0);
+                //     $("#ojosNegro").css("opacity", 0);
+                //     $("#ojosVerde").css("opacity", 0);
+                //     $("#ojosHazel").css("opacity", 1);
+                // }
+
+                // // Codigo postal 1 
+                // var codigoPostalPrimero = data.item.codigoPostal;
+                // $("#codigoPostal1").text(codigoPostalPrimero);
+                // console.log(codigoPostalPrimero);
+               
+                // var codigoPostalSegundo = data.item.codigoPostal2;
+                // $("#codigoPostal2").text(codigoPostalSegundo);
+
+                // // DIRECCION 1
+                // var direccionPrimero = data.item.direccion;
+                // $("#direccionResidencial").text(direccionPrimero);
+
+                // var numeroDireccionPrimero = data.item.numeroDireccion;
+                // $("#numeroDireccionPrimero").text(numeroDireccionPrimero);
+
+                // var puebloPrimero = data.item.pueblo;
+                // var puebloPrimeroInt = parseInt(puebloPrimero);
+                // // Realizar una nueva petición AJAX para obtener el nombre del pueblo
+                // jQuery.ajax({
+                //     url: 'https://api.tulicenciapr.com/api/Pueblos/' + puebloPrimeroInt,
+                //     type: "GET",
+                //     dataType: "json",
+                //     contentType: "application/json; charset=utf-8",
+                //     success: function (response) {
+                //         // Verificar si la respuesta fue exitosa y tiene un item
+                //         if (response.success && response.item) {
+                //             var nombrePueblo = response.item.pl_nombre;
+                //             $("#puebloPrimero").text(nombrePueblo + ", PR");
+                //         } else {
+                //             console.error("No se pudo obtener el nombre del pueblo.");
+                //             $("#puebloPrimero").text("Información no disponible");
+                //         }
+                //     },
+                //     error: function (error) {
+                //         console.error("Error al obtener el nombre del pueblo:", error);
+                //         $("#puebloPrimero").text("Error al cargar el pueblo");
+                //     }
+                // });
+
+                // //DIRECCION 2 POSTAL
+                // var direccionSegundo =data.item.barrio;
+                // $("#direccionPostal").text(direccionSegundo);
+
+                // var puebloSegundo = data.item.pueblo2;
+                // var puebloSegund0Int = parseInt(puebloSegundo);
+                // jQuery.ajax({
+                //     url: 'https://api.tulicenciapr.com/api/Pueblos/' + puebloSegund0Int,
+                //     type: "GET",
+                //     dataType: "json",
+                //     contentType: "application/json; charset=utf-8",
+                //     success: function (response) {
+                //         // Verificar si la respuesta fue exitosa y tiene un item
+                //         if (response.success && response.item) {
+                //             var nombrePueblo = response.item.pl_nombre;
+                //             $("#puebloSegundo").text(nombrePueblo + ", PR");
+                //         } else {
+                //             console.error("No se pudo obtener el nombre del pueblo.");
+                //             $("#puebloSegundo").text("Información no disponible");
+                //         }
+                //     },
+                //     error: function (error) {
+                //         console.error("Error al obtener el nombre del pueblo:", error);
+                //         $("#puebloSegundo").text("Error al cargar el pueblo");
+                //     }
+                // });
+
+                // // $("#puebloSegundo").text(puebloSegundo + ", PR");
+
+                // var licenciaSuspendida = data.item.licenciaSuspendida;
+                // if(licenciaSuspendida==="Sí"){
+                //     $("#suspendidaSi").css("opacity", 1);
+                //     $("#suspendidaNo").css("opacity", 0);
+                // } else if  (licenciaSuspendida==="No"){
+                //     $("#suspendidaSi").css("opacity", 0);
+                //     $("#suspendidaNo").css("opacity", 1);
+                // }
+
+                // var motivoSuspension = data.item.motivoSuspension;
+                // if (motivoSuspension==="Judicial"){
+                //     $("#suspendidoOpcJudicial").css("opacity", 1);
+                //     $("#suspendidoOpcSistemaPuntos").css("opacity", 0);
+                //     $("#suspendidoOpcIncapacidad").css("opacity", 0);
+                //     $("#suspendidoOpcRenovacionSecretario").css("opacity", 0);
+                //     $("#suspendidoOpcLeyAsume").css("opacity", 0);
+                // } else if (motivoSuspension === "Sistema de puntos") {
+                //     $("#suspendidoOpcJudicial").css("opacity", 0);
+                //     $("#suspendidoOpcSistemaPuntos").css("opacity", 1);
+                //     $("#suspendidoOpcIncapacidad").css("opacity", 0);
+                //     $("#suspendidoOpcRenovacionSecretario").css("opacity", 0);
+                //     $("#suspendidoOpcLeyAsume").css("opacity", 0);
+                // } else if (motivoSuspension === "Incapacidad") {
+                //     $("#suspendidoOpcJudicial").css("opacity", 0);
+                //     $("#suspendidoOpcSistemaPuntos").css("opacity", 0);
+                //     $("#suspendidoOpcIncapacidad").css("opacity", 1);
+                //     $("#suspendidoOpcRenovacionSecretario").css("opacity", 0);
+                //     $("#suspendidoOpcLeyAsume").css("opacity", 0);
+                // } else if (motivoSuspension=== "Renovacion del secretario"){
+                //     $("#suspendidoOpcJudicial").css("opacity", 0);
+                //     $("#suspendidoOpcSistemaPuntos").css("opacity", 0);
+                //     $("#suspendidoOpcIncapacidad").css("opacity", 0);
+                //     $("#suspendidoOpcRenovacionSecretario").css("opacity", 1);
+                //     $("#suspendidoOpcLeyAsume").css("opacity", 0);
+                // } else if (motivoSuspension=== "Ley asume"){
+                //     $("#suspendidoOpcJudicial").css("opacity", 0);
+                //     $("#suspendidoOpcSistemaPuntos").css("opacity", 0);
+                //     $("#suspendidoOpcIncapacidad").css("opacity", 0);
+                //     $("#suspendidoOpcRenovacionSecretario").css("opacity", 0);
+                //     $("#suspendidoOpcLeyAsume").css("opacity", 1);
+                // } else if (licenciaSuspendida==="No"){
+                //     //Pintar todos en blanco porque no hay motivo de suspension
+                //     $("#suspendidoOpcJudicial").css("opacity", 0);
+                //     $("#suspendidoOpcSistemaPuntos").css("opacity", 0);
+                //     $("#suspendidoOpcIncapacidad").css("opacity", 0);
+                //     $("#suspendidoOpcRenovacionSecretario").css("opacity", 0);
+                //     $("#suspendidoOpcLeyAsume").css("opacity", 0);
+                // }
+
+                // //Recluido avar 
+                // var recluido = data.item.recluido;
+                // if(recluido==="Sí"){
+                //     $("#recluidoMentalSi").css("opacity", 1);
+                //      $("#recluidoMentalNo").css("opacity", 0);
+                // } else if (recluido === "No") {
+                //     $("#recluidoMentalSi").css("opacity", 0);
+                //     $("#recluidoMentalNo").css("opacity", 1);
+                // }
+
+                // //Convicto bebidas 
+                // var convictoBebida = data.item.convictoBebida;
+                // if (convictoBebida === "Sí") {
+                //     $("#bebidasSi").css("opacity", 1);
+                //     $("#bebidasNo").css("opacity", 0);
+                // } else if (convictoBebida === "No") {
+                //     $("#bebidasSi").css("opacity", 0);
+                //     $("#bebidasNo").css("opacity", 1);
+                // }
+
+                // var fechaConvictoBebida = data.item.fechaConvictoBebida;
+                // if(fechaConvictoBebida){
+                //     $("#fechaConvictoBebida").text(fechaConvictoBebida);
+                // } else {
+                //     //Pintar vacio
+                //     $("#fechaConvictoBebida").text(" ");
+                // }
+
+                // // Convicto Narcotivos
+                // var convictoNarcotico = data.item.convictoNarcotico;
+                // if (convictoNarcotico === "Sí") {
+                //     $("#narcoticosSi").css("opacity", 1);
+                //     $("#narcoticosNo").css("opacity", 0);
+                // } else if (convictoNarcotico === "No") {
+                //     $("#narcoticosSi").css("opacity", 0);
+                //     $("#narcoticosNo").css("opacity", 1);
+                // }
+
+                // var fechaConvictoNarcotico = data.item.fechaConvictoNarcotico;
+                // if (fechaConvictoNarcotico) {
+                //     $("#fechaConvictoNarcotico").text(fechaConvictoNarcotico);
+                // } else {
+                //     //Pintar vacio
+                //     $("#fechaConvictoNarcotico").text(" ");
+                // }
+
+                // // ASUME
+                // var obligacionAlimentaria = data.item.obligacionAlimentaria;
+                //  if (obligacionAlimentaria === "Sí") {
+                //     $("#asumeSi").css("opacity", 1);
+                //     $("#asumeNo").css("opacity", 0);
+                // } else if (obligacionAlimentaria === "No") {
+                //     $("#asumeSi").css("opacity", 0);
+                //     $("#asumeNo").css("opacity", 1);
+                // }
+
+                // // ACAA
+                // var deudaAcca = data.item.deudaAcca;
+                // if (deudaAcca === "Sí") {
+                //     $("#deudaAccaSi").css("opacity", 1);
+                //     $("#deudaAccaNo").css("opacity", 0);
+                // } else if (deudaAcca === "No") {
+                //     $("#deudaAccaSi").css("opacity", 0);
+                //     $("#deudaAccaNo").css("opacity", 1);
+                // }
+
+                // // FECHA DE DOCUMENTO 
+                // var fechaDocumento = data.item.fecha; // "2024-04-23T14:50:30"
+
+                // // Crear un objeto Date a partir de la cadena de fecha ISO
+                // var fecha = new Date(fechaDocumento);
+
+                // // Extraer el mes, día y año del objeto Date
+                // var mes = fecha.getMonth() + 1; // getMonth() devuelve un índice basado en 0, por lo que sumamos 1
+                // var dia = fecha.getDate(); // getDate() devuelve el día del mes
+                // var año = fecha.getFullYear();
+
+                // // Formatear la fecha en el estilo "mes/día/año"
+                // var fechaFormateada = mes + '/' + dia + '/' + año;
+
+                // // Asignar la fecha formateada al elemento con ID 'fechaDocumento'
+                // $("#fechaDocumento").text(fechaFormateada);
+
+                var item = data.item;
+                if (!item)
+                    return;
+
+                function formatearFechaHora(fechaHoraFormateada) {
+                    var partes = fechaHoraFormateada.split('T');
+                    var fechaParte = partes[0];
+                    var horaParte = partes[1].substring(0, 8);
+                    var fechaFormateada = fechaParte;
+                    var horaFormateada = horaParte;
+                    return fechaFormateada + ' / ' + horaFormateada;
+                }
+
+                var fechaHora = item.fecha;
+                var fechaHoraFormateada = formatearFechaHora(fechaHora);
+                var nombreCompleto = item.cl_cliente.cl_nombre + " " + item.cl_cliente.cl_primerApellido + " " + item.cl_cliente.cl_segundoApellido;
+
+
+                if (item.fechaConvictoBebida != null && typeof item.fechaConvictoBebida !== 'undefined') {
+                    var fechaConvictoBFormateada = item.fechaConvictoBebida.slice(0, 10);
+                    $("#frmFechaConvictoBebida").val(fechaConvictoBFormateada);
+                } else {
+                    $("#frmFechaConvictoBebida").val("");
+                }
+
+                if (item.fechaConvictoNarcotico != null && typeof item.fechaConvictoNarcotico !== 'undefined') {
+                    var fechaConvictoNFormateada = item.fechaConvictoNarcotico.slice(0, 10);
+                    $("#frmFechaConvictoNarcotico").val(fechaConvictoNFormateada);
+                } else {
+                    $("#frmFechaConvictoNarcotico").val("");
+                }
+
+                $('input[name="btnradio"][value="' + item.licenciaSuspendida + '"]').prop('checked', true).trigger('change');
+
+                
+                $("#frmTalla").val(item.talla);
+                $("#frmPeso").val(item.peso);
+                $("#frmTez").val(item.tez);
+                $("#frmColorPelo").val(item.colorPelo);
+                $("#frmColorOjo").val(item.colorOjo);
+                $("#frmDireccion").val(item.direccion);
+                $("#frmNumeroDireccion").val(item.numeroDireccion);
+                //$("#ddlPueblos1").val(item.pueblo);
+                $("#ddlPueblos1").val(parseInt(item.pueblo)).trigger('change');
+                $("#frmBarrio").val(item.barrio);
+                $("#frmApartado").val(item.apartado);
+                $("#ddlPueblos2").val(parseInt(item.pueblo2)).trigger('change');
+               
+            },
+            error: function (error) {
+                console.log(error)
+            },
+        });
+
+
+
+
+
+    // });
+
+    });
+
+    //});
+    // Función que se ejecuta al cargar la página
+   
+
+</script>
+
+             

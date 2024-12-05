@@ -1,0 +1,73 @@
+﻿@using System.Security.Claims
+@{
+    ViewData["title"] = "Mi perfil";
+}
+
+<div class="row mt-3">
+    <div class="col-xs-12 col-md-6 col-lg-8">
+        <div class="card">
+            <div class="card-header fw-bold text-uppercase">Mi Perfil</div>
+            <div class="card-body">
+                <div class="mb-3 text-center">
+                    <img src="@User.FindFirst("Avatar")?.Value" alt="Avatar" class="img-thumbnail mx-auto" />
+                </div>
+                <input id="profile-id" value="@User.FindFirst("Id")?.Value" type="hidden" />
+                <div class="mb-3">
+                    <label class="form-label">Usuario</label>
+                    <input value="@User.FindFirst(ClaimTypes.Name)?.Value" type="text" id="usr" autocomplete="off" class="form-control form-control-lg" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Nombre completo</label>
+                    <input value="@User.FindFirst("FullName")?.Value" type="text" id="fullname" autocomplete="off" class="form-control form-control-lg" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Correo electrónico</label>
+                    <input value="@User.FindFirst("Email")?.Value" type="text" id="email" autocomplete="off" class="form-control form-control-lg" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Tipo usuario</label>
+                    @if (User.FindFirst(ClaimTypes.Role)?.Value == "Administrador") {
+                        <select id="rol" class="form-select">
+                            <option value="3">Radicador</option>
+                            <option value="2">Operador</option>
+                            <option value="1">Administrador</option>
+                        </select>
+                    } else {
+                        <input value="@User.FindFirst(ClaimTypes.Role)?.Value" type="hidden" id="rol" />
+                    }
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Firma</label>
+                    <input type="file" id="signed" accept="image/*" autocomplete="off" class="form-control form-control-lg" />
+                </div>
+                <button type="button" id="btnUpdateProfile" class="btn btn-primary btn-lg">
+                    <i class="ri-save-2-fill"></i>
+                    <span>Actualizar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-6 col-lg-4">
+        <div class="card">
+            <div class="card-header fw-bold text-uppercase">Cambiar contraseña</div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">Nueva contraseña</label>
+                    <input type="password" id="pwd" autocomplete="off" class="form-control form-control-lg" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Repetir nueva contraseña</label>
+                    <input type="password" id="repeat-pwd" autocomplete="off" class="form-control form-control-lg" />
+                </div>
+                <button type="button" id="btnChangePwd" class="btn btn-primary btn-lg">
+                    <i class="ri-lock-password-fill"></i>
+                    <span>Cambiar contraseña</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/profile.js?hash=@Utility.RandomString()"></script>
+}

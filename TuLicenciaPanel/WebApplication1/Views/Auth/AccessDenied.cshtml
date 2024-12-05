@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "Acceso denegado";
+}
+
+<div class="row">
+    <div class="col-xs-12 col-md-4 offset-md-4">
+        <div class="card h-100 shadow-sm mb-4">
+            <div class="card-body d-flex justify-content-center" style="flex-direction: column;">
+                <h1 class="text-center fw-bold">!Acceso denegado!</h1>
+                <p class="lead text-center">No tiene los permisos necesarios para poder acceder a esta página <code>@ViewData["ReturnUrl"]</code></p>
+                <a href="@Url.Action("Index", "Home")" class="btn btn-lg btn-primary">
+                    <i class="bx bx-home side-menu__icon"></i>
+                    <span>Retornar</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+

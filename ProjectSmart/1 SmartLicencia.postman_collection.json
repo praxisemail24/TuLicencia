@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "15342c2b-41c3-43cd-ba80-eb47baf5d812",
+		"name": "1 SmartLicencia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16915442"
+	},
+	"item": [
+		{
+			"name": "ClienteGET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/Cliente",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"Cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente/2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/Cliente/32",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"Cliente",
+						"32"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "loginCliente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/Cliente/login/juanUsu/12456512",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"Cliente",
+						"login",
+						"juanUsu",
+						"12456512"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente/guardar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_id\": 0,\r\n  \"cl_nombre\": \"Juan\",\r\n  \"cl_primerApellido\": \"Romero\",\r\n  \"cl_segundoApellido\": \"Romero\",\r\n  \"cl_zip\": \"12345\",\r\n  \"cl_direccion\": \"Calle Pardo 122\",\r\n  \"cl_numeroLicencia\": \"101010154541\",\r\n  \"cl_numeroSeguro\": \"4545\",\r\n  \"cl_fechaNacimiento\": \"1990-02-21\",\r\n  \"cl_numeroTelefono\": \"987845651\",\r\n  \"cl_correo\": \"juan@gmail.com\",\r\n  \"cl_nombreUsuario\": \"juanUsu\",\r\n  \"cl_contrasena\": \"12456512\",\r\n  \"cl_fechaRegistro\": \"2024-02-20\",\r\n  \"cl_estado\": 0,\r\n  \"cl_pueblo\": {\r\n    \"pl_id\": 15,\r\n    \"pl_nombre\": \"string\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/Cliente",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"Cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente/update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cl_id\": 30,\r\n  \"cl_nombre\": \"Juan\",\r\n  \"cl_primerApellido\": \"Romero\",\r\n  \"cl_segundoApellido\": \"Romero\",\r\n  \"cl_zip\": \"12345\",\r\n  \"cl_direccion\": \"Calle Pardo 122\",\r\n  \"cl_numeroLicencia\": \"101010154541\",\r\n  \"cl_numeroSeguro\": \"4545\",\r\n  \"cl_fechaNacimiento\": \"1990-02-21\",\r\n  \"cl_numeroTelefono\": \"987845651\",\r\n  \"cl_correo\": \"juan@gmail.com\",\r\n  \"cl_nombreUsuario\": \"juanUsu\",\r\n  \"cl_contrasena\": \"12456512\",\r\n  \"cl_fechaRegistro\": \"2024-02-20\",\r\n  \"cl_estado\": 1,\r\n  \"cl_pueblo\": {\r\n    \"pl_id\": 15,\r\n    \"pl_nombre\": \"\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7080/api/Cliente/30",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"Cliente",
+						"30"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/Pueblos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/Pueblos",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"Pueblos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/Pueblos/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.tulicenciadev.com/api/Pueblos/14",
+					"protocol": "http",
+					"host": [
+						"www",
+						"tulicenciadev",
+						"com"
+					],
+					"path": [
+						"api",
+						"Pueblos",
+						"14"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

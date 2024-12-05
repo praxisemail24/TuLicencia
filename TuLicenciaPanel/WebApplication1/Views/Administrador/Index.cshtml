@@ -1,0 +1,734 @@
+﻿@{
+    ViewData["Title"] = "Administrador";
+}
+
+<style>
+    .error-message {
+        font-size: 11px;
+        color: red;
+        margin-top: -15px;
+        margin-left:30px;
+        display: none;
+    }    
+    .select2-container--bootstrap-5 {
+        z-index: 1051 !important; /* Ajusta el z-index según sea necesario */
+    }
+
+
+    .clasAdmin {
+        color: black !important;
+        background: #d5f7fd;
+    }
+
+    .clasOper {
+        color: black !important;
+        background: #fdfadf;
+    }
+
+    .clasRad {
+        color: black !important;
+        background: #cffbf2;
+    }
+
+    .clasInactivo {
+        color: black !important;
+        background: #cffcf2;
+    }
+
+    .clasActivo {
+        color: black !important;
+        background: #cffcf2;
+    }
+
+
+</style>
+
+<div class="pt-3">
+       
+    @* CLIENTE  *@
+
+    <div class="card" id="CardClientes">
+
+        <div class="card-header p-3 fs-4 fw-bold"> REPORTE DE USUARIOS </div>
+
+        <div class="card-body">     @* BUSQUEDA  *@
+            <div class="row gy-3">
+                <div class="col-xl-2">
+                    <label for="buscarUsuario" class="form-label ">Usuario:</label>
+                    <input type="text" class="form-control" id="buscarUsuario" placeholder="Ingrese el usuario">
+                </div>
+                <div class="col-xl-2">
+                    <label for="buscarCorreo" class="form-label">Correo: </label>
+                    <input type="email" class="form-control" id="buscarCorreo" placeholder="Ingrese el correo">
+                </div>
+                <div class="col-xl-2">
+                    <label for="buscarNivel" class="form-label">Nivel: </label>
+                    <select id="buscarNivel" class="form-select" aria-label="">
+                        <option value="0">Seleccione nivel</option>
+                        <option value="1">Administrador</option>
+                        <option value="2">Operador</option>
+                        <option value="3">Radicador</option>
+                        <option value="4">Doctor</option>
+                    </select>
+                </div>
+                <div class="col-xl-2">
+                    <label for="buscarEstado" class="form-label">Estado: </label>
+                    <select id="buscarEstado" class="form-select" aria-label="">
+                        <option value="99">Seleccione estado</option>
+                        <option value="0">Inactivo</option>
+                        <option value="1">Activo</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-xl-6 mt-3">
+                <button type="button" id="btnBuscar" class="btn btn-secondary-light me-2"> BUSCAR  </button>
+                <button type="button" id="btnLimpiar" class="btn btn-success-light me-2 "> LIMPIAR </button>
+                <button type="button" id="btnCancelar" class="btn btn-warning-light"> CANCELAR </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" id="CardClientes">
+        <div class="card-header p-3 fs-4 fw-bold d-flex flex-row align-items-center">
+            <div class="" style="width: 80%;">USUARIOS</div>
+            <div class="d-flex flex-row align-items-center justify-content-end" style="width: 20%;">
+                <div class="btn-group btn-group-sm">
+                    <button type="button" id="btnExampleModal" class="btn btn-primary-light btn-sm"> AGREGAR USUARIO </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <table id="tablaUsuario" data-toggle="table" data-pagination="true" data-search="false" data-show-columns="false" data-show-export="true" data-export-types="['excel']" data-export-options='{"excel": {"fileName": "Clientes", "text": "Descargar Excel"}}'>
+                    <thead>
+                    <tr>
+                        <th data-field="adm_id" data-sortable="true" scope="col">#</th>
+                        <th data-field="adm_nombres" scope="col">Nombres</th>
+                        <th data-field="adm_user" scope="col"> Usuario </th>
+                        <th data-field="adm_email" scope="col">Correo</th>
+                        <th data-field="adm_nivel" data-formatter="nivelFormato" scope="col"> Nivel </th>
+                        <th data-field="adm_fech_reg" data-formatter="fechaFormato" scope="col">F. Registro</th>
+                        <th data-field="adm_est" data-formatter="estFormato" scope="col">Estado</th>
+                        <th data-field="acciones" data-formatter="formatoEditar">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tbdResultadoNewCases">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br/>
+
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">  <!-- SEGUNDO BORDE -->
+                        <div class="row gy-3">
+                            <input type="hidden" id="adm_id" value="0">
+                            <div class="col-xl-6">
+                                <label for="adm_nombres" class="form-label">Nombres:</label>
+                                <div class="error-message" id="nombre-error"> Solo ingresar texto </div>
+                                <input type="text" class="form-control form-control-light" id="adm_nombres" placeholder="Ingrese el Nombre">
+                            </div>
+                            <div class="col-xl-3">
+                                <label for="adm_user" class="form-label">Usuario:</label>
+                                <div class="error-message" id="apellido-error"> Solo ingresar texto </div>
+                                <input type="text" class="form-control form-control-light" id="adm_user" placeholder="Ingrese el usuario">
+                            </div>
+                            <div class="col-xl-3">
+                                <label for="adm_clv" class="form-label">Contraseña:</label>
+                                <div class="error-message" id="apellido-error"> Ingrese constraseña </div>
+                                <input type="text" class="form-control form-control-light" id="adm_clv" placeholder="Ingrese el usuario">
+                            </div>                            
+                            <div class="col-xl-6">
+                                <label for="adm_email" class="form-label">Correo: </label>
+                                <div class="error-message" id="correo-error"> Debe ingresar correo válido </div>
+                                <input type="email" class="form-control form-control-light" id="adm_email" placeholder="Ingrese el Correo">
+                            </div>
+                            <div class="col-xl-3">
+                                <label for="adm_nivel" class="form-label">Nivel: </label>
+                                <div class="error-message" id="licencia-error">Solo ingresar texto </div>
+                                <select id="adm_nivel" class="form-select" aria-label="">
+                                    <option value="0">Seleccione nivel</option>
+                                    <option value="1">Administrador</option>
+                                    <option value="2">Operador</option>
+                                    <option value="3">Radicador</option>
+                                    <option value="4">Doctor</option>
+                                </select>
+                            </div>
+                            <div class="col-xl-3">
+                                <label for="adm_est" class="form-label">Estado: </label>
+                                <select id="adm_est" class="form-select" aria-label="">
+                                    <option value="99">Seleccione estado</option>
+                                    <option value="0">Inactivo</option>
+                                    <option value="1">Activo</option>
+                                </select>
+                            </div>
+
+                            <div class="col-xl-6" id="firmabloque">
+                                <label for="adm_firma" class="form-label">Firma:</label>
+                                <input type="file" class="form-control form-control-light" id="adm_firma" accept="image/*">
+                                <img id="firma_preview" src="" alt="Firma del Doctor" style="max-width: 100%; margin-top: 10px;" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button id="btnAgregar" type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section scripts {
+
+    <script>
+ 
+        function toggleFirmaSection() {
+        var nivel = $('#adm_nivel').val();
+        console.log('Nivel seleccionado:', nivel); // Para verificar el valor del nivel
+
+        if (nivel == "4") { // 4 es el valor para Doctor
+            console.log('Mostrando sección de firma');
+            $('#firmaSection').show(); // Mostrar la sección de firma
+            document.getElementById('firmabloque').style.display="block";
+        } else {
+            console.log('Ocultando sección de firma');
+            $('#firmaSection').hide(); // Ocultar la sección de firma
+            $('#adm_firma').val(''); // Limpiar el campo de archivo
+            $('#firma_preview').attr('src', ''); // Limpiar la vista previa
+            document.getElementById('firmabloque').style.display="none";
+        }
+    }
+
+        
+        $(document).ready(function () {
+
+ 
+    // Llama a la función al cargar la página
+    toggleFirmaSection();
+
+    // Llama a la función cada vez que se cambie el valor del dropdown de nivel
+    $('#adm_nivel').change(function () {
+        toggleFirmaSection();
+    });
+
+
+
+            document.getElementById('adm_firma').addEventListener('change', function (event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById('firma_preview').src = e.target.result;
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // INICIA VALIDACIONES
+            function validarCampo(campoID, errorID, regex) {
+                $(campoID).on('input', function () {
+                    var valorCampo = $(this).val();
+
+                    if (!regex.test(valorCampo)) {
+                        $(errorID).show(); // Mostrar mensaje de error
+                    } else {
+                        $(errorID).hide(); // Ocultar mensaje de error si es válido
+                    }
+                });
+            }
+
+            // validarCampo('#nombre', '#nombre-error', /^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/);
+            // validarCampo('#primerApellido', '#apellido-error', /^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/);
+            // validarCampo('#segundoApellido', '#2apellido-error', /^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/);
+            //validarCampo('#correo', '#correo-error', /^[a-zA-Z0-9._%+-]+[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
+            // validarCampo('#numeroLicencia', '#licencia-error', /^[0-9]{7}$/);
+            // validarCampo('#fechaNacimiento', '#fecha-error', /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/);
+            // validarCampo('#zip', '#zip-error', /^[0-9]{5}$/);
+            // validarCampo('#numeroSeguro', '#seguro-error', /^[0-9]{4}$/);
+            // validarCampo('#numeroTelefono', '#telefono-error', /^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/);
+            // TERMINA VALIDACIONES
+
+
+            // $('#CardClientes').show(); // Mostrar 'CardClientes' al inicio de la página
+            llenarTabla();
+            $('#btnExampleModal').on('click', function () {
+                cleanForm();
+                $('#exampleModal').modal('show');
+            })
+            $('#btnAgregar').on('click', function () { 
+                agregarUsuario();
+            });
+
+            // BUSQUEDA POR CAMPOS
+            $('#btnBuscar').click(function () {
+                var buscarUsuario = $('#buscarUsuario').val();
+                var buscarCorreo = $('#buscarCorreo').val();
+                var buscarNivel = $('#buscarNivel').val();
+                var buscarEstado = $('#buscarEstado').val();
+
+                var data = {
+                    adm_user: buscarUsuario,
+                    adm_email: buscarCorreo,
+                    adm_nivel: buscarNivel,
+                    adm_est: buscarEstado
+                };
+
+                jQuery.ajax({
+                    url: baseApiUrlEndPoint + '/Administrador/buscarAdminPanel',
+                    type: "GET",
+                    data: data,
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        data.items.forEach((t, i) => {
+                            t.index = i + 1;
+                        });
+                        $('#tablaUsuario').bootstrapTable('load', data.items);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            });
+
+            $('#btnLimpiar').click(function () {   // LIMPIAR
+                $('#buscarUsuario').val("");
+                $('#buscarCorreo').val("");
+                $('#buscarNivel').val("0");
+                $('#buscarEstado').val("99");
+            });
+
+            $('#btnCancelar').click(function () {   // Cancelar 
+                llenarTabla();
+                $('#btnLimpiar').trigger("click");
+            });
+
+            $('#tablaUsuario').on('click', '.editar-btn', function () {
+                var index = $(this).closest('tr').attr('data-index');
+                var rowData = $('#tablaUsuario').bootstrapTable('getData')[index];
+                
+                var user_id = rowData.adm_id;
+                obtenerUsuarioPorId(user_id);
+            });
+
+            $('#tablaUsuario').on('click', '.eliminar-btn', function () {
+                var index = $(this).closest('tr').attr('data-index');
+                var rowData = $('#tablaUsuario').bootstrapTable('getData')[index];
+                var user_id = rowData.adm_id;
+                eliminarUsuario(user_id);
+            });
+
+
+            function llenarTabla(){  //GET ADMIN
+                jQuery.ajax({
+                    url: baseApiUrlEndPoint+'/Administrador',
+                    type: "GET",
+                    data: null,
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        console.log("dataaa",data)
+                        data.items.forEach((t, i) => {
+                            t.index = i + 1;
+                        });
+                        $('#tablaUsuario').bootstrapTable('load', data.items);
+                    },
+                });
+            }
+            
+            function validacionGuardar() {
+                var success = true;
+                var message = "";
+
+                if ($('#adm_email').val() == "") {
+                    success = false;
+                    message = "Debe ingresar el correo";
+                }
+                if ($('#adm_nombres').val() == "") {
+                    success = false;
+                    message = "Debe ingresar el nombre del usuario";
+                }
+                if ($('#adm_user').val() == "") {
+                    success = false;
+                    message = "Debe ingresar usuario";
+                }
+                if ($('#adm_clv').val() == "") {
+                    success = false;
+                    message = "Debe ingresar la contraseña";
+                }
+                
+                if ($('#adm_nivel').val() == "") {
+                    success = false;
+                    message = "Debe ingresar el nivel";
+                }
+                if ($('#adm_est').val() == "") {
+                    success = false;
+                    message = "Debe ingresar el estado";
+                }
+                if (message !="") {
+                    Swal.fire({
+                        icon: "warning",
+                        title: message,
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                }
+                return success;
+            }
+            
+            function cleanForm() {
+                $('#adm_nombres').val("");
+                $('#adm_user').val("");
+                $('#adm_clv').val("");
+                $('#adm_email').val("");
+                $('#adm_nivel').val("0");
+                $('#adm_est').val("99");                
+            }
+
+            // function agregarUsuario() {
+            //     console.log("agregarUsuario")
+            //     if (!validacionGuardar()){
+            //         return;
+            //     }
+            //     var adm_id = $('#adm_id').val();
+            //     var adm_nombres = $('#adm_nombres').val();
+            //     var adm_user = $('#adm_user').val();
+            //     var adm_clv = $('#adm_clv').val();
+            //     var adm_est = $('#adm_est').val();
+            //     var adm_email = $('#adm_email').val();
+            //     var adm_nivel = $('#adm_nivel').val();
+            //     var fechaActual = new Date();
+            //     var adm_fech_reg = fechaActual.toISOString().slice(0, 10);
+
+            //     var usuarioData = {
+            //         adm_id: adm_id == "" ? 0 : adm_id,
+            //         adm_nombres: adm_nombres,
+            //         adm_user: adm_user,
+            //         adm_clv: adm_clv,
+            //         adm_est: adm_est,
+            //         adm_email: adm_email,
+            //         adm_nivel: adm_nivel,
+            //         adm_fech_reg: adm_fech_reg,
+            //     };
+            //     var type = (adm_id == 0) ? "POST" : "PUT";
+
+            //     jQuery.ajax({
+            //         url: baseApiUrlEndPoint+'/Administrador/',
+            //         type: type,
+            //         data: JSON.stringify(usuarioData),
+            //         dataType: "json",
+            //         contentType: "application/json; charset=utf-8",
+            //         success: function (data) {
+            //             console.log(data);
+            //             if (data.success) {
+            //                 Swal.fire({
+            //                     title: "Registrado!",
+            //                     text: data.message,
+            //                     icon: "success",
+            //                     timer: 2000
+            //                 });
+            //                 llenarTabla();
+            //                 $('#exampleModal').modal('hide');
+            //             }
+            //         },
+            //         error: function (error) {
+            //             console.log(error); // Mostrar un mensaje de error si es necesario
+            //         }
+            //     });                
+            // }
+
+//             function agregarUsuario() {
+//                 if (!validacionGuardar()) {
+//                     return;
+//                 }
+
+//                 const fileInput = $('#adm_firma')[0];
+//                 const file = fileInput.files[0];
+
+//                 const reader = new FileReader();
+//                 reader.onload = function (event) {
+
+//                     let fileAsBase64 = "";
+
+// try {
+//     fileAsBase64 = btoa(String.fromCharCode(...new Uint8Array(event.target.result)));  // Convertir a Base64
+// } catch (error) {
+// }
+
+ 
+
+//                     const administrador = {
+//                         adm_id: $('#adm_id').val() == "" ? 0 : $('#adm_id').val(),
+//                         adm_nombres: $('#adm_nombres').val(),
+//                         adm_user: $('#adm_user').val(),
+//                         adm_clv: $('#adm_clv').val(),
+//                         adm_est: $('#adm_est').val(),
+//                         adm_email: $('#adm_email').val(),
+//                         adm_nivel: $('#adm_nivel').val(),
+//                         // FirmaBytes: fileAsBytes,  // Añadir los bytes del archivo
+//                         FirmaBytes: fileAsBase64,
+//                         adm_firma: ""  // Inicialmente vacío, se llenará en el backend
+//                     };
+
+//                     const type = (administrador.adm_id == 0) ? "POST" : "PUT";
+
+//                     jQuery.ajax({
+//                         url: baseApiUrlEndPoint + '/Administrador/',
+//                         type: type,
+//                         contentType: "application/json",
+//                         data: JSON.stringify(administrador),
+//                         success: function (data) {
+//                             if (data.success) {
+//                                 Swal.fire({
+//                                     title: "Registrado!",
+//                                     text: data.message,
+//                                     icon: "success",
+//                                     timer: 2000
+//                                 });
+//                                 llenarTabla();
+//                                 $('#exampleModal').modal('hide');
+//                             }
+//                         },
+//                         error: function (error) {
+//                             console.log(error);
+//                         }
+//                     });
+//                 };
+
+//                 try     
+//                 {
+//                 reader.readAsArrayBuffer(file);  // Leer el archivo como ArrayBuffer
+//                 }
+//                 catch
+//                 {
+//                 }
+//             }
+
+function agregarUsuario() {
+    if (!validacionGuardar()) {
+        return;
+    }
+
+    const fileInput = $('#adm_firma')[0];
+    const file = fileInput ? fileInput.files[0] : null;
+
+    const administrador = {
+        adm_id: $('#adm_id').val() == "" ? 0 : $('#adm_id').val(),
+        adm_nombres: $('#adm_nombres').val(),
+        adm_user: $('#adm_user').val(),
+        adm_clv: $('#adm_clv').val(),
+        adm_est: $('#adm_est').val(),
+        adm_email: $('#adm_email').val(),
+        adm_nivel: $('#adm_nivel').val(),
+        FirmaBytes: "",  // Inicialmente vacío, se llenará si hay archivo
+        adm_firma: ""  // Inicialmente vacío, se llenará en el backend
+    };
+
+    const type = (administrador.adm_id == 0) ? "POST" : "PUT";
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            try {
+                administrador.FirmaBytes = btoa(String.fromCharCode(...new Uint8Array(event.target.result)));  // Convertir a Base64
+            } catch (error) {
+                console.error('Error al convertir el archivo a Base64:', error);
+            }
+            enviarDatos(administrador, type);
+        };
+        try {
+            reader.readAsArrayBuffer(file);  // Leer el archivo como ArrayBuffer
+        } catch (error) {
+            console.error('Error al leer el archivo como ArrayBuffer:', error);
+            enviarDatos(administrador, type);
+        }
+    } else {
+        enviarDatos(administrador, type);
+    }
+}
+
+function enviarDatos(administrador, type) {
+    jQuery.ajax({
+        url: baseApiUrlEndPoint + '/Administrador/',
+        type: type,
+        contentType: "application/json",
+        data: JSON.stringify(administrador),
+        success: function (data) {
+            if (data.success) {
+                Swal.fire({
+                    title: "Registrado!",
+                    text: data.message,
+                    icon: "success",
+                    timer: 2000
+                });
+                llenarTabla();
+                $('#exampleModal').modal('hide');
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}
+
+            function eliminarUsuario(user_id) {
+            Swal.fire({
+                title: "¿Estás seguro de que quieres eliminar este usuario?",
+                text: "se elimina de forma permanente",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    jQuery.ajax({
+                            url: baseApiUrlEndPoint + '/Administrador/' + user_id,
+                        type: "DELETE",
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            console.log(data);
+                            if (data.success) {
+                                Swal.fire({
+                                    title:"Eliminado!",
+                                    text: "Se ha eliminado correctamente.",
+                                    icon: "success",
+                                    timer: 2000
+                                });
+                                llenarTabla();
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+                }
+            });
+        }
+                        
+        })
+
+        // botones  EDITAR delete
+        function formatoEditar(value, row, index) {
+            var editarBtn = '<button class="btn btn-primary-light editar-btn me-md-2 btn-sm" title="Editar"><i class="ri-edit-line"></i> </button>';
+            var eliminarBtn = '<button class="btn btn-danger-light btn-sm eliminar-btn" title="Eliminar"><i class="ri-delete-bin-line"></i></button>';
+            return editarBtn + eliminarBtn;
+        }
+
+        function obtenerUsuarioPorId(user_id) {
+            jQuery.ajax({
+                url: baseApiUrlEndPoint + '/Administrador/' + user_id,
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    console.log("data:" + data.item)
+                    llenarModalEditar(data.item)
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        function llenarModalEditar(usuarioData) {
+            $('#adm_id').val(usuarioData.adm_id);
+            $('#adm_nombres').val(usuarioData.adm_nombres);
+            $('#adm_user').val(usuarioData.adm_user);
+            $('#adm_clv').val(usuarioData.adm_clv);
+            $('#adm_est').val(usuarioData.adm_est);
+            $('#adm_email').val(usuarioData.adm_email);
+            $('#adm_nivel').val(usuarioData.adm_nivel);
+
+           if (usuarioData.adm_firma) {
+    const timestamp = new Date().getTime(); // Obtener un timestamp único
+    const urlConCacheBusting = `${usuarioData.adm_firma}?t=${timestamp}`; // Agregar el timestamp como parámetro de consulta
+    $('#firma_preview').attr('src', urlConCacheBusting);
+} else {
+    $('#firma_preview').attr('src', '');
+}
+
+            $('#exampleModal').modal('show');
+
+            toggleFirmaSection();
+        }
+
+        function fechaFormato(value, row, index) {
+            if (!value) return '';
+            const date = new Date(value);
+            const options = {
+                year: '2-digit',
+                month: '2-digit',
+                day: '2-digit'
+            };
+            return date.toLocaleString('en-US', options);
+        }
+
+        function nivelFormato(value, row, index) {
+            if (!value) return '';
+
+            let nivelText = '';
+            let className = '';
+
+            switch (value) {
+                case 1:
+                    className = 'badge bg-primary-transparent';
+                    nivelText = 'Administrador';
+                    break;
+                case 2:
+                    className = 'badge bg-secondary-transparent';
+                    nivelText = 'Operador';
+                    break;
+                case 3:
+                    className = 'badge bg-success-transparent';
+                    nivelText = 'Radicador';
+                    break;
+                case 4:
+                    className = 'badge bg-danger-transparent';
+                    nivelText = 'Doctor';  // Aquí se corrige el nivelText para el nivel 4
+                    break;
+                default:
+                    className = 'badge bg-default-transparent';
+                    nivelText = 'Desconocido';
+                    break;
+            }
+
+            return `<span class="${className}">${nivelText}</span>`;
+        }
+
+        function estFormato(value, row, index) {
+            let estadoText = '';
+            let className = '';
+
+            if (value === 0) {
+                className = 'badge bg-warning-transparent';
+                estadoText = 'Inactivo';
+            } else if (value === 1) {
+                className = 'badge bg-success-transparent';
+                estadoText = 'Activo';
+            }
+
+            return `<span class="${className}">${estadoText}</span>`;
+        }
+
+    </script>
+
+
+}

@@ -1,0 +1,543 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="">
+    <h4 class="pt-3 fw-bold"> Detalle del caso / Formulario   <span class="fw-bold" id="nombreTramite"></span> </h4>
+    <br/>
+    <input type="hidden" id="cl_id" name="cl_id" value="@ViewBag.cl_id" />
+    <input type="hidden" id="tr_id" name="tr_id" value="@ViewBag.tr_id" />
+    <input type="hidden" id="frm_id" name="frm_id" value="@ViewBag.frm_id" />
+
+   <div class="card h-100 shadow-sm mb-4" >
+        <div class="card-header p-3 fs-6 fw-bold"> Datos del Cliente: </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-12 col-lg-6">
+                    <p class="card-text d-flex flex-row">
+                        <span class="me-2 fw-bold">Nombre:</span>
+                        <span id="frmNombre"></span>
+                    </p>
+                    <p class="card-text d-flex flex-row">
+                        <span class="me-2 fw-bold">Correo:</span>
+                        <span id="frmCorreo"></span>
+                    </p>
+                    <p class="card-text d-flex flex-row">
+                        <span class="me-2 fw-bold">Telefono:</span>
+                        <span id="frmTelefono"></span>
+                    </p>
+                </div>
+                <div class="col-sm-12 col-lg-6">
+                    <p class="card-text d-flex flex-row">
+                        <span class="me-2 fw-bold">Código de Pago:</span>
+                        <span id="frmCodigoPago"></span>
+                    </p>
+                    <p class="card-text d-flex flex-row">
+                        <span class="me-2 fw-bold">Tipo de Trámite:</span>
+                        <span id="nombreTramite2"></span>
+                    </p>
+                    <p class="card-text d-flex flex-row">
+                        <span class="me-2 fw-bold">Fecha de solicitud:</span>
+                        <span id="frmFecha"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @*  Formulario Renovación Licencia  *@
+    <div class="card" id="">
+        <div class="card-header p-3 fs-6 fw-bold"> Datos Del Formulario: </div>
+
+        <div class="card-body">
+            <div class="row gy-3">
+                <input type="hidden" id="txtId" value="0">                
+                <div class="col-xl-3">
+                    <label for="frmTipoLicencia" class="form-label">Tipo de licencia:</label>
+                    <select id="frmTipoLicencia" class="form-select form-select-light  mt-0">
+                        <option value="Licencia de conducir">Licencia de Conducir</option>
+                        <option value="Licencia de conducir Real ID">Licencia de Conducir Real ID</option>
+                    </select>
+                </div>
+                <div class="col-xl-3">
+                    <label for="frmNumeroLicencia" class="form-label">N° licencia:</label>
+                    <input type="text" class="form-control form-control-light" id="frmNumeroLicencia" placeholder=" ">
+                </div> 
+                <div class="col-xl-3">
+                    <label for="frmCategoria" class="form-label">Categoría:</label>
+                    <select id="frmCategoria" class="form-select form-select-light  mt-0">
+                        <option value="Conductor">Conductor</option>
+                        <option value="Chofer">Chofer</option>
+                    </select>
+                </div>                
+                <div class="col-xl-3">
+                    <label for="frmVehiculoPesado" class="form-label">Vehículos Pesados Tipo:</label>
+                    <select id="frmVehiculoPesado" class="form-select form-select-light  mt-0">
+                        <option value="">-- SELECCIONE --</option>
+                        <option value="Tipo 1">Tipo 1</option>
+                        <option value="Tipo 2">Tipo 2</option>
+                        <option value="Tipo 3">Tipo 3</option>
+                        <option value="Tipo 4">Tipo 4</option>
+                    </select>
+                </div>
+                <div class="col-xl-3">
+                    <label for="frmIdentificacion" class="form-label">Tipo de Identificación:</label>
+                    <select id="frmIdentificacion" class="form-select form-select-light  mt-0">
+                        <option value="Seguro Social">Seguro Social</option>
+                        <option value="Pasaporte">Pasaporte</option>
+                    </select>
+                </div>                
+                <div class="col-xl-3">
+                    <label for="frmNumero" class="form-label">Número de Seguro: (4 últimos números) </label>
+                    <input type="text" class="form-control form-control-light" id="frmNumero" placeholder=" ">
+                </div>                
+                <div class="col-xl-3">
+                    <label for="frmStatusLegal" class="form-label">Estatus legal:</label>
+                    <select id="frmStatusLegal" class="form-select form-select-light  mt-0">
+                        <option value="Ciudadano USA">Ciudadano USA</option>
+                        <option value="Residente Permanente">Residente Permanente</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <div class="col-xl-3">
+                    <label for="frmGenero" class="form-label">Género:</label>
+                    <select id="frmGenero" class="form-select form-select-light  mt-0">
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                    </select>
+                </div>     
+                <div class="col-xl-3">
+                    <label for="frmDonante" class="form-label">Donante de Sangre:</label>
+                    <select id="frmDonante" class="form-select form-select-light  mt-0">
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>                
+                <div class="col-xl-3">
+                    <label for="frmTipoSangre" class="form-label">Tip de Sangre: </label>
+                    <input type="text" class="form-control form-control-light" id="frmTipoSangre" placeholder=" ">
+                </div>
+                <div class="col-xl-3">
+                    <label for="frmTalla" class="form-label">Estatura: pies / pulgadas </label>
+                    <input type="text" class="form-control form-control-light" id="frmTalla" placeholder=" ">
+                </div>
+                <div class="col-xl-3">
+                    <label for="frmPeso" class="form-label">Peso: </label>
+                    <input type="text" class="form-control form-control-light" id="frmPeso" placeholder=" ">
+                </div>
+                
+                <div class="col-xl-3">
+                    <label for="frmTez" class="form-label">Tez:</label>
+                    <select id="frmTez" class="form-select form-select-light  mt-0">
+                        <option value="Blanca">Blanca</option>
+                        <option value="Negra">Negra</option>
+                        <option value="Amarilla">Amarilla</option>
+                    </select>
+                </div>
+                <div class="col-xl-3">
+                    <label for="frmColorPelo" class="form-label">Color de Pelo:</label>
+                    <select id="frmColorPelo" class="form-select form-select-light  mt-0">
+                        <option value="Amarillo">Amarillo</option>
+                        <option value="Blanco">Blanco</option>
+                        <option value="Gris">Gris</option>
+                        <option value="Marrón">Marrón</option>
+                        <option value="Negro">Negro</option>
+                        <option value="Rojo">Rojo</option>
+                        <option value="Calvo">Calvo</option>
+                    </select>
+                </div>                
+                <div class="col-xl-3">
+                    <label for="frmColorOjo" class="form-label">Color de Ojos:</label>
+                    <select id="frmColorOjo" class="form-select form-select-light  mt-0">
+                        <option value="Amarillo">Amarillo</option>
+                        <option value="Azul">Azul</option>
+                        <option value="Gris">Gris</option>
+                        <option value="Marrón">Marrón</option>
+                        <option value="Negro">Negro</option>
+                        <option value="Verde">Verde</option>
+                        <option value="Hazel">Hazel</option>
+                    </select>
+                </div>
+                 <div class="col-xl-3">
+                    <label for="frmPaisProcede" class="form-label">País Procede:</label>
+                    <select id="frmPaisProcede" class="form-select form-select-light  mt-0">
+                        <option value="Puerto Rico">Puerto Rico</option>
+                        <option value="EE. UU.">EE. UU.</option>
+                    </select>
+                 </div>
+                <div class="card-header p-3 fs-6 fw-bold"> Dirección Residencial: </div>
+                <div class="col-xl-3">
+                    <label for="frmDireccion" class="form-label">Dirección: </label>
+                    <input type="text" class="form-control form-control-light" id="frmDireccion" placeholder=" ">
+                </div>
+                <div class="col-xl-3">
+                    <label for="frmNumeroDireccion" class="form-label"> N° Dirección: </label>
+                    <input type="text" class="form-control form-control-light" id="frmNumeroDireccion" placeholder=" ">
+                </div>
+                <div class="col-xl-3">
+                    <label for="pueblo" class="form-label">Pueblo: </label>
+                    <select id="ddlPueblos1" class="form-select" placeholder="Seleccione el pueblo"></select>
+                    @* <input type="number" class="form-control form-control-light" id="pueblo" placeholder="Ingrese el pueblo"> *@
+                </div>
+                <div class="col-xl-3">
+                    <label for="frmCodigoPostal" class="form-label">Codigo Postal: </label>
+                    <input type="text" class="form-control form-control-light" id="frmCodigoPostal" placeholder=" ">
+                </div>
+
+
+                <div class="card-header p-3 fs-6 fw-bold"> Dirección Postal: </div>
+                <div class="col-xl-3">
+                    <label for="frmBarrio" class="form-label">Barrio: </label>
+                    <input type="text" class="form-control form-control-light" id="frmBarrio" placeholder=" ">
+                </div>
+                <div class="col-xl-3">
+                    <label for="frmApartado" class="form-label">Apartado: </label>
+                    <input type="text" class="form-control form-control-light" id="frmApartado" placeholder=" ">
+                </div>
+                
+                <div class="col-xl-3">
+                    <label for="frmPueblo2" class="form-label">Pueblo 2: </label>
+                    <select id="ddlPueblos2" class="form-select" placeholder="Seleccione el pueblo"></select>
+                    @* <input type="text" class="form-control form-control-light" id="frmPueblo2" placeholder=" "> *@
+                </div>
+                <div class="col-xl-3">
+                    <label for="frmCodigoPostal2" class="form-label">CódigoPostal 2: </label>
+                    <input type="text" class="form-control form-control-light" id="frmCodigoPostal2" placeholder=" ">
+                </div>
+
+
+                <div class="card-header p-3 fs-6 fw-bold"></div>
+            @*     <div class="col-xl-4">
+                    <label for="frmLicenciaSuspendida" class="form-label">¿Ha sido suspendida su licencia en Puerto Rico? </label> <br />
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="width:150px; height:31px">
+                        <input type="radio" class="btn-check mb-1" name="btnradioSuspendido" id="btnSelectSuspension1" checked value="No">
+                        <label class="btn btn-outline-primary p-1" for="btnSelectSuspension1">No</label>
+                        <input type="radio" class="btn-check" name="btnradioSuspendido" id="btnSelectSuspension2" value="Sí">
+                        <label class="btn btn-outline-primary p-1" for="btnSelectSuspension2">Sí</label>
+                    </div>
+                </div>
+
+                <div class="col-xl-4" id="divMotivoSuspension">
+                    <label for="frmMotivoSuspension" class="form-label">Motivo de Suspensión:</label>
+                    <select id="selectMotivoSuspension" class="form-select form-select-light mt-0">
+                        <option value="Judicial">Judicial</option>
+                        <option value="Sistema de Puntos">Sistema de Puntos</option>
+                        <option value="Incapacidad">Incapacidad</option>
+                        <option value="Revocación del Secretario">Revocación del Secretario</option>
+                        <option value="Ley de ASUME">Ley de ASUME</option>
+                    </select>
+                </div>
+                
+                <div class="col-xl-4">
+                    <label for="frmRecluido" class="form-label"> ¿Ha sido recluido por desorden mental? </label> <br />
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="width:150px ; height:31px">
+                        <input type="radio" class="btn-check mb-1" name="btnradioRecluido" id="btnfrmRecluido1" checked value="No">
+                        <label class="btn btn-outline-primary p-1" for="btnfrmRecluido1">No</label>
+                        <input type="radio" class="btn-check" name="btnradioRecluido" id="btnfrmRecluido2" value="Sí">
+                        <label class="btn btn-outline-primary p-1" for="btnfrmRecluido2">Sí</label>
+                    </div>
+                </div>
+
+
+                
+                <div class="col-xl-4">
+                    <label for="frmConvictoBebida" class="form-label"> ¿Ha sido convicto por uso de bebidas embriagantes? </label><br />
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="width:150px ; height:31px">
+                        <input type="radio" class="btn-check mb-1" name="btnradioBebida" id="btnfrmConvictoBebida1" checked value="No">
+                        <label class="btn btn-outline-primary p-1" for="btnfrmConvictoBebida1">No</label>
+                        <input type="radio" class="btn-check" name="btnradioBebida" id="btnfrmConvictoBebida2" value="Sí">
+                        <label class="btn btn-outline-primary p-1" for="btnfrmConvictoBebida2">Sí</label>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <label for="frmFechaConvictoBebida" class="form-label"> Fecha de convicción </label>
+                    <input type="date" class="form-control form-control-light" id="frmFechaConvictoBebida" placeholder=" ">
+                </div>
+                
+                <div class="col-xl-4">
+                    <label for="frmConvictoNarcotico" class="form-label">¿Ha sido convicto por la Ley de Narcóticos? </label><br />
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="width:150px ; height:31px">
+                        <input type="radio" class="btn-check mb-1" name="btnradioNarcotico" id="btnfrmConvictoNarcotico1" checked value="No">
+                        <label class="btn btn-outline-primary p-1" for="btnfrmConvictoNarcotico1">No</label>
+                        <input type="radio" class="btn-check" name="btnradioNarcotico" id="btnfrmConvictoNarcotico2" value="Sí">
+                        <label class="btn btn-outline-primary p-1" for="btnfrmConvictoNarcotico2">Sí</label>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <label for="frmFechaConvictoNarcotico" class="form-label"> Fecha de convicción por Narcótico: </label>
+                    <input type="date" class="form-control form-control-light" id="frmFechaConvictoNarcotico" placeholder=" ">
+                </div>
+                <div class="col-xl-4">
+                    <label for="frmObligacionAlimentaria" class="form-label"> ¿Tiene obligación alimentaría "ASUME"? </label><br />
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="width:150px ; height:31px">
+                        <input type="radio" class="btn-check mb-1" name="btnradioAsume" id="btnfrmObligacionAlimentaria1" checked value="No">
+                        <label class="btn btn-outline-primary p-1" for="btnfrmObligacionAlimentaria1">No</label>
+                        <input type="radio" class="btn-check" name="btnradioAsume" id="btnfrmObligacionAlimentaria2" value="Sí">
+                        <label class="btn btn-outline-primary p-1" for="btnfrmObligacionAlimentaria2">Sí</label>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <label for="frmDeudaAcca" class="form-label"> ¿Tiene deuda por servicios médicos con "ACAA"? </label> <br />
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="width:150px ; height:31px">
+                        <input type="radio" class="btn-check mb-1" name="btnradioAcca" id="btnfrmDeudaAcca1" checked value="No">
+                        <label class="btn btn-outline-primary p-1" for="btnfrmDeudaAcca1">No</label>
+                        <input type="radio" class="btn-check" name="btnradioAcca" id="btnfrmDeudaAcca2" value="Sí">
+                        <label class="btn btn-outline-primary p-1" for="btnfrmDeudaAcca2">Sí</label>
+                    </div>
+                </div>
+ *@
+                <div class="col-xl-4">
+                    <label for="frmLicenciaSuspendida" class="form-label">¿Ha sido suspendida su licencia en Puerto Rico? </label> <br />
+                    <div class="switch-container">
+                        <input class="form-check-input" type="checkbox" role="switch" id="btnSelectSuspension" checked>
+                        <label for="btnSelectSuspension"></label>
+                    </div>
+                </div>
+
+                <div class="col-xl-4" id="divMotivoSuspension">
+                    <label for="frmMotivoSuspension" class="form-label">Motivo de Suspensión:</label>
+                    <select id="selectMotivoSuspension" class="form-select form-select-light mt-0">
+                        <option value="Judicial">Judicial</option>
+                        <option value="Sistema de Puntos">Sistema de Puntos</option>
+                        <option value="Incapacidad">Incapacidad</option>
+                        <option value="Revocación del Secretario">Revocación del Secretario</option>
+                        <option value="Ley de ASUME">Ley de ASUME</option>
+                    </select>
+                </div>
+
+                <div class="col-xl-4">
+                    <label for="frmRecluido" class="form-label">¿Ha sido recluido por desorden mental?</label> <br />
+                    <div class="switch-container">
+                        <input class="form-check-input" type="checkbox" role="switch" id="btnfrmRecluido">
+                        <label for="btnfrmRecluido"></label>
+                    </div>
+                </div>
+
+                <div class="col-xl-4">
+                    <label for="frmConvictoBebida" class="form-label">¿Ha sido convicto por uso de bebidas embriagantes?</label><br />
+                    <div class="switch-container">
+                        <input class="form-check-input" type="checkbox" role="switch" id="btnfrmConvictoBebida">
+                        <label for="btnfrmConvictoBebida"></label>
+                    </div>
+                </div>
+
+                <div class="col-xl-4">
+                    <label for="frmFechaConvictoBebida" class="form-label">Fecha de convicción</label>
+                    <input type="date" class="form-control form-control-light" id="frmFechaConvictoBebida" placeholder=" ">
+                </div>
+
+                <div class="col-xl-4">
+                    <label for="frmConvictoNarcotico" class="form-label">¿Ha sido convicto por la Ley de Narcóticos?</label> <br />
+                    <div class="switch-container">
+                        <input class="form-check-input" type="checkbox" role="switch" id="btnfrmConvictoNarcotico">
+                        <label for="btnfrmConvictoNarcotico"></label>
+                    </div>
+                </div>
+
+                <div class="col-xl-4">
+                    <label for="frmFechaConvictoNarcotico" class="form-label">Fecha de convicción por Narcótico:</label>
+                    <input type="date" class="form-control form-control-light" id="frmFechaConvictoNarcotico" placeholder=" ">
+                </div>
+
+                <div class="col-xl-4">
+                    <label for="frmObligacionAlimentaria" class="form-label">¿Tiene obligación alimentaría "ASUME"?</label> <br />
+                    <div class="switch-container">
+                        <input class="form-check-input" type="checkbox" role="switch" id="btnfrmObligacionAlimentaria">
+                        <label for="btnfrmObligacionAlimentaria"></label>
+                    </div>
+                </div>
+
+                <div class="col-xl-4">
+                    <label for="frmDeudaAcca" class="form-label">¿Tiene deuda por servicios médicos con "ACAA"?</label> <br />
+                    <div class="switch-container">
+                        <input class="form-check-input" type="checkbox" role="switch" id="btnfrmDeudaAcca">
+                        <label for="btnfrmDeudaAcca"></label>
+                    </div>
+                </div>
+
+</div>
+
+            <div class="col-sm-12 mt-3 text-end">
+                <button type="button" id="btnActualizar" class="btn btn-success btn-wave waves-effect waves-light"> GUARDAR </button>
+
+            </div>
+        </div>
+    </div>
+
+    @*  ARCHIVOS  *@
+    <div class="card" id="bodyArchivos">
+        <div class="card-header p-3 fs-6 fw-bold"> Archivos Adjuntados: </div>        
+        <div class="card-body">
+            <div class="row" id="divImagen">
+                <div class="col-xxl-2 col-xl-4 col-lg-3 col-md-3 col-sm-12">
+                </div>
+            </div>
+        <br/>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="button" id="btnVerPDF" class="btn btn-success-light btn-wave waves-effect waves-light">VER PDF</button>
+        </div>
+        </div>
+    </div>
+
+    <partial name="~/Views/Shared/_SectionMultas.cshtml" view-data="ViewData">
+
+    @*  MODAL IMAGEN *@
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen-md-down">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="nombreImagen">   </h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <img id="imgURL" src="" class="img-fluid rounded" alt="...">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal PDF -->
+    <div class="modal fade" id="modalPdf" tabindex="-1" aria-labelledby="modalPdfLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalPdfLabel">Visualización del Documento</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="" id="ihtml" style="width:100%; height:650px" crossorigin="anonymous" allow="scripts" sandbox="allow-top-navigation allow-scripts"> </iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <a href="#" target="_blank" class="btn btn-primary" id="btnDescargarPDF">Descargar PDF</a>
+                    @* <button type="button" class="btn btn-success" id="btnGrabarPDF"> Grabar PDF</button> *@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-lg-6">
+            <!-- Formulario Revisado  -->
+            <div class="card">
+                <div class="card-header p-3 fs-6 fw-bold"> Estado del Caso: </div>
+                <div class="card-body d-flex flex-column">
+                        <label for="exampleFormControlInput1" class="form-label fs-6 fw-bold" style="margin-left:0px"> Formulario y Documentos Revisados: </label>
+                    <div class="d-flex flex-row">
+                        <div class="form-check form-check-inline" style="margin-left:10px">
+                            <input class="form-check-input" type="radio" name="radioRevision" id="inlineRadio1" value="0">
+                            <label class="form-check-label" for="inlineRadio1"> No </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="radioRevision" id="inlineRadio2" value="1">
+                            <label class="form-check-label" for="inlineRadio2"> Sí </label>
+                        </div>
+                    </div>
+                        <label for="exampleFormControlInput1" class="form-label fs-6 fw-bold" style="margin-left:0px"> Multas Revisadas: </label>
+                        <label for="exampleFormControlInput1" class="mb-2" style="margin-left:0px">
+                            Marcar Si, si el cliente no tiene multas, pagó las multas o hizo un plan de pago
+                        </label>
+                        <div class="d-flex flex-row mb-3">
+                            <div class="form-check form-check-inline" style="margin-left:10px">
+                                <input class="form-check-input" type="radio" name="radioRevisionmulta" id="inlineRadio11" value="0">
+                                <label class="form-check-label" for="inlineRadio1"> No </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="radioRevisionmulta" id="inlineRadio22" value="1">
+                                <label class="form-check-label" for="inlineRadio2"> Sí </label>
+                            </div>
+                        </div>
+                    <button type="button" id="btnGuardarRevision" class="btn btn-warning-light btn-wave waves-effect waves-light"> GUARDAR </button>
+                </div>
+            </div>
+        </div>
+
+
+
+            <div class="col-sm-12 col-lg-6">
+                @*  Asignacion *@
+                <div class="card" id="">
+                    <div class="card-header p-3 fs-6 fw-bold"> ASIGNACIÓN DOCTOR: </div>
+
+                    <label for="selecDoctor" class="form-label" style="display:none">Doctor Asignado:</label>
+                    <span id="doctorAsignado" style="display:none"></span> <!-- Aquí se mostrará el doctor asignado -->
+
+
+
+                    <div class="card-body d-flex flex-column">
+                        <input type="hidden" id="txtId" value="0">
+                        <div class="mb-2">
+                            <label for="selecDoctor" class="form-label">Asignación Doctor:</label>
+                            <select id="selecDoctor" class="form-select form-select-light mt-0">
+                            </select>
+                        </div>
+
+                        <button type="button" id="btnAsignarDoctor" class="btn btn-primary-light btn-wave waves-effect waves-light">
+                            ASIGNAR DOCTOR
+                        </button>
+                    </div>
+                    <br />
+                </div>
+            </div>
+
+        <div class="col-sm-12 col-lg-6">
+            @*  Asignacion *@
+            <div class="card">
+                <div class="card-header p-3 fs-6 fw-bold">ASIGNACIÓN: </div>
+
+                 <div class="card-body">
+                    <label style="display:none" class="form-label">Revisión del Formulario:</label>
+                    <span style="display:none" id="estadoFormulario"></span> <!-- Aquí se mostrará el estado del formulario (✔ o ✖) -->
+                    <label style="display:none" class="form-label">Revisión de Multas:</label>
+                    <span style="display:none" id="estadoMultas"></span> <!-- Aquí se mostrará el estado de las multas (✔ o ✖) -->
+                    <label class="form-label">Estado de Evaluación:</label>
+                    <span id="estadoEvaluacion"></span> <!-- Aquí se mostrará el estado de evaluación -->
+                    </div>
+
+                <div class="card-body d-flex flex-column">
+                    <input type="hidden" id="txtId" value="0">
+                    <div class="mb-3">
+                        <label for="selecRadicador2" class="form-label"> Selecciona Radicador:</label>
+                        <select id="selecRadicador" class="form-select form-select-light  mt-0">
+                        </select>
+                    </div>
+
+                        <button type="button" id="btnConfirmarCaso" class="btn btn-warning-light btn-wave waves-effect waves-light">
+                            ASIGNAR CASO A RADICADOR
+                        </button>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var modalElement = document.getElementById('modalPdf');
+            var bootstrapModal = new bootstrap.Modal(modalElement);
+            modalElement.addEventListener('hidden.bs.modal', function () {
+                document.querySelectorAll('.modal-backdrop').forEach(function (backdrop) {
+                    backdrop.remove();
+                });
+                document.body.style.overflow = '';
+                document.body.style.paddingRight = '';
+            });
+        });
+
+    </script>
+    <script src="~/js/ver-duplicado-new.js"></script>
+}
+@section styles {
+    <link href="~/css/forms.css" rel="stylesheet" />
+}

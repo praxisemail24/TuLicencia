@@ -1,0 +1,47 @@
+﻿<#@ template language="C#" debug="true" hostspecific="true" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ parameter name="Titulo" type="System.String" #>
+<#@ parameter name="Imagenes" type="System.Collections.Generic.Dictionary<System.String, System.String>" #>
+<#@ output extension=".txt" #>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><#= Titulo #></title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<style>
+			body {
+				font-size: 16px;
+				font-family: "Arial";
+			}
+			.d-block {
+				display: block;
+			}
+			.d-inline-block {
+				display: inline-block;
+			}
+			.text-center {
+				align-items: center;
+			}
+			.text-uppercase {
+				text-transform: uppercase;
+			}
+		</style>
+	</head>
+	<body>
+		<# foreach(var imagen in Imagenes) { #>
+		<div class="d-block">
+			<div class="d-block text-center" style="margin-bottom: 30px;">
+				<span class="text-uppercase text-center" style="margin: auto;">Nombre: <#= imagen.Key #></span>
+			</div>
+			<div class="d-block text-center" style="height: 1250px; max-height: 1250px;">
+				<img src="<#= imagen.Value #>" style="max-width: 700px; height: auto; max-height: 1200px; margin: auto;" />
+			</div>
+		</div>
+		<# } #>
+	</body>
+</html>

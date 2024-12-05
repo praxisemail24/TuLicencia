@@ -1,0 +1,100 @@
+﻿@model PDFViewModel
+@{
+    Layout = null;
+}
+@inject Microsoft.Extensions.Configuration.IConfiguration Config
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Viewer</title>
+    <style type="text/tailwindcss">@Html.Raw(File.ReadAllText("wwwroot/css/pdf-viewer.css"))</style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/hint.css/1.2.1/hint.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/siimple-icons/siimple-icons.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        var url = '@Model.Url';
+        var queryParams = @Html.Raw(Json.Serialize(Model)); 
+        var baseApiUrlEndPoint = '@Config.GetValue(typeof(string), "ApiUrlEndPoint")';
+    </script>
+</head>
+<body>
+    <div class="pdf-document">
+        @if(Model.Signed)
+        {
+            <div class="top-toolbar">
+                <div class="toolbar-content">
+                    <button id="drawSignature" type="button" class="button">
+                        <i class="si-pen"></i>
+                        <span class="text">Firma</span>
+                    </button>
+                    <button id="saveSignature" type="button" class="button">
+                        <i class="si-disk"></i>
+                        <span class="text">Guardar</span>
+                    </button>
+                </div>
+            </div>
+        }
+        <div class="pdf-container" id="pdfContainer">
+            <div id="loader" class="overlay-loading">
+                <img src="~/images/ajax-loader.gif" style="margin: auto;" />
+            </div>
+            <canvas id="pdf-viewer" style="display: none;"></canvas>
+            @if(Model.Signed)
+            {
+                <img id="imgSignature" title="Firma" class="absolute cursor-move left-[40%] top-[40%]" style="width: 150px; height: 85px;" />
+            }
+        </div>
+        <div class="bottom-toolbar">
+            <div class="toolbar-content">
+                <a href="#download" target="_blank" class="button hint hint--top hint--bounce" id="downloadDoc" data-hint="Descargar">
+                    <i class="si-download"></i>
+                </a>
+                <button type="button" id="zoomIn" class="button hint hint--top hint--bounce" data-hint="Acercar">
+                    <i class="si-zoom-in"></i>
+                </button>
+                <button type="button" id="zoomOut" class="button hint hint--top hint--bounce" data-hint="Alejar">
+                    <i class="si-zoom-out"></i>
+                </button>
+                <button type="button" id="prevPage" class="button hint hint--top hint--bounce" data-hint="Página anterior">
+                    <i class="si-chevron-up"></i>
+                </button>
+                <button type="button" id="nextPage" class="button hint hint--top hint--bounce" data-hint="Página siguiente">
+                    <i class="si-chevron-down"></i>
+                </button>
+                <div class="pagination-label">
+                    <span>Página: <span id="pageNum">0</span> / <span id="pageCount">0</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if(Model.Signed)
+    {
+        <div id="modalSignature" class="absolute bg-gray-800 bg-opacity-70 flex flex-col z-50 h-full w-full items-center justify-center hidden">
+            <div class="relative bg-white p-5 rounded-xl">
+                <div id="box-signed" class="overflow-x-auto"></div>
+                <div class="flex items-center justify-between mt-5">
+                    <button class="button rounded-lg cancel">
+                        <i class="si-close"></i>
+                        <span class="text">Cancelar</span>
+                    </button>
+                    <button class="button rounded-lg !bg-blue-500 hover:!bg-blue-600 clear">
+                        <i class="si-erase"></i>
+                        <span class="text">Limpiar</span>
+                    </button>
+                    <button class="button rounded-lg !bg-green-500 hover:!bg-green-600 success">
+                        <i class="si-check"></i>
+                        <span class="text">Aceptar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.worker.min.js"></script>
+    <script src="~/js/SignatureJs.js"></script>
+    <script src="~/js/PDFViewer.js"></script>
+</body>
+</html>

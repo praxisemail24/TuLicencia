@@ -1,0 +1,52 @@
+﻿<div id="loadingSpinner" class="loading-spinner" style="display: none;">
+    <!-- Spinner puede ser cualquier animación de carga -->
+    <div class="spinner"></div>
+</div>
+   
+<div id="tarjeta" class="form-container">
+    <h1>Datos de pago</h1>
+    <form id="paymentForm" class="p-4 rounded shadow-sm bg-light payment-form">
+        <div class="mb-3">
+            <label for="montotarjeta" class="form-label">Monto</label>
+            <input type="text" id="montotarjeta" name="montotarjeta" class="form-control" readonly style="background-color:lightgray;color:black" required>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="num_nombre" class="form-label">Nombre</label>
+                <input type="text" id="num_nombre" name="num_nombre" class="form-control" placeholder="Ingrese el nombre del titular de la tarjeta" required>
+            </div>
+            <div class="col-md-6">
+                <label for="num_apellido" class="form-label">Apellido</label>
+                <input type="text" id="num_apellido" name="num_apellido" class="form-control" placeholder="Ingrese el apellido del titular de la tarjeta" required>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="num_tarjeta" class="form-label">Número de Tarjeta</label>
+            <input type="text" id="num_tarjeta" name="num_tarjeta" class="form-control" placeholder="Ingrese el número de la tarjeta" required>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="fecha_tarjeta_mes" class="form-label">Fecha de expiración</label>
+                <div class="d-flex">
+                    <select id="fecha_tarjeta_mes" name="fecha_tarjeta_mes" class="form-select me-2" required>
+                        <option value="">MM</option>
+                        <!-- Generar opciones de 1 a 12 -->
+                    </select>
+                    <select id="fecha_tarjeta_anio" name="fecha_tarjeta_anio" class="form-select" required>
+                        <option value="">YYYY</option>
+                        <!-- Generar opciones de año actual a 10 años después -->
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="cvv_tarjeta" class="form-label">CVV</label>
+                <input type="number" id="cvv_tarjeta" name="cvv_tarjeta" class="form-control" placeholder="Ingrese el CVV de su tarjeta" required>
+            </div>
+        </div>
+
+        <button class="btn btn-primary w-100" type="button" onclick="PagaTarjetaApi()">Pagar</button>
+    </form>
+</div>

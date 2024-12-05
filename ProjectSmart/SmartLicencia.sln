@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartLicencia", "SmartLicencia.csproj", "{73045C8F-C0BE-473D-A81F-9BFA8DB2CA81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartLicense.Pdf", "..\SmartLicense.Pdf\SmartLicense.Pdf.csproj", "{B6C21DDB-68C4-40A7-8E82-CE0231AE7CAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{73045C8F-C0BE-473D-A81F-9BFA8DB2CA81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73045C8F-C0BE-473D-A81F-9BFA8DB2CA81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73045C8F-C0BE-473D-A81F-9BFA8DB2CA81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73045C8F-C0BE-473D-A81F-9BFA8DB2CA81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6C21DDB-68C4-40A7-8E82-CE0231AE7CAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6C21DDB-68C4-40A7-8E82-CE0231AE7CAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6C21DDB-68C4-40A7-8E82-CE0231AE7CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6C21DDB-68C4-40A7-8E82-CE0231AE7CAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90C47683-237B-45DD-BABF-1FD00A319E3B}
+	EndGlobalSection
+EndGlobal

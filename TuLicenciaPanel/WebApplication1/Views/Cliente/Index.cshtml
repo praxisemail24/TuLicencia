@@ -1,0 +1,589 @@
+﻿@{
+    ViewData["Title"] = "Cliente";
+}
+
+<style>
+    .error-message {
+        font-size: 11px;
+        color: red;
+        margin-top: -15px;
+        margin-left:30px;
+        display: none;
+    }
+    .select2-container--bootstrap-5 {
+        z-index: 1051 !important; /* Ajusta el z-index según sea necesario */
+    }
+</style>
+
+<div class="pt-3">
+       
+    @* CLIENTE  *@
+
+    <div class="card" id="CardClientes">
+
+        <div class="card-header p-3 fs-4 fw-bold"> REPORTE DE CLIENTES  </div>
+
+        <div class="card-body">
+            <div class="row gy-3">
+                <input type="hidden" id="" value="0">
+                <div class="col-xl-2">
+                    <label for="buscarNombre" class="form-label">Nombres:</label>
+                    <input type="text" class="form-control" id="buscarNombre" placeholder="Ingrese el nombre">
+                </div>
+                <div class="col-xl-2">
+                    <label for="buscarPrimerApellido" class="form-label">A. Paterno:</label>
+                    <input type="text" class="form-control" id="buscarPrimerApellido" placeholder="Ingrese el apellido paterno">
+                </div>
+                <div class="col-xl-2">
+                    <label for="buscarSegundoApellido" class="form-label">A. Materno: </label>
+                    <input type="text" class="form-control" id="buscarSegundoApellido" placeholder="Ingrese el apellido materno">
+                </div>
+                <div class="col-xl-2">
+                    <label for="buscarCorreo" class="form-label">Correo: </label>
+                    <input type="email" class="form-control" id="buscarCorreo" placeholder="Ingrese el correo">
+                </div>
+                <div class="col-xl-2">
+                    <label for="buscarNroLicencia" class="form-label">N° Licencia: </label>
+                    <input type="text" class="form-control" id="buscarNroLicencia" placeholder="Ingrese el número de licencia">
+                </div>
+                <div class="col-xl-2">
+                    <label for="buscarFechaNacimiento" class="form-label">Teléfono: </label>
+                    <input type="text" class="form-control" id="buscarFechaNacimiento" placeholder="Ingrese el teléfono">
+                </div>
+            </div>
+
+            <div class="col-xl-6 mt-3">
+                <button type="button" id="btnBuscar" class="btn btn-secondary me-2"> BUSCAR  </button>
+                <button type="button" id="btnLimpiar" class="btn btn-warning me-2 "> LIMPIAR </button>
+                <button type="button" id="btnCancelar" class="btn btn-dark $gray-500"> CANCELAR </button>
+            </div>
+        </div>
+    </div>  
+
+    <div class="card" id="CardClientes">
+        <div class="card-header p-3 fs-4 fw-bold d-flex flex-row align-items-center">
+            <div class="" style="width: 80%;">CLIENTE</div>
+            <div class="d-flex flex-row align-items-center justify-content-end" style="width: 20%;">
+                <div class="btn-group btn-group-sm">
+                    <button type="button" id="btnExampleModal" class="btn btn-primary btn-sm"> AGREGAR CLIENTE </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+@*             <button type="button" id="btnExportarExcel" class="btn btn-success"> EXPORTAR EXCEL </button>
+ *@
+            <table id="tablaCliente" data-toggle="table" data-pagination="true" data-search="false" data-show-columns="false" data-show-export="true" data-export-types="['excel']" data-export-options='{"excel": {"fileName": "Clientes", "text": "Descargar Excel"}}'>
+                    <thead>
+                    <tr>
+                        <th data-field="cl_id" data-sortable="true" scope="col">#</th>
+                        <th data-field="clienteCompleto" scope="col" data-formatter="formatterCliente">CLIENTE</th>
+                        <th data-field="cl_pueblo.pl_nombre" scope="col">PUEBLO</th>
+                        <th data-field="cl_direccion" scope="col">DIRECCIÓN</th>
+                        <th data-field="cl_numeroSeguro" scope="col"># SEGURO</th>
+                        <th data-field="cl_numeroLicencia" scope="col">LICENCIA</th>
+                        <th data-field="cl_fechaRegistro" scope="col" data-formatter="formatterDateTime">F. REGISTRO</th>
+                        <th data-field="acciones" data-formatter="formatoEditar">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody id="tbdResultadoNewCases">
+                </tbody>
+            </table>
+        </div>
+    </div>       
+    <br />
+
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Cliente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">  <!-- SEGUNDO BORDE -->
+                        <div class="row gy-3">
+                            <input type="hidden" id="txtId" value="0">
+                            <div class="col-xl-6">
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <div class="error-message" id="nombre-error"> Solo ingresar texto </div>
+                                <input type="text" class="form-control form-control-light" id="nombre" placeholder="Ingrese el Nombre">
+                            </div>
+                            <div class="col-xl-3">
+                                <label for="primerApellido" class="form-label">Primer Apellido:</label>
+                                <div class="error-message" id="apellido-error"> Solo ingresar texto </div>
+                                <input type="text" class="form-control form-control-light" id="primerApellido" placeholder="Ingrese el Primer Apellido">
+                            </div>
+                            <div class="col-xl-3">
+                                <label for="segundoApellido" class="form-label">Segundo Apellido: </label>
+                                <div class="error-message" id="2apellido-error"> Solo ingresar texto </div>
+                                <input type="text" class="form-control form-control-light" id="segundoApellido" placeholder="Ingrese el Segundo Apellido">
+                            </div>
+                            <div class="col-xl-6">
+                                <label for="correo" class="form-label">Correo: </label>
+                                <div class="error-message" id="correo-error"> Debe ingresar correo válido </div>
+                                <input type="email" class="form-control form-control-light" id="correo" placeholder="Ingrese el Correo">
+                            </div>
+                            <div class="col-xl-3">
+                                <label for="numeroLicencia" class="form-label">Número de Licencia: </label>
+                                <div class="error-message" id="licencia-error">Ingrese 7 números </div>
+                                <input type="text" class="form-control form-control-light" id="numeroLicencia" placeholder="Ingrese el Número de Licencia">
+                            </div>
+                            <div class="col-xl-3">
+                                <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento: </label>
+                                <div class="error-message" id="fecha-error"> Formato correcto: año-mes-día </div>
+                                <input type="text" class="form-control form-control-light" id="fechaNacimiento" placeholder="Formato: 2001-30-05">
+                            </div>
+                            <div class="col-xl-6">
+                                <label for="direccion" class="form-label">Dirección: </label>
+                                <input type="text" class="form-control form-control-light" id="direccion" placeholder="Ingrese la Dirección">
+                            </div>
+                            <div class="col-xl-3">
+                                <label for="zip" class="form-label">Zip: </label>
+                                <div class="error-message" id="zip-error">Ingrese 5 números</div>
+                                <input type="text" class="form-control form-control-light" id="zip" placeholder="Ingrese el zip">
+                            </div>
+                            <div class="col-xl-3">
+                                <label for="pueblo" class="form-label">Pueblo: </label>
+                                <select id="ddlPueblos" class="form-select" placeholder="Seleccione el pueblo"></select>
+                                @* <input type="number" class="form-control form-control-light" id="pueblo" placeholder="Ingrese el pueblo"> *@
+                            </div>
+                            <div class="col-xl-3">
+                                <label for="numeroSeguro" class="form-label">Número de Seguro: </label>
+                                <div class="error-message" id="seguro-error">Ingrese 4 números</div>
+                                <input type="text" class="form-control form-control-light" id="numeroSeguro" placeholder="Ingrese el Número de Seguro">
+                            </div>
+                            <div class="col-xl-3">
+                                <label for="numeroTelefono" class="form-label">Número de Teléfono: </label>
+                                <div class="error-message" id="telefono-error">Ingrese 10-11 números</div>
+                                <input type="text" class="form-control form-control-light" id="numeroTelefono" placeholder="Ingrese el Número de Teléfono">
+                            </div>
+                            <div class="col-xl-3">
+                                <label for="nombreUsuario" class="form-label">Usuario: </label>
+                                <input type="text" class="form-control form-control-light" id="nombreUsuario" placeholder="Ingrese el Usuario">
+                            </div>
+                            <div class="col-xl-3">
+                                <label for="contrasena" class="form-label">Contraseña: </label>
+                                <input type="text" class="form-control form-control-light" id="contrasena" placeholder="Ingrese la contraseña">
+                            </div>                            
+
+                            @* <div class="col-xl-6">
+                                <label for="contact-address-address" class="form-label">Address :</label>
+                                <textarea class="form-control form-control-light" id="contact-address-address" rows="2"></textarea>
+                            </div>
+                            <div class="col-xl-6">
+                                <label for="contact-mail-message" class="form-label">Message :</label>
+                                <textarea class="form-control form-control-light" id="contact-mail-message" rows="2"></textarea>
+                            </div> *@
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button id="btnAgregar" type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section scripts {
+
+    <script>
+        $(document).ready(function () {
+
+            $('#ddlPueblos').select2({
+                theme: "bootstrap-5",
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                placeholder: $(this).data('placeholder'),
+                closeOnSelect: false,
+            });
+
+            // INICIA VALIDACIONES
+            function validarCampo(campoID, errorID, regex) {
+                $(campoID).on('input', function () {
+                    var valorCampo = $(this).val();
+
+                    if (!regex.test(valorCampo)) {
+                        $(errorID).show(); // Mostrar mensaje de error
+                    } else {
+                        $(errorID).hide(); // Ocultar mensaje de error si es válido
+                    }
+                });
+            }
+
+            validarCampo('#nombre', '#nombre-error', /^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/);
+            validarCampo('#primerApellido', '#apellido-error', /^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/);
+            validarCampo('#segundoApellido', '#2apellido-error', /^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/);
+            //validarCampo('#correo', '#correo-error', /^[a-zA-Z0-9._%+-]+[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
+            validarCampo('#numeroLicencia', '#licencia-error', /^[0-9]{7}$/);
+            validarCampo('#fechaNacimiento', '#fecha-error', /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/);
+            validarCampo('#zip', '#zip-error', /^[0-9]{5}$/);
+            validarCampo('#numeroSeguro', '#seguro-error', /^[0-9]{4}$/);
+            validarCampo('#numeroTelefono', '#telefono-error', /^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/);
+            // TERMINA VALIDACIONES
+
+
+            $('#CardClientes').show(); // Mostrar 'CardClientes' al inicio de la página
+            llenarTabla();
+            $('#btnExampleModal').on('click', function () {
+                cleanForm();
+                $('#exampleModal').modal('show');
+            })
+            $('#btnAgregar').on('click', function () { 
+                agregarCliente();
+            });
+
+            // BUSQUEDA POR CAMPOS
+            $('#btnBuscar').click(function () {
+                var buscarNombre = $('#buscarNombre').val();
+                var buscarPrimerApellido = $('#buscarPrimerApellido').val();
+                var buscarSegundoApellido = $('#buscarSegundoApellido').val();
+                var buscarCorreo = $('#buscarCorreo').val();
+                var buscarNroLicencia = $('#buscarNroLicencia').val();
+                var buscarFechaNacimiento = $('#buscarFechaNacimiento').val();
+
+                var data = {
+                    cl_nombre: buscarNombre,
+                    cl_primerApellido: buscarPrimerApellido,
+                    cl_segundoApellido: buscarSegundoApellido,
+                    cl_correo: buscarCorreo,
+                    cl_numeroLicencia: buscarNroLicencia,
+                    cl_numeroTelefono: buscarFechaNacimiento
+                };
+
+                jQuery.ajax({
+                    url: 'https://api.tulicenciapr.com/api/Cliente/buscarClientePanel',
+                    type: "GET",
+                    data: data,
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        data.items.forEach((t, i) => {
+                            t.index = i + 1;
+                            t.clienteCompleto = t.cl_nombre + " " + t.cl_primerApellido + " " + t.cl_segundoApellido;
+                        });
+                        $('#tablaCliente').bootstrapTable('load', data.items);
+                    },
+                    error: function (xhr, status, error) {
+                        // Manejar errores en la llamada al API
+                        console.error(error);
+                    }
+                });
+            });
+
+            $('#btnLimpiar').click(function () {   // LIMPIAR
+                $('#buscarNombre').val('');
+                $('#buscarPrimerApellido').val('');
+                $('#buscarSegundoApellido').val('');
+                $('#buscarCorreo').val('');
+                $('#buscarNroLicencia').val('');
+                $('#buscarFechaNacimiento').val('');
+            });
+
+            $('#btnCancelar').click(function () {   // Cancelar 
+                llenarTabla();
+                $('#btnLimpiar').trigger("click");
+            });
+
+            $('#tablaCliente').on('click', '.editar-btn', function () {
+                var index = $(this).closest('tr').attr('data-index');               
+                var rowData = $('#tablaCliente').bootstrapTable('getData')[index];  // Obtener los datos de la fila correspondiente
+                var clienteId = rowData.cl_id;
+                obtenerClientePorId(clienteId);
+            });
+
+            $('#tablaCliente').on('click', '.eliminar-btn', function () {
+                var index = $(this).closest('tr').attr('data-index');
+                var rowData = $('#tablaCliente').bootstrapTable('getData')[index];
+                var clienteId = rowData.cl_id;
+                eliminarCliente(clienteId);
+            });
+
+            jQuery.ajax({
+                url: 'https://api.tulicenciapr.com/api/Pueblos',
+                type: "GET",
+                data: null,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    data.items.forEach((t, i) => {
+                        $('#ddlPueblos').append("<option value=" + t.pl_id +" > " + t.pl_nombre + "</option>")
+                    });
+                },
+                error: function (error) {
+                    console.log(error)
+                },
+            });
+
+            function llenarTabla(){  //GET CLIENTE
+                jQuery.ajax({
+                    url: 'https://api.tulicenciapr.com/api/Cliente',
+                    type: "GET",
+                    data: null,
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        data.items.forEach((t, i) => {
+                            t.index = i + 1;
+                            t.clienteCompleto = t.cl_nombre + " " + t.cl_primerApellido + " " + t.cl_segundoApellido;
+                        });
+                        $('#tablaCliente').bootstrapTable('load', data.items);
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    },
+                });
+            }
+
+
+            function validacionGuardar() {
+                var success = true;
+                var message = "";
+                
+                if ($('#contrasena').val()=="") {
+                    success = false;                    
+                    message = "Debe ingresar la contraseña";
+                }                                
+                if ($('#nombreUsuario').val() == "") {
+                    success = false;
+                    message = "Debe ingresar el nombre de usuario del cliente";
+                }
+                if ($('#numeroTelefono').val() == "") {
+                    success = false;
+                    message = "Debe ingresar el número de teléfono del cliente";
+                }
+                if ($('#numeroSeguro').val() == "") {
+                    success = false;
+                    message = "Debe ingresar últimos 4 numero de seguro";
+                }
+                if ($('#pueblo').val() == "") {
+                    success = false;
+                    message = "Debe seleccionar el pueblo del cliente";
+                }
+                if ($('#zip').val() == "") {
+                    success = false;
+                    message = "Debe ingresar código zip";
+                }
+                if ($('#direccion').val() == "") {
+                    success = false;
+                    message = "Debe ingresar la dirección del cliente";
+                }
+                if ($('#fechaNacimiento').val() == "") {
+                    success = false;
+                    message = "Debe ingresar la fecha de nacimiento del cliente";
+                }
+                if ($('#numeroLicencia').val() == "") {
+                    success = false;
+                    message = "Debe ingresar un número de licencia del cliente";
+                }
+                if ($('#correo').val() == "") {
+                    success = false;
+                    message = "Debe ingresar un correo válido";
+                }
+                if ($('#segundoApellido').val() == "") {
+                    success = false;
+                    message = "Debe ingresar el segundo apellido del cliente";
+                }
+                if ($('#primerApellido').val() == "") {
+                    success = false;
+                    message = "Debe ingresar el primer apellido del cliente";
+                }                
+                if ($('#nombre').val() == "") {
+                    success = false;
+                    message = "Debe ingresar un nombre del cliente";
+                }
+                if (message !="") {
+                    Swal.fire({
+                        icon: "warning",
+                        title: message,
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                }
+                return success;
+            }
+            
+
+            function cleanForm() {
+                $('#txtId').val("");
+                $('#nombre').val("");
+                $('#primerApellido').val("");
+                $('#segundoApellido').val("");
+                $('#zip').val("");
+                $('#ddlPueblos').val("");
+                $('#direccion').val("");
+                $('#numeroLicencia').val("");
+                $('#numeroSeguro').val("");
+                $('#fechaNacimiento').val("");
+                $('#numeroTelefono').val("");
+                $('#correo').val("");
+                $('#nombreUsuario').val("");
+                $('#contrasena').val("");
+            }
+
+
+            function agregarCliente() {                
+                if (!validacionGuardar()){
+                    return;
+                }
+                var id = $('#txtId').val();
+                var nombre = $('#nombre').val();
+                var primerApellido = $('#primerApellido').val();
+                var segundoApellido = $('#segundoApellido').val();
+                var zip = $('#zip').val();
+                var pueblo = parseInt($('#ddlPueblos').val());
+                var direccion = $('#direccion').val();
+                var numeroLicencia = $('#numeroLicencia').val();
+                var numeroSeguro = $('#numeroSeguro').val();
+                var fechaNacimiento = $('#fechaNacimiento').val();
+                var numeroTelefono = $('#numeroTelefono').val();
+                var correo = $('#correo').val();
+                var nombreUsuario = $('#nombreUsuario').val();
+                var contrasena = $('#contrasena').val();
+                var fechaActual = new Date();
+                var fechaActualFormateada = fechaActual.toISOString().slice(0, 10);
+
+                var clienteData = {
+                    cl_id: id==""?0:id,
+                    cl_nombre: nombre,
+                    cl_primerApellido: primerApellido,
+                    cl_segundoApellido: segundoApellido,
+                    cl_correo: correo,
+                    cl_nombreUsuario: nombreUsuario,
+                    cl_pueblo: { "pl_id": pueblo },
+                    cl_zip: zip,
+                    cl_direccion: direccion,
+                    cl_numeroLicencia: numeroLicencia,
+                    cl_numeroSeguro: numeroSeguro,
+                    cl_fechaNacimiento: fechaNacimiento,
+                    cl_numeroTelefono: numeroTelefono,
+                    cl_contrasena: contrasena,
+                    cl_fechaRegistro: fechaActualFormateada,
+                    cl_estado: 1,
+                };
+                var type = (id == 0) ? "POST" : "PUT";
+
+                jQuery.ajax({                                         // Agrega cliente POST
+                    url: 'https://api.tulicenciapr.com/api/Cliente',
+                    type: type,
+                    data: JSON.stringify(clienteData),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        console.log(data);
+                        if (data.success) {
+                            Swal.fire({
+                                title: "Registrado!",
+                                text: data.message,
+                                icon: "success",
+                                timer: 2500
+                            });
+                            llenarTabla();
+                            $('#exampleModal').modal('hide');        // Cerrar el modal
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error); // Mostrar un mensaje de error si es necesario
+                    }
+                });                
+                
+            }
+        
+            
+            function eliminarCliente(clienteId) {
+            Swal.fire({
+                title: "¿Estás seguro de que quieres eliminar este cliente?",
+                text: "Se va eliminar si no tiene ningun formulario o pago realizado",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Si"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    jQuery.ajax({
+                        url: 'https://api.tulicenciapr.com/api/Cliente/' + clienteId,
+                        type: "DELETE",
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            console.log(data);
+                            if (data.success) {
+                                Swal.fire({
+                                    title: "Eliminado!",
+                                    text: "Se ha eliminado correctamente.",
+                                    icon: "success",
+                                    timer: 2500
+                                });
+                                llenarTabla(); //no funciona
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+                }
+            });
+        }
+        
+        })
+
+        function formatterCliente(value, row, index) {
+            return renderCellCustomer(value, row.cl_correo, row.cl_numeroTelefono);
+        }
+
+        // botones  EDITAR delete
+        function formatoEditar(value, row, index) {
+            var editarBtn = '<button class="btn btn-primary btn-sm editar-btn me-md-2"><i class="ri-edit-line"></i></button>';
+            var eliminarBtn = '<button class="btn btn-danger btn-sm eliminar-btn"><i class="ri-delete-bin-line"></i></button>';
+            return editarBtn + eliminarBtn;
+        }
+
+        function formatterDateTime(value, row, index) {
+            return dateFormat(value, 'date');
+        }
+
+        function obtenerClientePorId(clienteId) {
+            jQuery.ajax({
+                url: 'https://api.tulicenciapr.com/api/Cliente/' + clienteId,
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    console.log("data:" + data.item)
+                    llenarModalEditar(data.item)
+                },
+            });
+        }
+
+        function llenarModalEditar(clienteData) {
+            $('#txtId').val(clienteData.cl_id);
+            $('#nombre').val(clienteData.cl_nombre);
+            $('#primerApellido').val(clienteData.cl_primerApellido);
+            $('#segundoApellido').val(clienteData.cl_segundoApellido);
+            $('#correo').val(clienteData.cl_correo);
+            $('#nombreUsuario').val(clienteData.cl_nombreUsuario);
+            $('#pueblo').val(clienteData.cl_pueblo);
+            $('#zip').val(clienteData.cl_zip);
+            $('#direccion').val(clienteData.cl_direccion);
+            $('#numeroLicencia').val(clienteData.cl_numeroLicencia);
+            $('#numeroSeguro').val(clienteData.cl_numeroSeguro);
+            $('#fechaNacimiento').val(clienteData.cl_fechaNacimiento);
+            $('#numeroTelefono').val(clienteData.cl_numeroTelefono);
+            $('#contrasena').val(clienteData.cl_contrasena);
+
+            $('#exampleModal').modal('show');            
+        }
+
+        
+    </script>
+
+
+}

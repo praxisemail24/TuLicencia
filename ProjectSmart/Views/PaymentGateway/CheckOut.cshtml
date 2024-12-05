@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model SmartLicencia.Entity.CheckoutRequest;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pago - @Model.Name</title>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script src="~/api/paymentgateway/script" defer></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style type="text/tailwindcss">
+            * {
+                @@apply m-0 p-0;
+            }
+        </style>
+    </head>
+    <body class="bg-white w-full min-h-screen">
+        <div id="payment" class="w-full h-full flex flex-col items-center justify-center"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                StripePay('@ViewBag.Token').init('#payment', @Html.Raw(Json.Serialize(Model)));
+            });
+        </script>
+    </body>
+</html>

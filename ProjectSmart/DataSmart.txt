@@ -1,0 +1,33 @@
+generar in codigo de pago 
+code = codigo aleatorio 12 digitos
+
+est = 1 o 0
+fecha = transaccion fecha
+status = 205  - exitoso
+nota = pago a cuenta
+
+para status: https://responsecrmv3.zendesk.com/hc/en-us/articles/360047227074-Authorize-net-Error-Code-Responses
+
+
+"Data Source=tcp:s26.winhost.com;Initial Catalog=DB_163557_tulicencia;User ID=DB_163557_tulicencia_user;Password=******;Integrated Security=False;TrustServerCertificate=true;”
+
+FTP
+clave es : pr@2024
+
+Acceso al servidor Win/Host:
+Control panel https://cp.winhost.com
+User: 0048692
+Pass: @Clave@2024@
+
+
+
+pueblo por id                                  Listo
+
+login usuario y clave													
+
+log de toda respuesta							
+
+pago  get  get id guardar y actualizar			
+
+
+ftp://tulicenc_develop@tulicenciadev.com/tulicenc_develop

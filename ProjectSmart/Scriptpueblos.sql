@@ -1,0 +1,86 @@
+/*
+SQLyog Ultimate v13.2.1 (64 bit)
+MySQL - 8.0.33 
+*********************************************************************
+*/
+/*!40101 SET NAMES utf8 */;
+
+
+INSERT INTO Pueblos (pl_nombre) values('Adjuntas');
+INSERT INTO Pueblos (pl_nombre) values('Aguada');
+INSERT INTO Pueblos (pl_nombre) values('Aguadilla');
+INSERT INTO Pueblos (pl_nombre) values('Aguas Buenas');
+INSERT INTO Pueblos (pl_nombre) values('Aibonito');
+INSERT INTO Pueblos (pl_nombre) values('Añasco');
+INSERT INTO Pueblos (pl_nombre) values('Arecibo');
+INSERT INTO Pueblos (pl_nombre) values('Arroyo');
+INSERT INTO Pueblos (pl_nombre) values('Barceloneta');
+INSERT INTO Pueblos (pl_nombre) values('Barranquitas');
+INSERT INTO Pueblos (pl_nombre) values('Bayamón');
+INSERT INTO Pueblos (pl_nombre) values('Cabo Rojo');
+INSERT INTO Pueblos (pl_nombre) values('Caguas');
+INSERT INTO Pueblos (pl_nombre) values('Camuy');
+INSERT INTO Pueblos (pl_nombre) values('Canóvanas');
+INSERT INTO Pueblos (pl_nombre) values('Carolina');
+INSERT INTO Pueblos (pl_nombre) values('Cataño');
+INSERT INTO Pueblos (pl_nombre) values('Cayey');
+INSERT INTO Pueblos (pl_nombre) values('Ceiba');
+INSERT INTO Pueblos (pl_nombre) values('Ciales');
+INSERT INTO Pueblos (pl_nombre) values('Cidra');
+INSERT INTO Pueblos (pl_nombre) values('Coamo');
+INSERT INTO Pueblos (pl_nombre) values('Comerío');
+INSERT INTO Pueblos (pl_nombre) values('Corozal');
+INSERT INTO Pueblos (pl_nombre) values('Culebra');
+INSERT INTO Pueblos (pl_nombre) values('Dorado');
+INSERT INTO Pueblos (pl_nombre) values('Fajardo');
+INSERT INTO Pueblos (pl_nombre) values('Florida');
+INSERT INTO Pueblos (pl_nombre) values('Guánica');
+INSERT INTO Pueblos (pl_nombre) values('Guayama');
+INSERT INTO Pueblos (pl_nombre) values('Guayanilla');
+INSERT INTO Pueblos (pl_nombre) values('Guaynabo');
+INSERT INTO Pueblos (pl_nombre) values('Gurabo');
+INSERT INTO Pueblos (pl_nombre) values('Hatillo');
+INSERT INTO Pueblos (pl_nombre) values('Hormigueros');
+INSERT INTO Pueblos (pl_nombre) values('Humacao');
+INSERT INTO Pueblos (pl_nombre) values('Isabela');
+INSERT INTO Pueblos (pl_nombre) values('Jayuya');
+INSERT INTO Pueblos (pl_nombre) values('Juana Díaz');
+INSERT INTO Pueblos (pl_nombre) values('Juncos');
+INSERT INTO Pueblos (pl_nombre) values('Lajas');
+INSERT INTO Pueblos (pl_nombre) values('Lares');
+INSERT INTO Pueblos (pl_nombre) values('Las Marías');
+INSERT INTO Pueblos (pl_nombre) values('Las Piedras');
+INSERT INTO Pueblos (pl_nombre) values('Loíza');
+INSERT INTO Pueblos (pl_nombre) values('Luquillo');
+INSERT INTO Pueblos (pl_nombre) values('Manatí');
+INSERT INTO Pueblos (pl_nombre) values('Maricao');
+INSERT INTO Pueblos (pl_nombre) values('Maunabo');
+INSERT INTO Pueblos (pl_nombre) values('Mayagüez');
+INSERT INTO Pueblos (pl_nombre) values('Moca');
+INSERT INTO Pueblos (pl_nombre) values('Morovis');
+INSERT INTO Pueblos (pl_nombre) values('Naguabo');
+INSERT INTO Pueblos (pl_nombre) values('Naranjito');
+INSERT INTO Pueblos (pl_nombre) values('Orocovis');
+INSERT INTO Pueblos (pl_nombre) values('Patillas');
+INSERT INTO Pueblos (pl_nombre) values('Peñuelas');
+INSERT INTO Pueblos (pl_nombre) values('Ponce');
+INSERT INTO Pueblos (pl_nombre) values('Quebradillas');
+INSERT INTO Pueblos (pl_nombre) values('Rincón');
+INSERT INTO Pueblos (pl_nombre) values('Río Grande');
+INSERT INTO Pueblos (pl_nombre) values('Sabana Grande');
+INSERT INTO Pueblos (pl_nombre) values('Salinas');
+INSERT INTO Pueblos (pl_nombre) values('San Germán');
+INSERT INTO Pueblos (pl_nombre) values('San Juan');
+INSERT INTO Pueblos (pl_nombre) values('San Lorenzo');
+INSERT INTO Pueblos (pl_nombre) values('San Sebastián');
+INSERT INTO Pueblos (pl_nombre) values('Santa Isabel');
+INSERT INTO Pueblos (pl_nombre) values('Toa Alta');
+INSERT INTO Pueblos (pl_nombre) values('Toa Baja');
+INSERT INTO Pueblos (pl_nombre) values('Trujillo Alto');
+INSERT INTO Pueblos (pl_nombre) values('Utuado');
+INSERT INTO Pueblos (pl_nombre) values('Vega Alta');
+INSERT INTO Pueblos (pl_nombre) values('Vega Baja');
+INSERT INTO Pueblos (pl_nombre) values('Vieques');
+INSERT INTO Pueblos (pl_nombre) values('Villalba');
+INSERT INTO Pueblos (pl_nombre) values('Yabucoa');
+INSERT INTO Pueblos (pl_nombre) values('Yauco');

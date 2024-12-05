@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="">
+    <h4 class="pt-3 fw-bold"> Detalle del caso/ Nombre del trámite </h4>
+    <br/>
+    <input type="hidden" id="cl_id" name="cl_id" value="@ViewBag.cl_id"/>
+    <input type="hidden" id="tr_id" name="tr_id" value="@ViewBag.tr_id"/>
+    <input type="hidden" id="frm_id" name="frm_id" value="@ViewBag.frm_id"/>
+    <input type="hidden" id="adm_id2" name="adm_id2" />
+
+   <div class="card h-100 shadow-sm mb-4" >
+        <div class="card-header p-3 fs-5 fw-bold"> Datos del Cliente: </div>
+        <div class="card-body fs-6">
+            <p class="card-text"><span class="fw-bold me-2">Nombre:</span> <span id="frmNombre"></span></p>
+            <p class="card-text"><span class="fw-bold me-2">Apellido Paterno:</span><span id="frmPrimerApellido"></span></p>
+
+            <p class="card-text">
+                <span class="fw-bold me-2">Apellido Materno:</span>
+                <span id="frmSegundoApellido"></span>
+            </p>
+            <p class="card-text">
+                <span class="fw-bold me-2">Correo:</span>
+                <span id="frmCorreo"></span>
+            </p>
+            <p class="card-text">
+                <span class="fw-bold me-2">Telefono:</span>
+                <span id="frmTelefono"></span>
+            </p>
+
+            <p class="card-text"><span class="fw-bold me-2">Código de Pago:</span> <span id="frmcodigoPago"></span></p>
+
+            <p class="card-text"> <span class="fw-bold me-2">Fecha de pago:</span>    <span id="frmFechaPago"></span></p>
+            <p class="card-text"> <span class="fw-bold me-2">Trámite:</span>    <span id="frmTramite"></span></p>
+        </div>
+    </div>
+
+
+    @*  PROCESO A *@
+    <div class="card" id="">
+        <div class="card-header p-3 fs-5 fw-bold"> Asignación del caso: </div>
+
+        <div class="card-body">
+            <div class="row gy-3">
+                <p class="card-text fs-6 "> Evaluado por:  <span id="asignadoPor" class="fw-bold"></span><span id="asignadoFechaInicio" class="fw-bold"></span></p>
+                @*  PRIMERA FILA *@
+                <p class="card-text fs-6 "> Caso asignado por:  <span id="asignadoPor0" class="fw-bold"></span>  a: <span id="asignadoa0" class="fw-bold"></span> <span id="asignadoFechaInicio0" class="fw-bold"></span></p>
+                @*  SEGUNDA FILA *@
+                <p class="card-text fs-6 "> Caso radicado por:  <span id="asignadoPor1" class="fw-bold"></span>  <span id="fechaAsignado1" class="fw-bold"></span></p>
+                <p class="card-text fs-6 "> Finalizado por:  <span id="asignadoPor2" class="fw-bold"></span>  <span id="fechaAsignado2" class="fw-bold"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="card-certificado" class="card">
+        <div class="card-header p-3 fs-5 fw-bold"> Foto del trámite finalizado:
+        </div>
+
+        <div class="card-body text-center">
+            <img src="/images/ajax-loader.gif" style="max-width: 450px; margin: auto;" id="img-certificado" class="img-fluid img-thumbnail">
+            @* <img id="img-certificado" class="img-fluid img-thumbnail" src="~/js/ajax-loading.gif" style="max-width: 450px; margin: auto;" /> *@
+        </div>
+     
+    </div>
+
+    <div class="row mt-3 mb-3">
+        <div class="col-sm-12">
+            <button class="btn btn-md btn-primary" data-bs-toggle="modal" data-bs-target="#modal-visor">VER NUEVAMENTE EL EXPEDIENTE</button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-visor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Documento Final</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="" style="width: 100%;min-height: 450px;"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <a href="#" target="_blank" class="btn btn-primary btn-pdf">Descargar PDF</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    <script src="~/js/frm-closed.js?hash=@Utility.RandomString()"></script>
+}

@@ -1,0 +1,183 @@
+﻿@{
+    ViewData["Title"] = "Reporte";
+}
+
+<style>
+    .error-message {
+        font-size: 11px;
+        color: red;
+        margin-top: -15px;
+        margin-left: 30px;
+        display: none;
+    }
+
+    .select2-container--bootstrap-5 {
+        z-index: 1051 !important;
+    }
+
+
+    .estado0 {
+        color: #0000FF !important;
+    }
+
+    .estado1 {
+        color: #FFA500 !important;
+    }
+
+    .estado2 {
+        color: #008000 !important;
+    }
+
+    .estado3 {
+        color: #FF0000 !important;
+    }
+</style>
+
+<div class="pt-3">
+
+    @* REPORTE DE CASOS  *@
+
+    <div class="card" id="CardClientes">
+
+        <div class="card-header p-3 fs-4 fw-bold"> REPORTE DE CASOS  </div>
+
+        <div class="card-body">
+            <div class="row gy-3">
+                <input type="hidden" id="" value="0">
+                
+                <div class="col-xl-2">
+                    <label for="buscarCodigo" class="form-label"> Código Pago: </label>
+                    <input type="email" class="form-control" id="buscarCodigo" placeholder="Ingrese el código pago">
+                </div>
+                <div class="col-xl-2">
+                    <label for="buscarNombre" class="form-label ">Nombres:</label>
+                    <input type="text" class="form-control" id="buscarNombre" placeholder="Ingrese el nombre">
+                </div>
+                <div class="col-xl-2">
+                    <label for="buscarPrimerApellido" class="form-label">A. Paterno:</label>
+                    <input type="text" class="form-control" id="buscarPrimerApellido" placeholder="Ingrese el apellido paterno">
+                </div>
+                <div class="col-xl-2">
+                    <label for="buscarSegundoApellido" class="form-label">A. Materno: </label>
+                    <input type="text" class="form-control" id="buscarSegundoApellido" placeholder="Ingrese el apellido materno">
+                </div>
+                <div class="col-xl-2">
+                    <label for="buscarCorreo" class="form-label"> Correo: </label>
+                    <input type="email" class="form-control" id="buscarCorreo" placeholder="Ingrese el correo">
+                </div>
+                <div class="col-xl-2">
+                    <input type="hidden" id="" value="0">
+                    <label for="frm_tipoTramite" class="form-label">Tipo Trámite:</label>
+                    <select id="frm_tipoTramite" class="form-select mt-0">
+                        <option value="0">Seleccione</option>
+                        <option value="1">Renovación de Licencia</option>
+                        <option value="3">Duplicado de Licencia</option>
+                        <option value="4">Licencia de Reciprocidad</option>
+                        <option value="5">Traspaso de Vehículos</option>
+                    </select>
+                </div>
+                <div class="col-xl-2">
+                    <label for="frm_estado" class="form-label">Selecciona Status:</label>
+                    <select id="frm_estado" class="form-select mt-0">
+                        <option value="99">Seleccione</option>
+                        <option value="0">NEW CASES</option>
+                        <option value="1">REVIEW CASES</option>
+                        <option value="2">PROCESS CASES</option>
+                        <option value="3">CLOSED CASES</option>
+                    </select>
+                </div>
+                <div id="frm_estadoProceso_container" style="display: none;">
+                    <div class="col-xl-2">
+                        <label for="frm_estadoProceso" class="form-label">Selecciona Status Process:</label>
+                        <select id="frm_estadoProceso" class="form-select mt-0">
+                            <option value="99">Seleccione</option>
+                            <option value="0">PENDIENTE</option>
+                            <option value="1">APROBADO</option>
+                            <option value="2">DENEGADO</option>
+                        </select>
+                    </div>
+                </div>
+            </div>            
+
+            <div class="col-xl-6 mt-3">
+                <button type="button" id="btnBuscar" class="btn btn-secondary me-2">
+                    <i class="la la-search"></i>
+                    <span>BUSCAR</span>
+                </button>
+                <button type="button" id="btnLimpiar" class="btn btn-warning me-2 "> LIMPIAR </button>
+                <button type="button" id="btnCancelar" class="btn btn-dark $gray-500"> CANCELAR </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" id="CardReporte">
+
+        <div class="col-xl-6 mt-3">
+            <button type="button" id="btnExport" class="btn btn-success-light btn-wave waves-effect waves-light" style="margin-left:20px"> EXCEL  </button>
+        </div>
+
+        <div class="card-body">
+            <table id="tablaReporte" class="table">
+                <thead>
+                </thead>
+                <tbody id="tbdResultadoNewCases">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br />
+
+
+
+   @*  <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <button type="button" id="btnVerPDF" class="btn btn-primary-light btn-wave waves-effect waves-light me-5"> VER PDF </button>
+    </div> *@
+
+    <!-- Modal para la previsualización del PDF -->
+    <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="previewModalLabel"> Previsualización del PDF </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe id="pdfPreview" style="width: 100%; height: 450px"></iframe>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <a href="#" target="_blank" type="button" class="btn btn-primary" id="btnDescargarPDF">Descargar PDF</a>
+                    @* <button type="button" class="btn btn-primary" id="btnGuardarBD">Guardar en BD</button> *@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para la previsualización del Historial -->
+    <div class="modal fade" id="modalHistorial" tabindex="-1" aria-labelledby="modalHistorialLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHistorialLabel"> Historial del Caso </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <ul class="timeline list-unstyled" id="lineatiempo"></ul>                        
+                        <div class="py-5 text-center">
+                            <img class="img-fluid img-thumbnail m-auto d-none" style="max-width: 400px;" src="~/images/ajax-loader.gif" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/js/casos.js"></script>
+}

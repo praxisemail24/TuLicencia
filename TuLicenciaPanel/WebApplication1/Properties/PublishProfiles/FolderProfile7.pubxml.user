@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\peru1\Documents\Proyectos\GIT3\tulicencia_api_panel\TuLicenciaPanel\WebApplication1\bin\Release\net6.0\publish\</_PublishTargetUrl>
+    <History>True|2024-10-24T21:48:30.4561082Z;True|2024-10-24T16:18:37.7704219-05:00;False|2024-10-24T16:16:19.2820850-05:00;True|2024-10-24T14:03:16.9342788-05:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

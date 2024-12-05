@@ -1,0 +1,61 @@
+﻿body {
+    @apply h-screen;
+}
+
+* {
+    @apply p-0 m-0;
+    box-sizing: border-box;
+}
+
+.pdf-document {
+    @apply fixed w-full h-screen;
+}
+
+.pdf-container {
+    @apply relative bg-gray-600;
+    @apply w-full h-screen overflow-auto;
+}
+
+.top-toolbar {
+    @apply fixed top-0 z-40 w-full flex items-center justify-center;
+}
+
+.bottom-toolbar {
+    @apply bg-gray-800 border-b border-gray-900 fixed bottom-0 w-full flex flex-col items-center justify-center rounded-t-2xl;
+}
+
+.toolbar-content {
+    @apply flex flex-row-reverse;
+}
+
+.overlay-loading {
+    @apply fixed bg-white bg-opacity-50 w-full h-screen flex items-center justify-center px-10 py-24 text-center m-auto;
+}
+
+    .overlay-loading img {
+        @apply m-auto;
+    }
+
+.pagination-label {
+    @apply text-center text-white text-xs flex items-center pr-5;
+}
+
+.button {
+    @apply relative px-3 py-2 text-gray-100 text-lg flex items-center bg-gray-800 hover:bg-gray-900 hover:text-white cursor-pointer;
+}
+
+    .button i {
+        @apply text-xl;
+    }
+
+    .button span.text {
+        @apply text-sm;
+    }
+
+    .button i + .text {
+        @apply ml-1;
+    }
+
+#pdf-viewer {
+    @apply min-w-[836px] min-h-screen bg-white block border m-auto;
+}

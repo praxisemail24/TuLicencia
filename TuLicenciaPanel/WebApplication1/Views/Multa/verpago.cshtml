@@ -1,0 +1,292 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header, .footer {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            margin-bottom: 20px;
+        }
+
+            .content p {
+                margin: 10px 0;
+            }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .left, .right {
+            width: 48%;
+        }
+
+            .left p, .right p {
+                margin: 10px 0;
+            }
+
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+
+   
+
+    @* <div class="container">
+        <button onclick="exportPDF()" class="btn btn-primary btn-sm" type="button">
+            <i class="la la-search"></i>
+            <span class="ms-2">Exportar a PDF</span>
+        </button>
+        <div class="content flex-container">
+            <div class="left">
+                <img src="/image/logotulicencia.png" alt="Logo Tu Licencia" class="logo" />
+                </div>
+            <div class="right">
+                <p>Fecha: <strong id="fecha">7/10/2024</strong></p>
+            </div>
+        </div>
+        <div class="content flex-container">
+            <div class="left">
+                <p>Hola, <strong id="nombre">*Nombre*</strong></p>
+                <p>Muchas gracias por realizar la compra del siguiente trámite:</p>
+                <p> <strong id="tramite">Renovación de Licencia</strong>.</p>
+                <p>Nuestra empresa se compromete a proporcionarle un excelente servicio en cada transacción electrónica que usted realice.</p>
+               
+            </div>
+            <div class="right">
+                <p>Estado: <strong>Aprobado</strong></p>
+                <p>Código de pago: <strong id="codigoPago">80527193908</strong></p>
+                <p>Transacción ID: <strong id="transaccion">1615US8YH197</strong></p>
+                <p>Dirección: <strong id="direccion">Av.24 De septiembre Mz F LT 23 Campo Sol</strong></p>
+                <p>T.(Phone): <strong id="telefono">(787) 655-5555</strong></p>
+            </div>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Trámite</th>
+                        <th>Cantidad</th>
+                        <th>Precio ($)</th>
+                        <th>Sub Total ($)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td id="tramiteTabla">Renovación de Licencia</td>
+                        <td>1</td>
+                        <td id ="monto">1.0</td>
+                        <td id="subtotal">1.0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="content">
+            <p class="left-align"><strong>TOTAL (USD): <span id="total">1.0</span></strong></p>
+            <p class="left-align"><strong>Nota:</strong></p>
+            <p class="left-align">El pago fue realizado desde una tarjeta de crédito. La</p>
+            <p class="left-align">empresa tiene una política de devolución inmediata  en</p>
+            <p class="left-align">caso usted no haya realizado la transacción. Si  tiene</p>
+            <p class="left-align">alguna duda, no olvide comunicarse con nosotros al    </p>
+            <p class="left-align">siguiente número telefónico: <strong>(777) 700-0000</strong>.</p>
+        </div>
+
+    </div> *@
+
+<div id="card3" class="card custom-card">
+        <div class="card-header d-md-flex d-block">
+            <div class="h5 mb-0 d-sm-flex d-bllock align-items-center">
+                <div class="avatar avatar-sm">
+                <img src="https://tulicenciapr.com/dist/assets/images/brand-logos/toggle-logo.png" alt="">
+                </div>
+                <div class="ms-sm-2 ms-0 mt-sm-0 mt-2">
+                    <div class="h6 fw-semibold mb-0">CÓDIGO DE PAGO : <span class="text-primary" id="codigoPago"></span></div>
+                </div>
+            </div>
+            <div class="ms-auto mt-md-0 mt-2">
+                <button class="btn btn-sm btn-secondary me-1" onclick="javascript:window.print();">Print<i class="ri-printer-line ms-1 align-middle d-inline-block"></i></button>
+                <button class="btn btn-sm btn-primary">Save As PDF<i class="ri-file-pdf-line ms-1 align-middle d-inline-block"></i></button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row gy-3">
+                <div class="col-xl-12">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                            <p class="text-muted mb-2">
+                                Billing From :
+                            </p>
+                            <p class="fw-bold mb-1">
+                                TULICENCIA
+                            </p>
+                            @* <p class="mb-1 text-muted">
+                                Mig-1-11,Manroe street
+                            </p> *@
+                            <p class="mb-1 text-muted" ">
+                                Direccion
+                            </p>
+                            <p class="mb-1 text-muted" >
+                                Correo
+                            </p>
+                            <p class="mb-1 text-muted" >
+                                (555) 555-1234
+                            </p>
+                            <p class="text-muted">For more information check for <a href="javascript:void(0);" class="text-primary fw-semibold"><u>GSTIN</u></a> Details.</p>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 ms-auto mt-sm-0 mt-3">
+                            <p class="text-muted mb-2">
+                                Billing To :
+                            </p>
+                            <p class="fw-bold mb-1" id="nombre">
+                                
+                            </p>
+                            <p class="text-muted mb-1" id="direccion">
+                                
+                            </p>
+                            <p class="text-muted mb-1" id="correo">
+                            </p>
+                            <p class="text-muted" id="telefono">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <p class="fw-semibold text-muted mb-1">Id Transacción:</p>
+                    <p class="fs-15 mb-1" id="transaccion"></p>
+                </div>
+                <div class="col-xl-3">
+                    <p class="fw-semibold text-muted mb-1" >Date Issued :</p>
+                    <p class="fs-15 mb-1" id="fecha"></p>
+                </div>
+                
+                <div class="col-xl-3">
+                    <p class="fw-semibold text-muted mb-1">Due Amount :</p>
+                    <p class="fs-16 mb-1 fw-semibold" id="monto"></p>
+                </div>
+                <div class="col-xl-12">
+                    <div class="table-responsive">
+                        <table class="table nowrap text-nowrap border mt-4">
+                            <thead>
+                                <tr>
+                                    <th>ITEM</th>
+                                    <th>DESCRIPTION</th>
+                                    <th>CUOTA</th>
+                                    <th>FECHA</th>
+                                    <th>SUBTOTAL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="fw-semibold">
+                                            1
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="text-muted" id="tramite">
+                                            
+                                        </div>
+                                    </td>
+                                    <td class="product-quantity-container" id="cuota">
+                                        Cuota
+                                    </td>
+                                    <td id="fechatabla">
+                                        
+                                    </td>
+                                    <td id="subtotal">                                        
+                                    </td>
+                                </tr>
+                               
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td colspan="2">
+                                        <table class="table table-sm text-nowrap mb-0 table-borderless">
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <p class="mb-0 fs-14">Total :</p>
+                                                    </th>
+                                                    <td>
+                                                        <p class="mb-0 fw-semibold fs-16 text-success" id="total"></p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <div>
+                        <label for="invoice-note" class="form-label">Note:</label>
+                        <textarea class="form-control form-control-light" id="invoice-note" rows="3">Once the invoice has been verified by the accounts payable team and recorded, the only task left is to send it for approval before releasing the payment</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-end">
+            <button class="btn btn-success" onclick="exportPDF()">Download <i class="ri-download-2-line ms-1 align-middle"></i></button>
+        </div>
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+<script src="~/js/verpago.js"></script>
+
+</html>

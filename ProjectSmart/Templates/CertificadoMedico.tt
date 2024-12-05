@@ -1,0 +1,549 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ parameter name="nombreCliente" type="System.String" #>
+<#@ parameter name="segundoNombreCliente" type="System.String" #>
+<#@ parameter name="apellidoPaternoCliente" type="System.String" #>
+<#@ parameter name="apellidoMaternoCliente" type="System.String" #>
+<#@ parameter name="seguroSocial" type="System.String" #>
+<#@ parameter name="licenciaConducir" type="System.String" #>
+<#@ parameter name="ojoDerechoSinLentes" type="System.String" #>
+<#@ parameter name="ojoIzquierdoSinLentes" type="System.String" #>
+<#@ parameter name="ojoDerechoConLentes" type="System.String" #>
+<#@ parameter name="ojoIzquierdoConLentes" type="System.String" #>
+<#@ parameter name="ambosOjos" type="System.String" #>
+<#@ parameter name="espejuelos" type="System.String" #>
+<#@ parameter name="usaLentes" type="System.String" #>
+<#@ parameter name="observacion" type="System.String" #>
+<#@ parameter name="condicionOido" type="System.String" #>
+<#@ parameter name="condicionBrazo" type="System.String" #>
+<#@ parameter name="condicionPierna" type="System.String" #>
+<#@ parameter name="condicionFisica" type="System.String" #>
+<#@ parameter name="estadoInconciencia" type="System.String" #>
+<#@ parameter name="padeceCorazon" type="System.String" #>
+<#@ parameter name="marcapaso" type="System.String" #>
+<#@ parameter name="protesis" type="System.String" #>
+<#@ parameter name="peso" type="System.String" #>
+<#@ parameter name="estaturaPies" type="System.String" #>
+<#@ parameter name="estaturaPulgadas" type="System.String" #>
+<#@ parameter name="estado" type="System.String" #>
+<#@ parameter name="fechaEvaluacion" type="System.String" #>
+<#@ parameter name="nombreMedico" type="System.String" #>
+<#@ parameter name="colorOjos" type="System.String" #>
+<#@ parameter name="colorPelo" type="System.String" #>
+<#@ parameter name="condicionConLentes" type="System.String" #>
+<#@ parameter name="condicionSinLentes" type="System.String" #>
+<#@ parameter name="Firma" type="System.String" #>
+<#@ parameter name="FirmaDoctor" type="System.String" #>
+<#@ output extension=".txt" #>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Certificación Médica</title>
+    <style>
+		@page {
+			font-size: 12px;
+			margin: 0px;
+			font-family: "Arial";
+		}
+		body {
+			font-size: 12px;
+			font-family: "Arial";
+			margin: 0px;
+		}
+		table {
+			width: 100%;
+		}
+		.text-left {
+			text-align: left;
+		}
+		.text-right {
+			text-align: right;
+		}
+		.text-center {
+			text-align: center;
+		}
+		.title {
+			font-weight: 800;
+			text-align: center;
+			font-size: 20px;
+		}
+		.subtitle {
+			font-weight: 800;
+			font-size: 16px;
+		}
+		.d-block {
+			display: block;
+		}
+		.text {
+			font-size: 14px;
+		}
+		.d-inline-block {
+			display: inline-block;
+		}
+		.text-xs {
+			font-size: 11px;
+		}
+		.divider {
+			border-bottom: 2px solid #222222;
+			content: " ";
+			padding-top: 3px;
+			margin-bottom: 3px;
+		}
+		.checkbox {
+			display: inline-block;
+			height: 11px;
+			width: 11px;
+			border: 1px solid #222222;
+			margin-right: 1px;
+		}
+		.checkbox.active {
+			background-color: #222222;
+		}
+		.line {
+			border-bottom: 1px solid #222222;
+			display: block;
+			min-width: 30px;
+		}
+		.border-b {
+			border-bottom: 1px solid #222222;
+		}
+		.border-t {
+			border-top: 1px solid #222222;
+		}
+		.fw-bold {
+			font-weight: 600;
+		}
+		.option-box {
+			display: inline-block !important;
+		}
+		.option-box span {
+			display: inline-block;
+			float: left;
+		}
+		.option-box span:first-child {
+			color: black;
+			text-align: center;
+		}
+		.option-box span:nth-child(2) {
+			margin-left: 2px;
+		}
+		.text-result {
+			color: black;
+			padding-left: 2px;
+			padding-right: 2px;
+			text-align: center;
+			display: block;
+			min-height: 10px;
+		}
+		.option.box span {
+			float: right;
+		}
+		.float-right {
+			float: right;
+		}
+		.float-left {
+			float: left;
+		}
+		.signed-box {
+			display: block;
+			width: 98%;
+		}
+		.signed-box span {
+			display: block;
+		}
+		.signed-box .label {
+			margin-top: 3px;
+			padding-top: 2px;
+			border-top: 1px solid #222222;
+		}
+		.text-uppercase {
+			text-transform: uppercase;
+		}
+		.ml-2 {
+			margin-left: 2px;
+		}
+		.mt-3 {
+			margin-top: 3px;
+		}
+		.ml-5 {
+			margin-left: 5px;
+		}
+		.mb-5 {
+			margin-bottom: 5px;
+		}
+		.ml-10 {
+			margin-left: 10px;
+		}
+		.mt-10 {
+			margin-top: 10px;
+		}
+		.mb-10 {
+			margin-bottom: 10px;
+		}
+		.px-2 {
+			padding-left: 4px;
+			padding-right: 4px;
+		}
+		.py-5 {
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+		.py-10 {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		.pl-10 {
+			padding-left: 10px;
+		}
+		.w-full {
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+    <table>
+		<tbody>
+			<tr>
+				<td colspan="3">
+					<img style="width: auto; height: 90px; max-height: 90px; margin: auto;" src="https://i.imgur.com/mGFhmNM.png" />
+				</td>
+				<td>
+					<div class="text-right">
+						<img style="width: auto; height: 60px; max-height: 60px; margin: auto;" src="https://i.imgur.com/7KCFlua.png" />
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<h3 class="title">CERTIFICACIÓN MÉDICA PARA CERTIFICADO DE LICENCIA DE CONDUCIR</h3>
+    <table>
+		<tbody>
+			<tr>
+				<td style="width: 25%;">
+					<div class="signed-box">
+						<span class="text-result"><#= nombreCliente #></span>
+						<span class="label text-center">Nombre</span>
+					</div>
+				</td>
+				<td style="width: 25%;">
+					<div class="signed-box">
+						<span class="text-result"><#= segundoNombreCliente #></span>
+						<span class="label text-center">Segundo Nombre</span>
+					</div>
+				</td>
+				<td style="width: 25%;">
+					<div class="signed-box">
+						<span class="text-result"><#= apellidoPaternoCliente #></span>
+						<span class="label text-center">Apellido Paterno</span>
+					</div>
+				</td>
+				<td style="width: 25%;">
+					<div class="signed-box">
+						<span class="text-result"><#= apellidoMaternoCliente #></span>
+						<span class="label text-center">Apellido Materno</span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="py-10" style="margin-top: 10px;">
+					<div class="d-inline-block">
+						<span class="float-left label d-inline-block">Núm. de Seguro Social</span>
+						<span class="float-right text-result d-inline-block line" style="min-width: 250px; margin-left: 10px;"><#= seguroSocial #></span>
+					</div>
+				</td>
+				<td colspan="2" class="py-10" style="margin-top: 10px;">
+					<div class="d-inline-block">
+						<span class="float-left label d-inline-block">Núm. de Licencia de Conducir</span>
+						<span class="float-right text-result d-inline-block line" style="min-width: 250px; margin-left: 10px;"><#= licenciaConducir #></span>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="subtitle mb-5">INSTRUCCIONES AL MÉDICO</div>
+	<div class="text mb-10" style="text-align: justify;">De acuerdo con las disposiciones de la Ley Núm. 22, de 7 de enero de 2000, según enmendada, conocida como “Ley de Vehículos y Tránsito de Puerto Rico”, todo aspirante a obtener Certificado de Licencia de Conducir Vehículos de Motor debe estar físicamente capacitado y sin aparente incapacidad mental para conducir.  El médico examinará al solicitante personalmente y hará constar en este formulario las condiciones físicas en que se encuentre dicho solicitante.</div>
+	<div class="text mb-10">Las certificaciones deberán ser completadas en su totalidad, no se aceptarán certificado con espacios en blanco, ni alteraciones.</div>
+	<div class="subtitle mb-10">Agudeza Visual</div>
+	<table>
+		<tbody>
+			<tr>
+				<td colspan="2" style="width: 70%;"></td>
+				<td colspan="1" style="width: 30%;" class="text-center">Condición</td>
+			</tr>
+			<tr>
+				<td style="width: 35%;">
+					<div class="d-inline-block">
+						<span class="float-left label d-inline-block pl-10">Ojo derecho sin lentes Correctivos 20/</span>
+						<span class="float-right text-result d-inline-block line" style="min-width: 20px; margin-left: 5px;"><#= ojoDerechoSinLentes #></span>
+					</div>
+				</td>
+				<td style="width: 35%;">
+					<div class="d-inline-block">
+						<span class="float-left label d-inline-block pl-10">Ojo izquierdo sin lentes Correctivos 20/</span>
+						<span class="float-right text-result d-inline-block line" style="min-width: 20px; margin-left: 5px;"><#= ojoIzquierdoSinLentes #></span>
+					</div>
+				</td>
+				<td style="width: 30%;">
+					<table>
+						<tr>
+							<td>
+								<div class"option-box float-left">
+									<span class="checkbox <#= condicionSinLentes == "congénita" ? "active" : "" #>"></span>
+									<span>Congénita</span>
+								</div>
+							</td>
+							<td>
+								<div class"option-box float-left">
+									<span class="checkbox <#= condicionSinLentes == "adquirida" ? "active" : "" #>"></span>
+									<span>Adquirida</span>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 35%;">
+					<div class="d-inline-block">
+						<span class="float-left label d-inline-block pl-10">Ojo derecho con lentes correctivos 20/</span>
+						<span class="float-right text-result d-inline-block line" style="min-width: 20px; margin-left: 5px;"><#= ojoDerechoConLentes #></span>
+					</div>
+				</td>
+				<td style="width: 35%;">
+					<div class="d-inline-block">
+						<span class="float-left label d-inline-block pl-10">Ojo izquierdo con lentes Correctivos 20/</span>
+						<span class="float-right text-result d-inline-block line" style="min-width: 20px; margin-left: 5px;"><#= ojoIzquierdoConLentes #></span>
+					</div>
+				</td>
+				<td style="width: 30%;">
+					<table>
+						<tr>
+							<td>
+								<div class"option-box float-left">
+									<span class="checkbox <#= condicionConLentes == "congénita" ? "active" : "" #>"></span>
+									<span>Congénita</span>
+								</div>
+							</td>
+							<td>
+								<div class"option-box float-left">
+									<span class="checkbox <#= condicionConLentes == "adquirida" ? "active" : "" #>"></span>
+									<span>Adquirida</span>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="padding-bottom: 8px;">
+					<div class="d-inline-block">
+						<span class="float-left label d-inline-block pl-10">Ambos Ojos 20/</span>
+						<span class="float-right text-result d-inline-block line" style="min-width: 20px; margin-left: 5px;"><#= ambosOjos #></span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="d-inline-block pl-10">¿Usa espejuelos?<div>
+				</td>
+				<td colspan="2">
+					<div class="option-box float-left" style="width: 100px;">
+						<span class="checkbox <#= espejuelos == "si" ? "active" : "" #>"><span>
+						<span style="margin-left: 15px;">Sí</span>
+					</div>
+					<div class="option-box float-left ml-10" style="width: 100px;">
+						<span class="checkbox <#= espejuelos == "no" ? "active" : "" #>"><span>
+						<span style="margin-left: 15px;">No</span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="d-inline-block pl-10">¿Usa lentes de contactos?<div>
+				</td>
+				<td colspan="2">
+					<div class="option-box float-left" style="width: 100px;">
+						<span class="checkbox <#= usaLentes == "si" ? "active" : "" #>"><span>
+						<span style="margin-left: 15px;">Sí</span>
+					</div>
+					<div class="option-box float-left ml-10" style="width: 100px;">
+						<span class="checkbox <#= usaLentes == "no" ? "active" : "" #>"><span>
+						<span style="margin-left: 15px;">No</span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="padding-top: 10px;">
+					<div class="d-inline-block">
+						<span class="d-inline-block float-left">Observaciones:</span>
+						<span class="ml-10 line d-inline-block float-left text-result" style="min-width: 780px; text-align: left;"><#= observacion #></span>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="subtitle mb-10 mt-10">Condición física y mental del solicitante</div>
+	<table>
+		<tbody>
+			<tr>
+				<td colspan="3">
+					<div class="d-block w-full">
+						<span class="ml-10 d-inline-block float-left" style="width: 50px;">Oídos:</span>
+						<span class="ml-10 line d-inline-block float-left text-result" style="text-align: left; min-width: 810px;"><#= condicionOido #></span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<div class="d-block w-full">
+						<span class="ml-10 d-inline-block float-left" style="width: 50px;">Brazos:</span>
+						<span class="ml-10 line d-inline-block float-left text-result" style="text-align: left; min-width: 810px;"><#= condicionBrazo #></span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<div class="d-block w-full">
+						<span class="ml-10 d-inline-block float-left" style="width: 50px;">Piernas:</span>
+						<span class="ml-10 line d-inline-block float-left text-result" style="text-align: left; min-width: 810px;"><#= condicionPierna #></span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<div class="d-block w-full">
+						<span class="ml-10 d-inline-block float-left">Comentarios sobre condición física o mental del solicitante:</span>
+						<span class="ml-10 line d-inline-block float-left text-result" style="text-align: left; min-width: 530px;"><#= condicionFisica #></span>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<table>
+        <tbody>
+            <tr>
+                <td><span>¿Ha padecido alguna vez de epilepsia, mareos, etc.?</span></td>
+                <td><div class="checkbox <#= estadoInconciencia == "si" ? "active" : "" #>"></div> Sí</td>
+                <td><div class="checkbox <#= estadoInconciencia == "no" ? "active" : "" #>"></div> No</td>
+				<td colspan="3"></td>
+            </tr>
+            <tr>
+                <td><span>¿Padece del corazón?</span></td>
+                <td><div class="checkbox <#= padeceCorazon == "si" ? "active" : "" #>"></div> Sí</td>
+                <td><div class="checkbox <#= padeceCorazon == "no" ? "active" : "" #>"></div> No</td>
+				<td colspan="3"></td>
+            </tr>
+            <tr>
+                <td><span>¿Usa marcapaso?</span></td>
+                <td><div class="checkbox <#= marcapaso == "si" ? "active" : "" #>"></div> Sí</td>
+                <td><div class="checkbox <#= marcapaso == "no" ? "active" : "" #>"></div> No</td>
+				<td colspan="3"></td>
+            </tr>
+            <tr>
+                <td><span>¿Usa prótesis?</span></td>
+                <td><div class="checkbox <#= protesis == "si" ? "active" : "" #>"></div> Sí</td>
+                <td><div class="checkbox <#= protesis == "no" ? "active" : "" #>"></div> No</td>
+				<td colspan="3"></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+					<div class="mt-10">
+						<span>Peso</span>
+						<span class="text-center d-inline-block border-b" style="min-width: 50px;"><#= peso #></span>
+						<span>Libras</span>
+					</div>
+				</td>
+				<td colspan="2">
+					<span>Color de Ojos</span>
+					<span class="text-center d-inline-block border-b" style="min-width: 50px;"><#= colorOjos #></span>
+				</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+					<span>Estatura</span>
+					<span class="text-center d-inline-block border-b" style="min-width: 50px;"><#= estaturaPies #></span>
+					<span>Pies</span>
+					<span class="text-center d-inline-block border-b ml-10" style="min-width: 50px;"><#= estaturaPulgadas #></span>
+					<span>Pulgadas</span>
+				</td>
+				<td colspan="2">
+					<span>Color de Pelo</span>
+					<span class="text-center d-inline-block border-b ml-10" style="min-width: 50px;"><#= colorPelo #></span>
+				</td>
+            </tr>
+            <tr>
+                <td colspan="6" style="margin-bottom: 30px !important;">
+					<p class="text">El que suscribe, certifica que está debidamente autorizado a ejercer la profesión médica en Puerto Rico y hace constar que ha examinado a <span class="border-b text-center"><#= nombreCliente #>  <#= segundoNombreCliente #>  <#= apellidoPaternoCliente #>  <#= apellidoMaternoCliente #></span> y certifica que dicha persona <span class="border-b text-center"><#= (estado == "1" ? "está físicamente y mentalmente capacitada" : "no está físicamente y mentalmente capacitada") #></span> para manejar vehículos de motor.</p>
+				</td>
+            </tr>
+			<tr>
+				<td colspan="3">
+					<div class="signed-box mb-10" style="width: 350px;">
+						<center>
+							<img src="<#= string.IsNullOrWhiteSpace(Firma) ? "https://img001.prntscr.com/file/img001/zyGTfjQOTyKp-9eqgUiUSw.png" : Firma #>" style="border: 0px; height: 50px; width: auto; margin: auto;" />
+						</center>
+						<span class="label text-center">Firma del Solicitante</span>
+					</div>
+				</td>
+				<td colspan="3">
+					<div class="signed-box mb-10" style="width: 350px;">
+						<span class="text-center" style="padding-top: 35px;"><#= fechaEvaluacion #></span>
+						<span class="label text-center">Fecha de evaluación</span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<div class="signed-box mb-10" style="width: 350px;">
+						<span class="text-result" style="margin-top: 42px;">DOC. GERALD MAZO - LIC. 19021</span>
+						<span class="label text-center">Nombre (en letra de molde) y núm. licencia del médico</span>
+					</div>
+				</td>
+				<td colspan="3">
+					<div class="signed-box" style="width: 350px;">
+						<center>
+							<img src="<#= string.IsNullOrWhiteSpace(FirmaDoctor) ? "https://img001.prntscr.com/file/img001/zyGTfjQOTyKp-9eqgUiUSw.png" : FirmaDoctor #>" style="border: 0px; height: 50px; width: auto; margin: auto;" />
+						</center>
+						<span class="label text-center">Firma del médico</span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<div class="signed-box mb-10" style="width: 350px;">
+						<span class="text-result">1452 Av. Manuel Fernández Juncos, San Juan, Puerto Rico, 00909</span>
+						<span class="label text-center">Dirección Física del consultorio </span>
+					</div>
+				</td>
+				<td colspan="3">
+					<div class="signed-box mb-10" style="width: 350px;">
+						<span class="text-result">Internista</span>
+						<span class="label text-center">Especialidad(es) del médico</span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<div class="signed-box mb-10" style="width: 350px;">
+						<span class="text-result">1452 Av. Manuel Fernández Juncos, San Juan, Puerto Rico, 00909</span>
+						<span class="label text-center">cont. Dirección Física</span>
+					</div>
+				</td>
+				<td colspan="3">
+					<div class="signed-box mb-10" style="width: 350px;">
+						<span class="text-result">+1 (787) 296-9450</span>
+						<span class="label text-center">Núm. de teléfono(s)</span>
+					</div>
+				</td>
+			</tr>
+        </tbody>
+    </table>
+    <p class="text">Rev.  08jul2021</p>
+</body>
+</html>

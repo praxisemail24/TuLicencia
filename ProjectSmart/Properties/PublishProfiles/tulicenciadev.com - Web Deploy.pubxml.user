@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Este archivo se usa en el proceso de publicación y empaquetado del proyecto web. Para personalizar el comportamiento de este proceso,
+edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 para obtener más información. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAct/cqxu40UyH//gZ8yGYvAAAAAACAAAAAAADZgAAwAAAABAAAABSuo6De6njrvo2ABd0HPYTAAAAAASAAACgAAAAEAAAAHZWZ/pbe2qN4bFr94bFQAcgAAAAdMCvUpL2kFRyeF2woZYbPtjw0KqX+wDsdMrDXWl+zPcUAAAAuyajPIJ9O7drUs/139vVzSPWsdM=</EncryptedPassword>
+    <History>False|2024-02-20T17:06:16.5917748Z;False|2024-02-20T11:59:06.8722448-05:00;False|2024-02-20T11:58:45.7394359-05:00;False|2024-02-20T11:57:00.7075103-05:00;False|2024-02-20T11:55:39.8550635-05:00;False|2024-02-20T11:52:46.1995294-05:00;False|2024-02-20T11:49:30.7841763-05:00;False|2024-02-20T11:47:23.7591044-05:00;False|2024-02-20T11:38:59.6342698-05:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="Conexion">
+      <Value>Server=PERU01\SQLEXPRESS%3bDatabase=TuLicenciaPR%3bTrusted_Connection=True%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

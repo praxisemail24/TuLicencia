@@ -1,0 +1,34 @@
+﻿.switch-container .form-check-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 70px; /* Aumentar el ancho para más espacio */
+    height: 35px; /* Aumentar el alto */
+    background-color: #ccc;
+    border-radius: 10px; /* Hacer los bordes más redondeados */
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+    .switch-container .form-check-input:checked {
+        background-color: #652a9b;
+    }
+
+    .switch-container .form-check-input::before {
+        content: 'No';
+        position: absolute;
+        top: 50%; /* Centrar verticalmente */
+        left: 10px; /* Posición inicial del texto "No" */
+        transform: translateY(-50%); /* Ajustar verticalmente */
+        color: white;
+        font-size: 16px; /* Tamaño del texto */
+        transition: transform 0.3s, left 0.3s; /* Transiciones suaves */
+    }
+
+    .switch-container .form-check-input:checked::before {
+        content: 'Sí';
+        left: calc(100% - 50px); /* Ajustar la posición del texto "Sí" */
+        transform: translateX(-100%) translateY(-50%); /* Ajustar la transformación para mover el texto */
+    }

@@ -1,0 +1,962 @@
+﻿<#@ template language="C#" debug="true" hostspecific="true" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ parameter name="Titulo" type="System.String" #>
+<#@ parameter name="Motivo" type="System.String" #>
+<#@ parameter name="NroLicencia" type="System.String" #>
+<#@ parameter name="Categoria" type="System.String" #>
+<#@ parameter name="VehiculoPesado" type="System.String" #>
+<#@ parameter name="PrimerNombre" type="System.String" #>
+<#@ parameter name="SegundoNombre" type="System.String" #>
+<#@ parameter name="ApellidoPaterno" type="System.String" #>
+<#@ parameter name="ApellidoMaterno" type="System.String" #>
+<#@ parameter name="Identificacion" type="System.String" #>
+<#@ parameter name="Numero" type="System.String" #>
+<#@ parameter name="EstadoLegal" type="System.String" #>
+<#@ parameter name="Genero" type="System.String" #>
+<#@ parameter name="Donante" type="System.String" #>
+<#@ parameter name="TipoSangre" type="System.String" #>
+<#@ parameter name="FechaNacDia" type="System.String" #>
+<#@ parameter name="FechaNacMes" type="System.String" #>
+<#@ parameter name="FechaNacAnio" type="System.String" #>
+<#@ parameter name="EstaturaMtrs" type="System.String" #>
+<#@ parameter name="EstaturaCm" type="System.String" #>
+<#@ parameter name="Peso" type="System.String" #>
+<#@ parameter name="NroTelefono" type="System.String" #>
+<#@ parameter name="Tez" type="System.String" #>
+<#@ parameter name="Pelo" type="System.String" #>
+<#@ parameter name="Ojos" type="System.String" #>
+<#@ parameter name="DirReferencialUrbanicacion" type="System.String" #>
+<#@ parameter name="DirReferencialCalle" type="System.String" #>
+<#@ parameter name="DirReferencialPueblo" type="System.String" #>
+<#@ parameter name="DirReferencialCodPostal" type="System.String" #>
+<#@ parameter name="DirPostalBarrio" type="System.String" #>
+<#@ parameter name="DirPostalPueblo" type="System.String" #>
+<#@ parameter name="DirPostalCodPostal" type="System.String" #>
+<#@ parameter name="LicSuspendida" type="System.String" #>
+<#@ parameter name="SuspensionTipo" type="System.String" #>
+<#@ parameter name="Respuesta1" type="System.String" #>
+<#@ parameter name="Respuesta2" type="System.String" #>
+<#@ parameter name="Respuesta2Fecha" type="System.String" #>
+<#@ parameter name="Respuesta3" type="System.String" #>
+<#@ parameter name="Respuesta3Fecha" type="System.String" #>
+<#@ parameter name="Respuesta4" type="System.String" #>
+<#@ parameter name="Respuesta5" type="System.String" #>
+<#@ parameter name="FechaReg" type="System.String" #>
+<#@ parameter name="FechaFin" type="System.String" #>
+<#@ parameter name="PaisProcede" type="System.String" #>
+<#@ parameter name="EstadoProcede" type="System.String" #>
+<#@ parameter name="Var1" type="System.String" #>
+<#@ parameter name="Var2" type="System.String" #>
+<#@ parameter name="Firma" type="System.String" #>
+
+<#@ output extension=".txt" #>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><#= Titulo #></title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<style>
+			@page {
+				font-size: 12px;
+				margin: 0px;
+				font-family: "Arial";
+			}
+			body {
+				font-size: 12px;
+				font-family: "Arial";
+				margin: 0px;
+			}
+			table {
+				width: 100%;
+			}
+			.text-left {
+				text-align: left;
+			}
+			.text-right {
+				text-align: right;
+			}
+			.text-center {
+				text-align: center;
+			}
+			.title {
+				font-weight: 800;
+				text-align: center;
+				font-size: 20px;
+			}
+			.d-block {
+				display: block;
+			}
+			.d-inline-block {
+				display: inline-block;
+			}
+			.text-xs {
+				font-size: 9px;
+			}
+			.divider {
+				border-bottom: 2px solid #222222;
+				content: " ";
+				padding-top: 3px;
+				margin-bottom: 3px;
+			}
+			.checkbox {
+				display: inline-block;
+				height: 11px;
+				width: 11px;
+				border: 1px solid #222222;
+				margin-right: 1px;
+			}
+			.line {
+				border-bottom: 1px solid #222222;
+				display: block;
+				min-width: 30px;
+			}
+			.fw-bold {
+				font-weight: 600;
+			}
+			.option-box {
+				display: inline-block !important;
+			}
+			.option-box span {
+				display: inline-block;
+				float: left;
+			}
+			.option-box span:first-child {
+				color: black;
+				text-align: center;
+			}
+			.option-box span:nth-child(2) {
+				margin-left: 2px;
+			}
+			.text-result {
+				color: black;
+				padding-left: 2px;
+				padding-right: 2px;
+				text-align: center;
+				display: block;
+				min-height: 10px;
+			}
+			.option.box span {
+				float: right;
+			}
+			.float-right {
+				float: right;
+			}
+			.float-left {
+				float: left;
+			}
+			.signed-box {
+				display: block;
+				width: 98%;
+			}
+			.signed-box span {
+				display: block;
+			}
+			.signed-box .label {
+				margin-top: 3px;
+				padding-top: 2px;
+				border-top: 1px solid #222222;
+			}
+			.bg-title {
+				background: #111111;
+				color: white;
+				font-weight: 800;
+				text-align: center;
+				padding-top: 3px;
+				padding-bottom: 3px;
+				margin-bottom: 5px;
+				margin-top: 5px;
+			}
+			.text-uppercase {
+				text-transform: uppercase;
+			}
+			.ml-2 {
+				margin-left: 2px;
+			}
+			.mt-3 {
+				margin-top: 3px;
+			}
+			.ml-5 {
+				margin-left: 5px;
+			}
+			.ml-10 {
+				margin-left: 10px;
+			}
+			.pb-10 {
+				padding-bottom: 10px;
+			}
+			.px-2 {
+				padding-left: 4px;
+				padding-right: 4px;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+			<tbody>
+				<tr>
+					<td colspan="3">
+						<img style="width: auto; height: 90px; max-height: 90px; margin: auto;" src="https://i.imgur.com/mGFhmNM.png" />
+					</td>
+					<td>
+						<div class="text-right">
+							<img style="width: auto; height: 60px; max-height: 60px; margin: auto;" src="https://i.imgur.com/7KCFlua.png" />
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<h3 class="title">SOLICITUD PARA CERTIFICADO DE LICENCIA PARA CONDUCIR VEHÍCULOS DE MOTOR</h3>
+		<table>
+			<tbody>
+				<tr>
+					<td style="width: 5%;"></td>
+					<td style="width: 19%;">
+						<div class="option-box">
+							<span class="checkbox"><#= Motivo == "renovación" ? "X" : string.Empty #></span>
+							<span>RENOVACIÓN</span>
+						</div>
+					</td>
+					<td style="width: 19%;">
+						<div class="option-box">
+							<span class="checkbox"><#= Motivo == "duplicado" ? "X" : string.Empty #></span>
+							<span>DUPLICADO</span>
+						</div>
+					</td>
+					<td style="width: 19%;">
+						<div class="option-box">
+							<span class="checkbox"><#= Motivo == "cambio de nombre" ? "X" : string.Empty #></span>
+							<span>CAMBIO DE NOMBRE</span>
+						</div>
+					</td>
+					<td style="width: 19%;">
+						<div class="option-box">
+							<span class="checkbox"><#= Motivo == "cambio de dirección" ? "X" : string.Empty #></span>
+							<span>CAMBIO DE DIRECCIÓN</span>
+						</div>
+					</td>
+					<td style="width: 19%;">
+						<div class="option-box">
+							<span class="checkbox"><#= Motivo == "deterioro" ? "X" : string.Empty #></span>
+							<span>DETERIORO</span>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="divider"></div>
+		<table>
+			<tbody>
+				<tr>
+					<td style="width: 25.33%;">
+						<span class="d-inline-block float-left fw-bold">NÚM LICENCIA:</span>
+						<div class="d-inline-block float-left" style="width: 40%; padding-left: 5px; margin-left: 5px;">
+							<div class="signed-box">
+								<span class="text-result"><#= NroLicencia #></span>
+								<span class="label"></span>
+							</div>
+						</div>
+					</td>
+					<td style="width: 41.33%;">
+						<table>
+							<tbody>
+								<tr>
+									<td>
+										<div class="option-box">
+											<span class="fw-bold">CATEGORÍA</span>
+										</div>
+									</td>
+									<td>
+										<div class="option-box">
+											<span class="checkbox"><#= Categoria == "conductor" ? "X" : string.Empty #></span>
+											<span>CONDUCTOR</span>
+										</div>
+									</td>
+									<td>
+										<div class="option-box">
+											<span class="checkbox"><#= Categoria == "chofer" ? "X" : string.Empty #></span>
+											<span>CHOFER</span>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+					<td style="width: 33.33%;">
+						<table>
+							<tbody>
+								<tr>
+									<td colspan="4" class="text-center">Vehículos Pesados Tipo</td>
+								</tr>
+								<tr>
+									<td>
+										<div class="option-box mt-3">
+											<span class="checkbox"><#= VehiculoPesado == "tipo 1" ? "X" : string.Empty #></span>
+											<span>1</span>
+										</div>
+									</td>
+									<td>
+										<div class="option-box mt-3">
+											<span class="checkbox"><#= VehiculoPesado == "tipo 2" ? "X" : string.Empty #></span>
+											<span>2</span>
+										</div>
+									</td>
+									<td>
+										<div class="option-box mt-3">
+											<span class="checkbox"><#= VehiculoPesado == "tipo 3" ? "X" : string.Empty #></span>
+											<span>3</span>
+										</div>
+									</td>
+									<td>
+										<div class="option-box mt-3">
+											<span class="checkbox"><#= VehiculoPesado == "tipo 4" ? "X" : string.Empty #></span>
+											<span>4</span>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="divider"></div>
+		<table>
+			<tbody>
+				<tr>
+					<td class="fw-bold" colspan="4">INFORMACIÓN PERSONAL</td>
+				</tr>
+				<tr>
+					<td style="width: 25%;">
+						<div class="signed-box">
+							<span class="text-result"><#= PrimerNombre #></span>
+							<span class="label">Nombre</span>
+						</div>
+					</td>
+					<td style="width: 25%;">
+						<div class="signed-box">
+							<span class="text-result"><#= SegundoNombre #></span>
+							<span class="label">Segundo Nombre</span>
+						</div>
+					</td>
+					<td style="width: 25%;">
+						<div class="signed-box">
+							<span class="text-result"><#= ApellidoPaterno #></span>
+							<span class="label">Apellido Paterno</span>
+						</div>
+					</td>
+					<td style="width: 25%;">
+						<div class="signed-box">
+							<span class="text-result"><#= ApellidoMaterno #></span>
+							<span class="label">Apellido Materno</span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="option-box" style="width: 53%;">
+							<span class="checkbox"><#= Identificacion == "seguro social" ? "X" : string.Empty #></span>
+							<span>Seguro Social</span>
+						</div>
+						<div class="option-box" style="width: 40%;">
+							<span class="checkbox"><#= Identificacion == "pasaporte" ? "X" : string.Empty #></span>
+							<span>Pasaporte</span>
+						</div>
+					</td>
+					<td>
+						<div class="signed-box">
+							<span class="text-result"><#= Numero #></span>
+							<span class="label text-center">Número</span>
+						</div>
+					</td>
+					<td colspan="2">
+						<table>
+							<tbody>
+								<tr>
+									<td class="text-center fw-bold" colspan="3">ESTABLECER PRESENCIA LEGAL</td>
+								</tr>
+								<tr>
+									<td style="width: 30%;">
+										<div class="option-box">
+											<span class="checkbox"><#= EstadoLegal == "ciudadano usa" ? "X" : string.Empty #></span>
+											<span>Ciudadano USA</span>
+										</div>
+									</td>
+									<td>
+										<div class="option-box">
+											<span class="checkbox"><#= EstadoLegal == "residente permanente" ? "X" : string.Empty #></span>
+											<span>Residente Permanente</span>
+										</div>
+									</td>
+									<td>
+										<div class="option-box">
+											<span class="checkbox"><#= EstadoLegal == "extranjero" ? "X" : string.Empty #></span>
+											<span>Extranjero</span>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table>
+			<tbody>
+				<tr>
+					<td class="d-inline-block text-uppercase">Género</td>
+					<td>
+						<div class="option-box">
+							<span class="checkbox"><#= Genero == "masculino" ? "X" : string.Empty #></span>
+							<span>Masculino</span>
+						</div>
+					</td>
+					<td>
+						<div class="option-box">
+							<span class="checkbox"><#= Genero == "femenino" ? "X" : string.Empty #></span>
+							<span>Femenino</span>
+						</div>
+					</td>
+					<td>Deseo ser Donante de Órganos</td>
+					<td>
+						<div class="option-box">
+							<span class="checkbox"><#= Donante == "sí" ? "X" : string.Empty #></span>
+							<span>Sí</span>
+						</div>
+					</td>
+					<td>
+						<div class="option-box">
+							<span class="checkbox"><#= Donante == "no" ? "X" : string.Empty #></span>
+							<span>No</span>
+						</div>
+					</td>
+					<td>Tipo de Sangre</td>
+					<td>
+						<div class="signed-box" style="width: 120px;">
+							<span class="text-result"><#= TipoSangre #></span>
+							<span class="line"></span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<div class="d-inline-block">
+							<div class="d-inline-block float-left">
+								<span class="d-block text-center">Fecha Nacimiento</span>
+								<div class="d-block mt-3">
+									<div class="d-inline-block text-left">
+										<span class="text-result"><#= FechaNacDia #></span>
+										<span class="line"></span>
+									</div>
+									<div class="d-inline-block text-left">/</div>
+									<div class="d-inline-block text-left">
+										<span class="text-result"><#= FechaNacMes #></span>
+										<span class="line"></span>
+									</div>
+									<div class="d-inline-block text-left">/</div>
+									<div class="d-inline-block text-left">
+										<span class="text-result"><#= FechaNacAnio #></span>
+										<span class="line"></span>
+									</div>
+								</div>
+							</div>
+							<div class="d-inline-block float-left" style="margin-left: 50px;">
+								<span class="d-block text-center">Estatura</span>
+								<div class="d-block mt-3">
+									<div class="d-inline-block text-left">
+										<span class="text-result"><#= EstaturaMtrs #></span>
+										<span class="line"></span>
+									</div>
+									<div class="d-inline-block text-left">/</div>
+									<div class="d-inline-block text-left">
+										<span class="text-result"><#= EstaturaCm #></span>
+										<span class="line"></span>
+									</div>
+								</div>
+							</div>
+							<div class="d-inline-block float-left" style="margin-left: 50px;">
+								<span class="d-block text-center mt-3">Peso</span>
+								<div class="d-block">
+									<div class="d-inline-block text-left">
+										<span class="text-result"><#= Peso #></span>
+										<span class="line"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+					<td colspan="4">
+						<div class="d-inline-block">
+							<div class="d-inline-block float-left">
+								<span>Número de Telefóno</span>
+							</div>
+							<div class="signed-box float-left ml-5" style="width: 120px;">
+								<span class="text-result"><#= NroTelefono #></span>
+								<span class="label text-center"> </span>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<div class="d-inline-block float-left">
+							<div class="d-inline-block float-left" style="width: 60px;">TEZ</div>
+							<div class="option-box" style="width: 90px;">
+								<span class="checkbox"><#= Tez == "amarilla" ? "X" : string.Empty #></span>
+								<span>Amarilla</span>
+							</div>
+							<div class="option-box" style="width: 70px;">
+								<span class="checkbox"><#= Tez == "blanca" ? "X" : string.Empty #></span>
+								<span>Blanca</span>
+							</div>
+							<div class="option-box" style="width: 60px;">
+								<span class="checkbox"><#= (Tez == "negro" || Tez == "negra") ? "X" : string.Empty #></span>
+								<span>Negro</span>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<div class="d-block">
+							<div class="d-inline-block float-left" style="width: 60px;">PELO</div>
+							<div class="option-box" style="width: 90px;">
+								<span class="checkbox"><#= Pelo == "amarillo" ? "X" : string.Empty #></span>
+								<span>Amarillo</span>
+							</div>
+							<div class="option-box" style="width: 70px;">
+								<span class="checkbox"><#= Pelo == "blanco" ? "X" : string.Empty #></span>
+								<span>Blanco</span>
+							</div>
+							<div class="option-box" style="width: 60px;">
+								<span class="checkbox"><#= Pelo == "gris" ? "X" : string.Empty #></span>
+								<span>Gris</span>
+							</div>
+							<div class="option-box" style="width: 60px;">
+								<span class="checkbox"><#= Pelo == "marrón" ? "X" : string.Empty #></span>
+								<span>Marrón</span>
+							</div>
+							<div class="option-box" style="width: 60px;">
+								<span class="checkbox"><#= Pelo == "negro" ? "X" : string.Empty #></span>
+								<span>Negro</span>
+							</div>
+							<div class="option-box" style="width: 60px;">
+								<span class="checkbox"><#= Pelo == "rojo" ? "X" : string.Empty #></span>
+								<span>Rojo</span>
+							</div>
+							<div class="option-box" style="width: 60px;">
+								<span class="checkbox"><#= Pelo == "calvo" ? "X" : string.Empty #></span>
+								<span>Calvo</span>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<div class="d-block">
+							<div class="d-inline-block float-left" style="width: 60px;">OJOS</div>
+							<div class="option-box" style="width: 90px;">
+								<span class="checkbox"><#= Ojos == "amarillo" ? "X" : string.Empty #></span>
+								<span>Amarillo</span>
+							</div>
+							<div class="option-box" style="width: 70px;">
+								<span class="checkbox"><#= Ojos == "azul" ? "X" : string.Empty #></span>
+								<span>Azul</span>
+							</div>
+							<div class="option-box" style="width: 60px;">
+								<span class="checkbox"><#= Ojos == "gris" ? "X" : string.Empty #></span>
+								<span>Gris</span>
+							</div>
+							<div class="option-box" style="width: 60px;">
+								<span class="checkbox"><#= Ojos == "marrón" ? "X" : string.Empty #></span>
+								<span>Marrón</span>
+							</div>
+							<div class="option-box" style="width: 60px;">
+								<span class="checkbox"><#= Ojos == "negro" ? "X" : string.Empty #></span>
+								<span>Negro</span>
+							</div>
+							<div class="option-box" style="width: 60px;">
+								<span class="checkbox"><#= Ojos == "verde" ? "X" : string.Empty #></span>
+								<span>Verde</span>
+							</div>
+							<div class="option-box" style="width: 60px;">
+								<span class="checkbox"><#= Ojos == "hazel" ? "X" : string.Empty #></span>
+								<span>Hazel</span>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<table class="mt-3">
+			<tbody>
+				<tr>
+					<td colspan="8">
+						<div class="d-flex">
+							<div class="d-inline-block">
+								<span class="d-inline-block float-left text-uppercase fw-bold">Dirección Referencial</span>
+								<span class="d-inline-block ml-2 float-left">(Requerida)</span>
+							</div>
+							<div class="signed-box">
+								<span class="text-result" style="text-align:left !important;"><#= DirReferencialUrbanicacion #></span>
+								<span class="label">Urbanización, Barrio, Condominio</span>
+							</div>
+							<div class="signed-box">
+								<span class="text-result" style="text-align:left !important;"><#= DirReferencialCalle #></span>
+								<span class="label">Número, Calle, Número de Apartamento</span>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<div class="signed-box">
+							<span class="text-result" style="text-align:left !important;"><#= DirReferencialPueblo #></span>
+							<span class="label">Pueblo, País</span>
+						</div>
+					</td>
+					<td colspan="4">
+						<div class="signed-box">
+							<span class="text-result" style="text-align:left !important;"><#= DirReferencialCodPostal #></span>
+							<span class="label">Código Postal</span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<div class="d-flex mt-3">
+							<div class="d-inline-block">
+								<span class="d-inline-block float-left text-uppercase fw-bold">Dirección Postal</span>
+								<span class="d-inline-block ml-2 float-left">(sólo si es diferente a la residencial)</span>
+							</div>
+						</div>
+						<div class="signed-box">
+							<span class="text-result" style="text-align:left !important;"><#= DirPostalBarrio #></span>
+							<span class="label">Apartado, Barrio</span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<div class="signed-box">
+							<span class="text-result" style="text-align:left !important;"><#= DirPostalPueblo #></span>
+							<span class="label">Pueblo, País</span>
+						</div>
+					</td>
+					<td colspan="4">
+						<div class="signed-box">
+							<span class="text-result" style="text-align:left !important;"><#= DirPostalCodPostal #></span>
+							<span class="label">Código Postal</span>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<table class="mt-3">
+			<tbody>
+				<tr>
+					<td colspan="8">
+						<div class="d-block">
+							<div class="d-inline-block float-left">¿Ha sido suspendida o cancelada su licencia en Puerto Rico?</div>
+							<div class="d-inline-block float-left ml-10">
+								<div class="option-box">
+									<span class="checkbox"><#= LicSuspendida == "sí" ? "X" : string.Empty #></span>
+									<span>Sí</span>
+								</div>
+								<div class="option-box ml-2">
+									<span class="checkbox"><#= LicSuspendida == "no" ? "X" : string.Empty #></span>
+									<span>No</span>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<div class="d-block">
+							<div class="d-inline-block float-left">
+								<div class="option-box ml-10">
+									<span class="checkbox"><#= SuspensionTipo == "judicial" ? "X" : string.Empty #></span>
+									<span>Judicial</span>
+								</div>
+								<div class="option-box ml-10">
+									<span class="checkbox"><#= SuspensionTipo == "sistema de puntos" ? "X" : string.Empty #></span>
+									<span>Sistema de Puntos</span>
+								</div>
+								<div class="option-box ml-10">
+									<span class="checkbox"><#= SuspensionTipo == "incapacidad" ? "X" : string.Empty #></span>
+									<span>Incapacidad</span>
+								</div>
+								<div class="option-box ml-10">
+									<span class="checkbox"><#= SuspensionTipo == "renovación del secretario" ? "X" : string.Empty #></span>
+									<span>Revocación del Secretario</span>
+								</div>
+								<div class="option-box ml-10">
+									<span class="checkbox"><#= SuspensionTipo == "ley de asume" ? "X" : string.Empty #></span>
+									<span>Ley de ASUME</span>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<div class="d-block">
+							<div class="d-inline-block float-left">¿Ha sido recluido en alguna institución por haber sufrido algún desorden mental?</div>
+							<div class="d-inline-block float-left ml-10">
+								<div class="option-box">
+									<span class="checkbox"><#= Respuesta1 == "sí" ? "X" : string.Empty #></span>
+									<span>Sí</span>
+								</div>
+								<div class="option-box ml-2">
+									<span class="checkbox"><#= Respuesta1 == "no" ? "X" : string.Empty #></span>
+									<span>No</span>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<div class="d-block">
+							<div class="d-inline-block float-left" style="width: 45%;">¿Ha sido convicto por uso de bebidas embriagantes?</div>
+							<div class="d-inline-block float-left ml-10">
+								<div class="option-box">
+									<span class="checkbox"><#= Respuesta2 == "sí" ? "X" : string.Empty #></span>
+									<span>Sí</span>
+								</div>
+								<div class="option-box ml-2">
+									<span class="checkbox"><#= Respuesta2 == "no" ? "X" : string.Empty #></span>
+									<span>No</span>
+								</div>
+							</div>
+							<div class="d-inline-block float-left ml-10">Fecha</div>
+							<div class="d-inline-block float-left ml-10" style="width: 12%;">
+								<div class="signed-box">
+									<span class="text-result" style="text-align:left !important;"><#= Respuesta2Fecha #></span>
+									<span class="line"></span>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<div class="d-block">
+							<div class="d-inline-block float-left" style="width: 45%;">¿Ha sido convicto por la Ley de Narcóticos?</div>
+							<div class="d-inline-block float-left ml-10">
+								<div class="option-box">
+									<span class="checkbox"><#= Respuesta3 == "sí" ? "X" : string.Empty #></span>
+									<span>Sí</span>
+								</div>
+								<div class="option-box ml-2">
+									<span class="checkbox"><#= Respuesta3 == "no" ? "X" : string.Empty #></span>
+									<span>No</span>
+								</div>
+							</div>
+							<div class="d-inline-block float-left ml-10">Fecha</div>
+							<div class="d-inline-block float-left ml-10" style="width: 12%;">
+								<div class="signed-box">
+									<span class="text-result" style="text-align:left !important;"><#= Respuesta3Fecha #></span>
+									<span class="line"></span>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<div class="d-block">
+							<div class="d-inline-block float-left" style="width: 45%;">Indique si tiene obligación alimentaría "ASUME"</div>
+							<div class="d-inline-block float-left ml-10">
+								<div class="option-box">
+									<span class="checkbox"><#= Respuesta4 == "sí" ? "X" : string.Empty #></span>
+									<span>Sí</span>
+								</div>
+								<div class="option-box ml-2">
+									<span class="checkbox"><#= Respuesta4 == "no" ? "X" : string.Empty #></span>
+									<span>No</span>
+								</div>
+							</div>
+							<div class="d-inline-block float-left ml-10">Favor presentar Certificación de ASUME</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<div class="d-block">
+							<div class="d-inline-block float-left" style="width: 45%;">Indique si tiene deuda por servicios médicos con "ACAA"</div>
+							<div class="d-inline-block float-left ml-10">
+								<div class="option-box">
+									<span class="checkbox"><#= Respuesta4 == "sí" ? "X" : string.Empty #></span>
+									<span>Sí</span>
+								</div>
+								<div class="option-box ml-2">
+									<span class="checkbox"><#= Respuesta4 == "no" ? "X" : string.Empty #></span>
+									<span>No</span>
+								</div>
+							</div>
+							<div class="d-inline-block float-left ml-10">De contestar sí, presente Certificación de ACAA</div>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>Certifico que he leído o he sido instruido, sobre el contenido de la Ley Núm. 22 del 7 de enero de 2000, según enmendada, conocida como “Ley de Vehículos y Tránsito de Puerto Rico”, y conozco sus disposiciones, principalmente las relacionadas con el tránsito, señales y seguridad y que puedo someterme al examen teórico, práctico o ambos según exige la Ley.</p>
+		<p>Certifico bajo las penalidades de perjurio que la información contenida en esta solicitud es correcta, cierta a mi mejor entender y así me consta de propio conocimiento.</p>
+		<table class="mt-3">
+			<tbody>
+				<tr>
+					<td colspan="2" style="width: 40%;">
+						<div class="signed-box" style="margin-top: 30px;">
+							<span class="text-result"><#= string.Format("{0:dd/MM/yyyy hh:mm:ss tt}", DateTime.Now) #></span>
+							<span class="label text-center">Fecha</span>
+						</div>
+					</td>
+					<td style="width: 20%;">
+						<div style="width: 100px; margin: auto; color: gray;" class="text-center">SELLOS DE RENTAS INTERNAS</div>
+					</td>
+					<td colspan="2" style="width: 40%;">
+						<div class="signed-box" style="margin-top: 30px;">
+							<center>
+								<img src="<#= Firma #>" style="border: none; max-height: 50px; width: auto; margin: auto;" />
+							</center>
+							<span class="text-result" style="text-align:left !important;"></span>
+							<span class="label text-center">Firma del solicitante</span>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<div class="bg-title">DOCUMENTOS GENERALES PARA RENOVACIÓN, DUPLICADO, CAMBIO DE NOMBRE, CAMBIO DE DIRECCION O DETERIORO</div>
+		<div class="mt-3">1. Si aún no posee su Certificado de Licencia de Conducir Digitalizado:</div>
+		<div style="margin-left: 15px;">a. Número de Seguro Social, presentando el original de uno o más de los siguientes documentos:</div>
+		<div style="margin-left: 30px;">1. Tarjeta de Seguro Social, Forma W-2, "Wage and Tax Statement", Forma SSA-1099, "Social Security Benefit Statement", Talonario de Pago donde aparezca el nombre del solicitante y el número de Seguro Social verificable conforme a los procedimientos establecidos para ello en la Ley Federal de Identificación Real de 2005, "US Military Identification Card", copia ponchada de la Planilla Estatal o Federal.</div>
+		<div style="margin-left: 15px;">b. Presencia legal y fecha de nacimiento, presentando el original de uno o más de los siguientes documentos:</div>
+		<div style="margin-left: 30px;">1. Pasaporte de los Estados Unidos vigente, Certificado de Nacimiento, para documentos alternos refiérase al Formulario DTOP-DIS-259 "Documentos para Certificar Presencia Legal y Fecha de Nacimiento".</div>
+		<div style="margin-left: 30px;">2. Si es nacido en Puerto Rico, no tendrá que presentar el Certificado de Nacimiento.</div>
+		<div>2. Un documento que no deberá tener más de dos (2) meses de emitido que nos evidencie su dirección residencial permanente (Ejemplo: recibo de agua, luz, teléfono, celular, banco, etc.) de ser necesario favor de referirse al Formulario DTOP-DIS-262 "Documentos para probar la Dirección Residencial Permanente".</div>
+		<div style="margin-left: 15px;">a. Si el documento no está a su nombre la persona a cuyo nombre este el documento, deberá autorizarlo mediante Formulario DTOP-DIS-156 "Certificación de Residencia Principal" e incluir copia de una identificación fehaciente de la persona.</div>
+		<div style="margin-left: 15px;">b. De no conseguir a la persona a cuyo nombre está el documento, el solicitante deberá hacer una Declaración Jurada ante un Notario Público o Funcionario Autorizado Formulario DTOP-DIS-263 “Afirmación So Pena de Perjurio Certificando la Residencia Principal”, en la cual certifique su dirección residencial permanente.</div>
+		<div>3. En caso de persona extranjera deberá mostrar evidencia de su presencia legal en los Estados Unidos a la fecha de someter la solicitud.</div>
+		<div>4. Pagar toda Multa Administrativa (si aplica)</div>
+		<div>5. Certificación de ASUME</div>
+		<div>6. Certificación de ACAA, de tener deuda por servicios médicos.</div>
+		<div class="bg-title">DOCUMENTOS ADICIONALES PARA RENOVACIÓN</div>
+		<div>1. Formulario DTOP-DIS-260 "Certificación Médica para Certificado de Licencia de Conducir", la cual debe ser cumplimentada por un doctor en medicina autorizado a ejercer la práctica en Puerto Rico o de la jurisdicción donde reside el solicitante. Todo certificado deberá tener no más de seis (6) meses de expedido al momento de la solicitud.</div>
+		<div>2. De no hacer entrega del Certificado para Licencia de Conducir a ser renovado, deberá presentar un documento acreditativo de identidad con fotografía, de ser necesario favor de referirse al Formulario DTOP-DIS-261 "Documentos Acreditativos para Establecer la Identidad con Fotografía".</div>
+		<div>3. Sello de Rentas Internas por el valor de diez (10) dólares, si tiene más de treinta (30) días de expirada deberá incluir un Sello de Rentas Internas por el valor de veinte (20) dólares, adicionales.</div>
+		<div>4. Sello de Rentas Internas por el valor de un (1) dólar para cumplir con la Ley Núm. 296 de 25 de diciembre de 2002, "Ley de Donaciones Anatómicas de Puerto Rico".</div>
+		<div>5. Si su categoría es de Vehículo Pesado [Tipo 1, Tipo 2, Tipo 3, Tipo 4], deberá cumplimentar el Formulario DTOP-789 "Certificado del Oftalmólogo u Optómetra". Todo certificado deberá tener no más de seis (6) meses de expedido al momento de someter la solicitud.</div>
+		<div class="bg-title">DOCUMENTOS ADICIONALES PARA DUPLICADO</div>
+		<div>1. Declaración Jurada reciente ante Notario Público, solicitando duplicado e indicando el número de Certificado de Licencia de Conducir y la categoría. En la misma deberá hacer constar las circunstancias de la pérdida, destrucción o hurto e indicar que el mismo no ha sido suspendido o revocado por los Tribunales u ocupada por la Policía de Puerto Rico o por cualquier Estado con un acuerdo de reciprocidad y es importante que en la misma se indique: "Relevamos a DTOP de toda responsabilidad en esta transacción". Si las circunstancias son pérdida o hurto deberá incluir el número de querella de la Policía. Si es de un estado de los Estados Unidos de América, deberá ser aceptada siempre que la autorización del Notario firmante, no haya expirado a la fecha de someter la solicitud de duplicado.</div>
+		<div>2. Presentar un documento acreditativo de identidad con fotografía, de ser necesario favor de referirse al Formulario DTOP-DIS-261 "Documentos Acreditativos para Establecer la Identidad con Fotografía".</div>
+		<div>3. Si han transcurrido más de dos (2) años de la fecha de la Certificación Médica anterior, deberá someter el Formulario DTOP-DIS-260 “Certificación Médica para Certificado de Licencia de Conducir”, la cual debe ser cumplimentada por un doctor en medicina autorizado a ejercer la práctica en Puerto Rico. Todo certificado deberá tener no más de seis (6) meses de expedido al momento de someter la solicitud.</div>
+		<div>4. Si su categoría es de Vehículo Pesado [Tipo 1, Tipo 2, Tipo 3, Tipo 4] y han transcurrido más de seis (6) meses desde la expedición de su Certificado del Oftalmólogo u Optómetra anterior, deberá cumplimentar el Formulario DTOP-789 “Certificado del Oftalmólogo u Optómetra”. Todo certificado deberá tener no más de seis (6) meses de expedido al momento de someter la solicitud.</div>
+		<div>5. Sello de Rentas Internas por el valor de cinco (5) dólares.</div>
+		<div class="bg-title">DOCUMENTOS ADICIONALES PARA CAMBIO DE NOMBRE</div>
+		<div>1. Declaración Jurada firmada ante Notario Público haciendo constar las razones que motivan su petición y es importante que en la misma se indique: "Relevamos a DTOP de toda responsabilidad en esta transacción".</div>
+		<div>2. Uno de los siguientes documentos: Escritura de Reconocimiento, Sentencia o Resolución de un Tribunal, Certificación de Nacimiento.</div>
+		<div>3. Sello de Rentas Internas por el valor de cinco (5) dólares.</div>
+		<div>4. Entregar el Certificado de Licencia de Conducir que posee el solicitante.</div>
+		<div>5. Si su categoría es de Vehículo Pesado y han transcurrido más de seis (6) meses desde la expedición de su Certificado del Oftalmólogo u Optómetra anterior, deberá cumplimentar el Formulario DTOP-789 “Certificado del Oftalmólogo u Optómetra”. Todo certificado deberá tener no más de seis (6) meses de expedido al momento de la solicitud.</div>
+		<div class="bg-title">DOCUMENTOS ADICIONALES PARA CAMBIO DE DIRECCIÓN O DETERIORO</div>
+		<div>1. Formulario DTOP-665 "Notificación de Cambio de Dirección".</div>
+		<div>2. Entregar el Certificado de Licencia de Conducir que posee el solicitante.</div>
+		<div class="bg-title">PARA USO OFICIAL SOLAMENTE</div>
+		<div>Información del Certificado de Licencia de Conducir,</div>
+		<table>
+			<tbody>
+				<tr>
+					<td class="text-right" style="width: 25%;">
+						<div style="d-block" style="padding-left: 20px;">Número de Certificado de Licencia</div>
+					</td>
+					<td style="width: 25%;">
+						<div class="signed-box ml-10" style="min-with: 200px;">
+							<span class="text-result"></span>						
+							<span class="label"></span>						
+						</div>
+					</td>
+					<td class="text-right" style="width: 25%;">
+						<div style="d-block">Restricciones físicas</div>
+					</td>
+					<td style="width: 25%;">
+						<div class="signed-box ml-10" style="min-with: 200px;">
+							<span class="text-result"></span>						
+							<span class="label"></span>						
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="text-right" style="width: 25%;">
+						<div style="d-block pb-10" style="padding-left: 20px;">Fecha expedición</div>
+					</td>
+					<td style="width: 25%;">
+						<div class="signed-box ml-10 pb-10" style="min-with: 200px;">
+							<span class="text-result"></span>						
+							<span class="label"></span>						
+						</div>
+					</td>
+					<td class="text-right" style="width: 25%;">
+						<div style="d-block pb-10">Fecha expiración</div>
+					</td>
+					<td style="width: 25%;">
+						<div class="signed-box ml-10 pb-10" style="min-with: 200px;">
+							<span class="text-result"></span>						
+							<span class="label"></span>						
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="width: 50%;">
+						<div class="d-inline-block float-left ml-10 pb-10">Nombre del funcionario</div>
+						<div class="d-inline-block float-left ml-10" style="min-width: 250px;">
+							<div class="signed-box">
+								<span class="text-result"></span>
+								<span class="label"></span>
+							</div>
+						</div>
+					</td>
+					<td colspan="2" style="width: 50%;">
+						<div class="d-inline-block float-left ml-10 pb-10">Firma del funcionario</div>
+							<div class="d-inline-block float-left ml-10" style="min-width: 200px;">
+								<div class="signed-box">
+									<span class="text-result"></span>
+									<span class="label"></span>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="width: 50%;">
+						<div class="d-inline-block float-left ml-10">CESCO de</div>
+						<div class="d-inline-block float-left ml-10" style="min-width: 300px;">
+							<div class="signed-box">
+								<span class="text-result"></span>
+								<span class="label"></span>
+							</div>
+						</div>
+					</td>
+					<td colspan="2" style="width: 50%;">
+						<div class="d-inline-block float-left ml-10">Fecha</div>
+							<div class="d-inline-block float-left ml-10" style="min-width: 300px;">
+								<div class="signed-box">
+									<span class="text-result"></span>
+									<span class="label"></span>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

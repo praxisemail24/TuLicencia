@@ -1,0 +1,215 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="">
+    <h4 class="pt-3 fw-bold"> Detalle del caso/ Nombre del trámite </h4>
+    <br/>
+    <input type="hidden" id="cl_id" name="cl_id" value="@ViewBag.cl_id"/>
+    <input type="hidden" id="tr_id" name="tr_id" value="@ViewBag.tr_id"/>
+    <input type="hidden" id="frm_id" name="frm_id" value="@ViewBag.frm_id"/>
+    <input type="hidden" id="adm_id2" name="adm_id2" /> 
+
+   <div class="card h-100 shadow-sm mb-4" >
+        <div class="card-header p-3 fs-6 fw-bold"> Datos del Cliente: </div>
+        <div class="card-body">
+            <p class="card-text">
+                <span class="fw-bold me-2">Nombre:</span>
+                <span id="frmNombre"></span>
+            </p>
+            <p class="card-text">
+                <span class="fw-bold me-2">Apellido Paterno:</span>
+                <span id="frmPrimerApellido"></span>
+            </p>
+            <p class="card-text">
+                <span class="fw-bold me-2">Apellido Materno:</span>
+                <span id="frmSegundoApellido"></span>
+            </p>
+            <p class="card-text">
+                <span class="fw-bold me-2">Correo:</span>
+                <span id="frmCorreo"></span>
+            </p>
+            <p class="card-text">
+                <span class="fw-bold me-2">Telefono:</span>
+                <span id="frmTelefono"></span>
+            </p>
+            <p class="card-text">
+                <span class="fw-bold me-2">Código de Pago:</span>
+                <span id="frmcodigoPago"></span>    
+            </p>
+            <p class="card-text">
+                <span class="fw-bold me-2">Fecha de pago:</span>
+                <span id="frmFechaPago"></span>
+            </p>
+            <p class="card-text"> 
+                <span class="fw-bold me-2">Trámite:</span>
+                <span id="frmTramite"></span>
+            </p>
+        </div>
+    </div>
+
+
+    @*  PROCESO A *@
+    <div class="card" id="">
+        <div class="card-header p-3 fs-6 fw-bold"> Asignación del caso: </div>
+
+        <div class="card-body">
+            <div class="row gy-3">
+                <p class="card-text fs-6 "> Evaluado por:  <span id="asignadoPor" class="fw-bold"></span><span id="asignadoFechaInicio" class="fw-bold"></span></p>
+                @*  PRIMERA FILA *@
+                <p class="card-text fs-6 "> Caso asignado por:  <span id="asignadoPor0" class="fw-bold"></span>  a: <span id="asignadoa0" class="fw-bold"></span> <span id="asignadoFechaInicio0" class="fw-bold"></span></p>
+                @*  SEGUNDA FILA *@
+                <p class="card-text fs-6 "> Caso radicado por:  <span id="asignadoPor1" class="fw-bold"></span>  <span id="fechaAsignado1" class="fw-bold"></span></p>
+            </div>
+        </div>
+    </div>
+
+
+    @*  STATUS *@
+    <div class="card" id="">
+        <div class="card-header p-3 fs-6 fw-bold"> Status del caso radicado: </div>
+
+        <div class="card-body">
+            <div class="row gy-3">
+                <p class="card-text fs-6 "> Status Actual:  <span id="statusactual" class="fw-bold"></span>  </p>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="row gy-3">
+                @* <div class="card-header p-3 fs-6 fw-bold"> Status: </div> *@
+                <div class="col-xl-3">
+                    <select id ="selectEstadoProceso" class="form-select" aria-label="">
+                        <option value="0" class="btn btn-wave btn-primary-light">Pendiente</option>
+                        <option value="1" class="btn btn-wave btn-success-light">Aprobado</option>
+                        <option value="2" class="btn btn-wave btn-danger-transparent">Denegado/Subsanable</option>
+                        <option value="3" class="btn btn-wave btn-warning-light">Denegado/Final</option>
+                    </select>
+                </div>
+
+                <div class="col-xl-6 mt-3" id="motivoAnulacionContainer" style="display:none;">
+                    <label for="motivoAnulacion" class="form-label">Motivo de Anulación</label>
+                    <input type="text" id="motivoAnulacion" class="form-control" placeholder="Ingrese el motivo de anulación">
+                </div>
+
+                <div class="col-xl-6 mt-3" id="observacionSubsanarContainer" style="display:none;">
+                    <!--<label for="observacionSubsanar" class="form-label">Observación por subsanar</label>-->
+                    <input type="text" id="observacionSubsanar" class="form-control" placeholder="Ingrese observación por subsanar">
+                </div>
+
+                <div class="col-xl-6 mt-3">
+                    @* <button type="button" id="btnCancelar" class="btn btn-info-light btn-wave waves-effect waves-light me-2"> CANCELAR </button> *@
+                    <button type="button" id="btGuardarSelect" class="btn btn-primary"> GUARDAR </button>
+                </div>
+            </div>            
+        </div>
+    </div>
+
+
+    @*  DOCUMENTO LICENCIA  *@
+    <div>
+        <div class="card" id="bodyArchivos">
+            <div class="card-header p-3 fs-6 fw-bold"> Subir documento del tramite entregado: </div>
+            <div class="card-body">
+                <div class="row" id="divImagen">
+                    <div class="col-xxl-3 col-xl-4 col-lg-3 col-md-3 col-sm-6 border-top">
+                        @* <div class="card custom-card team-member-card">
+                            <div class="">  
+                                <img src="https://tulicenciapr.com/upload/0default1.png" class="card-img-top" alt="...">
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="d-flex flex-wrap align-item-center mt-sm-0 mt-5 justify-content-between border-bottom border-block-end-dashed p-3">
+                                    <p class="mb-0 fw-semibold fs-16 text-truncate">
+                                        <a href="javascript:void(0);">Licencia</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card-footer border-block-start-dashed text-center">
+                                <div class="btn-list">
+                                    <div class="btn-list">
+                                        <button class="btn  btn-secondary-light btn-wave waves-effect waves-light"><i class="ri-eye-line"></i></button>
+                                        <button class="btn btn-success-light btn-wave waves-effect waves-light"><i class="ri-pencil-line"></i></button>
+                                        <button class="btn btn-danger-light btn-wave waves-effect waves-light"><i class="ri-delete-bin-line"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> *@
+                    </div>
+                </div>
+                <br/>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <button type="button" id="btnVerPDF" class="btn btn-primary-light btn-wave waves-effect waves-light me-5"> VER NUEVAMENTE EL EXPEDIENTE </button>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div>
+        <div class="card" id="bodyEnvioClosed">
+            <div class="card-header p-3 fs-6 fw-bold"></div>
+            <div class="card-body">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-3">
+                    <button type="button" id="btnEnvioClosed" class="btn btn-success btn-wave waves-effect waves-light"> FINALIZAR CASO </button>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+
+
+
+
+    @*  MODAL LICENCIA *@
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen-md-down">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="nombreImagen">   </h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <img id="imgURL" src="" class="img-fluid rounded" alt="...">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    
+
+    <!-- Modal para la previsualización del PDF -->
+    <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="previewModalLabel"> Previsualización del PDF </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe id="pdfPreview" style="width: 100%; height: 450px;" frameborder="0" crossorigin="anonymous" allow="scripts" sandbox="allow-top-navigation allow-scripts"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" target="_blank" class="btn btn-primary" id="btnDescargarPDF">Descargar PDF</a>
+                    @* <button type="button" class="btn btn-primary" id="btnGuardarBD">Guardar en BD</button> *@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+</div>
+
+
+@section scripts {
+    <script src="~/js/process-form.js?hash=@Utility.RandomString()"></script>
+}

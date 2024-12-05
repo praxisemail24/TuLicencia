@@ -1,0 +1,327 @@
+﻿@{
+    ViewBag.Title = "Evaluacion Medica";
+}
+
+<div class="main-content app-content" style="padding-left: 0; margin-left: 0;">
+    <div class="container-fluid ps-0"
+        <!-- Page Header -->
+        <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+            <h1 class="page-title fw-semibold fs-18 mb-0">Evaluacion Medica</h1>
+            <div class="ms-md-1 ms-0">
+                <nav>
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Casos</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Formulario de Evaluación Médica -->
+        <form class="row g-3 mt-0" id="formEvaluacion" method="post">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Datos del cliente:
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="p-3 border-bottom border-block-end-dashed">
+                                <p class="mb-2 text-muted"><span class="fw-semibold text-default">Nombre:</span> <span id="nombreCliente"></span></p>
+                                <p class="mb-2 text-muted"><span class="fw-semibold text-default">Segundo Nombre:</span> <span id="segundoNombreCliente"></span></p>
+                                <p class="mb-2 text-muted"><span class="fw-semibold text-default">Apellido Paterno:</span> <span id="apellidoPaternoCliente"></span></p>
+                                <p class="mb-2 text-muted"><span class="fw-semibold text-default">Apellido Materno:</span> <span id="apellidoMaternoCliente"></span></p>
+                                <p class="mb-2 text-muted"><span class="fw-semibold text-default">Núm. de Seguro Social:</span> <span id="seguroSocial"></span></p>
+                                <p class="mb-2 text-muted"><span class="fw-semibold text-default">Num. de Licencia de conducir de Puerto Rico:</span> <span id="licenciaConducir"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Datos de la evaluacion:
+                            </div>
+                        </div>
+                        <div class="card-body add-products p-0">
+                            <div class="p-4">
+                                <div class="row gy-3">
+                                    <section class="container p-4">
+                                        <p><b>INSTRUCCIONES AL MÉDICO-Utilizar letra legible (letra de molde)</b></p>
+                                        <p>De acuerdo con las disposiciones de la Ley Núm. 22, de 7 de enero de 2000, según enmendada...</p>
+
+                                        <p><b>Agudeza visual</b></p>
+
+                                        <div class="row gy-4">
+                                            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                                <label for="ojoDerechoSinLentes" class="form-label">Ojo derecho sin lentes Correctivos 20/</label>
+                                                <input type="text" class="form-control" id="ojoDerechoSinLentes" name="ojoDerechoSinLentes" value="">
+                                            </div>
+                                            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                                <label for="ojoIzquierdoSinLentes" class="form-label">Ojo izquierdo sin lentes Correctivos 20/</label>
+                                                <input type="text" class="form-control" id="ojoIzquierdoSinLentes" name="ojoIzquierdoSinLentes" value="">
+                                            </div>
+                                            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                               <label for="fcm_condi_sin_lentes" class="form-label">Condición Sin Lentes</label>
+                                                <select id="fcm_condi_sin_lentes" name="fcm_condi_sin_lentes" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                                                    <option value="" selected>Ninguna</option>
+                                                    <option value="Congénita">Congénita</option>
+                                                    <option value="Adquirida">Adquirida</option>
+                                                </select>
+                                            </div>
+
+                                        <div class="row gy-4">
+                                            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                                <label for="ojoDerechoConLentes" class="form-label">Ojo derecho con lentes Correctivos 20/</label>
+                                                <input type="text" class="form-control" id="ojoDerechoConLentes" name="ojoDerechoConLentes" value="">
+                                            </div>
+                                            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                                <label for="ojoIzquierdoConLentes" class="form-label">Ojo izquierdo con lentes Correctivos 20/</label>
+                                                <input type="text" class="form-control" id="ojoIzquierdoConLentes" name="ojoIzquierdoConLentes" value="">
+                                            </div>
+                                            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                               <label for="fcm_condi_con_lentes" class="form-label">Condición Con Lentes</label>
+                                                <select id="fcm_condi_con_lentes" name="fcm_condi_con_lentes" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                                                    <option value="" selected>Ninguna</option>
+                                                    <option value="Congénita">Congénita</option>
+                                                    <option value="Adquirida">Adquirida</option>
+                                                </select>
+                                            </div>
+                                        
+
+   <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+    <label for="fcm_condicion" class="form-label">Condición</label>
+    <select id="fcm_condicion" name="fcm_condicion" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+        <option selected>-- Seleccione --</option>
+        <option value="Congenita">Congénita</option>
+        <option value="Adquirida">Adquirida</option>
+        <option value="Ojo Derecho">Ojo Derecho</option>
+        <option value="Ojo Izquierdo">Ojo Izquierdo</option>
+    </select>
+</div>
+
+<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+    <label for="fcm_ambosOjos" class="form-label">Ambos Ojos 20/</label>
+    <input id="fcm_ambosOjos" name="fcm_ambosOjos" type="text" class="form-control" value="">
+</div>
+
+<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+    <label for="fcm_espejuelos" class="form-label">Usa espejuelos?</label>
+    <select id="fcm_espejuelos" name="fcm_espejuelos" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+        <option selected>-- Seleccione --</option>
+        <option value="Si">Sí</option>
+        <option value="No">No</option>
+    </select>
+</div>
+
+<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+    <label for="fcm_usaLentes" class="form-label">Usa lentes de contacto?</label>
+    <select id="fcm_usaLentes" name="fcm_usaLentes" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+        <option selected>-- Seleccione --</option>
+        <option value="Si">Sí</option>
+        <option value="No">No</option>
+    </select>
+</div>
+
+<div class="col-xl-12 col-lg-12 col-md-6 col-sm-12">
+    <label for="fcm_observacion" class="form-label">Observaciones</label>
+    <textarea id="fcm_observacion" name="fcm_observacion" class="form-control" rows="2"></textarea>
+</div>
+</div>
+
+
+<p><b>Condición física y mental del solicitante</b></p>
+<div class="row gy-4">
+<div class="col-xl-4 col-lg-12 col-md-6 col-sm-12">
+    <label for="fcm_condicionOido" class="form-label">Oídos</label>
+    <textarea id="fcm_condicionOido" name="fcm_condicionOido" class="form-control" rows="2"></textarea>
+</div>
+
+<div class="col-xl-4 col-lg-12 col-md-6 col-sm-12">
+    <label for="fcm_condicionBrazo" class="form-label">Brazos</label>
+    <textarea id="fcm_condicionBrazo" name="fcm_condicionBrazo" class="form-control" rows="2"></textarea>
+</div>
+
+<div class="col-xl-4 col-lg-12 col-md-6 col-sm-12">
+    <label for="fcm_condicionPierna" class="form-label">Piernas</label>
+    <textarea id="fcm_condicionPierna" name="fcm_condicionPierna" class="form-control" rows="2"></textarea>
+</div>
+
+<div class="col-xl-12 col-lg-12 col-md-6 col-sm-12">
+    <label for="fcm_condicionFisica" class="form-label">Comentarios sobre condición física o mental del paciente</label>
+    <textarea id="fcm_condicionFisica" name="fcm_condicionFisica" class="form-control" rows="2"></textarea>
+</div>
+
+<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+    <label for="fcm_estadoInconciencia" class="form-label">¿Has padecido alguna vez de epilepsia, mareos o cualquier otra condición que cause estado de inconsciencia?</label>
+    <select id="fcm_estadoInconciencia" name="fcm_estadoInconciencia" class="form-select form-select-sm mb-3">
+        <option selected>-- Seleccione --</option>
+        <option value="Si">Sí</option>
+        <option value="No">No</option>
+    </select>
+</div>
+
+<div class="col-xl-2 col-lg-6 col-md-6 col-sm-12">
+    <label for="fcm_padeceCorazon" class="form-label">¿Padece del corazón?</label>
+    <select id="fcm_padeceCorazon" name="fcm_padeceCorazon" class="form-select form-select-sm mb-3">
+        <option selected>-- Seleccione --</option>
+        <option value="Si">Sí</option>
+        <option value="No">No</option>
+    </select>
+</div>
+
+<div class="col-xl-2 col-lg-6 col-md-6 col-sm-12">
+    <label for="fcm_marcapaso" class="form-label">¿Usa marcapasos?</label>
+    <select id="fcm_marcapaso" name="fcm_marcapaso" class="form-select form-select-sm mb-3">
+        <option selected>-- Seleccione --</option>
+        <option value="Si">Sí</option>
+        <option value="No">No</option>
+    </select>
+</div>
+
+<div class="col-xl-2 col-lg-6 col-md-6 col-sm-12">
+    <label for="fcm_protesis" class="form-label">¿Usa prótesis?</label>
+    <select id="fcm_protesis" name="fcm_protesis" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+        <option selected>-- Seleccione --</option>
+        <option value="Si">Sí</option>
+        <option value="No">No</option>
+    </select>
+</div>
+
+<div class="col-xl-3 col-lg-12 col-md-6 col-sm-12">
+    <label for="fcm_peso" class="form-label">Peso</label>
+    <input id="fcm_peso" name="fcm_peso" class="form-control" value="">
+</div>
+
+<div class="col-xl-3 col-lg-12 col-md-6 col-sm-12">
+    <label for="fcm_colorOjo" class="form-label">Color de Ojos</label>
+    <select id="fcm_colorOjo" name="fcm_colorOjo" class="form-select">
+        <option selected>Elige una opción...</option>
+        <option value="Amarillo">Amarillo</option>
+        <option value="Azul">Azul</option>
+        <option value="Gris">Gris</option>
+        <option value="Marron">Marrón</option>
+        <option value="Negro">Negro</option>
+        <option value="Verde">Verde</option>
+        <option value="Hazel">Hazel</option>
+    </select>
+</div>
+
+<div class="col-xl-3 col-lg-12 col-md-6 col-sm-12">
+    <label for="fcm_colorPelo" class="form-label">Color de Pelo</label>
+    <select id="fcm_colorPelo" name="fcm_colorPelo" class="form-select">
+        <option selected>Elige una opción...</option>
+        <option value="Amarillo">Amarillo</option>
+        <option value="Blanco">Blanco</option>
+        <option value="Gris">Gris</option>
+        <option value="Marron">Marrón</option>
+        <option value="Negro">Negro</option>
+        <option value="Rojo">Rojo</option>
+        <option value="Calvo">Calvo</option>
+    </select>
+</div>
+
+<div class="col-xl-2 col-lg-12 col-md-6 col-sm-12">
+    <label for="estaturaPies" class="form-label">Estatura - Pies</label>
+    <select id="estaturaPies" name="estaturaPies" class="form-select">
+        <option selected>Elige una opción...</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+    </select>
+</div>
+
+<div class="col-xl-2 col-lg-12 col-md-6 col-sm-12">
+    <label for="estaturaPulgadas" class="form-label">Pulgadas</label>
+    <select id="estaturaPulgadas" name="estaturaPulgadas" class="form-select">
+        <option selected>Elige una opción...</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+    </select>
+</div>
+</div>
+ </section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="row">
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                              <div class="card-header">
+                                <div class="card-title">
+                                  Evaluacion:
+                                </div>
+                              </div>
+                              <div class="card-body p-0">
+                                   <div class="row gy-3">
+                                    <section class="container p-4">
+                                            <!-- Más campos aquí -->
+
+                                            <div class="col-xl-4 col-lg-12 col-md-6 col-sm-12">
+                                                <label for="fcm_estado" class="form-label">Certifico que dicha persona está físicamente y mentalmente capacitada</label>
+                                                <select id="fcm_estado" name="fcm_estado" required class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                                                    <option selected>-- Seleccione --</option>
+                                                    <option value="1">Aprobado</option>
+                                                    <option value="0">Denegado</option>
+                                                    <option value="2">Unreachable</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-xl-2 col-lg-12 col-md-6 col-sm-12">
+                                                <label for="fcm_fecha" class="form-label">Fecha de evaluación</label>
+                                                <input required type="date" class="form-control" id="fcm_fecha" name="fcm_fecha" value="">
+                                            </div>
+                                            <div class="col-xl-3 col-lg-12 col-md-6 col-sm-12">
+                                                <label for="fcm_nombreMedico" class="form-label">Nombre del Medico</label>
+                                                <input required type="text" class="form-control" id="fcm_nombreMedico" name="fcm_nombreMedico" value="">
+                                            </div>
+                                            <div class="col-xl-3 col-lg-12 col-md-6 col-sm-12">
+                                                <label for="fcm_licenciaMedico" class="form-label">Nro. Licencia del Medico</label>
+                                                <input required type="text" class="form-control" id="fcm_licenciaMedico" name="fcm_licenciaMedico" value="">
+                                            </div>
+
+                                            <!-- Más campos aquí -->
+
+                                            <button type="submit" class="btn btn-primary w-25 inline-block mt-4">Grabar</button>
+                                            <input type="hidden" name="id"    id="id"   value="@ViewBag.id">
+                                            <input type="hidden" name="tr_id" id="tr_id" value="@ViewBag.tr_id">
+
+                                             </section>
+                                             </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+        </form>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/js/evaluacion.js"></script>
+}
