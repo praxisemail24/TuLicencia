@@ -1,4 +1,6 @@
-﻿namespace SmartLicencia.Entity
+﻿using Swashbuckle.AspNetCore.Annotations;
+
+namespace SmartLicencia.Entity
 {
     public class DataTableJSRequest<TParam>
     {
@@ -10,6 +12,7 @@
 
         public int Start { get; set; }
 
+        [SwaggerSchema("Cantidad de elementos por página.")]
         public int Length { get; set; }
 
         public DataTableSearch? Search { get; set; }

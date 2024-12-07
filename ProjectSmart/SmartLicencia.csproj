@@ -109,10 +109,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Templates\BillOfSale.txt">
+    <None Update="Templates\RecordChoferil.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RecordChoferil.txt</LastGenOutput>
+    </None>
+    <None Update="Templates\RecordChoferil.txt">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>BillOfSale.tt</DependentUpon>
+      <DependentUpon>RecordChoferil.tt</DependentUpon>
     </None>
   </ItemGroup>
 

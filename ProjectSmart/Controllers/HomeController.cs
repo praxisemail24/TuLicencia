@@ -3,12 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using SmartLicencia.Entity;
 using SmartLicencia.Models;
 using SmartLicencia.Repository;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace SmartLicencia.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
+    [SwaggerTag("Contralador de inicio.")]
     public class HomeController : Controller
     {
         private readonly HomeRepository __homeRepository;
@@ -18,6 +20,12 @@ namespace SmartLicencia.Controllers
         }
 
         [HttpPost("dashboard/tramites")]
+        [SwaggerOperation(
+            Summary = "Lista de trámites.",
+            Description = "Listado de trámites de inicio por caso.",
+            OperationId = "TramitesInicio",
+            Tags = new string[] { "Home" }
+        )]
         public DataTableJS<ReporteTramiteCaso> TramitesInicio([FromForm] DataTableJSRequest<TramiteDashboardRequest> dataTable)
         {
             var response = new DataTableJS<ReporteTramiteCaso>();

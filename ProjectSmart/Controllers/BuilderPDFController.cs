@@ -42,6 +42,11 @@ namespace SmartLicencia.Controllers
 
         protected async Task<string> GeneratePdfOfTemplate(string template, string fileName, IPdfModel param)
         {
+            var dirBase = Path.GetDirectoryName(fileName);
+
+            if(!Directory.Exists(dirBase) && !string.IsNullOrWhiteSpace(dirBase))
+                Directory.CreateDirectory(dirBase);
+
             var templatePath = Path.Combine(_hostEnv.WebRootPath, $"..\\Templates\\{template}.tt");
 
             var html = await PDF.BuilderHtml(templatePath, param);

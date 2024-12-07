@@ -50,6 +50,9 @@ namespace SmartLicencia.Repository
                     record.PgId = reader.IsDBNull(reader.GetOrdinal("PG_ID")) ? 0 : reader.GetInt32(reader.GetOrdinal("PG_ID"));
                     record.Lang = reader.IsDBNull(reader.GetOrdinal("LANG")) ? string.Empty : reader.GetString(reader.GetOrdinal("LANG"));
                     record.LicensePlate = reader.IsDBNull(reader.GetOrdinal("LICENSE_PLATE")) ? string.Empty : reader.GetString(reader.GetOrdinal("LICENSE_PLATE"));
+                    record.Category = reader.IsDBNull(reader.GetOrdinal("CATEGORY")) ? string.Empty : reader.GetString(reader.GetOrdinal("CATEGORY"));
+                    record.Number = reader.IsDBNull(reader.GetOrdinal("NUMBER")) ? string.Empty : reader.GetString(reader.GetOrdinal("NUMBER"));
+                    record.Serie = reader.IsDBNull(reader.GetOrdinal("SERIE")) ? string.Empty : reader.GetString(reader.GetOrdinal("SERIE"));
                 }
 
                 return record;

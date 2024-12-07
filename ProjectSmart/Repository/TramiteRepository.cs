@@ -74,7 +74,7 @@ namespace SmartLicencia.Repository
 
         public Tramite TramiteById(int id)
         {
-            return ExecProcedure<SqlConnection, SqlCommand, Tramite>($"SELECT * FROM Tramites WHERE tr_id = {id}", (cmd) =>
+            return ExecQuery<SqlConnection, SqlCommand, Tramite>($"SELECT * FROM Tramites WHERE tr_id = {id}", (cmd) =>
             {
                 var reader = cmd.ExecuteReader();
                 reader.Read();

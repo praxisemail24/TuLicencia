@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SmartLicencia.Entity;
 using SmartLicencia.Models;
 using SmartLicencia.Repository;
+using SmartLicense.Pdf.Models;
 using SmartLicense.Utils;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -12,18 +13,17 @@ namespace SmartLicencia.Controllers
     [ApiController]
     [Authorize]
     [SwaggerTag("Controlador de Record Choferil")]
-    public class RecordChoferilController : Controller
+    public class RecordChoferilController : BuilderPDFController
     {
         private readonly RecordChoferilRepository _recordChoferilRepository;
         private readonly IArchivoRepository _archivoRepository;
-        private readonly IWebHostEnvironment _webHostEnv;
         private readonly Tramite _tramite;
 
-        public RecordChoferilController(IConfiguration config, IWebHostEnvironment webHost, IArchivoRepository archivoRepository, ITramiteRepository tramiteRepository) 
+        public RecordChoferilController(IWebHostEnvironment webHost, IConfiguration config, IArchivoRepository archivoRepository, ITramiteRepository tramiteRepository)
+            :base(webHost, config)
         { 
             _archivoRepository = archivoRepository;
             _recordChoferilRepository = new RecordChoferilRepository(config);
-            _webHostEnv = webHost;
             _tramite = tramiteRepository.TramiteById(10);
         }
 
@@ -149,6 +149,36 @@ namespace SmartLicencia.Controllers
                 response.Error = ex;
             }
             return response;
+        }
+
+        [HttpGet("{id}/Certificate")]
+        [HttpGet("{id}/Certificate/{regenerate:int}")]
+        [AllowAnonymous]
+        [SwaggerOperation(
+            Summary = "PDF record choferil",
+            Description = "Genera el PDF de record choferil por ID.",
+            OperationId = "Certificate",
+            Tags = new string[] { "RecordChoferil" }
+        )]
+        public async Task<IActionResult> Certificate(int id, int regenerate)
+        {
+            var fileName = Path.Combine(_hostEnv.ContentRootPath, "wwwroot", "RecordChoferil", $"certificate_{id}.pdf");
+
+            if (!System.IO.File.Exists(fileName))
+                regenerate = 1;
+
+            if(regenerate == 1)
+            {
+                var model = _recordChoferilRepository.GetById(id);
+
+                var pdf = new RecordChoferilPdf
+                {
+
+                };
+                fileName = await GeneratePdfOfTemplate("RecordChoferil", fileName, pdf);
+            }
+            
+            return renderPdf(fileName);
         }
     }
 }
