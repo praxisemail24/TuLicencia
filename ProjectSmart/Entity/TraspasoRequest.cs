@@ -1,4 +1,5 @@
 ﻿using SmartLicencia.Models;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace SmartLicencia.Entity
 {
@@ -54,14 +55,31 @@ namespace SmartLicencia.Entity
 
     public class TraspasosStatus
     {
+        [SwaggerSchema("Identificador de registro traspaso de vehículo.")]
         public long? Id { get; set; }
+
+        [SwaggerSchema("Estado de caso: NEW CASE (0), REVIEW CASE (1), PROCESS CASE (2), CLOSED CASE (3)")]
         public int? State { get; set; }
+
+        [SwaggerSchema("Estado de revisión de multas.")]
         public bool? Revised { get; set; }
+
+        [SwaggerSchema("Estado de revisión de documentos.")]
         public bool? Evaluation { get; set; }
+
+        [SwaggerSchema("Identificador de administrador.")]
         public int? AdminId { get; set; }
+
+        [SwaggerSchema("Identificador de radicador.")]
         public int? RadicatorId { get; set; }
+
+        [SwaggerSchema("Estado de radicación de documento.")]
         public bool? Radicated { get; set; }
+
+        [SwaggerSchema("Estado de radicación.")]
         public string? RadicationState { get; set; }
+
+        [SwaggerSchema("Observación del estado de radicación.")]
         public string? RadicationObservation { get; set; }
     }
 }

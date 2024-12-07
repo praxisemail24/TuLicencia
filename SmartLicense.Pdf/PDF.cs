@@ -356,58 +356,10 @@ namespace SmartLicense.Pdf
             if(!Directory.Exists(tempPath))
                 Directory.CreateDirectory(tempPath);
 
-            name = string.Format("{0:HHmmss}-{1}.pdf", DateTime.Now, GenerateSlug(name));
+            name = string.Format("{0:HHmmss}-{1}.pdf", DateTime.Now, Utils.Utils.Slug(name));
 
             return Path.Combine(tempPath, name);
-        }
-
-        private static string GenerateSlug(string input)
-        {
-            if (string.IsNullOrEmpty(input)) return string.Empty;
-
-            // Convertir a minúsculas
-            string slug = input.ToLowerInvariant();
-
-            // Reemplazar caracteres acentuados o especiales
-            slug = RemoveDiacritics(slug);
-
-            // Reemplazar cualquier carácter que no sea letra, número o espacio por guiones
-            slug = Regex.Replace(slug, @"[^a-z0-9\s-]", "");
-
-            // Reemplazar múltiples espacios o guiones consecutivos con un solo guion
-            slug = Regex.Replace(slug, @"[\s-]+", "-").Trim('-');
-
-            return slug;
-        }
-
-        private static string RemoveDiacritics(string text)
-        {
-            var normalizedString = text.Normalize(NormalizationForm.FormD);
-            var stringBuilder = new StringBuilder();
-
-            foreach (var c in normalizedString)
-            {
-                var unicodeCategory = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(c);
-                if (unicodeCategory != System.Globalization.UnicodeCategory.NonSpacingMark)
-                {
-                    stringBuilder.Append(c);
-                }
-            }
-
-            return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
-        }
-
-        private static string RandomString(int length = 16)
-        {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            Random random = new Random();
-            StringBuilder result = new StringBuilder(length);
-
-            for (int i = 0; i < length; i++)
-                result.Append(chars[random.Next(chars.Length)]);
-
-            return result.ToString();
-        }
+        }        
         #endregion
     }
 }

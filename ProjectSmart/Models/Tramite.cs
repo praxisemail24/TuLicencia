@@ -10,5 +10,6 @@
 
         public string tipoparcialtotal { get; set; }
 
+        public bool tr_activo { get; set; }
     }
 }

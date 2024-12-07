@@ -92,6 +92,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Stripe.net" Version="47.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="7.1.0" />
     <PackageReference Include="System.CodeDom" Version="8.0.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
@@ -100,6 +101,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SmartLicense.Pdf\SmartLicense.Pdf.csproj" />
+    <ProjectReference Include="..\SmartLicense.Utils\SmartLicense.Utils.csproj" />
   </ItemGroup>
 
   <ItemGroup>

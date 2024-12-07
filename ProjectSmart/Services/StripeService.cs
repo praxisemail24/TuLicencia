@@ -1,6 +1,6 @@
 ﻿using SmartLicencia.Models;
 using SmartLicencia.Repository;
-using SmartLicencia.Utility;
+using SmartLicense.Utils;
 
 namespace SmartLicencia.Services
 {

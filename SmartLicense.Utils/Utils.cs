@@ -1,9 +1,8 @@
-﻿using SmartLicencia.Models;
-using System.Net.NetworkInformation;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 
-namespace SmartLicencia.Utility
+namespace SmartLicense.Utils
 {
     public class Utils
     {
@@ -22,6 +21,42 @@ namespace SmartLicencia.Utility
                 result.Append(chars[random.Next(chars.Length)]);
 
             return result.ToString();
+        }
+
+        public static string Slug(string input)
+        {
+            if (string.IsNullOrEmpty(input)) return string.Empty;
+
+            // Convertir a minúsculas
+            string slug = input.ToLowerInvariant();
+
+            // Reemplazar caracteres acentuados o especiales
+            slug = RemoveDiacritics(slug);
+
+            // Reemplazar cualquier carácter que no sea letra, número o espacio por guiones
+            slug = Regex.Replace(slug, @"[^a-z0-9\s-]", "");
+
+            // Reemplazar múltiples espacios o guiones consecutivos con un solo guion
+            slug = Regex.Replace(slug, @"[\s-]+", "-").Trim('-');
+
+            return slug;
+        }
+
+        private static string RemoveDiacritics(string text)
+        {
+            var normalizedString = text.Normalize(NormalizationForm.FormD);
+            var stringBuilder = new StringBuilder();
+
+            foreach (var c in normalizedString)
+            {
+                var unicodeCategory = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(c);
+                if (unicodeCategory != System.Globalization.UnicodeCategory.NonSpacingMark)
+                {
+                    stringBuilder.Append(c);
+                }
+            }
+
+            return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
 
         public static async Task<string> CreateFile(string base64, string fileName, string dirBase)
@@ -64,7 +99,7 @@ namespace SmartLicencia.Utility
 
             dirBase = Path.Combine(dirBase, fileName);
 
-            if(!Directory.Exists(dirBase))
+            if (!Directory.Exists(dirBase))
                 Directory.CreateDirectory(dirBase);
 
             byte[] contents = Convert.FromBase64String(base64);

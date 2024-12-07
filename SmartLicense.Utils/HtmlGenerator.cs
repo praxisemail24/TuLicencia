@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel;
-using System.Reflection;
 using System.Text;
 
-namespace SmartLicencia.Utility
+namespace SmartLicense.Utils
 {
     public class HtmlGenerator
     {
@@ -22,7 +21,7 @@ namespace SmartLicencia.Utility
             foreach (var property in properties)
             {
                 var displayAttribute = property?.GetCustomAttributes(typeof(DisplayNameAttribute), false).FirstOrDefault() as DisplayNameAttribute;
-                if(displayAttribute != null)
+                if (displayAttribute != null)
                     sb.AppendLine($"<th style=\"background-color: #ECECEC; margin-left: 2px; margin-right: 2px;\">{displayAttribute.DisplayName}</th>");
             }
             sb.AppendLine("</tr></thead>");
@@ -35,7 +34,7 @@ namespace SmartLicencia.Utility
                 foreach (var property in properties)
                 {
                     var displayAttribute = property?.GetCustomAttributes(typeof(DisplayNameAttribute), false).FirstOrDefault() as DisplayNameAttribute;
-                    if(displayAttribute != null)
+                    if (displayAttribute != null)
                     {
                         var value = property?.GetValue(item, null) ?? string.Empty;
                         sb.AppendLine($"<td>{value}</td>");
@@ -75,7 +74,7 @@ namespace SmartLicencia.Utility
                 str = Convert.ToString(obj);
             }
 
-            if(string.IsNullOrWhiteSpace(str))
+            if (string.IsNullOrWhiteSpace(str))
                 return string.Empty;
 
             return str;

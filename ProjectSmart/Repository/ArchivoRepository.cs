@@ -143,5 +143,20 @@ namespace SmartLicencia.Repository
                 return new ResponseEntity<Archivo> { success = false, message = $"Ocurrió un error inesperado: {ex.Message}" };
             }
         }
+
+        public bool AddOrUpdate(Archivo archivo)
+        {
+            return ExecProcedure<SqlConnection, SqlCommand, bool>("sp_GuardarActualizarArchivo", (cmd) =>
+            {
+                cmd.Parameters.Add(CreateParameter<SqlParameter>("@trId", archivo.tr_tramite.tr_id));
+                cmd.Parameters.Add(CreateParameter<SqlParameter>("@clId", archivo.cl_cliente.cl_id));
+                cmd.Parameters.Add(CreateParameter<SqlParameter>("@frmId", archivo.frm_id));
+                cmd.Parameters.Add(CreateParameter<SqlParameter>("@arNombre", archivo.ar_nombre));
+                cmd.Parameters.Add(CreateParameter<SqlParameter>("@arPos", archivo.ar_pos));
+                cmd.Parameters.Add(CreateParameter<SqlParameter>("@arFecha", archivo.ar_fecha));
+
+                return cmd.ExecuteNonQuery() > 0;
+            });
+        }
     }
 }

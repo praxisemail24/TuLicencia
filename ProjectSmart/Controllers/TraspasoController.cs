@@ -5,12 +5,14 @@ using SmartLicencia.Models;
 using SmartLicencia.Repository;
 using SmartLicense.Pdf;
 using SmartLicense.Pdf.Models;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace SmartLicencia.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
+    [SwaggerTag("Controlador de traspaso de vehículos.")]
     public class TraspasoController : BuilderPDFController
     {
         private readonly TraspasoRepository _traspasoRepository;
@@ -121,6 +123,12 @@ namespace SmartLicencia.Controllers
         }
 
         [HttpPost("store")]
+        [SwaggerOperation(
+            Summary = "Crea un nuevo traspaso de vehículo.",
+            Description = "Registra un nuevo traspaso de vehículos y devuelve si se ejecuto correctamente el proceso junto con el identificador del nuevo registro.",
+            OperationId = "Store",
+            Tags = new string[] { "Traspaso" }
+        )]
         public async Task<ResponseJSONModel<Traspaso>> Store([FromBody] TraspasoRequest request)
         {
             ResponseJSONModel<Traspaso> response = new ResponseJSONModel<Traspaso>();
@@ -142,6 +150,12 @@ namespace SmartLicencia.Controllers
         }
 
         [HttpPut("update")]
+        [SwaggerOperation(
+            Summary = "Actualiza un traspaso de vehículo.",
+            Description = "Actualiza un traspaso de vehículo por ID y devuelve si se ejecuto correctamente el proceso.",
+            OperationId = "Update",
+            Tags = new string[] { "Traspaso" }
+        )]
         public async Task<ResponseJSONModel<Traspaso>> Update([FromBody] TraspasoRequest request)
         {
             ResponseJSONModel<Traspaso> response = new ResponseJSONModel<Traspaso>();
@@ -163,6 +177,12 @@ namespace SmartLicencia.Controllers
         }
 
         [HttpGet("{id}/show")]
+        [SwaggerOperation(
+            Summary = "Mostrar información de traspaso de vehículo.",
+            Description = "Muestra la información y archivos de un traspaso de vehículo por ID.",
+            OperationId = "Show",
+            Tags = new string[] { "Traspaso" }
+        )]
         public async Task<ResponseJSONModel<Traspaso>> Show(int id)
         {
             ResponseJSONModel<Traspaso> response = new ResponseJSONModel<Traspaso>();
@@ -222,6 +242,12 @@ namespace SmartLicencia.Controllers
         }
 
         [HttpGet("{id}/documents")]
+        [SwaggerOperation(
+            Summary = "Archivos de traspaso de vehículo.",
+            Description = "Lista de archivos de un traspaso de vehículo por ID.",
+            OperationId = "Documents",
+            Tags = new string[] { "Traspaso" }
+        )]
         public ResponseJSONModel<List<TraspasoDoc>> Documents(int id)
         {
             ResponseJSONModel<List<TraspasoDoc>> response = new ResponseJSONModel<List<TraspasoDoc>>();
@@ -243,6 +269,12 @@ namespace SmartLicencia.Controllers
         }
 
         [HttpPost("change-case")]
+        [SwaggerOperation(
+            Summary = "Cambiar caso de traspaso de vehículo.",
+            Description = "Cambia el estado del traspado de vehículo NEW CASE (0), REVIEW CASE (1), PROCESS CASE (2), CLOSED CASE (3).",
+            OperationId = "ChangeCase",
+            Tags = new string[] { "Traspaso" }
+        )]
         public ResponseJSON ChangeCase([FromBody] TraspasosStatus request)
         {
             var response = new ResponseJSON();
@@ -269,6 +301,12 @@ namespace SmartLicencia.Controllers
         }
 
         [HttpPut("change-status/{id}")]
+        [SwaggerOperation(
+            Summary = "Cambiar estado de traspaso de vehículo.",
+            Description = "Cambia el estado de revisión de multas y evaluación de documentos.",
+            OperationId = "ChangeStatus",
+            Tags = new string[] { "Traspaso" }
+        )]
         public ResponseJSON ChangeStatus(long id, [FromBody] TraspasosStatus request)
         {
             var response = new ResponseJSON();
@@ -292,6 +330,12 @@ namespace SmartLicencia.Controllers
         }
 
         [HttpPut("radicator-assign/{id}")]
+        [SwaggerOperation(
+            Summary = "Asignar radicador.",
+            Description = "Asigna un radicador al traspaso de vehículo.",
+            OperationId = "RadicatorAssign",
+            Tags = new string[] { "Traspaso" }
+        )]
         public ResponseJSON RadicatorAssign(long id, [FromBody] TraspasosStatus request)
         {
             var response = new ResponseJSON();
@@ -320,6 +364,12 @@ namespace SmartLicencia.Controllers
         }
 
         [HttpPost("doc-radicated")]
+        [SwaggerOperation(
+            Summary = "Radicación de documento.",
+            Description = "Cambio el estado de radicación de documento.",
+            OperationId = "Radicated",
+            Tags = new string[] { "Traspaso" }
+        )]
         public ResponseJSON Radicated(TraspasosStatus request)
         {
             var response = new ResponseJSON();
@@ -351,7 +401,13 @@ namespace SmartLicencia.Controllers
         }
 
         [HttpPost("radication-state")]
-        public ResponseJSON RadicatorAssign([FromBody] TraspasosStatus request)
+        [SwaggerOperation(
+            Summary = "Actualiza el estado de radicación.",
+            Description = "Actualiza el estado de radicación.",
+            OperationId = "RadicationState",
+            Tags = new string[] { "Traspaso" }
+        )]
+        public ResponseJSON RadicationState([FromBody] TraspasosStatus request)
         {
             var response = new ResponseJSON();
             try
@@ -384,6 +440,12 @@ namespace SmartLicencia.Controllers
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet("search-seller-buyer/{column}")]
+        [SwaggerOperation(
+            Summary = "Búsqueda de cliente o comprador.",
+            Description = "Busca un comprador o un vendedor existente. El parámetro' 'column' puede tomar los valores (email, number-license).",
+            OperationId = "SearchSellerBuyer",
+            Tags = new string[] { "Traspaso" }
+        )]
         public ResponseJSONModel<List<Cliente>> SearchSellerBuyer(string column, string query)
         {
             var response = new ResponseJSONModel<List<Cliente>>();
@@ -414,6 +476,12 @@ namespace SmartLicencia.Controllers
         [HttpGet("billofsale/{id}")]
         [HttpGet("gen-billofsale/{id}/{regenerate}")]
         [AllowAnonymous]
+        [SwaggerOperation(
+            Summary = "PDF contrato de compra y venta.",
+            Description = "Genera el PDF de contrato de compra y venta por el ID del traspaso de vehículo, si el parámetro 'regenerate' es 1 el PDF se vuelve a generar.",
+            OperationId = "GenerateBillOfSale",
+            Tags = new string[] { "Traspaso" }
+        )]
         public async Task<FileStreamResult> GenerateBillOfSale(int id, int regenerate)
         {
             string rootDirectory = Path.Combine(_hostEnv.WebRootPath, "BillOfSale");

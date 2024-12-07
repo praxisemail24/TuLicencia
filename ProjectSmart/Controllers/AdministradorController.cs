@@ -1,12 +1,10 @@
-﻿using DocumentFormat.OpenXml.Spreadsheet;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using Org.BouncyCastle.Crypto.Generators;
 using SmartLicencia.Entity;
 using SmartLicencia.Models;
 using SmartLicencia.Repository;
 using SmartLicencia.Utility;
+using SmartLicense.Utils;
 
 
 namespace SmartLicencia.Controllers

@@ -7,6 +7,8 @@ namespace SmartLicencia.Repository
     {
         Task<ResponseEntity<Tramite>> GetAllTramite();
         IEnumerable<Tramite> ListarTramites();
+        IEnumerable<Tramite> ListarTramitesActivos();
+        Tramite TramiteById(int id);
 
     }
 }

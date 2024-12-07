@@ -1,4 +1,5 @@
-﻿@{
+﻿@using SmartLicense.Utils
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -546,7 +547,7 @@
         });
 
     </script>
-    <script src="~/js/ver-formulario.js?hash=@Utility.RandomString()"></script>
+    <script src="~/js/ver-formulario.js?hash=@Utils.RandomString()"></script>
 }
 @section styles{
     <link href="~/css/forms.css" rel="stylesheet" />

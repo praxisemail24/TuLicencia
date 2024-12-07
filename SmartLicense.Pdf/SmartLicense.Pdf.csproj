@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SmartLicense.Utils\SmartLicense.Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="Tunaqui.Utils.PdfConvert">
       <HintPath>Tunaqui.Utils.PdfConvert.dll</HintPath>
     </Reference>

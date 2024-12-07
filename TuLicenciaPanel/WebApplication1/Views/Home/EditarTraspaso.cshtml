@@ -1,9 +1,10 @@
-﻿@{
+﻿@using SmartLicense.Utils
+@{
     ViewData["Title"] = "Traspaso";
 }
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/forms.css?hash=@Utility.RandomString()" />
+    <link rel="stylesheet" href="~/css/forms.css?hash=@Utils.RandomString()" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/siimple-icons/siimple-icons.css" />
 }
 
@@ -19,5 +20,5 @@
             id: @ViewBag.id,
         };
     </script>
-    <script src="~/js/traspaso.js?hash=@Utility.RandomString()"></script>
+    <script src="~/js/traspaso.js?hash=@Utils.RandomString()"></script>
 }

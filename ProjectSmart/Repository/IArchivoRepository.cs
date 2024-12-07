@@ -15,5 +15,6 @@ namespace SmartLicencia.Repository
 
         Task<ResponseEntity<Archivo>> AddArchivoPDFcaso1(Archivo archivo);
 
+        bool AddOrUpdate(Archivo archivo);
     }
 }

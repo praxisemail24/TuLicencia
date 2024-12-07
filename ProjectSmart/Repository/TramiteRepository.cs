@@ -1,5 +1,7 @@
 ﻿using SmartLicencia.Entity;
 using SmartLicencia.Models;
+using Stripe.Terminal;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace SmartLicencia.Repository
@@ -39,28 +41,57 @@ namespace SmartLicencia.Repository
             }
         }
 
+        private IEnumerable<Tramite> mapItemTramite(IDbCommand cmd)
+        {
+            var list = new List<Tramite>();
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                var t = new Tramite();
+                t.tr_id = reader.IsDBNull(reader.GetOrdinal("tr_id")) ? 0 : reader.GetInt32(reader.GetOrdinal("tr_id"));
+                t.tr_estado = reader.IsDBNull(reader.GetOrdinal("tr_estado")) ? 0 : reader.GetInt32(reader.GetOrdinal("tr_estado"));
+                t.tr_nombre = reader.IsDBNull(reader.GetOrdinal("tr_nombre")) ? string.Empty : reader.GetString(reader.GetOrdinal("tr_nombre"));
+                t.tr_precio = reader.IsDBNull(reader.GetOrdinal("tr_precio")) ? 0m : Convert.ToDecimal(reader.GetValue(reader.GetOrdinal("tr_precio")));
+                t.tr_tipoTramite = new TipoTramite
+                {
+                    tpr_id = reader.IsDBNull(reader.GetOrdinal("tpr_id")) ? 0 : reader.GetInt32(reader.GetOrdinal("tpr_id"))
+                };
+                t.tr_activo = reader.IsDBNull(reader.GetOrdinal("tr_activo")) ? false : reader.GetBoolean(reader.GetOrdinal("tr_activo"));
+                list.Add(t);
+            }
+            return list;
+        }
+
         public IEnumerable<Tramite> ListarTramites()
         {
-            return ExecProcedure<SqlConnection, SqlCommand, IEnumerable<Tramite>>("sp_ObtenerTramite", (cmd) =>
+            return ExecProcedure<SqlConnection, SqlCommand, IEnumerable<Tramite>>("sp_ObtenerTramite", mapItemTramite);
+        }
+
+        public IEnumerable<Tramite> ListarTramitesActivos()
+        {
+            return ExecProcedure<SqlConnection, SqlCommand, IEnumerable<Tramite>>("sp_ListarTramitesActivos", mapItemTramite);
+        }
+
+        public Tramite TramiteById(int id)
+        {
+            return ExecProcedure<SqlConnection, SqlCommand, Tramite>($"SELECT * FROM Tramites WHERE tr_id = {id}", (cmd) =>
             {
-                var list = new List<Tramite>();
                 var reader = cmd.ExecuteReader();
-                while (reader.Read())
+                reader.Read();
+
+                var t = new Tramite();
+                t.tr_id = reader.IsDBNull(reader.GetOrdinal("tr_id")) ? 0 : reader.GetInt32(reader.GetOrdinal("tr_id"));
+                t.tr_estado = reader.IsDBNull(reader.GetOrdinal("tr_estado")) ? 0 : reader.GetInt32(reader.GetOrdinal("tr_estado"));
+                t.tr_nombre = reader.IsDBNull(reader.GetOrdinal("tr_nombre")) ? string.Empty : reader.GetString(reader.GetOrdinal("tr_nombre"));
+                t.tr_precio = reader.IsDBNull(reader.GetOrdinal("tr_precio")) ? 0m : Convert.ToDecimal(reader.GetValue(reader.GetOrdinal("tr_precio")));
+                t.tr_tipoTramite = new TipoTramite
                 {
-                    var t = new Tramite();
-                    t.tr_id = reader.IsDBNull(reader.GetOrdinal("tr_id")) ? 0 : reader.GetInt32(reader.GetOrdinal("tr_id"));
-                    t.tr_estado = reader.IsDBNull(reader.GetOrdinal("tr_estado")) ? 0 : reader.GetInt32(reader.GetOrdinal("tr_estado"));
-                    t.tr_nombre = reader.IsDBNull(reader.GetOrdinal("tr_nombre")) ? string.Empty : reader.GetString(reader.GetOrdinal("tr_nombre"));
-                    t.tr_precio = reader.IsDBNull(reader.GetOrdinal("tr_precio")) ? 0m : Convert.ToDecimal(reader.GetValue(reader.GetOrdinal("tr_precio")));
-                    t.tr_tipoTramite = new TipoTramite
-                    {
-                        tpr_id = reader.IsDBNull(reader.GetOrdinal("tpr_id")) ? 0 : reader.GetInt32(reader.GetOrdinal("tpr_id"))
-                    };
-                    list.Add(t);
-                }
-                return list;
+                    tpr_id = reader.IsDBNull(reader.GetOrdinal("tpr_id")) ? 0 : reader.GetInt32(reader.GetOrdinal("tpr_id"))
+                };
+                t.tr_activo = reader.IsDBNull(reader.GetOrdinal("tr_activo")) ? false : reader.GetBoolean(reader.GetOrdinal("tr_activo"));
+
+                return t;
             });
         }
     }
-
 }

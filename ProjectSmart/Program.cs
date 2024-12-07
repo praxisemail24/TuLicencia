@@ -99,6 +99,7 @@ builder.Services.AddSwaggerGen(c =>
         },
         new string[] { }
     }});
+    c.EnableAnnotations();
     //c.OperationFilter<SwaggerFileOperationFilter>();
 });
 

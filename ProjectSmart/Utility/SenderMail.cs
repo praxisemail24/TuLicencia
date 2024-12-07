@@ -1,9 +1,9 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
-using MailKit.Security;
+﻿using MailKit.Security;
 using MimeKit;
 using MimeKit.Text;
 using SmartLicencia.Models;
 using SmartLicencia.Repository;
+using SmartLicense.Utils;
 using System.Text.RegularExpressions;
 
 namespace SmartLicencia.Utility
